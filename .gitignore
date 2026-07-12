@@ -1,0 +1,34 @@
+# ---- Secrets / env (NEVER commit real secrets) ----
+.env
+.env.*
+!.env.example
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+# uv.lock IS committed (reproducible CI); the virtualenv is not.
+
+# ---- Node / Next.js (web/) ----
+node_modules/
+.next/
+out/
+.turbo/
+*-debug.log*
+.pnpm-store/
+
+# ---- OS / editor ----
+.DS_Store
+*.swp
+.idea/
+.vscode/

@@ -1,0 +1,19 @@
+[project]
+name = "dryrun-api"
+version = "0.1.0"
+description = "DryRun — the interview compiler: JD↔resume diff engine, challenge harness, and eval suite."
+requires-python = ">=3.12"
+dependencies = []
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[tool.uv]
+# Not a distributable package at bootstrap; tests import `app` via pythonpath below.
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]

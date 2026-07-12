@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  api:
+    name: api — uv sync + pytest
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api
+    steps:
+      - uses: actions/checkout@v7
+      - name: Set up uv (pinned) + Python 3.12
+        uses: astral-sh/setup-uv@v8
+        with:
+          version: "0.11.28"
+          python-version: "3.12"
+          enable-cache: true
+          cache-dependency-glob: "api/uv.lock"
+      - name: Install dependencies (frozen lockfile)
+        run: uv sync --frozen
+      - name: Run tests
+        run: uv run pytest
