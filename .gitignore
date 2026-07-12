@@ -3,29 +3,23 @@
 .env.*
 !.env.example
 
-# ---- Python ----
-__pycache__/
-*.py[cod]
-*.egg-info/
-.eggs/
-build/
-dist/
-.venv/
-venv/
-.pytest_cache/
-.ruff_cache/
-.mypy_cache/
-.coverage
-htmlcov/
-# uv.lock IS committed (reproducible CI); the virtualenv is not.
-
-# ---- Node / Next.js (web/) ----
+# ---- Node / pnpm ----
 node_modules/
+.pnpm-store/
+*-debug.log*
+.turbo/
+
+# ---- TypeScript ----
+*.tsbuildinfo
+dist/
+
+# ---- Next.js (web/) ----
 .next/
 out/
-.turbo/
-*-debug.log*
-.pnpm-store/
+next-env.d.ts
+
+# ---- Test / coverage ----
+coverage/
 
 # ---- OS / editor ----
 .DS_Store

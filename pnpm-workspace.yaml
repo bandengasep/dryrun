@@ -1,0 +1,8 @@
+packages:
+  - "packages/*"
+  - "web"
+
+# pnpm v11 gates native build scripts behind an explicit allowlist (allowBuilds map).
+# sharp is Next.js's optional image optimizer — allow its build.
+allowBuilds:
+  sharp: true
