@@ -32,3 +32,8 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
   structured outputs at parity (`responses.parse` + `zodTextFormat`); the SQL sandbox runs
   in Node (`@duckdb/node-api` / `better-sqlite3` + vitest). Decided at bootstrap, before any
   feature code, so switch cost was ~zero. Design: `docs/superpowers/specs/2026-07-13-stack-language-design.md`.
+- **Phase 0 closed out.** All bootstrap "done when" items satisfied: repo public on
+  `bandengasep`; `timothy` / `vedika` branches tracking origin (both fast-forwarded to the
+  all-TS `main`); Vedika (`veduvin00`) is a collaborator; CI green on `main`; secret scanning +
+  push protection on; `protect-main` active requiring a PR and the `verify` status check. The
+  Phase 0 section has been removed from `CLAUDE.md`.

@@ -9,57 +9,6 @@ Full product spec lives in `docs/spec.md` (copy of interview-compiler-spec.md). 
 
 ---
 
-## Phase 0 — Repo bootstrap (run first; delete this section when done)
-
-⚠️ This machine's global git config belongs to Timothy's ComChord (work) identity. This repo must live entirely on his **personal** GitHub account, reached via the SSH host alias **`github.com-personal`** (key `id_ed25519_personal`; the work alias is `github.com-comchord`). Never touch `--global` config. (Note: `gh-personal`/`gh-work` are zsh aliases for `gh auth switch --user …` — they toggle the `gh` CLI's authenticated account over HTTPS/token and are **not** SSH host aliases. Being shell aliases, they also don't exist in non-interactive shells.)
-
-**1. Local identity only**
-```bash
-git init -b main
-git config user.name "Timothy Hartanto"
-git config user.email "timothyhartanto@yahoo.com"
-```
-
-**2. Verify the personal SSH alias and detect the username**
-```bash
-grep -iA4 "host github.com-personal" ~/.ssh/config
-ssh -T git@github.com-personal
-```
-Expected: `Hi <personal-username>! You've successfully authenticated…` — the greeting is the success signal (GitHub exits 1 by design). Use that `<personal-username>` everywhere below. If the alias is missing from `~/.ssh/config`, stop and ask Timothy before improvising.
-
-**3. Create the repo — public from day 1**
-Run `gh auth status` first. If the active `gh` account is the work one, do **not** use `gh repo create` — create `dryrun` (**public**, empty: no README/.gitignore) via github.com in the personal account's browser session, or run `gh auth switch` to the personal account if it's logged in. Then:
-```bash
-git remote add origin git@github.com-personal:<personal-username>/dryrun.git
-git push -u origin main
-
-# per-person work branches off main — all day-to-day work happens on these
-git branch timothy && git branch vedika
-git push -u origin timothy vedika
-git switch timothy    # Timothy codes on this branch from now on
-```
-Public from day 1 (Timothy's call, 12 Jul): the submission requires it anyway, and the live commit history is Honesty & Trajectory material. Two consequences: (a) secret hygiene is non-negotiable — before the first push, verify repo Settings → Code security shows secret scanning **and push protection** enabled; (b) branch protection is free on public repos — Settings → Rules → Rulesets → **New branch ruleset**: name `protect-main`, Enforcement status **Active** (default is Disabled — don't skip this), bypass list empty, target = Include default branch. Tick **Require a pull request before merging** (required approvals: 0); keep the pre-ticked Restrict deletions + Block force pushes; leave Require linear history off (squash-only merging fights long-lived personal branches). Do **not** tick Require status checks yet — GitHub refuses to save that rule with an empty check list. After CI's first run, edit the ruleset, tick **Require status checks to pass** → Add checks → select the CI job by name; leave "Require branches to be up to date" off. One sequencing catch: an Active `protect-main` blocks direct pushes to `main`, and Phase 0's initial push is exactly that — set its enforcement to Disabled just before the first push, then flip it back to Active immediately after.
-
-**4. Commit-email gotcha (do this once, on github.com)**
-On the personal account: Settings → Emails → confirm `timothyhartanto@yahoo.com` is added **and verified**. If "Block command line pushes that expose my email" is enabled, pushes with that address get rejected (GH007) — either untick it or set the local `user.email` to the account's `@users.noreply.github.com` address instead.
-
-**5. Invite Vedika**
-Repo → Settings → Collaborators → Add people → invite by email: **`vedikavin00@gmail.com`**. Her clone-side setup (send her this):
-```bash
-git config user.name "Vedika"
-git config user.email "vedikavin00@gmail.com"
-git switch vedika    # her work branch; lands on main via PR only
-```
-
-**6. Scaffold + hygiene**
-- Layout below; seed `docs/decision-log.md` with the three 12-Jul entries from the spec, plus today's three: name = DryRun; per-person branch model (`timothy`/`vedika` → PR → `main`); repo public from day 1. Create empty `docs/post-hackathon-ideas.md`.
-- `.gitignore`: Python + Node templates, plus `.env`. Ship `.env.example` with `OPENAI_API_KEY=`, `SUPABASE_URL=`, `SUPABASE_SERVICE_ROLE_KEY=`. Secrets never enter git.
-- `.github/workflows/ci.yml`: run `uv sync` + `pytest` in `api/` on every push/PR. README gets the CI badge from day 1 — a green badge history is Evidence-pillar material.
-
-**Phase 0 done when:** repo pushed on the personal account with `timothy` and `vedika` branches tracking origin, Vedika invited, CI green on one trivial test, push protection verified and the `main` ruleset in place, layout scaffolded, decision log seeded, this section deleted (log its completion in the decision log).
-
----
-
 ## Ground rules (every session)
 
 1. **The cut list is law.** Never build: readiness/aggregate scores, resume rewriting or bullet tailoring, persistent evidence-bank UI, ATS match scores, application tracker, company/competency prediction, answer auto-scoring, graph DBs (NetworkX/Neo4j), Redis, Realtime speech-to-speech. New ideas go to `docs/post-hackathon-ideas.md`, unevaluated, no exceptions until 31 Jul.
@@ -68,7 +17,7 @@ git switch vedika    # her work branch; lands on main via PR only
 4. **Runtime = OpenAI only** ($150 hackathon credits). Claude Code is the dev tool; never put Anthropic APIs in the product runtime.
 5. **Verify APIs before coding, don't trust memory.** Pull current docs via Context7: the OpenAI **Node** SDK (`/openai/openai-node`, which redirects to `/websites/developers_openai`; structured outputs via `responses.parse` + `zodTextFormat`), `/supabase/supabase`, `/vercel/next.js`, `/websites/pnpm_io`.
 6. Ask before adding any dependency not in the stack lock. Log real architecture/scope decisions in `docs/decision-log.md` with date + one-line rationale.
-7. **Branch discipline.** Day-to-day work lives on `timothy` and `vedika`; nothing lands on `main` except via PR with CI green. Merge to `main` at least daily once real commits exist — `main` must always be demoable. Lanes barely overlap (`packages/core/` vs `web/`), so merges stay cheap; don't let the branches drift for days. (The repo is public, so this is enforced by the `main` ruleset from Phase 0 step 3, not just convention.)
+7. **Branch discipline.** Day-to-day work lives on `timothy` and `vedika`; nothing lands on `main` except via PR with CI green. Merge to `main` at least daily once real commits exist — `main` must always be demoable. Lanes barely overlap (`packages/core/` vs `web/`), so merges stay cheap; don't let the branches drift for days. (The repo is public, so this is enforced by the `protect-main` ruleset — requires a PR and the `verify` status check — not just convention.)
 
 ## Stack (all-TypeScript monorepo — relocked 13 Jul; mobile retired 12 Jul. See decision log.)
 
