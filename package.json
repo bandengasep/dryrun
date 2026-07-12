@@ -1,0 +1,15 @@
+{
+  "name": "dryrun",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DryRun — the interview compiler. All-TypeScript monorepo.",
+  "packageManager": "pnpm@11.5.1",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "pnpm -r typecheck",
+    "test": "pnpm -r test",
+    "build": "pnpm --filter web build"
+  }
+}

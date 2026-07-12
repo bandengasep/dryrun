@@ -8,22 +8,31 @@
 
 **Team:** Timothy (backend / agents / evals) · Vedika (UI/UX / video).
 
+## Stack
+
+All-TypeScript **pnpm workspace** (Node 22, TypeScript 5.x). One language across backend and frontend so the receipts contract is a single shared type — Zod schemas in `packages/core` drive OpenAI's strict structured output, the API types, and the React props alike. Runtime models: **OpenAI only**. Data: Supabase + pgvector. Sandbox: `better-sqlite3` / `@duckdb/node-api` + vitest.
+
 ## Layout
 
 ```
-api/app/{schemas,parsers,diff,harness,evals}/   # FastAPI backend (Python 3.12, uv)
-api/tests/            # incl. tests/fixtures/ — hand-built JD × resume pairs
-web/                  # Next.js app: compile-trace UI, receipts drawer
-docs/                 # spec.md, decision-log.md, post-hackathon-ideas.md
-.github/workflows/    # ci.yml — uv sync + pytest on every push/PR
+packages/core/          # backend TS library (Timothy)
+  src/schemas/          # Zod — THE shared receipts contract (single source of truth)
+  src/parsers/          # OpenAI responses.parse + zodTextFormat
+  src/diff/             # embedding match + LLM adjudication → typed set-difference
+  src/harness/          # SQL sandbox: better-sqlite3 / @duckdb/node-api + vitest
+  src/evals/            # precision, Jaccard, citation-validity, cost/latency, baseline
+web/                    # Next.js (App Router) — Vedika's lane; imports @dryrun/core types
+docs/                   # spec.md, decision-log.md, post-hackathon-ideas.md
+.github/workflows/      # ci.yml — pnpm install + typecheck + vitest + next build
 ```
 
-## Getting started (api/)
+## Getting started
 
 ```bash
-cd api
-uv sync
-uv run pytest
+pnpm install
+pnpm --filter @dryrun/core test    # vitest (the shared-contract tests)
+pnpm --filter web dev              # http://localhost:3000
+pnpm typecheck                     # tsc across all packages
 ```
 
 ## Docs

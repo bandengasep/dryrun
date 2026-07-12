@@ -66,38 +66,40 @@ git switch vedika    # her work branch; lands on main via PR only
 2. **Receipts everywhere.** Every gap, question, and claim carries its source spans (JD line ↔ resume line ↔ gap ID). A feature that can't carry receipts doesn't ship.
 3. **Execution is ground truth.** A compiled challenge ships only if its own tests pass; CI enforces this.
 4. **Runtime = OpenAI only** ($150 hackathon credits). Claude Code is the dev tool; never put Anthropic APIs in the product runtime.
-5. **Verify APIs before coding, don't trust memory.** Pull current docs via Context7: `/openai/openai-python` (structured outputs / `responses.parse`), `/supabase/supabase`, `/vercel/next.js`.
+5. **Verify APIs before coding, don't trust memory.** Pull current docs via Context7: the OpenAI **Node** SDK (`/openai/openai-node`, which redirects to `/websites/developers_openai`; structured outputs via `responses.parse` + `zodTextFormat`), `/supabase/supabase`, `/vercel/next.js`, `/websites/pnpm_io`.
 6. Ask before adding any dependency not in the stack lock. Log real architecture/scope decisions in `docs/decision-log.md` with date + one-line rationale.
-7. **Branch discipline.** Day-to-day work lives on `timothy` and `vedika`; nothing lands on `main` except via PR with CI green. Merge to `main` at least daily once real commits exist — `main` must always be demoable. Lanes barely overlap (`api/` vs `web/`), so merges stay cheap; don't let the branches drift for days. (The repo is public, so this is enforced by the `main` ruleset from Phase 0 step 3, not just convention.)
+7. **Branch discipline.** Day-to-day work lives on `timothy` and `vedika`; nothing lands on `main` except via PR with CI green. Merge to `main` at least daily once real commits exist — `main` must always be demoable. Lanes barely overlap (`packages/core/` vs `web/`), so merges stay cheap; don't let the branches drift for days. (The repo is public, so this is enforced by the `main` ruleset from Phase 0 step 3, not just convention.)
 
-## Stack (locked 12 Jul — mobile formally retired; web app)
+## Stack (all-TypeScript monorepo — relocked 13 Jul; mobile retired 12 Jul. See decision log.)
 
-- **web/** Next.js + React (Vedika) — challenge execution and code editing are desktop-native.
-- **api/** FastAPI, Python 3.12, managed with `uv`.
-- **Data:** Supabase Postgres + pgvector.
-- **Models:** `gpt-5-mini` (fallback `gpt-4.1-mini`) with **strict structured outputs**; embeddings `text-embedding-3-small`; prompt caching on repeated JD context. Budget: full eval suite ≪ $150.
-- **Challenge sandbox:** DuckDB/SQLite + pytest.
+- **Monorepo:** pnpm workspace, Node 22 LTS, TypeScript (pinned 5.x). One language across BE + FE so the receipts contract is a single shared type, not a Pydantic↔TS translation.
+- **packages/core/** (Timothy) — framework-agnostic TS library: schemas, parsers, diff, harness, evals. No web framework dependency.
+- **web/** (Vedika) — Next.js (App Router) + React 19; imports `@dryrun/core` types directly. One Vercel deploy for the whole app.
+- **Shared contract:** Zod schemas in `packages/core/src/schemas` are the single source of truth — they drive OpenAI's strict output format (`zodTextFormat`), the API response types, and Vedika's component props.
+- **Data:** Supabase Postgres + pgvector (`@supabase/supabase-js`).
+- **Models:** `gpt-5-mini` (fallback `gpt-4.1-mini`) via the OpenAI **Node** SDK with **strict structured outputs** (`responses.parse` + `zodTextFormat`); embeddings `text-embedding-3-small`; prompt caching on repeated JD context. Budget: full eval suite ≪ $150.
+- **Challenge sandbox:** `better-sqlite3` / `@duckdb/node-api` + **vitest** (Node runtime; native dep added at the harness commit).
 
 ## Layout
 
 ```
-api/app/{schemas,parsers,diff,harness,evals}/
-api/tests/            # incl. tests/fixtures/ (hand-built JD×resume pairs)
-web/                  # Vedika's Next.js app: compile-trace UI, receipts drawer
+packages/core/src/{schemas,parsers,diff,harness,evals}/   # backend TS library (Timothy)
+packages/core/test/   # vitest; incl. fixtures/ (hand-built JD×resume pairs)
+web/                  # Vedika's Next.js app: compile-trace UI, receipts drawer; imports @dryrun/core
 docs/                 # spec.md, decision-log.md, post-hackathon-ideas.md
-.github/workflows/ci.yml
+.github/workflows/ci.yml   # pnpm install + typecheck + vitest + next build
 ```
 
 ## Build order — Timothy's lane
 
-- **Commit 1 — Schemas + strict SO calls.** Pydantic models for JD requirement lines and resume lines, one schema family, every line carrying a source span (char offsets). Parser calls via the Responses API structured-output path (`client.responses.parse(..., text_format=Model)` — confirm current signature via Context7 before writing). One sample JD + one resume as fixtures.
-- **Commit 2 — Diff + receipts, green on 3 hand-built fixtures.** Embedding match (in-memory cosine is fine at fixture scale; pgvector wiring comes right after) + LLM adjudication → typed set-difference: *missing / weak evidence / strong differentiator*, every row with JD-span + resume-span receipts. pytest green on all 3 pairs.
-- **Commit 3 — Sandboxed SQL harness.** Given a challenge spec (schema, seed data, reference solution, tests), execute in DuckDB/SQLite; reject any challenge whose own tests fail. Wire into CI as the executability job.
+- **Commit 1 — Schemas + strict SO calls.** Zod models for JD requirement lines and resume lines, one schema family, every line carrying a source span (char offsets). Parser calls via the OpenAI Responses API structured-output path (`openai.responses.parse({ text: { format: zodTextFormat(Model, "name") } })` — confirm current signature via Context7 before writing). One sample JD + one resume as fixtures. (Bootstrap `Gap`/`RequirementLine`/`ResumeLine` schemas already live in `packages/core/src/schemas`.)
+- **Commit 2 — Diff + receipts, green on 3 hand-built fixtures.** Embedding match (in-memory cosine is fine at fixture scale; pgvector wiring comes right after) + LLM adjudication → typed set-difference: *missing / weak evidence / strong differentiator*, every row with JD-span + resume-span receipts. vitest green on all 3 pairs.
+- **Commit 3 — Sandboxed SQL harness.** Given a challenge spec (schema, seed data, reference solution, tests), execute in an ephemeral `better-sqlite3` / `@duckdb/node-api` instance; reject any challenge whose own tests fail. Add the native dep here; wire into CI as the executability job.
 - **Then:** pgvector persistence → Challenge Compiler (SQL-first) → Behavioral Compiler (STAR scaffolds, cites weak-evidence rows, no scoring) → **Eval Suite**: gap-detection precision on 15–20 hand-adjudicated pairs, citation-validity rate, 100% challenge executability (CI), run-to-run Jaccard consistency over 20 runs, cost + latency per compile, and the zero-shot ChatGPT baseline (its hallucinated-gap and uncited-claim rate vs ours). The eval numbers are the Evidence pillar — treat them as a feature, not an afterthought.
 
 ## Vedika handoff points
 
-- Compile-trace UI + receipts drawer consume the diff engine's typed JSON. Schema freezes at commit 2; breaking changes require a decision-log entry and a ping to her.
+- Compile-trace UI + receipts drawer import the diff engine's types straight from `@dryrun/core` (no JSON translation layer). The schema freezes at commit 2; breaking changes require a decision-log entry and a ping to her — and now also surface as TypeScript errors in `web/`.
 - Mock-mode flow and the 3-min video storyboard are hers; neither blocks the MVP demo path.
 
 ## P1 fence (only after the MVP demo path is green end-to-end)
