@@ -23,14 +23,13 @@ const colors = {
   purple: "#A78BFA",
 };
 
-export default function Landing() {
+export default function About() {
   const router = useRouter();
   const [showAuthModal, setShowAuthModal] = useState<"login" | "signup" | null>(null);
   const [authEmail, setAuthEmail] = useState("");
   const [authPassword, setAuthPassword] = useState("");
 
   const handleAuthSubmit = () => {
-    // Placeholder auth logic
     setShowAuthModal(null);
     setAuthEmail("");
     setAuthPassword("");
@@ -44,62 +43,8 @@ export default function Landing() {
         display: "flex",
         flexDirection: "column",
         fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        position: "relative",
-        overflow: "hidden",
       }}
     >
-      {/* Animated background */}
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotateZ(0deg); }
-          50% { transform: translateY(-20px) rotateZ(2deg); }
-        }
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.7; }
-        }
-        @keyframes code-slide {
-          0% { transform: translateX(-100%); opacity: 0; }
-          50% { opacity: 0.5; }
-          100% { transform: translateX(100%); opacity: 0; }
-        }
-        .animated-bg {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          overflow: hidden;
-          z-index: 0;
-          pointer-events: none;
-        }
-        .code-block {
-          position: absolute;
-          font-family: Menlo, monospace;
-          font-size: 12px;
-          opacity: 0.08;
-          color: #22D3EE;
-          white-space: pre;
-          animation: code-slide 20s infinite linear;
-        }
-        .code-1 { top: 10%; left: -100%; animation-delay: 0s; animation-duration: 25s; }
-        .code-2 { top: 25%; left: -100%; animation-delay: 5s; animation-duration: 30s; }
-        .code-3 { top: 50%; left: -100%; animation-delay: 10s; animation-duration: 28s; }
-        .code-4 { top: 70%; left: -100%; animation-delay: 15s; animation-duration: 26s; }
-        .float-icon {
-          position: absolute;
-          animation: float 6s ease-in-out infinite;
-          opacity: 0.1;
-        }
-      `}</style>
-
-      <div className="animated-bg">
-        <div className="code-block code-1">{'const interview = compile(jd, resume)'}</div>
-        <div className="code-block code-2">{'for (const gap in gaps) {\n  generateChallenge(gap)\n}'}</div>
-        <div className="code-block code-3">{'SELECT * FROM skills WHERE strength LT required'}</div>
-        <div className="code-block code-4">{'def solve_gap(requirement, evidence):\n  return personalized_challenge'}</div>
-      </div>
-
       {/* Header */}
       <header
         style={{
@@ -163,15 +108,18 @@ export default function Landing() {
               style={{
                 background: "none",
                 border: "none",
-                color: colors.text2,
+                color: tab.label === "About" ? colors.cyan : colors.text2,
                 fontSize: 14,
                 fontWeight: 600,
                 cursor: "pointer",
                 padding: 0,
                 transition: "color 200ms",
+                borderBottomColor: tab.label === "About" ? colors.cyan : "transparent",
+                borderBottomWidth: tab.label === "About" ? 2 : 0,
+                paddingBottom: 2,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = colors.cyan)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = colors.text2)}
+              onMouseEnter={(e) => tab.label !== "About" && (e.currentTarget.style.color = colors.cyan)}
+              onMouseLeave={(e) => tab.label !== "About" && (e.currentTarget.style.color = colors.text2)}
             >
               {tab.label}
             </button>
@@ -230,144 +178,190 @@ export default function Landing() {
         </div>
       </header>
 
-      {/* Main content */}
+      {/* Content */}
       <div
         style={{
+          maxWidth: 720,
+          margin: "0 auto",
+          padding: "48px 24px",
           flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 20,
-          position: "relative",
-          zIndex: 5,
         }}
       >
-        <div
+        <h1
           style={{
-            maxWidth: 560,
-            width: "100%",
-            textAlign: "center",
+            color: colors.text,
+            fontSize: 40,
+            fontWeight: 800,
+            marginBottom: 24,
+            letterSpacing: -0.5,
           }}
         >
-          {/* Brand logo */}
-          <div
-            style={{
-              width: 60,
-              height: 60,
-              borderRadius: 14,
-              backgroundColor: colors.cyan,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 24px",
-            }}
-          >
-            <span style={{ color: colors.onAccent, fontWeight: 800, fontSize: 24 }}>{"</>"}</span>
-          </div>
+          About Dry Run
+        </h1>
 
-          {/* Brand text */}
-          <h1
-            style={{
-              color: colors.text,
-              fontSize: 40,
-              fontWeight: 800,
-              letterSpacing: -1,
-              marginBottom: 12,
-              lineHeight: 1.2,
-            }}
-          >
-            Dry Run
-          </h1>
-
-          {/* Subheading */}
-          <p
-            style={{
-              color: colors.text2,
-              fontSize: 18,
-              lineHeight: 1.5,
-              marginBottom: 32,
-              fontWeight: 500,
-            }}
-          >
-            Turn a job description into targeted interview practice.
-          </p>
-
-          {/* Description */}
-          <p
-            style={{
-              color: colors.muted,
-              fontSize: 15,
-              lineHeight: 1.6,
-              marginBottom: 40,
-              maxWidth: 480,
-              margin: "0 auto 40px",
-            }}
-          >
-            Paste a JD and your resume. Dry Run diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that's silent — then generates personalized coding and system design challenges.
-          </p>
-
-          {/* CTA Buttons */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: 12,
-              marginBottom: 24,
-            }}
-          >
-            <button
-              onClick={() => router.push("/compile")}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 24,
+          }}
+        >
+          <section>
+            <h2
               style={{
-                backgroundColor: colors.cyan,
-                borderRadius: 14,
-                paddingTop: 16,
-                paddingBottom: 16,
-                paddingLeft: 24,
-                paddingRight: 24,
-                width: "100%",
-                fontSize: 16,
-                fontWeight: 800,
-                color: colors.onAccent,
-                border: "none",
-                cursor: "pointer",
-                transition: "opacity 200ms",
-                boxShadow: `0 6px 18px rgba(34,211,238,0.35)`,
+                color: colors.cyan,
+                fontSize: 24,
+                fontWeight: 700,
+                marginBottom: 12,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              Start an interview →
-            </button>
-
-            <button
-              onClick={() => window.open("https://youtu.be/demo", "_blank")}
+              The Problem
+            </h2>
+            <p
               style={{
-                backgroundColor: colors.surface2,
-                borderColor: colors.border,
-                border: `1px solid ${colors.border}`,
-                borderRadius: 14,
-                paddingTop: 16,
-                paddingBottom: 16,
-                paddingLeft: 24,
-                paddingRight: 24,
-                width: "100%",
-                fontSize: 16,
-                fontWeight: 800,
-                color: colors.text,
-                cursor: "pointer",
-                transition: "opacity 200ms",
+                color: colors.text2,
+                fontSize: 15,
+                lineHeight: 1.7,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
             >
-              Watch demo
-            </button>
-          </div>
+              Every job interview starts the same way: you hunt through generic question banks and try to guess what the interviewer will ask. You don't know your real gaps — where the job demands something you're weak on. So you prep everything, waste weeks, and still walk into the room unprepared.
+            </p>
+          </section>
 
-          {/* Footer note */}
-          <p style={{ color: colors.muted, fontSize: 12 }}>
-            Runs entirely on-device. No account, no upload.
-          </p>
+          <section>
+            <h2
+              style={{
+                color: colors.cyan,
+                fontSize: 24,
+                fontWeight: 700,
+                marginBottom: 12,
+              }}
+            >
+              Our Solution
+            </h2>
+            <p
+              style={{
+                color: colors.text2,
+                fontSize: 15,
+                lineHeight: 1.7,
+              }}
+            >
+              Paste a job description and your resume. Dry Run diffs them into evidenced gaps — every gap cites the exact line from the JD that demands it and the exact line (or silence) from your resume that speaks to it. Then we compile personalized coding, SQL, and system design challenges directly from those gaps.
+            </p>
+          </section>
+
+          <section>
+            <h2
+              style={{
+                color: colors.cyan,
+                fontSize: 24,
+                fontWeight: 700,
+                marginBottom: 12,
+              }}
+            >
+              How It Works
+            </h2>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 16,
+              }}
+            >
+              {[
+                { num: "1", title: "Paste", desc: "Upload a JD and your resume" },
+                { num: "2", title: "Diff", desc: "We extract gaps with receipts" },
+                { num: "3", title: "Compile", desc: "Generate personalized challenges" },
+                { num: "4", title: "Practice", desc: "Run code, sharpen your skills" },
+              ].map((step) => (
+                <div
+                  key={step.num}
+                  style={{
+                    backgroundColor: colors.surface,
+                    borderColor: colors.border,
+                    border: `1px solid ${colors.border}`,
+                    borderRadius: 12,
+                    padding: 16,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 32,
+                      height: 32,
+                      borderRadius: 50,
+                      backgroundColor: colors.cyan,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: colors.onAccent,
+                      fontWeight: 800,
+                      marginBottom: 8,
+                    }}
+                  >
+                    {step.num}
+                  </div>
+                  <h3
+                    style={{
+                      color: colors.text,
+                      fontSize: 16,
+                      fontWeight: 700,
+                      marginBottom: 6,
+                    }}
+                  >
+                    {step.title}
+                  </h3>
+                  <p
+                    style={{
+                      color: colors.muted,
+                      fontSize: 13,
+                    }}
+                  >
+                    {step.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          <section>
+            <h2
+              style={{
+                color: colors.cyan,
+                fontSize: 24,
+                fontWeight: 700,
+                marginBottom: 12,
+              }}
+            >
+              Key Features
+            </h2>
+            <ul
+              style={{
+                color: colors.text2,
+                fontSize: 15,
+                lineHeight: 1.8,
+                listStyle: "none",
+                padding: 0,
+              }}
+            >
+              {[
+                "On-device processing — no uploads, no account needed",
+                "Evidence-based gaps — every claim is traceable to the source",
+                "Executable challenges — all SQL and code runs in a sandbox",
+                "Real-time feedback — see what works, what doesn't",
+                "Targeted practice — focus only on what matters for your target role",
+              ].map((feature) => (
+                <li
+                  key={feature}
+                  style={{
+                    marginBottom: 12,
+                  }}
+                >
+                  <span style={{ color: colors.cyan, marginRight: 8 }}>✓</span>
+                  {feature}
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </div>
 

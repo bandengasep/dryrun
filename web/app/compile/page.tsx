@@ -1,7 +1,8 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import type { Gap } from "@dryrun/core";
 
 const colors = {
   bg: "#0A0F1C",
@@ -23,83 +24,63 @@ const colors = {
   purple: "#A78BFA",
 };
 
-export default function Landing() {
+const SAMPLE_JD =
+  "Senior Backend Engineer. You will design scalable distributed systems and REST APIs. " +
+  "Strong Python and SQL required. Experience with system design, algorithms, AWS and Docker. 5+ years.";
+const SAMPLE_RESUME =
+  "Software engineer with 3 years building Python services and REST APIs. " +
+  "Comfortable with Docker and some SQL. Built graph and tree algorithms at university.";
+
+export default function CompileScreen() {
   const router = useRouter();
+  const [jd, setJd] = useState("");
+  const [resume, setResume] = useState("");
+  const [gaps, setGaps] = useState<Gap[] | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [showAuthModal, setShowAuthModal] = useState<"login" | "signup" | null>(null);
   const [authEmail, setAuthEmail] = useState("");
   const [authPassword, setAuthPassword] = useState("");
 
+  async function compile() {
+    setError(null);
+    setLoading(true);
+    setGaps(null);
+    try {
+      const res = await fetch("/api/compile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ jd, resume }),
+      });
+      if (!res.ok) throw new Error(`${res.status} ${res.statusText}`);
+      const data = await res.json();
+      setGaps(data.gaps);
+      setTimeout(() => router.push("/results"), 500);
+    } catch (e: any) {
+      setError(e?.message ?? String(e));
+    } finally {
+      setLoading(false);
+    }
+  }
+
   const handleAuthSubmit = () => {
-    // Placeholder auth logic
     setShowAuthModal(null);
     setAuthEmail("");
     setAuthPassword("");
   };
+
+  const canRun = jd.trim().length > 0 || resume.trim().length > 0;
 
   return (
     <main
       style={{
         backgroundColor: colors.bg,
         minHeight: "100vh",
+        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
         display: "flex",
         flexDirection: "column",
-        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        position: "relative",
-        overflow: "hidden",
       }}
     >
-      {/* Animated background */}
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotateZ(0deg); }
-          50% { transform: translateY(-20px) rotateZ(2deg); }
-        }
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.7; }
-        }
-        @keyframes code-slide {
-          0% { transform: translateX(-100%); opacity: 0; }
-          50% { opacity: 0.5; }
-          100% { transform: translateX(100%); opacity: 0; }
-        }
-        .animated-bg {
-          position: fixed;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          overflow: hidden;
-          z-index: 0;
-          pointer-events: none;
-        }
-        .code-block {
-          position: absolute;
-          font-family: Menlo, monospace;
-          font-size: 12px;
-          opacity: 0.08;
-          color: #22D3EE;
-          white-space: pre;
-          animation: code-slide 20s infinite linear;
-        }
-        .code-1 { top: 10%; left: -100%; animation-delay: 0s; animation-duration: 25s; }
-        .code-2 { top: 25%; left: -100%; animation-delay: 5s; animation-duration: 30s; }
-        .code-3 { top: 50%; left: -100%; animation-delay: 10s; animation-duration: 28s; }
-        .code-4 { top: 70%; left: -100%; animation-delay: 15s; animation-duration: 26s; }
-        .float-icon {
-          position: absolute;
-          animation: float 6s ease-in-out infinite;
-          opacity: 0.1;
-        }
-      `}</style>
-
-      <div className="animated-bg">
-        <div className="code-block code-1">{'const interview = compile(jd, resume)'}</div>
-        <div className="code-block code-2">{'for (const gap in gaps) {\n  generateChallenge(gap)\n}'}</div>
-        <div className="code-block code-3">{'SELECT * FROM skills WHERE strength LT required'}</div>
-        <div className="code-block code-4">{'def solve_gap(requirement, evidence):\n  return personalized_challenge'}</div>
-      </div>
-
       {/* Header */}
       <header
         style={{
@@ -163,15 +144,18 @@ export default function Landing() {
               style={{
                 background: "none",
                 border: "none",
-                color: colors.text2,
+                color: tab.label === "Interview Compiler" ? colors.cyan : colors.text2,
                 fontSize: 14,
                 fontWeight: 600,
                 cursor: "pointer",
                 padding: 0,
                 transition: "color 200ms",
+                borderBottomColor: tab.label === "Interview Compiler" ? colors.cyan : "transparent",
+                borderBottomWidth: tab.label === "Interview Compiler" ? 2 : 0,
+                paddingBottom: 2,
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = colors.cyan)}
-              onMouseLeave={(e) => (e.currentTarget.style.color = colors.text2)}
+              onMouseEnter={(e) => tab.label !== "Interview Compiler" && (e.currentTarget.style.color = colors.cyan)}
+              onMouseLeave={(e) => tab.label !== "Interview Compiler" && (e.currentTarget.style.color = colors.text2)}
             >
               {tab.label}
             </button>
@@ -233,142 +217,177 @@ export default function Landing() {
       {/* Main content */}
       <div
         style={{
+          maxWidth: 720,
+          margin: "0 auto",
+          paddingLeft: 20,
+          paddingRight: 20,
+          paddingTop: 20,
+          paddingBottom: 48,
           flex: 1,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 20,
-          position: "relative",
-          zIndex: 5,
         }}
       >
-        <div
+        {/* Heading & subtext */}
+        <h1
           style={{
-            maxWidth: 560,
-            width: "100%",
-            textAlign: "center",
+            color: colors.text,
+            fontSize: 27,
+            fontWeight: 800,
+            letterSpacing: -0.6,
+            lineHeight: 1.22,
+            marginBottom: 12,
           }}
         >
-          {/* Brand logo */}
+          Turn a job description into targeted interview practice.
+        </h1>
+        <p
+          style={{
+            color: colors.text2,
+            fontSize: 15,
+            lineHeight: 1.47,
+            marginBottom: 28,
+            maxWidth: 640,
+          }}
+        >
+          Paste a JD and your resume. Dry Run diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that&apos;s silent.
+        </p>
+
+        {/* JD input */}
+        <div style={{ marginBottom: 18 }}>
           <div
             style={{
-              width: 60,
-              height: 60,
-              borderRadius: 14,
-              backgroundColor: colors.cyan,
               display: "flex",
+              justifyContent: "space-between",
               alignItems: "center",
-              justifyContent: "center",
-              margin: "0 auto 24px",
+              marginBottom: 8,
             }}
           >
-            <span style={{ color: colors.onAccent, fontWeight: 800, fontSize: 24 }}>{"</>"}</span>
+            <label style={{ color: colors.text, fontSize: 14, fontWeight: 700 }}>Job description</label>
+            <span style={{ color: colors.muted, fontSize: 11, fontWeight: 700, letterSpacing: 0.4 }}>
+              Step 1
+            </span>
           </div>
-
-          {/* Brand text */}
-          <h1
+          <textarea
+            value={jd}
+            onChange={(e) => setJd(e.target.value)}
+            placeholder="Paste the job description here…"
             style={{
+              minHeight: 120,
+              backgroundColor: colors.surface,
+              borderColor: colors.border,
+              border: `1px solid ${colors.border}`,
+              borderRadius: 14,
+              padding: 14,
               color: colors.text,
-              fontSize: 40,
-              fontWeight: 800,
-              letterSpacing: -1,
-              marginBottom: 12,
-              lineHeight: 1.2,
+              fontSize: 14,
+              lineHeight: 1.4,
+              fontFamily: "inherit",
+              width: "100%",
+              boxSizing: "border-box",
+              resize: "vertical",
             }}
-          >
-            Dry Run
-          </h1>
+          />
+        </div>
 
-          {/* Subheading */}
-          <p
-            style={{
-              color: colors.text2,
-              fontSize: 18,
-              lineHeight: 1.5,
-              marginBottom: 32,
-              fontWeight: 500,
-            }}
-          >
-            Turn a job description into targeted interview practice.
-          </p>
-
-          {/* Description */}
-          <p
-            style={{
-              color: colors.muted,
-              fontSize: 15,
-              lineHeight: 1.6,
-              marginBottom: 40,
-              maxWidth: 480,
-              margin: "0 auto 40px",
-            }}
-          >
-            Paste a JD and your resume. Dry Run diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that's silent — then generates personalized coding and system design challenges.
-          </p>
-
-          {/* CTA Buttons */}
+        {/* Resume input */}
+        <div style={{ marginBottom: 18 }}>
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              gap: 12,
-              marginBottom: 24,
+              justifyContent: "space-between",
+              alignItems: "center",
+              marginBottom: 8,
             }}
           >
-            <button
-              onClick={() => router.push("/compile")}
-              style={{
-                backgroundColor: colors.cyan,
-                borderRadius: 14,
-                paddingTop: 16,
-                paddingBottom: 16,
-                paddingLeft: 24,
-                paddingRight: 24,
-                width: "100%",
-                fontSize: 16,
-                fontWeight: 800,
-                color: colors.onAccent,
-                border: "none",
-                cursor: "pointer",
-                transition: "opacity 200ms",
-                boxShadow: `0 6px 18px rgba(34,211,238,0.35)`,
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              Start an interview →
-            </button>
-
-            <button
-              onClick={() => window.open("https://youtu.be/demo", "_blank")}
-              style={{
-                backgroundColor: colors.surface2,
-                borderColor: colors.border,
-                border: `1px solid ${colors.border}`,
-                borderRadius: 14,
-                paddingTop: 16,
-                paddingBottom: 16,
-                paddingLeft: 24,
-                paddingRight: 24,
-                width: "100%",
-                fontSize: 16,
-                fontWeight: 800,
-                color: colors.text,
-                cursor: "pointer",
-                transition: "opacity 200ms",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              Watch demo
-            </button>
+            <label style={{ color: colors.text, fontSize: 14, fontWeight: 700 }}>Your resume</label>
+            <span style={{ color: colors.muted, fontSize: 11, fontWeight: 700, letterSpacing: 0.4 }}>
+              Step 2
+            </span>
           </div>
-
-          {/* Footer note */}
-          <p style={{ color: colors.muted, fontSize: 12 }}>
-            Runs entirely on-device. No account, no upload.
-          </p>
+          <textarea
+            value={resume}
+            onChange={(e) => setResume(e.target.value)}
+            placeholder="Paste your resume text here…"
+            style={{
+              minHeight: 120,
+              backgroundColor: colors.surface,
+              borderColor: colors.border,
+              border: `1px solid ${colors.border}`,
+              borderRadius: 14,
+              padding: 14,
+              color: colors.text,
+              fontSize: 14,
+              lineHeight: 1.4,
+              fontFamily: "inherit",
+              width: "100%",
+              boxSizing: "border-box",
+              resize: "vertical",
+            }}
+          />
         </div>
+
+        {/* Sample button */}
+        <button
+          onClick={() => {
+            setJd(SAMPLE_JD);
+            setResume(SAMPLE_RESUME);
+          }}
+          style={{
+            paddingTop: 8,
+            paddingBottom: 8,
+            marginBottom: 12,
+            background: "none",
+            border: "none",
+            color: colors.cyan,
+            fontSize: 13,
+            fontWeight: 600,
+            cursor: "pointer",
+          }}
+        >
+          ↺ Fill with a sample JD + resume
+        </button>
+
+        {/* Compile CTA */}
+        <button
+          onClick={compile}
+          disabled={!canRun || loading}
+          style={{
+            backgroundColor: canRun && !loading ? colors.cyan : colors.elevated,
+            borderRadius: 14,
+            paddingTop: 16,
+            paddingBottom: 16,
+            width: "100%",
+            marginTop: 6,
+            color: canRun && !loading ? colors.onAccent : colors.muted,
+            fontSize: 16,
+            fontWeight: 800,
+            border: "none",
+            cursor: canRun && !loading ? "pointer" : "not-allowed",
+            transition: "opacity 200ms",
+            boxShadow: canRun && !loading ? `0 6px 18px rgba(34,211,238,0.35)` : "none",
+          }}
+        >
+          {loading ? "Compiling…" : "Compile my interview  →"}
+        </button>
+        <p style={{ color: colors.muted, fontSize: 12, textAlign: "center", marginTop: 12 }}>
+          Runs entirely on-device. No account, no upload.
+        </p>
+
+        {/* Error message */}
+        {error && (
+          <div
+            style={{
+              marginTop: 20,
+              backgroundColor: `rgba(248, 113, 113, 0.1)`,
+              borderColor: colors.red,
+              border: `1px solid ${colors.red}`,
+              borderRadius: 14,
+              padding: 14,
+              color: colors.red,
+            }}
+          >
+            Error: {error}
+          </div>
+        )}
       </div>
 
       {/* Auth Modal */}
