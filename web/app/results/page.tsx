@@ -1,6 +1,10 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { animate, motionValue, stagger, type AnimationSequence } from "motion";
+
+const READINESS_PERCENT = 65;
 
 const colors = {
   bg: "#0A0F1C",
@@ -64,10 +68,54 @@ function tagStyle(lang: string) {
 
 export default function ResultsScreen() {
   const router = useRouter();
+  const [displayPercent, setDisplayPercent] = useState(0);
+  const barRef = useRef<HTMLDivElement>(null);
+  const statRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const openChallenge = (lang: string) => {
     router.push(`/compiler/${lang.toLowerCase()}`);
   };
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const statEls = statRefs.current.filter((el): el is HTMLDivElement => el !== null);
+
+    if (prefersReducedMotion) {
+      setDisplayPercent(READINESS_PERCENT);
+      if (barRef.current) barRef.current.style.width = `${READINESS_PERCENT}%`;
+      statEls.forEach((el) => {
+        el.style.opacity = "1";
+        el.style.transform = "none";
+      });
+      return;
+    }
+
+    if (!barRef.current) return;
+
+    // Explicit MotionValue for the percent counter, so we can unsubscribe/stop it directly on cleanup.
+    const progress = motionValue(0);
+    const unsubscribe = progress.on("change", (v) => setDisplayPercent(Math.round(v)));
+
+    // Single Motion timeline: bar fill and percent counter run together,
+    // stat cards stagger in just before the counter finishes.
+    const sequence: AnimationSequence = [
+      [barRef.current, { width: ["0%", `${READINESS_PERCENT}%`] }, { duration: 1.1, ease: "easeOut" }],
+      [progress, [0, READINESS_PERCENT], { duration: 1.1, ease: "easeOut", at: "<" }],
+    ];
+    if (statEls.length > 0) {
+      sequence.push([
+        statEls,
+        { opacity: [0, 1], transform: ["translateY(16px)", "translateY(0px)"] },
+        { duration: 0.45, delay: stagger(0.12), at: "-0.4" },
+      ]);
+    }
+    const controls = animate(sequence);
+
+    return () => {
+      unsubscribe();
+      controls.stop();
+    };
+  }, []);
 
   return (
     <main
@@ -159,7 +207,7 @@ export default function ResultsScreen() {
           >
             <span style={{ color: colors.text2, fontSize: 14, fontWeight: 600 }}>Interview readiness</span>
             <span style={{ color: colors.green, fontSize: 30, fontWeight: 800, letterSpacing: -0.5 }}>
-              65%
+              {displayPercent}%
             </span>
           </div>
           <div
@@ -171,9 +219,10 @@ export default function ResultsScreen() {
             }}
           >
             <div
+              ref={barRef}
               style={{
                 height: "100%",
-                width: "65%",
+                width: "0%",
                 backgroundColor: colors.green,
                 borderRadius: 999,
               }}
@@ -194,9 +243,12 @@ export default function ResultsScreen() {
             { n: 4, label: "ready", color: colors.green },
             { n: 3, label: "to sharpen", color: colors.amber },
             { n: 2, label: "missing", color: colors.red },
-          ].map((stat) => (
+          ].map((stat, i) => (
             <div
               key={stat.label}
+              ref={(el) => {
+                statRefs.current[i] = el;
+              }}
               style={{
                 backgroundColor: colors.surface,
                 borderColor: colors.border,
@@ -207,6 +259,8 @@ export default function ResultsScreen() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                opacity: 0,
+                transform: "translateY(16px)",
               }}
             >
               <div style={{ color: stat.color, fontSize: 24, fontWeight: 800 }}>

@@ -1,7 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Script from "next/script";
+
+const CODE_FONT =
+  '"Google Sans Code", "SF Mono", Menlo, Monaco, "Fira Code", Consolas, "Courier New", monospace';
+const BRAND_TEXT = "Dry Run";
+const BRAND_TAG = `<${BRAND_TEXT}>`;
 
 const colors = {
   bg: "#0A0F1C",
@@ -23,11 +29,75 @@ const colors = {
   purple: "#A78BFA",
 };
 
+function CodeTag({ text }: { text: string }) {
+  return (
+    <>
+      {text.split("").map((ch, i) => (
+        <span key={i} style={{ color: ch === "<" || ch === ">" ? colors.cyan : "inherit" }}>
+          {ch}
+        </span>
+      ))}
+    </>
+  );
+}
+
 export default function Landing() {
   const router = useRouter();
   const [showAuthModal, setShowAuthModal] = useState<"login" | "signup" | null>(null);
   const [authEmail, setAuthEmail] = useState("");
   const [authPassword, setAuthPassword] = useState("");
+  const [threeLoaded, setThreeLoaded] = useState(false);
+  const [vantaLoaded, setVantaLoaded] = useState(false);
+  const vantaRef = useRef<HTMLDivElement>(null);
+  const vantaEffect = useRef<{ destroy: () => void } | null>(null);
+
+  useEffect(() => {
+    if (!threeLoaded || !vantaLoaded || !vantaRef.current || vantaEffect.current) return;
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const w = window as unknown as { VANTA: { NET: (opts: Record<string, unknown>) => { destroy: () => void } } };
+
+    vantaEffect.current = w.VANTA.NET({
+      el: vantaRef.current,
+      mouseControls: !prefersReducedMotion,
+      touchControls: !prefersReducedMotion,
+      gyroControls: false,
+      minHeight: 200.0,
+      minWidth: 200.0,
+      scale: 1.0,
+      scaleMobile: 1.0,
+      color: 0x22d3ee, // colors.cyan
+      backgroundColor: 0x0a0f1c, // colors.bg
+      points: prefersReducedMotion ? 4.0 : 9.0,
+      maxDistance: prefersReducedMotion ? 0 : 20.0,
+      spacing: 18.0,
+      showDots: true,
+    });
+
+    return () => {
+      vantaEffect.current?.destroy();
+      vantaEffect.current = null;
+    };
+  }, [threeLoaded, vantaLoaded]);
+
+  const [typedBrand, setTypedBrand] = useState("");
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) {
+      setTypedBrand(BRAND_TAG);
+      return;
+    }
+
+    let i = 0;
+    const interval = setInterval(() => {
+      i += 1;
+      setTypedBrand(BRAND_TAG.slice(0, i));
+      if (i >= BRAND_TAG.length) clearInterval(interval);
+    }, 120);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const handleAuthSubmit = () => {
     // Placeholder auth logic
@@ -49,56 +119,41 @@ export default function Landing() {
       }}
     >
       {/* Animated background */}
+      <Script
+        src="https://unpkg.com/three@0.134.0/build/three.min.js"
+        strategy="afterInteractive"
+        onLoad={() => setThreeLoaded(true)}
+      />
+      {threeLoaded && (
+        // Vanta's UMD bundle reads window.THREE at parse time, so it must not
+        // even start loading until three.min.js has set that global.
+        <Script
+          src="https://unpkg.com/vanta@0.5.24/dist/vanta.net.min.js"
+          strategy="afterInteractive"
+          onLoad={() => setVantaLoaded(true)}
+        />
+      )}
       <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) rotateZ(0deg); }
-          50% { transform: translateY(-20px) rotateZ(2deg); }
-        }
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.7; }
-        }
-        @keyframes code-slide {
-          0% { transform: translateX(-100%); opacity: 0; }
-          50% { opacity: 0.5; }
-          100% { transform: translateX(100%); opacity: 0; }
-        }
         .animated-bg {
           position: fixed;
           top: 0;
           left: 0;
           right: 0;
           bottom: 0;
-          overflow: hidden;
           z-index: 0;
-          pointer-events: none;
         }
-        .code-block {
-          position: absolute;
-          font-family: Menlo, monospace;
-          font-size: 12px;
-          opacity: 0.08;
-          color: #22D3EE;
-          white-space: pre;
-          animation: code-slide 20s infinite linear;
+        @keyframes blink-cursor {
+          0%, 49% { opacity: 1; }
+          50%, 100% { opacity: 0; }
         }
-        .code-1 { top: 10%; left: -100%; animation-delay: 0s; animation-duration: 25s; }
-        .code-2 { top: 25%; left: -100%; animation-delay: 5s; animation-duration: 30s; }
-        .code-3 { top: 50%; left: -100%; animation-delay: 10s; animation-duration: 28s; }
-        .code-4 { top: 70%; left: -100%; animation-delay: 15s; animation-duration: 26s; }
-        .float-icon {
-          position: absolute;
-          animation: float 6s ease-in-out infinite;
-          opacity: 0.1;
+        .type-cursor {
+          display: inline-block;
+          margin-left: 2px;
+          animation: blink-cursor 1s step-end infinite;
         }
       `}</style>
 
-      <div className="animated-bg">
-        <div className="code-block code-1">{'const interview = compile(jd, resume)'}</div>
-        <div className="code-block code-2">{'for (const gap in gaps) {\n  generateChallenge(gap)\n}'}</div>
-        <div className="code-block code-3">{'SELECT * FROM skills WHERE strength LT required'}</div>
-        <div className="code-block code-4">{'def solve_gap(requirement, evidence):\n  return personalized_challenge'}</div>
-      </div>
+      <div ref={vantaRef} className="animated-bg" />
 
       {/* Header */}
       <header
@@ -138,8 +193,16 @@ export default function Landing() {
           >
             <span style={{ color: colors.onAccent, fontWeight: 800, fontSize: 14 }}>{"</>"}</span>
           </div>
-          <span style={{ color: colors.text, fontSize: 18, fontWeight: 800, letterSpacing: -0.5 }}>
-            Dry Run
+          <span
+            style={{
+              color: colors.text,
+              fontSize: 18,
+              fontWeight: 800,
+              letterSpacing: -0.5,
+              fontFamily: CODE_FONT,
+            }}
+          >
+            <CodeTag text={BRAND_TAG} />
           </span>
         </div>
 
@@ -274,9 +337,13 @@ export default function Landing() {
               letterSpacing: -1,
               marginBottom: 12,
               lineHeight: 1.2,
+              fontFamily: CODE_FONT,
             }}
           >
-            Dry Run
+            <CodeTag text={typedBrand} />
+            <span className="type-cursor" style={{ color: colors.cyan }}>
+              ▌
+            </span>
           </h1>
 
           {/* Subheading */}

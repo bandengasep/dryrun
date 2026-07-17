@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Gap } from "@dryrun/core";
 
@@ -41,6 +41,26 @@ export default function CompileScreen() {
   const [showAuthModal, setShowAuthModal] = useState<"login" | "signup" | null>(null);
   const [authEmail, setAuthEmail] = useState("");
   const [authPassword, setAuthPassword] = useState("");
+  const [resumeMode, setResumeMode] = useState<"type" | "upload">("type");
+  const [resumeFileName, setResumeFileName] = useState<string | null>(null);
+  const [resumeFileError, setResumeFileError] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleResumeFile = (file: File | undefined) => {
+    if (!file) return;
+    setResumeFileError(null);
+    if (!/\.(txt|md)$/i.test(file.name)) {
+      setResumeFileError("Only .txt or .md files are supported right now — paste the text instead for other formats.");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      setResume(String(reader.result ?? ""));
+      setResumeFileName(file.name);
+    };
+    reader.onerror = () => setResumeFileError("Couldn't read that file — try pasting the text instead.");
+    reader.readAsText(file);
+  };
 
   async function compile() {
     setError(null);
@@ -215,9 +235,36 @@ export default function CompileScreen() {
       </header>
 
       {/* Main content */}
+      <style>{`
+        .compile-container {
+          max-width: 720px;
+        }
+        .jd-resume-grid {
+          display: flex;
+          flex-direction: column;
+          gap: 18px;
+          margin-bottom: 18px;
+        }
+        .jd-resume-grid > div {
+          margin-bottom: 0;
+        }
+        @media (min-width: 900px) {
+          .compile-container {
+            max-width: 1040px;
+          }
+          .jd-resume-grid {
+            flex-direction: row;
+            align-items: stretch;
+          }
+          .jd-resume-grid > div {
+            flex: 1;
+            min-width: 0;
+          }
+        }
+      `}</style>
       <div
+        className="compile-container"
         style={{
-          maxWidth: 720,
           margin: "0 auto",
           paddingLeft: 20,
           paddingRight: 20,
@@ -251,78 +298,160 @@ export default function CompileScreen() {
           Paste a JD and your resume. Dry Run diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that&apos;s silent.
         </p>
 
-        {/* JD input */}
-        <div style={{ marginBottom: 18 }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 8,
-            }}
-          >
-            <label style={{ color: colors.text, fontSize: 14, fontWeight: 700 }}>Job description</label>
-            <span style={{ color: colors.muted, fontSize: 11, fontWeight: 700, letterSpacing: 0.4 }}>
-              Step 1
-            </span>
+        <div className="jd-resume-grid">
+          {/* JD input */}
+          <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 8,
+              }}
+            >
+              <label style={{ color: colors.text, fontSize: 14, fontWeight: 700 }}>Job description</label>
+              <span style={{ color: colors.muted, fontSize: 11, fontWeight: 700, letterSpacing: 0.4 }}>
+                Step 1
+              </span>
+            </div>
+            <textarea
+              value={jd}
+              onChange={(e) => setJd(e.target.value)}
+              placeholder="Paste the job description here…"
+              style={{
+                minHeight: 220,
+                backgroundColor: colors.surface,
+                borderColor: colors.border,
+                border: `1px solid ${colors.border}`,
+                borderRadius: 14,
+                padding: 14,
+                color: colors.text,
+                fontSize: 14,
+                lineHeight: 1.4,
+                fontFamily: "inherit",
+                width: "100%",
+                boxSizing: "border-box",
+                resize: "vertical",
+              }}
+            />
           </div>
-          <textarea
-            value={jd}
-            onChange={(e) => setJd(e.target.value)}
-            placeholder="Paste the job description here…"
-            style={{
-              minHeight: 120,
-              backgroundColor: colors.surface,
-              borderColor: colors.border,
-              border: `1px solid ${colors.border}`,
-              borderRadius: 14,
-              padding: 14,
-              color: colors.text,
-              fontSize: 14,
-              lineHeight: 1.4,
-              fontFamily: "inherit",
-              width: "100%",
-              boxSizing: "border-box",
-              resize: "vertical",
-            }}
-          />
-        </div>
 
-        {/* Resume input */}
-        <div style={{ marginBottom: 18 }}>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              marginBottom: 8,
-            }}
-          >
-            <label style={{ color: colors.text, fontSize: 14, fontWeight: 700 }}>Your resume</label>
-            <span style={{ color: colors.muted, fontSize: 11, fontWeight: 700, letterSpacing: 0.4 }}>
-              Step 2
-            </span>
+          {/* Resume input */}
+          <div>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                marginBottom: 8,
+              }}
+            >
+              <label style={{ color: colors.text, fontSize: 14, fontWeight: 700 }}>Your resume</label>
+              <span style={{ color: colors.muted, fontSize: 11, fontWeight: 700, letterSpacing: 0.4 }}>
+                Step 2
+              </span>
+            </div>
+
+            {/* Type / Upload toggle */}
+            <div
+              style={{
+                display: "flex",
+                gap: 4,
+                marginBottom: 8,
+                backgroundColor: colors.surface,
+                border: `1px solid ${colors.border}`,
+                borderRadius: 10,
+                padding: 3,
+              }}
+            >
+              {(["type", "upload"] as const).map((mode) => (
+                <button
+                  key={mode}
+                  onClick={() => setResumeMode(mode)}
+                  style={{
+                    flex: 1,
+                    padding: "6px 0",
+                    borderRadius: 7,
+                    border: "none",
+                    cursor: "pointer",
+                    fontSize: 12,
+                    fontWeight: 700,
+                    letterSpacing: 0.3,
+                    backgroundColor: resumeMode === mode ? colors.elevated : "transparent",
+                    color: resumeMode === mode ? colors.cyan : colors.text2,
+                    transition: "all 150ms",
+                  }}
+                >
+                  {mode === "type" ? "Type" : "Upload"}
+                </button>
+              ))}
+            </div>
+
+            {resumeMode === "type" ? (
+              <textarea
+                value={resume}
+                onChange={(e) => setResume(e.target.value)}
+                placeholder="Paste your resume text here…"
+                style={{
+                  minHeight: 220,
+                  backgroundColor: colors.surface,
+                  borderColor: colors.border,
+                  border: `1px solid ${colors.border}`,
+                  borderRadius: 14,
+                  padding: 14,
+                  color: colors.text,
+                  fontSize: 14,
+                  lineHeight: 1.4,
+                  fontFamily: "inherit",
+                  width: "100%",
+                  boxSizing: "border-box",
+                  resize: "vertical",
+                }}
+              />
+            ) : (
+              <div
+                onClick={() => fileInputRef.current?.click()}
+                onDragOver={(e) => e.preventDefault()}
+                onDrop={(e) => {
+                  e.preventDefault();
+                  handleResumeFile(e.dataTransfer.files?.[0]);
+                }}
+                style={{
+                  minHeight: 220,
+                  backgroundColor: colors.surface,
+                  border: `1px dashed ${colors.borderStrong}`,
+                  borderRadius: 14,
+                  padding: 14,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  textAlign: "center",
+                  cursor: "pointer",
+                  boxSizing: "border-box",
+                }}
+              >
+                <input
+                  ref={fileInputRef}
+                  type="file"
+                  accept=".txt,.md,text/plain"
+                  onChange={(e) => handleResumeFile(e.target.files?.[0])}
+                  style={{ display: "none" }}
+                />
+                <div style={{ color: colors.text, fontSize: 14, fontWeight: 700, marginBottom: 4 }}>
+                  {resumeFileName ? `✓ ${resumeFileName}` : "Drop a .txt or .md file, or click to browse"}
+                </div>
+                <div style={{ color: colors.muted, fontSize: 12 }}>
+                  {resumeFileName ? "Click to replace" : "Plain text resumes only for now"}
+                </div>
+                {resumeFileError && (
+                  <div style={{ color: colors.red, fontSize: 12, marginTop: 10, maxWidth: 280 }}>
+                    {resumeFileError}
+                  </div>
+                )}
+              </div>
+            )}
           </div>
-          <textarea
-            value={resume}
-            onChange={(e) => setResume(e.target.value)}
-            placeholder="Paste your resume text here…"
-            style={{
-              minHeight: 120,
-              backgroundColor: colors.surface,
-              borderColor: colors.border,
-              border: `1px solid ${colors.border}`,
-              borderRadius: 14,
-              padding: 14,
-              color: colors.text,
-              fontSize: 14,
-              lineHeight: 1.4,
-              fontFamily: "inherit",
-              width: "100%",
-              boxSizing: "border-box",
-              resize: "vertical",
-            }}
-          />
         </div>
 
         {/* Sample button */}
