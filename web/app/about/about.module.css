@@ -1,0 +1,89 @@
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  flex: 1;
+}
+
+.pageTitle {
+  color: var(--color-text);
+  font-size: 40px;
+  font-weight: 800;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+}
+
+.sections {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sectionTitle {
+  color: var(--color-cyan);
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.sectionText {
+  color: var(--color-text-2);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.stepCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.stepBadge {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: var(--color-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-on-accent);
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.stepTitle {
+  color: var(--color-text);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.stepDesc {
+  color: var(--color-muted);
+  font-size: 13px;
+}
+
+.featureList {
+  color: var(--color-text-2);
+  font-size: 15px;
+  line-height: 1.8;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem {
+  margin-bottom: 12px;
+}
+
+.checkMark {
+  color: var(--color-cyan);
+  margin-right: 8px;
+}

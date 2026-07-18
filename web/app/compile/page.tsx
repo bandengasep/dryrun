@@ -3,26 +3,8 @@
 import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Gap } from "@dryrun/core";
-
-const colors = {
-  bg: "#0A0F1C",
-  surface: "#0F1728",
-  surface2: "#131E33",
-  elevated: "#1A2740",
-  border: "#243350",
-  borderStrong: "#33456A",
-  text: "#EAF1FC",
-  text2: "#A9B7D0",
-  muted: "#6C7C9C",
-  cyan: "#22D3EE",
-  blue: "#3B82F6",
-  deep: "#1E40AF",
-  onAccent: "#04121F",
-  green: "#34D399",
-  amber: "#FBBF24",
-  red: "#F87171",
-  purple: "#A78BFA",
-};
+import styles from "./compile.module.css";
+import logoImg from "../assets/logo-img.png";
 
 const SAMPLE_JD =
   "Senior Backend Engineer. You will design scalable distributed systems and REST APIs. " +
@@ -92,67 +74,17 @@ export default function CompileScreen() {
   const canRun = jd.trim().length > 0 || resume.trim().length > 0;
 
   return (
-    <main
-      style={{
-        backgroundColor: colors.bg,
-        minHeight: "100vh",
-        fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <main className="app-main">
       {/* Header */}
-      <header
-        style={{
-          backgroundColor: "rgba(10, 15, 28, 0.8)",
-          backdropFilter: "blur(10px)",
-          borderBottomColor: colors.border,
-          borderBottomWidth: 1,
-          padding: "16px 24px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          position: "relative",
-          zIndex: 10,
-        }}
-      >
+      <header className="site-header">
         {/* Logo */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            cursor: "pointer",
-          }}
-          onClick={() => router.push("/")}
-        >
-          <div
-            style={{
-              width: 32,
-              height: 32,
-              borderRadius: 8,
-              backgroundColor: colors.cyan,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <span style={{ color: colors.onAccent, fontWeight: 800, fontSize: 14 }}>{"</>"}</span>
-          </div>
-          <span style={{ color: colors.text, fontSize: 18, fontWeight: 800, letterSpacing: -0.5 }}>
-            Dry Run
-          </span>
-        </div>
+        <button className="logo" onClick={() => router.push("/")}>
+          <img src={logoImg.src} alt="Dry Run logo" className="logo-img" />
+          <span className="logo-text">Dry Run</span>
+        </button>
 
         {/* Nav tabs */}
-        <div
-          style={{
-            display: "flex",
-            gap: 32,
-            flex: 1,
-            justifyContent: "center",
-          }}
-        >
+        <div className="nav-tabs">
           {[
             { label: "Home", path: "/" },
             { label: "About", path: "/about" },
@@ -161,21 +93,7 @@ export default function CompileScreen() {
             <button
               key={tab.label}
               onClick={() => router.push(tab.path)}
-              style={{
-                background: "none",
-                border: "none",
-                color: tab.label === "Interview Compiler" ? colors.cyan : colors.text2,
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: "pointer",
-                padding: 0,
-                transition: "color 200ms",
-                borderBottomColor: tab.label === "Interview Compiler" ? colors.cyan : "transparent",
-                borderBottomWidth: tab.label === "Interview Compiler" ? 2 : 0,
-                paddingBottom: 2,
-              }}
-              onMouseEnter={(e) => tab.label !== "Interview Compiler" && (e.currentTarget.style.color = colors.cyan)}
-              onMouseLeave={(e) => tab.label !== "Interview Compiler" && (e.currentTarget.style.color = colors.text2)}
+              className={`nav-tab ${tab.label === "Interview Compiler" ? "nav-tab-active" : ""}`}
             >
               {tab.label}
             </button>
@@ -183,204 +101,54 @@ export default function CompileScreen() {
         </div>
 
         {/* Auth buttons */}
-        <div
-          style={{
-            display: "flex",
-            gap: 12,
-          }}
-        >
-          <button
-            onClick={() => setShowAuthModal("login")}
-            style={{
-              background: "none",
-              border: `1px solid ${colors.border}`,
-              borderRadius: 8,
-              padding: "8px 16px",
-              color: colors.text,
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: "pointer",
-              transition: "all 200ms",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = colors.surface2;
-              e.currentTarget.style.borderColor = colors.cyan;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "transparent";
-              e.currentTarget.style.borderColor = colors.border;
-            }}
-          >
+        <div className="auth-buttons">
+          <button onClick={() => setShowAuthModal("login")} className="btn btn-outline btn-sm">
             Login
           </button>
-          <button
-            onClick={() => setShowAuthModal("signup")}
-            style={{
-              backgroundColor: colors.cyan,
-              borderRadius: 8,
-              padding: "8px 16px",
-              border: "none",
-              color: colors.onAccent,
-              fontSize: 13,
-              fontWeight: 600,
-              cursor: "pointer",
-              transition: "opacity 200ms",
-            }}
-            onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-            onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-          >
+          <button onClick={() => setShowAuthModal("signup")} className="btn btn-primary btn-sm">
             Sign up
           </button>
         </div>
       </header>
 
       {/* Main content */}
-      <style>{`
-        .compile-container {
-          max-width: 720px;
-        }
-        .jd-resume-grid {
-          display: flex;
-          flex-direction: column;
-          gap: 18px;
-          margin-bottom: 18px;
-        }
-        .jd-resume-grid > div {
-          margin-bottom: 0;
-        }
-        @media (min-width: 900px) {
-          .compile-container {
-            max-width: 1040px;
-          }
-          .jd-resume-grid {
-            flex-direction: row;
-            align-items: stretch;
-          }
-          .jd-resume-grid > div {
-            flex: 1;
-            min-width: 0;
-          }
-        }
-      `}</style>
-      <div
-        className="compile-container"
-        style={{
-          margin: "0 auto",
-          paddingLeft: 20,
-          paddingRight: 20,
-          paddingTop: 20,
-          paddingBottom: 48,
-          flex: 1,
-        }}
-      >
+      <div className={styles.content}>
         {/* Heading & subtext */}
-        <h1
-          style={{
-            color: colors.text,
-            fontSize: 27,
-            fontWeight: 800,
-            letterSpacing: -0.6,
-            lineHeight: 1.22,
-            marginBottom: 12,
-          }}
-        >
-          Turn a job description into targeted interview practice.
-        </h1>
-        <p
-          style={{
-            color: colors.text2,
-            fontSize: 15,
-            lineHeight: 1.47,
-            marginBottom: 28,
-            maxWidth: 640,
-          }}
-        >
-          Paste a JD and your resume. Dry Run diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that&apos;s silent.
+        <h1 className={styles.heading}>Turn a job description into targeted interview practice.</h1>
+        <p className={styles.subtext}>
+          Paste a JD and your resume. Dry Run diffs them into evidenced gaps — every gap citing the JD line that
+          demands it and the resume line that&apos;s silent.
         </p>
 
-        <div className="jd-resume-grid">
+        <div className={styles.grid}>
           {/* JD input */}
           <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 8,
-              }}
-            >
-              <label style={{ color: colors.text, fontSize: 14, fontWeight: 700 }}>Job description</label>
-              <span style={{ color: colors.muted, fontSize: 11, fontWeight: 700, letterSpacing: 0.4 }}>
-                Step 1
-              </span>
+            <div className={styles.inputHeader}>
+              <label className={styles.inputLabel}>Job description</label>
+              <span className={styles.stepLabel}>Step 1</span>
             </div>
             <textarea
               value={jd}
               onChange={(e) => setJd(e.target.value)}
               placeholder="Paste the job description here…"
-              style={{
-                minHeight: 220,
-                backgroundColor: colors.surface,
-                borderColor: colors.border,
-                border: `1px solid ${colors.border}`,
-                borderRadius: 14,
-                padding: 14,
-                color: colors.text,
-                fontSize: 14,
-                lineHeight: 1.4,
-                fontFamily: "inherit",
-                width: "100%",
-                boxSizing: "border-box",
-                resize: "vertical",
-              }}
+              className="textarea"
             />
           </div>
 
           {/* Resume input */}
           <div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: 8,
-              }}
-            >
-              <label style={{ color: colors.text, fontSize: 14, fontWeight: 700 }}>Your resume</label>
-              <span style={{ color: colors.muted, fontSize: 11, fontWeight: 700, letterSpacing: 0.4 }}>
-                Step 2
-              </span>
+            <div className={styles.inputHeader}>
+              <label className={styles.inputLabel}>Your resume</label>
+              <span className={styles.stepLabel}>Step 2</span>
             </div>
 
             {/* Type / Upload toggle */}
-            <div
-              style={{
-                display: "flex",
-                gap: 4,
-                marginBottom: 8,
-                backgroundColor: colors.surface,
-                border: `1px solid ${colors.border}`,
-                borderRadius: 10,
-                padding: 3,
-              }}
-            >
+            <div className={styles.modeToggle}>
               {(["type", "upload"] as const).map((mode) => (
                 <button
                   key={mode}
                   onClick={() => setResumeMode(mode)}
-                  style={{
-                    flex: 1,
-                    padding: "6px 0",
-                    borderRadius: 7,
-                    border: "none",
-                    cursor: "pointer",
-                    fontSize: 12,
-                    fontWeight: 700,
-                    letterSpacing: 0.3,
-                    backgroundColor: resumeMode === mode ? colors.elevated : "transparent",
-                    color: resumeMode === mode ? colors.cyan : colors.text2,
-                    transition: "all 150ms",
-                  }}
+                  className={`${styles.modeButton} ${resumeMode === mode ? styles.modeButtonActive : ""}`}
                 >
                   {mode === "type" ? "Type" : "Upload"}
                 </button>
@@ -392,21 +160,7 @@ export default function CompileScreen() {
                 value={resume}
                 onChange={(e) => setResume(e.target.value)}
                 placeholder="Paste your resume text here…"
-                style={{
-                  minHeight: 220,
-                  backgroundColor: colors.surface,
-                  borderColor: colors.border,
-                  border: `1px solid ${colors.border}`,
-                  borderRadius: 14,
-                  padding: 14,
-                  color: colors.text,
-                  fontSize: 14,
-                  lineHeight: 1.4,
-                  fontFamily: "inherit",
-                  width: "100%",
-                  boxSizing: "border-box",
-                  resize: "vertical",
-                }}
+                className="textarea"
               />
             ) : (
               <div
@@ -416,39 +170,22 @@ export default function CompileScreen() {
                   e.preventDefault();
                   handleResumeFile(e.dataTransfer.files?.[0]);
                 }}
-                style={{
-                  minHeight: 220,
-                  backgroundColor: colors.surface,
-                  border: `1px dashed ${colors.borderStrong}`,
-                  borderRadius: 14,
-                  padding: 14,
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  textAlign: "center",
-                  cursor: "pointer",
-                  boxSizing: "border-box",
-                }}
+                className={styles.uploadZone}
               >
                 <input
                   ref={fileInputRef}
                   type="file"
                   accept=".txt,.md,text/plain"
                   onChange={(e) => handleResumeFile(e.target.files?.[0])}
-                  style={{ display: "none" }}
+                  className={styles.uploadInput}
                 />
-                <div style={{ color: colors.text, fontSize: 14, fontWeight: 700, marginBottom: 4 }}>
+                <div className={styles.uploadTitle}>
                   {resumeFileName ? `✓ ${resumeFileName}` : "Drop a .txt or .md file, or click to browse"}
                 </div>
-                <div style={{ color: colors.muted, fontSize: 12 }}>
+                <div className={styles.uploadSubtitle}>
                   {resumeFileName ? "Click to replace" : "Plain text resumes only for now"}
                 </div>
-                {resumeFileError && (
-                  <div style={{ color: colors.red, fontSize: 12, marginTop: 10, maxWidth: 280 }}>
-                    {resumeFileError}
-                  </div>
-                )}
+                {resumeFileError && <div className={styles.uploadError}>{resumeFileError}</div>}
               </div>
             )}
           </div>
@@ -460,17 +197,7 @@ export default function CompileScreen() {
             setJd(SAMPLE_JD);
             setResume(SAMPLE_RESUME);
           }}
-          style={{
-            paddingTop: 8,
-            paddingBottom: 8,
-            marginBottom: 12,
-            background: "none",
-            border: "none",
-            color: colors.cyan,
-            fontSize: 13,
-            fontWeight: 600,
-            cursor: "pointer",
-          }}
+          className={styles.sampleLink}
         >
           ↺ Fill with a sample JD + resume
         </button>
@@ -479,192 +206,53 @@ export default function CompileScreen() {
         <button
           onClick={compile}
           disabled={!canRun || loading}
-          style={{
-            backgroundColor: canRun && !loading ? colors.cyan : colors.elevated,
-            borderRadius: 14,
-            paddingTop: 16,
-            paddingBottom: 16,
-            width: "100%",
-            marginTop: 6,
-            color: canRun && !loading ? colors.onAccent : colors.muted,
-            fontSize: 16,
-            fontWeight: 800,
-            border: "none",
-            cursor: canRun && !loading ? "pointer" : "not-allowed",
-            transition: "opacity 200ms",
-            boxShadow: canRun && !loading ? `0 6px 18px rgba(34,211,238,0.35)` : "none",
-          }}
+          className={`btn btn-primary btn-lg btn-block btn-shadow ${styles.ctaButton}`}
         >
           {loading ? "Compiling…" : "Compile my interview  →"}
         </button>
-        <p style={{ color: colors.muted, fontSize: 12, textAlign: "center", marginTop: 12 }}>
-          Runs entirely on-device. No account, no upload.
-        </p>
+        <p className={styles.ctaHint}>Runs entirely on-device. No account, no upload.</p>
 
         {/* Error message */}
-        {error && (
-          <div
-            style={{
-              marginTop: 20,
-              backgroundColor: `rgba(248, 113, 113, 0.1)`,
-              borderColor: colors.red,
-              border: `1px solid ${colors.red}`,
-              borderRadius: 14,
-              padding: 14,
-              color: colors.red,
-            }}
-          >
-            Error: {error}
-          </div>
-        )}
+        {error && <div className={styles.errorBox}>Error: {error}</div>}
       </div>
 
       {/* Auth Modal */}
       {showAuthModal && (
-        <div
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            backgroundColor: "rgba(0, 0, 0, 0.6)",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 1000,
-          }}
-          onClick={() => setShowAuthModal(null)}
-        >
-          <div
-            style={{
-              backgroundColor: colors.surface,
-              borderColor: colors.border,
-              border: `1px solid ${colors.border}`,
-              borderRadius: 16,
-              padding: 32,
-              maxWidth: 400,
-              width: "100%",
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <h2
-              style={{
-                color: colors.text,
-                fontSize: 24,
-                fontWeight: 800,
-                marginBottom: 24,
-              }}
-            >
-              {showAuthModal === "login" ? "Login" : "Sign up"}
-            </h2>
+        <div className="modal-overlay" onClick={() => setShowAuthModal(null)}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <h2 className="modal-title">{showAuthModal === "login" ? "Login" : "Sign up"}</h2>
 
-            <div style={{ marginBottom: 16 }}>
-              <label
-                style={{
-                  display: "block",
-                  color: colors.text2,
-                  fontSize: 14,
-                  fontWeight: 600,
-                  marginBottom: 8,
-                }}
-              >
-                Email
-              </label>
+            <div className="form-group">
+              <label className="form-label">Email</label>
               <input
                 type="email"
                 value={authEmail}
                 onChange={(e) => setAuthEmail(e.target.value)}
                 placeholder="you@example.com"
-                style={{
-                  width: "100%",
-                  padding: 12,
-                  borderRadius: 8,
-                  border: `1px solid ${colors.border}`,
-                  backgroundColor: colors.elevated,
-                  color: colors.text,
-                  fontSize: 14,
-                  boxSizing: "border-box",
-                }}
+                className="form-input"
               />
             </div>
 
-            <div style={{ marginBottom: 24 }}>
-              <label
-                style={{
-                  display: "block",
-                  color: colors.text2,
-                  fontSize: 14,
-                  fontWeight: 600,
-                  marginBottom: 8,
-                }}
-              >
-                Password
-              </label>
+            <div className="form-group form-group-last">
+              <label className="form-label">Password</label>
               <input
                 type="password"
                 value={authPassword}
                 onChange={(e) => setAuthPassword(e.target.value)}
                 placeholder="••••••••"
-                style={{
-                  width: "100%",
-                  padding: 12,
-                  borderRadius: 8,
-                  border: `1px solid ${colors.border}`,
-                  backgroundColor: colors.elevated,
-                  color: colors.text,
-                  fontSize: 14,
-                  boxSizing: "border-box",
-                }}
+                className="form-input"
               />
             </div>
 
-            <button
-              onClick={handleAuthSubmit}
-              style={{
-                backgroundColor: colors.cyan,
-                borderRadius: 8,
-                padding: "12px 16px",
-                width: "100%",
-                border: "none",
-                color: colors.onAccent,
-                fontSize: 16,
-                fontWeight: 800,
-                cursor: "pointer",
-                marginBottom: 12,
-                transition: "opacity 200ms",
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
-              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
-            >
-              {showAuthModal === "login" ? "Login" : "Sign up"}
-            </button>
+            <div className="modal-actions">
+              <button onClick={handleAuthSubmit} className="btn btn-primary btn-block btn-modal">
+                {showAuthModal === "login" ? "Login" : "Sign up"}
+              </button>
 
-            <button
-              onClick={() => setShowAuthModal(null)}
-              style={{
-                backgroundColor: "transparent",
-                borderRadius: 8,
-                padding: "12px 16px",
-                width: "100%",
-                border: `1px solid ${colors.border}`,
-                color: colors.text2,
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: "pointer",
-                transition: "all 200ms",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = colors.elevated;
-                e.currentTarget.style.borderColor = colors.cyan;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "transparent";
-                e.currentTarget.style.borderColor = colors.border;
-              }}
-            >
-              Cancel
-            </button>
+              <button onClick={() => setShowAuthModal(null)} className="btn btn-outline btn-block btn-modal">
+                Cancel
+              </button>
+            </div>
           </div>
         </div>
       )}
