@@ -1,12 +1,3 @@
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: var(--color-surface);
-  border-bottom: 1px solid var(--color-border);
-  padding: 16px;
-}
-
 .headerCenter {
   display: flex;
   align-items: center;
@@ -30,12 +21,6 @@
   font-size: 12px;
   font-weight: 800;
   text-transform: uppercase;
-}
-
-.headerTitle {
-  color: var(--color-text);
-  font-size: 14px;
-  font-weight: 700;
 }
 
 .grid {
@@ -83,16 +68,65 @@
   border-radius: 6px;
 }
 
-.codeTextarea {
+.editorWrap {
+  position: relative;
   flex: 1;
   background-color: var(--color-surface);
+}
+
+.highlightLayer {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 16px;
+  font-size: 13px;
+  font-family: Menlo, monospace;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
+  overflow: auto;
+  pointer-events: none;
   color: var(--color-text);
+}
+
+.codeTextarea {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  color: transparent;
+  caret-color: var(--color-text);
   border: none;
   padding: 16px;
   font-size: 13px;
   font-family: Menlo, monospace;
   line-height: 1.5;
+  white-space: pre-wrap;
+  word-break: break-word;
   resize: none;
+  overflow: auto;
+}
+.codeTextarea::selection {
+  background-color: rgba(34, 211, 238, 0.25);
+}
+
+.tokKeyword {
+  color: var(--color-cyan);
+  font-weight: 600;
+}
+.tokString {
+  color: var(--color-green);
+}
+.tokComment {
+  color: var(--color-muted);
+  font-style: italic;
+}
+.tokNumber {
+  color: var(--color-amber);
+}
+.tokFunction {
+  color: var(--color-blue);
 }
 
 .outputPane {

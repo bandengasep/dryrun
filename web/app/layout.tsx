@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 import "./globals.css";
+import { AuthProvider } from "./components/AuthContext";
+import Navbar from "./components/Navbar";
 
 export const metadata = {
   title: "DryRun — the interview compiler",
@@ -18,7 +20,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <AuthProvider>
+          <Navbar />
+          {children}
+        </AuthProvider>
+      </body>
     </html>
   );
 }

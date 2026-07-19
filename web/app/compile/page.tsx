@@ -4,7 +4,6 @@ import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import type { Gap } from "@dryrun/core";
 import styles from "./compile.module.css";
-import logoImg from "../assets/logo-img.png";
 
 const SAMPLE_JD =
   "Senior Backend Engineer. You will design scalable distributed systems and REST APIs. " +
@@ -20,9 +19,6 @@ export default function CompileScreen() {
   const [gaps, setGaps] = useState<Gap[] | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [showAuthModal, setShowAuthModal] = useState<"login" | "signup" | null>(null);
-  const [authEmail, setAuthEmail] = useState("");
-  const [authPassword, setAuthPassword] = useState("");
   const [resumeMode, setResumeMode] = useState<"type" | "upload">("type");
   const [resumeFileName, setResumeFileName] = useState<string | null>(null);
   const [resumeFileError, setResumeFileError] = useState<string | null>(null);
@@ -65,52 +61,10 @@ export default function CompileScreen() {
     }
   }
 
-  const handleAuthSubmit = () => {
-    setShowAuthModal(null);
-    setAuthEmail("");
-    setAuthPassword("");
-  };
-
   const canRun = jd.trim().length > 0 || resume.trim().length > 0;
 
   return (
     <main className="app-main">
-      {/* Header */}
-      <header className="site-header">
-        {/* Logo */}
-        <button className="logo" onClick={() => router.push("/")}>
-          <img src={logoImg.src} alt="Dry Run logo" className="logo-img" />
-          <span className="logo-text">Dry Run</span>
-        </button>
-
-        {/* Nav tabs */}
-        <div className="nav-tabs">
-          {[
-            { label: "Home", path: "/" },
-            { label: "About", path: "/about" },
-            { label: "Interview Compiler", path: "/compile" },
-          ].map((tab) => (
-            <button
-              key={tab.label}
-              onClick={() => router.push(tab.path)}
-              className={`nav-tab ${tab.label === "Interview Compiler" ? "nav-tab-active" : ""}`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Auth buttons */}
-        <div className="auth-buttons">
-          <button onClick={() => setShowAuthModal("login")} className="btn btn-outline btn-sm">
-            Login
-          </button>
-          <button onClick={() => setShowAuthModal("signup")} className="btn btn-primary btn-sm">
-            Sign up
-          </button>
-        </div>
-      </header>
-
       {/* Main content */}
       <div className={styles.content}>
         {/* Heading & subtext */}
@@ -215,47 +169,6 @@ export default function CompileScreen() {
         {/* Error message */}
         {error && <div className={styles.errorBox}>Error: {error}</div>}
       </div>
-
-      {/* Auth Modal */}
-      {showAuthModal && (
-        <div className="modal-overlay" onClick={() => setShowAuthModal(null)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <h2 className="modal-title">{showAuthModal === "login" ? "Login" : "Sign up"}</h2>
-
-            <div className="form-group">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                value={authEmail}
-                onChange={(e) => setAuthEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="form-input"
-              />
-            </div>
-
-            <div className="form-group form-group-last">
-              <label className="form-label">Password</label>
-              <input
-                type="password"
-                value={authPassword}
-                onChange={(e) => setAuthPassword(e.target.value)}
-                placeholder="••••••••"
-                className="form-input"
-              />
-            </div>
-
-            <div className="modal-actions">
-              <button onClick={handleAuthSubmit} className="btn btn-primary btn-block btn-modal">
-                {showAuthModal === "login" ? "Login" : "Sign up"}
-              </button>
-
-              <button onClick={() => setShowAuthModal(null)} className="btn btn-outline btn-block btn-modal">
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }

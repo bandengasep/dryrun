@@ -23,9 +23,6 @@ function CodeTag({ text }: { text: string }) {
 
 export default function Landing() {
   const router = useRouter();
-  const [showAuthModal, setShowAuthModal] = useState<"login" | "signup" | null>(null);
-  const [authEmail, setAuthEmail] = useState("");
-  const [authPassword, setAuthPassword] = useState("");
   const [threeLoaded, setThreeLoaded] = useState(false);
   const [vantaLoaded, setVantaLoaded] = useState(false);
   const vantaRef = useRef<HTMLDivElement>(null);
@@ -79,13 +76,6 @@ export default function Landing() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleAuthSubmit = () => {
-    // Placeholder auth logic
-    setShowAuthModal(null);
-    setAuthEmail("");
-    setAuthPassword("");
-  };
-
   return (
     <main className={`app-main ${styles.main}`}>
       {/* Animated background */}
@@ -105,44 +95,6 @@ export default function Landing() {
       )}
 
       <div ref={vantaRef} className={styles.animatedBg} />
-
-      {/* Header */}
-      <header className="site-header">
-        {/* Logo */}
-        <button className="logo" onClick={() => router.push("/")}>
-          <img src={logoImg.src} alt="Dry Run logo" className="logo-img" />
-          <span className="logo-text">
-            <CodeTag text={BRAND_TAG} />
-          </span>
-        </button>
-
-        {/* Nav tabs */}
-        <div className="nav-tabs">
-          {[
-            { label: "Home", path: "/" },
-            { label: "About", path: "/about" },
-            { label: "Interview Compiler", path: "/compile" },
-          ].map((tab) => (
-            <button
-              key={tab.label}
-              onClick={() => router.push(tab.path)}
-              className={`nav-tab ${tab.label === "Home" ? "nav-tab-active" : ""}`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Auth buttons */}
-        <div className="auth-buttons">
-          <button onClick={() => setShowAuthModal("login")} className="btn btn-outline btn-sm">
-            Login
-          </button>
-          <button onClick={() => setShowAuthModal("signup")} className="btn btn-primary btn-sm">
-            Sign up
-          </button>
-        </div>
-      </header>
 
       {/* Main content */}
       <div className={styles.heroSection}>
@@ -187,47 +139,6 @@ export default function Landing() {
           <p className="footer-note">Runs entirely on-device. No account, no upload.</p>
         </div>
       </div>
-
-      {/* Auth Modal */}
-      {showAuthModal && (
-        <div className="modal-overlay" onClick={() => setShowAuthModal(null)}>
-          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
-            <h2 className="modal-title">{showAuthModal === "login" ? "Login" : "Sign up"}</h2>
-
-            <div className="form-group">
-              <label className="form-label">Email</label>
-              <input
-                type="email"
-                value={authEmail}
-                onChange={(e) => setAuthEmail(e.target.value)}
-                placeholder="you@example.com"
-                className="form-input"
-              />
-            </div>
-
-            <div className="form-group form-group-last">
-              <label className="form-label">Password</label>
-              <input
-                type="password"
-                value={authPassword}
-                onChange={(e) => setAuthPassword(e.target.value)}
-                placeholder="••••••••"
-                className="form-input"
-              />
-            </div>
-
-            <div className="modal-actions">
-              <button onClick={handleAuthSubmit} className="btn btn-primary btn-block btn-modal">
-                {showAuthModal === "login" ? "Login" : "Sign up"}
-              </button>
-
-              <button onClick={() => setShowAuthModal(null)} className="btn btn-outline btn-block btn-modal">
-                Cancel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </main>
   );
 }

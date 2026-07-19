@@ -100,17 +100,6 @@ export default function ResultsScreen() {
 
   return (
     <main className="app-main">
-      <div className={styles.topBar}>
-        <button onClick={() => router.push("/")} className="btn-link">
-          ← Back
-        </button>
-        <button className="logo" onClick={() => router.push("/")}>
-          <div className="logo-badge logo-badge-sm">{"</>"}</div>
-          <span className="logo-text-sm">Dry Run</span>
-        </button>
-        <div className="header-spacer" />
-      </div>
-
       <div className={styles.content}>
         {/* Readiness gauge */}
         <div className={styles.gauge}>
