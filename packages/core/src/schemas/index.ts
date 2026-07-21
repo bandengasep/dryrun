@@ -78,3 +78,49 @@ export const ParsedResume = z.object({
   dropped: z.array(DroppedLine),
 });
 export type ParsedResume = z.infer<typeof ParsedResume>;
+
+/** JSON-safe subset of SQLite values used in challenge expectations. */
+export const SqlValue = z.union([z.string(), z.number(), z.null()]);
+export type SqlValue = z.infer<typeof SqlValue>;
+
+/** One executable check inside a challenge: run `sql`, expect these rows. */
+export const ChallengeTest = z.object({
+  name: z.string(),
+  sql: z.string(),
+  expectedRows: z.array(z.record(z.string(), SqlValue)),
+  /** When false, row order is ignored in the comparison. */
+  ordered: z.boolean(),
+});
+export type ChallengeTest = z.infer<typeof ChallengeTest>;
+
+/**
+ * A compiled SQL challenge. `gapId` is the receipt chain: challenge → gap →
+ * JD/resume spans. A challenge ships only if runChallenge passes all tests —
+ * execution is ground truth (harness lives in @dryrun/core/harness).
+ */
+export const ChallengeSpec = z.object({
+  id: z.string(),
+  gapId: z.string(),
+  title: z.string(),
+  prompt: z.string(),
+  /** DDL + seed rows, executed as one script against a fresh database. */
+  setupSql: z.string(),
+  referenceSql: z.string(),
+  tests: z.array(ChallengeTest).min(1),
+});
+export type ChallengeSpec = z.infer<typeof ChallengeSpec>;
+
+export const ChallengeTestFailure = z.object({
+  test: z.string(),
+  reason: z.string(),
+  expected: z.array(z.record(z.string(), SqlValue)).nullable(),
+  actual: z.array(z.record(z.string(), SqlValue)).nullable(),
+});
+export type ChallengeTestFailure = z.infer<typeof ChallengeTestFailure>;
+
+export const ChallengeRunResult = z.object({
+  challengeId: z.string(),
+  passed: z.boolean(),
+  failures: z.array(ChallengeTestFailure),
+});
+export type ChallengeRunResult = z.infer<typeof ChallengeRunResult>;

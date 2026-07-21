@@ -1,0 +1,25 @@
+{
+  "id": "ch-01",
+  "gapId": "gap-jd01-sql",
+  "title": "Weekly active users for a retention report",
+  "prompt": "The growth team tracks weekly retention. Given an events table (user_id, week), write a query returning each week and its count of distinct active users, ordered by week. Columns: week, active_users.",
+  "setupSql": "CREATE TABLE events (user_id INTEGER NOT NULL, week INTEGER NOT NULL);\nINSERT INTO events (user_id, week) VALUES (1, 1), (2, 1), (3, 1), (1, 2), (3, 2), (3, 2);",
+  "referenceSql": "SELECT week, COUNT(DISTINCT user_id) AS active_users FROM events GROUP BY week ORDER BY week;",
+  "tests": [
+    {
+      "name": "reference solution produces the weekly active counts",
+      "sql": "SELECT week, COUNT(DISTINCT user_id) AS active_users FROM events GROUP BY week ORDER BY week;",
+      "expectedRows": [
+        { "week": 1, "active_users": 3 },
+        { "week": 2, "active_users": 2 }
+      ],
+      "ordered": true
+    },
+    {
+      "name": "seed sanity: six raw events",
+      "sql": "SELECT COUNT(*) AS n FROM events;",
+      "expectedRows": [{ "n": 6 }],
+      "ordered": true
+    }
+  ]
+}

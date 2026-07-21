@@ -23,5 +23,7 @@ jobs:
         run: pnpm --filter @dryrun/core typecheck
       - name: Test core (vitest)
         run: pnpm --filter @dryrun/core test
+      - name: Challenge executability (harness)
+        run: pnpm --filter @dryrun/core test:executability
       - name: Build web (next build)
         run: pnpm --filter web build

@@ -8,19 +8,26 @@
     ".": {
       "types": "./src/index.ts",
       "default": "./src/index.ts"
+    },
+    "./harness": {
+      "types": "./src/harness/index.ts",
+      "default": "./src/harness/index.ts"
     }
   },
   "scripts": {
     "typecheck": "tsc --noEmit && tsc --noEmit -p test",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:executability": "vitest run test/harness.test.ts"
   },
   "dependencies": {
     "openai": "^6.48.0",
-    "zod": "^4.4.3"
+    "zod": "^4.4.3",
+    "better-sqlite3": "^13.0.1"
   },
   "devDependencies": {
     "@types/node": "^22.18.5",
     "typescript": "^5.9.3",
-    "vitest": "^4.1.10"
+    "vitest": "^4.1.10",
+    "@types/better-sqlite3": "^7.6.13"
   }
 }
