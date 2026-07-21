@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { Gap } from "../src/schemas";
+import { DroppedLine, Gap, ParsedJD } from "../src/schemas";
 
 describe("Gap — the shared receipts contract", () => {
   it("validates a well-formed gap that carries JD + resume receipts", () => {
@@ -40,6 +40,32 @@ describe("Gap — the shared receipts contract", () => {
         resumeSpan: null,
         rationale: "",
       }),
+    ).toThrow();
+  });
+});
+
+describe("ParsedJD — parser output contract", () => {
+  it("carries lines with receipts plus dropped quotes side by side", () => {
+    const parsed = ParsedJD.parse({
+      sourceText: "Requires 3+ years of SQL and dbt.",
+      lines: [
+        {
+          id: "jd-1",
+          text: "3+ years of SQL",
+          span: { start: 9, end: 24, text: "3+ years of SQL" },
+        },
+      ],
+      dropped: [
+        { text: "dbt experience", quote: "dbt exp.", reason: "quote_not_found" },
+      ],
+    });
+    expect(parsed.lines).toHaveLength(1);
+    expect(parsed.dropped[0].reason).toBe("quote_not_found");
+  });
+
+  it("rejects a dropped line with an unknown reason", () => {
+    expect(() =>
+      DroppedLine.parse({ text: "x", quote: "y", reason: "other" }),
     ).toThrow();
   });
 });
