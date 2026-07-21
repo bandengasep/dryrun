@@ -55,3 +55,9 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
 - **Vedika's FE V0 arrived on `dryrun-FE-V0`** (clean vs `origin/main`; web/-only + lockfile).
   PR opened to `main`. ⚠️ `results/page.tsx` readiness bar (`READINESS_PERCENT = 65`) is a
   cut-list violation — flagged as a merge blocker; Vedika swaps it on her branch.
+- **PR #4 merged with the readiness bar still in** (Timothy's call, same day). The violation
+  now lives on `main`; tracked as a follow-up for Vedika — must be gone before the demo/video.
+- **Commit 1 adversarially reviewed before PR** (43-agent workflow: 4 lenses × 3 verifiers per
+  finding). 13 raw findings → 6 confirmed → all fixed: locateSpan word-boundary preference
+  (receipts were citing "SQL" inside "MySQL"), restored the compile-time no-Node-builtins-in-src
+  guard (split test tsconfig), closed parseResume dropped/refusal + duplicate-quote test holes.
