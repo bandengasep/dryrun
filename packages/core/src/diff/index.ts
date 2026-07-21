@@ -90,7 +90,10 @@ export async function diffGaps(
       model: opts.embeddingModel ?? DEFAULT_EMBEDDING_MODEL,
       input: inputs,
     });
-    const vectors = embedded.data.map((d) => d.embedding);
+    // data[].index is the contract; array order is not.
+    const vectors = [...embedded.data]
+      .sort((a, b) => a.index - b.index)
+      .map((d) => d.embedding);
     const reqVecs = vectors.slice(0, jd.lines.length);
     const lineVecs = vectors.slice(jd.lines.length);
     candidateIds = reqVecs.map((rv) =>
@@ -128,7 +131,7 @@ export async function diffGaps(
   // Stage 3 — verdicts → Gaps with receipts from the parsed lines' spans.
   const verdictByReq = new Map(wire.verdicts.map((v) => [v.requirementId, v]));
   const gaps: Gap[] = [];
-  for (const req of jd.lines) {
+  for (const [i, req] of jd.lines.entries()) {
     const verdict = verdictByReq.get(req.id);
     if (!verdict) {
       throw new DiffError(`No verdict for requirement ${req.id} (coverage guard)`);
@@ -137,13 +140,19 @@ export async function diffGaps(
     if (verdict.kind === "missing_skill") {
       resumeLine = null; // coerce any citation away — absence claims carry no receipt
     } else {
-      resumeLine = verdict.resumeLineId
-        ? (lineById.get(verdict.resumeLineId) ?? null)
-        : null;
+      // The receipt must come from THIS requirement's candidate set — the
+      // lines the adjudicator was actually shown for it. A merely-real resume
+      // line is not enough: evidence that was never in evidence is not a
+      // receipt.
+      const cited = verdict.resumeLineId;
+      resumeLine =
+        cited !== null && candidateIds[i].includes(cited)
+          ? (lineById.get(cited) ?? null)
+          : null;
       if (!resumeLine) {
         throw new DiffError(
           `Verdict for ${req.id} is "${verdict.kind}" but cites ` +
-            `${verdict.resumeLineId === null ? "no resume line" : `unknown line ${verdict.resumeLineId}`} — a receipt is required`,
+            `${cited === null ? "no resume line" : `${cited}, which is not among its candidates`} — a receipt is required`,
         );
       }
     }

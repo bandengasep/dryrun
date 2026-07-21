@@ -81,3 +81,11 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
 - **Harness ship-gate:** a `ChallengeSpec` must include a test whose `sql` equals `referenceSql`
   (an unverified reference solution cannot ship) — enforced by `HarnessError`, not convention.
   CI gains a named "Challenge executability" step.
+- **Receipts contract tightened (PR #7): a gap's resume citation must come from that
+  requirement's candidate set** — the lines the adjudicator was actually shown. A merely-real
+  resume line no longer suffices (evidence never in evidence is not a receipt); violations
+  fail loud as `DiffError`. Found by inline review after both workflow review runs died on the
+  Claude spend limit; re-verified live on all 3 fixture pairs under the stricter guard. Same
+  commit: embedding vectors keyed by `data[].index` per API contract instead of array order.
+- **Local-dev secrets convention:** `web/.env.local` (gitignored via `.env.*`) carries the key
+  for `next dev`; it is a copy of root `.env`. Final-week gitleaks sweep should know both exist.
