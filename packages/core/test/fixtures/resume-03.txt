@@ -1,0 +1,20 @@
+PRIYA NAIR
+Senior Analytics Engineer — 6 years of SQL and data modelling experience
+
+EDUCATION
+BSc Statistics, Nanyang Technological University, 2019.
+
+EXPERIENCE
+Senior Analytics Engineer, Finch Commerce (2022-present)
+- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart
+- Built the company's Looker instance from scratch, now serving 120 weekly active viewers
+- Modelled order, payments and logistics marts in Snowflake SQL used by finance and ops
+- Ran a weekly metrics review with the heads of finance and operations
+- Helped a product manager define success metrics for one pricing A/B test
+
+Analytics Engineer, Grabble (2019-2022)
+- Wrote and maintained BigQuery SQL models for marketing attribution reporting
+- Automated recurring reporting jobs with Python scripts scheduled via cron
+
+SKILLS
+SQL (Snowflake, BigQuery), dbt (tests, docs, CI), Looker, Python, Git and GitHub pull-request review
