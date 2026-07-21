@@ -1,0 +1,19 @@
+TIMOTHY TAN
+MSBA Candidate, National University of Singapore — graduating Aug 2026
+
+EDUCATION
+MSc Business Analytics, NUS. Coursework: statistics, machine learning, data management.
+BBA (Finance), Universitas Indonesia.
+
+EXPERIENCE
+Data Analyst Intern, ShopFast (Jan–Jun 2026)
+- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team
+- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis
+- Presented findings to the marketing lead in a monthly review
+
+Business Analyst Intern, Bank Sentosa (2024)
+- Built Excel models for branch performance tracking
+- Automated a monthly report with VBA macros
+
+SKILLS
+SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)

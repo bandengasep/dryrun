@@ -50,3 +50,31 @@ export const Gap = z.object({
   rationale: z.string(),
 });
 export type Gap = z.infer<typeof Gap>;
+
+/**
+ * A line the parser extracted but could not anchor to the source text. Kept —
+ * never silently dropped — because unlocatable quotes are exactly what the
+ * citation-validity eval counts.
+ */
+export const DroppedLine = z.object({
+  text: z.string(),
+  quote: z.string(),
+  reason: z.literal("quote_not_found"),
+});
+export type DroppedLine = z.infer<typeof DroppedLine>;
+
+/** Parser output for a JD: located requirement lines + honest failures. */
+export const ParsedJD = z.object({
+  sourceText: z.string(),
+  lines: z.array(RequirementLine),
+  dropped: z.array(DroppedLine),
+});
+export type ParsedJD = z.infer<typeof ParsedJD>;
+
+/** Parser output for a resume: located evidence lines + honest failures. */
+export const ParsedResume = z.object({
+  sourceText: z.string(),
+  lines: z.array(ResumeLine),
+  dropped: z.array(DroppedLine),
+});
+export type ParsedResume = z.infer<typeof ParsedResume>;

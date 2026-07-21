@@ -11,13 +11,15 @@
     }
   },
   "scripts": {
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit && tsc --noEmit -p test",
     "test": "vitest run"
   },
   "dependencies": {
+    "openai": "^6.48.0",
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@types/node": "^22.18.5",
     "typescript": "^5.9.3",
     "vitest": "^4.1.10"
   }

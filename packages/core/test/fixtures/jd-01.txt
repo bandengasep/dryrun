@@ -1,0 +1,19 @@
+Data Analyst — Growth Team
+Acme Commerce Pte Ltd, Singapore
+
+About the role
+You will turn raw event data into decisions for the growth team.
+
+What you will do
+- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting
+- Partner with product managers to design and analyze A/B experiments
+- Own the weekly business review metrics pipeline end to end
+- Communicate findings to non-technical stakeholders
+
+What we are looking for
+- 3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)
+- Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design
+- Proficiency in Python for analysis (pandas, notebooks)
+- Experience with a BI tool such as Tableau or Looker
+- Familiarity with dbt and version-controlled analytics workflows is a plus
+- Excellent written and verbal communication in English
