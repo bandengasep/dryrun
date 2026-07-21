@@ -23,6 +23,17 @@ describe("locateSpan — receipts are computed, never trusted", () => {
     expect(span!.text).toBe("SQL and\n  Python");
   });
 
+  it("honors fromIndex on the whitespace-fallback path too", () => {
+    // Quote has single spaces; both occurrences in the source have newlines,
+    // so the exact-match path fails and the regex fallback must do the work.
+    const s = "SQL and\nPython first, then SQL and\n\tPython again";
+    const first = locateSpan(s, "SQL and Python")!;
+    const second = locateSpan(s, "SQL and Python", first.end)!;
+    expect(first.start).toBe(0);
+    expect(second.start).toBeGreaterThan(first.end);
+    expect(s.slice(second.start, second.end)).toBe(second.text);
+  });
+
   it("returns null for absent or empty quotes", () => {
     expect(locateSpan(source, "Kubernetes")).toBeNull();
     expect(locateSpan(source, "   ")).toBeNull();
