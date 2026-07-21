@@ -49,6 +49,19 @@ describe("parseJD — wire → domain with computed receipts", () => {
       ParserError,
     );
   });
+
+  it("pins duplicate-quote behavior: distinct ids, identical first-occurrence spans", async () => {
+    const client = stubClient({
+      requirements: [
+        { requirement: "SQL fluency", quote: "3+ years of SQL" },
+        { requirement: "SQL experience", quote: "3+ years of SQL" },
+      ],
+    });
+    const parsed = await parseJD(JD, { client });
+    expect(parsed.lines.map((l) => l.id)).toEqual(["jd-1", "jd-2"]);
+    expect(parsed.lines[0].span).toEqual(parsed.lines[1].span);
+    expect(parsed.dropped).toHaveLength(0);
+  });
 });
 
 describe("parseResume — same family, cv- ids", () => {
@@ -64,5 +77,31 @@ describe("parseResume — same family, cv- ids", () => {
     ParsedResume.parse(parsed);
     expect(parsed.lines.map((l) => l.id)).toEqual(["cv-1", "cv-2"]);
     expect(parsed.lines[1].text).toBe("Cleaned data with pandas.");
+  });
+
+  it("routes unlocatable resume quotes to dropped (text = quote for resumes)", async () => {
+    const RESUME = "Wrote SQL in BigQuery.";
+    const client = stubClient({
+      lines: [
+        { quote: "Wrote SQL in BigQuery." },
+        { quote: "Shipped Kubernetes operators." },
+      ],
+    });
+    const parsed = await parseResume(RESUME, { client });
+    ParsedResume.parse(parsed); // round-trip with populated dropped
+    expect(parsed.lines.map((l) => l.id)).toEqual(["cv-1"]);
+    expect(parsed.dropped).toEqual([
+      {
+        text: "Shipped Kubernetes operators.",
+        quote: "Shipped Kubernetes operators.",
+        reason: "quote_not_found",
+      },
+    ]);
+  });
+
+  it("throws ParserError when the model refuses a resume parse", async () => {
+    await expect(
+      parseResume("resume text", { client: stubClient(null) }),
+    ).rejects.toThrow(ParserError);
   });
 });
