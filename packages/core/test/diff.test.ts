@@ -3,13 +3,21 @@ import type OpenAI from "openai";
 import { cosineTopK, diffGaps, DiffError, DiffWire } from "../src/diff";
 import { Gap, type ParsedJD, type ParsedResume } from "../src/schemas";
 
-/** Stub covering both stages: embeddings.create and responses.parse. */
-function stubClient(vectors: number[][], parsed: unknown): OpenAI {
+/** Stub covering both stages: embeddings.create and responses.parse.
+ * Captures request params so tests can pin the wiring, not just the mapping. */
+function stubClient(
+  vectors: number[][],
+  parsed: unknown,
+  captured: { embeddingInputs?: unknown } = {},
+): OpenAI {
   return {
     embeddings: {
-      create: async (_params: unknown) => ({
-        data: vectors.map((embedding, index) => ({ embedding, index })),
-      }),
+      create: async (params: { input: unknown }) => {
+        captured.embeddingInputs = params.input;
+        return {
+          data: vectors.map((embedding, index) => ({ embedding, index })),
+        };
+      },
     },
     responses: {
       parse: async (_params: unknown) => ({ output_parsed: parsed }),
@@ -55,6 +63,12 @@ describe("cosineTopK — pure retrieval math", () => {
 
   it("treats zero vectors as similarity 0 instead of NaN", () => {
     expect(cosineTopK([1, 0], [[0, 0], [1, 0]], 2)).toEqual([1, 0]);
+  });
+
+  it("returns [] for k <= 0 and for empty candidates (no slice(0,-1) surprises)", () => {
+    expect(cosineTopK([1, 0], [[1, 0], [0, 1]], 0)).toEqual([]);
+    expect(cosineTopK([1, 0], [[1, 0], [0, 1]], -1)).toEqual([]);
+    expect(cosineTopK([1, 0], [], 3)).toEqual([]);
   });
 });
 
@@ -125,6 +139,62 @@ describe("diffGaps — verdicts to receipts", () => {
     const empty: ParsedJD = { sourceText: "", lines: [], dropped: [] };
     const client = {} as unknown as OpenAI; // any call would throw
     expect(await diffGaps(empty, RESUME, { client })).toEqual([]);
+  });
+
+  it("sends embeddings input as [requirement texts..., resume line texts...] (stage-1 wiring pin)", async () => {
+    const captured: { embeddingInputs?: unknown } = {};
+    const client = stubClient(
+      VECTORS,
+      {
+        verdicts: [
+          { requirementId: "jd-1", kind: "missing_skill", resumeLineId: null, rationale: "" },
+          { requirementId: "jd-2", kind: "missing_skill", resumeLineId: null, rationale: "" },
+        ],
+      },
+      captured,
+    );
+    await diffGaps(JD, RESUME, { client });
+    expect(captured.embeddingInputs).toEqual([
+      "SQL",
+      "dbt",
+      "Wrote SQL.",
+      "Used spreadsheets.",
+      "Modelled data.",
+    ]);
+  });
+
+  it("skips the embeddings call entirely for a zero-line resume and still adjudicates", async () => {
+    const emptyResume: ParsedResume = { sourceText: "", lines: [], dropped: [] };
+    const client = {
+      // no embeddings property: any retrieval attempt would throw
+      responses: {
+        parse: async (_p: unknown) => ({
+          output_parsed: {
+            verdicts: [
+              { requirementId: "jd-1", kind: "missing_skill", resumeLineId: null, rationale: "empty resume" },
+              { requirementId: "jd-2", kind: "missing_skill", resumeLineId: null, rationale: "empty resume" },
+            ],
+          },
+        }),
+      },
+    } as unknown as OpenAI;
+    const gaps = await diffGaps(JD, emptyResume, { client });
+    expect(gaps).toHaveLength(2);
+    expect(gaps.every((g) => g.kind === "missing_skill" && g.resumeSpan === null)).toBe(true);
+  });
+
+  it("pins duplicate-verdict behavior: the model's last verdict for a requirement wins", async () => {
+    const client = stubClient(VECTORS, {
+      verdicts: [
+        { requirementId: "jd-1", kind: "missing_skill", resumeLineId: null, rationale: "first" },
+        { requirementId: "jd-1", kind: "weak_evidence", resumeLineId: "cv-1", rationale: "second" },
+        { requirementId: "jd-2", kind: "missing_skill", resumeLineId: null, rationale: "y" },
+      ],
+    });
+    const gaps = await diffGaps(JD, RESUME, { client });
+    expect(gaps).toHaveLength(2); // extra verdicts never mint extra gaps
+    expect(gaps[0].kind).toBe("weak_evidence");
+    expect(gaps[0].rationale).toBe("second");
   });
 });
 
