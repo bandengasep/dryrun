@@ -3,3 +3,4 @@
 // handlers and Vedika's compile-trace UI. Freezes for the UI at the diff-engine commit.
 export * from "./schemas";
 export * from "./parsers";
+export * from "./diff";

@@ -1,0 +1,19 @@
+ARIA WIJAYA
+Marketing Analyst — Singapore
+
+EDUCATION
+BBA (Marketing), Singapore Management University, graduated 2024. Coursework: consumer behavior, marketing analytics.
+
+EXPERIENCE
+Marketing Analyst, Brightwave Media (Jul 2024–present)
+- Built monthly campaign performance reports in Excel for six retail clients
+- Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database
+- Tracked website traffic and funnel drop-off in Google Analytics
+- Presented quarterly results to client stakeholders in PowerPoint
+
+Marketing Intern, Lion City Retail Group (2023)
+- Scheduled social media posts and compiled engagement summaries for two brands
+- Maintained the campaign calendar and budget tracker in Excel
+
+SKILLS
+Excel (pivot tables, VLOOKUP), PowerPoint, Google Analytics, SQL (basic SELECT queries), Canva

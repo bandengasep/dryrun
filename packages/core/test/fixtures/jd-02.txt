@@ -1,0 +1,21 @@
+Platform Engineer — Data Infrastructure
+Northbeam Logistics Pte Ltd, Singapore
+
+About the role
+You will keep the pipelines and services that move our shipment data reliable and fast.
+
+What you will do
+- Operate and scale the batch pipelines that feed our data warehouse
+- Automate provisioning and deployment across our AWS environments
+- Improve observability, alerting and incident response for data services
+- Build internal tooling so product teams can self-serve platform resources
+
+What we are looking for
+- 4+ years operating production infrastructure on AWS (EC2, S3, IAM, VPC)
+- Hands-on experience deploying and running services on Kubernetes
+- Infrastructure as code with Terraform, reviewed and applied through CI
+- Experience building and operating Airflow DAGs for scheduled data pipelines
+- Proficiency writing production services in Go or Python
+- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning
+- Participation in a weekly on-call rotation for platform incidents
+- Clear written communication: runbooks, postmortems and incident updates

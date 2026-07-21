@@ -1,0 +1,20 @@
+Analytics Engineer — Data Platform Team
+Northwind Retail Group, Singapore
+
+About the role
+You will own the SQL models that power reporting and experimentation across the company.
+
+What you will do
+- Design, build and maintain the dbt models behind our core reporting marts
+- Ship and maintain BI dashboards used by leadership and operations teams
+- Partner with product and marketing on experiment analysis and metric definitions
+
+What we are looking for
+- 3+ years writing analytics SQL and building data models on a cloud warehouse (Snowflake or BigQuery)
+- Production experience with dbt, including tests, documentation and CI checks
+- Experience building and owning BI dashboards in Looker or Tableau
+- Hands-on experience scheduling and monitoring pipelines with Airflow
+- Ability to design and analyze A/B experiments end to end
+- Clear written and verbal communication with non-technical stakeholders
+- Working knowledge of Python for data transformation and automation
+- Comfortable with Git-based development workflows and code review
