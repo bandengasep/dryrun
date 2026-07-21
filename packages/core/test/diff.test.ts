@@ -8,19 +8,26 @@ import { Gap, type ParsedJD, type ParsedResume } from "../src/schemas";
 function stubClient(
   vectors: number[][],
   parsed: unknown,
-  captured: { embeddingInputs?: unknown } = {},
+  captured: { embeddingInputs?: unknown; adjudicationPayload?: unknown } = {},
+  opts: { shuffleEmbeddingData?: boolean } = {},
 ): OpenAI {
   return {
     embeddings: {
       create: async (params: { input: unknown }) => {
         captured.embeddingInputs = params.input;
-        return {
-          data: vectors.map((embedding, index) => ({ embedding, index })),
-        };
+        const data = vectors.map((embedding, index) => ({ embedding, index }));
+        // API contract is data[].index, not array order — simulate a server
+        // returning items out of order.
+        if (opts.shuffleEmbeddingData) data.reverse();
+        return { data };
       },
     },
     responses: {
-      parse: async (_params: unknown) => ({ output_parsed: parsed }),
+      parse: async (params: { input: { role: string; content: string }[] }) => {
+        const user = params.input.find((m) => m.role === "user");
+        captured.adjudicationPayload = user ? JSON.parse(user.content) : null;
+        return { output_parsed: parsed };
+      },
     },
   } as unknown as OpenAI;
 }
@@ -181,6 +188,42 @@ describe("diffGaps — verdicts to receipts", () => {
     const gaps = await diffGaps(JD, emptyResume, { client });
     expect(gaps).toHaveLength(2);
     expect(gaps.every((g) => g.kind === "missing_skill" && g.resumeSpan === null)).toBe(true);
+  });
+
+  it("orders vectors by data[].index, not response array order", async () => {
+    const verdicts = {
+      verdicts: [
+        { requirementId: "jd-1", kind: "missing_skill", resumeLineId: null, rationale: "" },
+        { requirementId: "jd-2", kind: "missing_skill", resumeLineId: null, rationale: "" },
+      ],
+    };
+    const ordered: { adjudicationPayload?: unknown } = {};
+    const shuffled: { adjudicationPayload?: unknown } = {};
+    await diffGaps(JD, RESUME, { client: stubClient(VECTORS, verdicts, ordered) });
+    await diffGaps(JD, RESUME, {
+      client: stubClient(VECTORS, verdicts, shuffled, { shuffleEmbeddingData: true }),
+    });
+    // Same candidates either way — index is authoritative.
+    expect(shuffled.adjudicationPayload).toEqual(ordered.adjudicationPayload);
+    const payload = ordered.adjudicationPayload as {
+      requirements: { id: string; candidates: { id: string }[] }[];
+    };
+    expect(payload.requirements[0].candidates[0].id).toBe("cv-1"); // jd-1's nearest
+    expect(payload.requirements[1].candidates[0].id).toBe("cv-3"); // jd-2's nearest
+  });
+
+  it("throws DiffError when a verdict cites a real line outside that requirement's candidate set", async () => {
+    // topK: 1 → jd-1's only candidate is cv-1. Citing cv-2 (a real resume
+    // line the adjudicator was never shown for jd-1) must fail loud.
+    const client = stubClient(VECTORS, {
+      verdicts: [
+        { requirementId: "jd-1", kind: "weak_evidence", resumeLineId: "cv-2", rationale: "x" },
+        { requirementId: "jd-2", kind: "missing_skill", resumeLineId: null, rationale: "y" },
+      ],
+    });
+    await expect(diffGaps(JD, RESUME, { client, topK: 1 })).rejects.toThrow(
+      /not among its candidates/,
+    );
   });
 
   it("pins duplicate-verdict behavior: the model's last verdict for a requirement wins", async () => {
