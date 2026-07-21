@@ -18,7 +18,7 @@ Full product spec lives in `docs/spec.md` (copy of interview-compiler-spec.md). 
 5. **Verify APIs before coding, don't trust memory.** Pull current docs via Context7 (or your tool's docs lookup): the OpenAI **Node** SDK (`/openai/openai-node`, which redirects to `/websites/developers_openai`; structured outputs via `responses.parse` + `zodTextFormat`), `/supabase/supabase`, `/vercel/next.js`, `/websites/pnpm_io`.
 6. Ask before adding any dependency not in the stack lock. Log real architecture/scope decisions in `docs/decision-log.md` with date + one-line rationale.
 7. **Branch discipline.** Day-to-day work lives on `timothy` and Vedika's FE branches (currently `dryrun-FE-V0`; `vedika` is the older lane branch); nothing lands on `main` except via PR with CI green. Merge to `main` at least daily once real commits exist — `main` must always be demoable. Lanes barely overlap (`packages/core/` vs `web/`), so merges stay cheap; don't let the branches drift for days. (The repo is public, so this is enforced by the `protect-main` ruleset — requires a PR and the `verify` status check — not just convention.)
-8. **Secrets:** real values only ever go in `.env` (gitignored). `.env.example` is a tracked, placeholder-only template — never paste a key into it. GitHub push protection is on; `gitleaks` full-history scan runs final week.
+8. **Secrets:** real values only ever go in `.env` (gitignored) and its copy `web/.env.local` (for `next dev`; also gitignored). `.env.example` is a tracked, placeholder-only template — never paste a key into it. GitHub push protection is on; `gitleaks` full-history scan runs final week.
 
 ## Stack (all-TypeScript monorepo — relocked 13 Jul; mobile retired 12 Jul. See decision log.)
 
