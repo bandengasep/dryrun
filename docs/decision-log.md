@@ -37,3 +37,21 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
   all-TS `main`); Vedika (`veduvin00`) is a collaborator; CI green on `main`; secret scanning +
   push protection on; `protect-main` active requiring a PR and the `verify` status check. The
   Phase 0 section has been removed from `CLAUDE.md`.
+
+## 2026-07-21
+
+- **AGENTS.md made the canonical ops doc; CLAUDE.md is now a one-line `@AGENTS.md` import.**
+  Verified against current docs: Claude Code reads only CLAUDE.md natively (no AGENTS.md
+  support) but supports `@path` imports — zero-drift setup for Vedika's non-Claude tooling.
+- **Parser receipts strategy locked:** models emit verbatim quotes, never char offsets
+  (models can't count characters); spans are computed by a deterministic locator
+  (`packages/core/src/parsers/spans.ts`), and unlocatable quotes surface in a `dropped`
+  array — never silently discarded — which is the raw input for the citation-validity eval.
+- **`openai@^6.48.0` added to `packages/core`** (verified: peer `zod ^3.25 || ^4.0`,
+  compatible with our zod 4.4.3); `@types/node` added dev-only. Both within stack lock.
+- **`.env.example` Supabase var renamed to `SUPABASE_SECRET_KEY`** — Supabase's new API-key
+  scheme replaces `service_role`→secret (`sb_secret_...`) and `anon`→publishable; all our
+  access is server-side, so we carry only the secret key. (Verified via Context7.)
+- **Vedika's FE V0 arrived on `dryrun-FE-V0`** (clean vs `origin/main`; web/-only + lockfile).
+  PR opened to `main`. ⚠️ `results/page.tsx` readiness bar (`READINESS_PERCENT = 65`) is a
+  cut-list violation — flagged as a merge blocker; Vedika swaps it on her branch.
