@@ -23,6 +23,26 @@ describe("locateSpan — receipts are computed, never trusted", () => {
     expect(span!.text).toBe("SQL and\n  Python");
   });
 
+  it("prefers a word-boundary match over one glued inside a larger word", () => {
+    const s = "Experience with MySQL required. SQL modelling is core.";
+    const span = locateSpan(s, "SQL")!;
+    expect(span.start).toBe(32); // the standalone SQL, not the one inside MySQL
+    expect(s.slice(span.start, span.end)).toBe("SQL");
+  });
+
+  it("still anchors inside a larger word when no standalone occurrence exists", () => {
+    const s = "Experience with MySQL required.";
+    const span = locateSpan(s, "SQL")!;
+    expect(span.start).toBe(18); // totality beats nothing: inside "MySQL"
+  });
+
+  it("prefers boundaries on the whitespace-fallback path too", () => {
+    const s = "uses MySQL and\nPython daily; SQL and\nPython too";
+    const span = locateSpan(s, "SQL and Python")!;
+    expect(span.start).toBe(29); // not the glued match starting inside "MySQL"
+    expect(s.slice(span.start, span.end)).toBe("SQL and\nPython");
+  });
+
   it("honors fromIndex on the whitespace-fallback path too", () => {
     // Quote has single spaces; both occurrences in the source have newlines,
     // so the exact-match path fails and the regex fallback must do the work.
