@@ -61,3 +61,23 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
   finding). 13 raw findings → 6 confirmed → all fixed: locateSpan word-boundary preference
   (receipts were citing "SQL" inside "MySQL"), restored the compile-time no-Node-builtins-in-src
   guard (split test tsconfig), closed parseResume dropped/refusal + duplicate-quote test holes.
+- **Commit 2 shipped (PR #6) — `Gap` schema FROZEN for the FE from here.** Breaking changes now
+  require a decision-log entry + a ping to Vedika. Merged pre-review at Timothy's call; the
+  adversarial review ran after merge (first run crippled by a Claude spend-limit hit — 32/34
+  agents errored, resumed after the limit raise; unverified findings were treated as open, not
+  rejected). Actioned from it: cosineTopK `k<=0` clamp (slice(0,-1) footgun), stage-1 wiring +
+  empty-resume + duplicate-verdict test pins, and this docs pass.
+- **`lib: ["ES2022","DOM"]` on the core src program** (retroactive log, shipped in PR #6) — the
+  openai SDK's types need web-platform globals; DOM lib is the isomorphic-correct source for a
+  library that must bundle for web. The no-Node-builtins guard was probe-verified unaffected.
+- **`web/` gains a direct `openai` dependency** (PR #6) — the compile route constructs the client
+  it injects into core; core keeps the client-injection seam and stays constructor-free.
+- **Commit 3: `better-sqlite3` chosen over `@duckdb/node-api`** — synchronous API gives a clean
+  ephemeral per-run lifecycle; SQLite window functions (3.25+) cover analyst-level SQL. DuckDB
+  reconsidered post-hackathon only if challenge SQL outgrows SQLite.
+- **Harness is the sanctioned Node-only zone of core:** `src/harness/` excluded from the
+  isomorphic src guard program, not exported from the barrel; consumers use the subpath export
+  `@dryrun/core/harness`. `allowBuilds: better-sqlite3: true` set in pnpm-workspace.yaml.
+- **Harness ship-gate:** a `ChallengeSpec` must include a test whose `sql` equals `referenceSql`
+  (an unverified reference solution cannot ship) — enforced by `HarnessError`, not convention.
+  CI gains a named "Challenge executability" step.

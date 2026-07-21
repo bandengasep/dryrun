@@ -49,7 +49,10 @@ export function cosineTopK(
     return { index, sim: dot / (qNorm * vNorm) };
   });
   scored.sort((a, b) => b.sim - a.sim || a.index - b.index);
-  return scored.slice(0, Math.min(k, candidates.length)).map((s) => s.index);
+  // Clamp below as well: slice(0, negative) would drop from the END, quietly
+  // returning almost-all candidates for k <= 0 instead of none.
+  const take = Math.max(0, Math.min(k, candidates.length));
+  return scored.slice(0, take).map((s) => s.index);
 }
 
 const ADJUDICATOR_SYSTEM_PROMPT = [
