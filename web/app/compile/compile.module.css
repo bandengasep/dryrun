@@ -1,0 +1,166 @@
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 20px 48px;
+  flex: 1;
+}
+
+@media (min-width: 900px) {
+  .content {
+    max-width: 1040px;
+  }
+}
+
+.heading {
+  color: var(--color-text);
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.6px;
+  line-height: 1.22;
+  margin-bottom: 12px;
+}
+
+.subtext {
+  color: var(--color-text-2);
+  font-size: 15px;
+  line-height: 1.47;
+  margin-bottom: 28px;
+  max-width: 640px;
+}
+
+.grid {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 18px;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .grid > div {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.inputHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.inputLabel {
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.stepLabel {
+  color: var(--color-muted);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+}
+
+.modeToggle {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 8px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  padding: 3px;
+}
+
+.modeButton {
+  flex: 1;
+  padding: 6px 0;
+  border-radius: 7px;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  background-color: transparent;
+  color: var(--color-text-2);
+  font-family: inherit;
+  transition: all 150ms;
+}
+
+.modeButtonActive {
+  background-color: var(--color-elevated);
+  color: var(--color-cyan);
+}
+
+.uploadZone {
+  min-height: 220px;
+  background-color: var(--color-surface);
+  border: 1px dashed var(--color-border-strong);
+  border-radius: 14px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.uploadInput {
+  display: none;
+}
+
+.uploadTitle {
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.uploadSubtitle {
+  color: var(--color-muted);
+  font-size: 12px;
+}
+
+.uploadError {
+  color: var(--color-red);
+  font-size: 12px;
+  margin-top: 10px;
+  max-width: 280px;
+}
+
+.sampleLink {
+  padding: 8px 0;
+  margin-bottom: 12px;
+  background: none;
+  border: none;
+  color: var(--color-cyan);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ctaButton {
+  margin-top: 6px;
+}
+
+.ctaHint {
+  color: var(--color-muted);
+  font-size: 12px;
+  text-align: center;
+  margin-top: 12px;
+}
+
+.errorBox {
+  margin-top: 20px;
+  background-color: rgba(248, 113, 113, 0.1);
+  border: 1px solid var(--color-red);
+  border-radius: 14px;
+  padding: 14px;
+  color: var(--color-red);
+}

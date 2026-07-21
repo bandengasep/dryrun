@@ -1,0 +1,191 @@
+.content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 20px 48px;
+  flex: 1;
+}
+
+.gauge {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 14px;
+}
+
+.gaugeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 12px;
+}
+
+.gaugeLabel {
+  color: var(--color-text-2);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.gaugeValue {
+  color: var(--color-green);
+  font-size: 30px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.gaugeTrack {
+  height: 10px;
+  background-color: var(--color-border);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.gaugeFill {
+  height: 100%;
+  width: 0%;
+  background-color: var(--color-green);
+  border-radius: 999px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 26px;
+}
+
+.statCard {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 14px;
+  padding: 14px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.statNumber {
+  font-size: 24px;
+  font-weight: 800;
+}
+.statGreen {
+  color: var(--color-green);
+}
+.statAmber {
+  color: var(--color-amber);
+}
+.statRed {
+  color: var(--color-red);
+}
+
+.statLabel {
+  color: var(--color-muted);
+  font-size: 12px;
+  margin-top: 2px;
+}
+
+.sectionTitle {
+  color: var(--color-text);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  margin-top: 8px;
+  margin-bottom: 6px;
+}
+
+.sectionSubtext {
+  color: var(--color-muted);
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.tag {
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+.tagPython {
+  background-color: rgba(251, 191, 36, 0.12);
+  color: var(--color-amber);
+}
+.tagSql {
+  background-color: rgba(34, 211, 238, 0.12);
+  color: var(--color-cyan);
+}
+.tagDesign {
+  background-color: rgba(167, 139, 250, 0.12);
+  color: var(--color-purple);
+}
+.tagDefault {
+  background-color: rgba(59, 130, 246, 0.12);
+  color: var(--color-blue);
+}
+
+.tagText {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+
+.cardDifficulty {
+  color: var(--color-muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cardTitle {
+  color: var(--color-text);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+
+.cardBlurb {
+  color: var(--color-text-2);
+  font-size: 13.5px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.cardReason {
+  color: var(--color-cyan);
+  font-size: 12.5px;
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.cardActionButton {
+  border-radius: 11px;
+  padding: 12px 0;
+}
+
+.cardActionDisabled {
+  background-color: var(--color-surface-2);
+  border: 1px solid var(--color-border);
+  border-radius: 11px;
+  padding: 12px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-muted);
+  font-size: 13px;
+  font-weight: 600;
+}
