@@ -1,78 +1,35 @@
 import { NextResponse } from "next/server";
-import type { Gap, RequirementLine, ResumeLine } from "@dryrun/core";
+import OpenAI from "openai";
+import { parseJD, parseResume, diffGaps } from "@dryrun/core";
 
-function splitLinesWithSpans(text: string): Array<{ text: string; spanStart: number; spanEnd: number }> {
-  const lines = text.split(/\r?\n/);
-  const out: Array<{ text: string; spanStart: number; spanEnd: number }> = [];
-  let idx = 0;
-  for (const line of lines) {
-    const start = text.indexOf(line, idx);
-    const end = start + line.length;
-    out.push({ text: line, spanStart: start, spanEnd: end });
-    idx = end + 1;
-  }
-  return out;
-}
-
-function simpleMatch(reqText: string, resumeLines: string[]): boolean {
-  const words = reqText
-    .toLowerCase()
-    .split(/[^a-z0-9]+/)
-    .filter((w) => w.length > 4);
-  if (words.length === 0) return false;
-  for (const r of resumeLines) {
-    const lw = r.toLowerCase();
-    for (const w of words) {
-      if (lw.includes(w)) return true;
-    }
-  }
-  return false;
-}
+// A full compile is two parse calls + one diff call against gpt-5-mini.
+export const maxDuration = 300;
 
 export async function POST(req: Request) {
   try {
     const body = await req.json();
     const jdText = String(body.jd ?? "");
     const resumeText = String(body.resume ?? "");
+    if (!jdText.trim() || !resumeText.trim()) {
+      return NextResponse.json(
+        { error: "Both jd and resume are required." },
+        { status: 400 },
+      );
+    }
 
-    const jdLines = splitLinesWithSpans(jdText).filter((l) => l.text.trim().length > 0);
-    const resumeLines = splitLinesWithSpans(resumeText).filter((l) => l.text.trim().length > 0);
-
-    const resumeTexts = resumeLines.map((r) => r.text);
-
-    const gaps: Gap[] = jdLines.map((jl, i) => {
-      const matched = simpleMatch(jl.text, resumeTexts);
-      const kind: Gap["kind"] = matched ? "weak_evidence" : "missing_skill";
-      const resumeMatchIndex = resumeLines.findIndex((r) => {
-        const lw = r.text.toLowerCase();
-        return jl.text
-          .toLowerCase()
-          .split(/[^a-z0-9]+/)
-          .filter((w) => w.length > 4)
-          .some((w) => lw.includes(w));
-      });
-
-      const resumeSpan = resumeMatchIndex >= 0 ? {
-        start: resumeLines[resumeMatchIndex].spanStart,
-        end: resumeLines[resumeMatchIndex].spanEnd,
-        text: resumeLines[resumeMatchIndex].text,
-      } : null;
-
-      const gap: Gap = {
-        id: (globalThis as any).crypto?.randomUUID?.() ?? String(Date.now()) + "-" + i,
-        kind,
-        requirementId: `req-${i}`,
-        jdSpan: { start: jl.spanStart, end: jl.spanEnd, text: jl.text },
-        resumeLineId: resumeMatchIndex >= 0 ? `res-${resumeMatchIndex}` : null,
-        resumeSpan,
-        rationale: matched ? "Found weak evidence on the resume." : "No matching resume evidence found.",
-      };
-
-      return gap;
-    });
+    // Client constructed per request so `next build` needs no key.
+    const client = new OpenAI();
+    const [jd, resume] = await Promise.all([
+      parseJD(jdText, { client }),
+      parseResume(resumeText, { client }),
+    ]);
+    const gaps = await diffGaps(jd, resume, { client });
 
     return NextResponse.json({ gaps });
-  } catch (e: any) {
-    return NextResponse.json({ error: String(e) }, { status: 500 });
+  } catch (e) {
+    return NextResponse.json(
+      { error: e instanceof Error ? e.message : String(e) },
+      { status: 500 },
+    );
   }
 }
