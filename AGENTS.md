@@ -15,13 +15,13 @@
 
 1. **Receipts everywhere — unchanged law, now three links deep.** Gap → JD span + resume span. Interview question → `gapId`. Debrief claim → verbatim transcript quote (`locateSpan`-validated; + video timestamp when the answer was recorded). A feature that can't carry receipts doesn't ship; a quote that fails mechanical validation is demoted to a visible `dropped[]`, never displayed, never silently discarded.
 2. **No scores, no grades — a stance, not a gap.** The debrief says what an answer covered and missed, quoting the candidate. It never emits numbers, letter grades, or pass/fail. (Extends the old no-readiness-score rule; unprovable claims lose judges.)
-3. **Client-held session state; no database.** Serverless routes are stateless: the client re-sends `{plan, transcript}` each request; persistence is sessionStorage only (`dryrun-session-v1`). No Supabase, no pgvector, nothing server-stored.
+3. **Client-held session state in flight; storage only on explicit "Save & share."** Serverless routes are stateless: the client re-sends `{plan, transcript}` each request; in-flight persistence is sessionStorage only (`dryrun-session-v1`). The ONE server-side write is the explicit **Save & share debrief** button (`sessions` table via `@supabase/supabase-js`, `SUPABASE_SECRET_KEY` server-side only → shareable read-only `/debrief/[id]`; "anyone with the link can view" stated on the button). No ambient storage, no accounts, no RLS complexity, no pgvector. (Timothy's 26-Jul-eve call over the no-DB recommendation — scoped to write-once shareable debriefs.)
 4. **Providers: OpenAI + Agnes AI, through the client-injection seam** (`new OpenAI({ baseURL, apiKey })` handed to core). Compile/plan/debrief default `gpt-5-mini`; the interviewer lane defaults to Agnes (`AGNES_BASE_URL`, default model `agnes-2.0-flash`) with per-request failover to OpenAI, honestly labeled in the UI. **No Vercel AI SDK. Never the Realtime speech-to-speech API** (credit trap).
 5. **Verify APIs before coding, don't trust memory.** ⚠ Open verification items: Agnes `/responses` support (else `chat.completions` + `response_format: json_schema`), VideoDB Node SDK upload-URL + timed-transcript methods. Use context7 / vendor docs; record findings in the decision log.
-6. **Cut list (do not build before 1 Aug):** SQL challenge *generator* (the harness stays in-repo, dormant and CI-green — it is Trajectory material), pgvector/Supabase, LinkedIn anywhere in runtime (verified infeasible serverless + ToS risk), GMI Cloud lane (no key), readiness/aggregate scores, resume rewriting, answer auto-scoring, accounts/auth beyond the cosmetic mock. New ideas → `docs/post-hackathon-ideas.md`, unevaluated.
+6. **Cut list (do not build before 1 Aug):** SQL challenge *generator* (the harness stays in-repo, dormant and CI-green — it is Trajectory material), pgvector (Supabase itself is allowed ONLY for the Save-&-share table in rule 3), LinkedIn anywhere in runtime (verified infeasible serverless + ToS risk), GMI Cloud lane (no key), readiness/aggregate scores, resume rewriting, answer auto-scoring, accounts/auth beyond the cosmetic mock. New ideas → `docs/post-hackathon-ideas.md`, unevaluated.
 7. **Branch discipline.** Work on `timothy`; PR to `main` at least daily; `main` stays demoable; `protect-main` requires PR + green `verify` check.
 8. **Secrets:** real values only in `.env` (gitignored) and its copy `web/.env.local`. `.env.example` stays placeholder-only. Env names: `OPENAI_API_KEY`, `AGNES_API_KEY`, `VIDEODB_API_KEY` (+ optional `INTERVIEWER_PROVIDER`, `AGNES_BASE_URL`, `AGNES_MODEL`, `NEXT_PUBLIC_ENABLE_VIDEO`). Never echo key values; verify placement via `git status` + length checks.
-9. **Dependencies:** the only sanctioned new dependency is `videodb` (web/ only; core stays free of it). Mind pnpm 11 gates (`allowBuilds`, `minimumReleaseAge` excludes) and commit the lockfile (CI is `--frozen-lockfile`). Anything else: ask first.
+9. **Dependencies:** the sanctioned new dependencies are `videodb` and `@supabase/supabase-js` (both web/ only; core stays free of them). Mind pnpm 11 gates (`allowBuilds`, `minimumReleaseAge` excludes) and commit the lockfile (CI is `--frozen-lockfile`). Anything else: ask first.
 
 ## Stack
 
@@ -29,6 +29,20 @@
 - **LLM calls:** OpenAI Node SDK `openai@^6` — strict structured outputs via `responses.parse` + `zodTextFormat` for compile/plan/debrief; plain `chat.completions` **streaming** for the interviewer turn (the OpenAI-compatible lowest common denominator, so it runs on Agnes). Embeddings `text-embedding-3-small`.
 - **Streaming:** SSE (`text/event-stream`) for `/api/compile` (stage events) and `/api/session/turn` (token deltas + trailing `META` action); shared framing in `web/app/lib/stream.ts`; heartbeat comments every 10s; per-route `export const maxDuration`.
 - **Video answers (gated):** browser `MediaRecorder` → **direct upload to VideoDB via server-minted upload URL** (never proxied — ~4.5MB body cap) → `indexSpokenWords` → timed transcript; `turn.text` built only by `joinTimedWords` so char-offset → timestamp is exact arithmetic. Feature-flagged `NEXT_PUBLIC_ENABLE_VIDEO`; **go/no-go Wed 29 Jul 15:00** — on no-go the session ships text-only and the debrief loses nothing but timestamps.
+
+### Provider matrix (which AI does what)
+
+| Call | Provider · model | Why |
+|---|---|---|
+| JD/resume parse · gap adjudication · plan compile · debrief compile | OpenAI · `gpt-5-mini` (strict SO) | receipts-critical → proven path |
+| Embeddings | OpenAI · `text-embedding-3-small` | shipped |
+| **Interviewer turns** | **Agnes · `agnes-2.0-flash`** streaming; OpenAI failover (labeled) | prize lane; conversational, no strict SO needed |
+| Plan compile (evals only) | also run on Agnes | the OpenAI-vs-Agnes comparison exhibit |
+| Video → timed transcript | **VideoDB** `indexSpokenWords` | timestamps for debrief receipts |
+| Save & share debrief | **Supabase** (`sessions` table, server-side secret key) | explicit write-once shareable link |
+| Zero-shot baseline | OpenAI · `gpt-5-mini` plain chat | the comparison target |
+
+Principle: receipts-critical structured calls stay on the proven OpenAI strict-SO path; the conversational lane goes to Agnes; VideoDB owns perception; Supabase stores only what the user explicitly saves.
 
 ## Layout
 

@@ -32,7 +32,7 @@ Provider comparison (OpenAI vs Agnes on plan compile: grounding, guard rejection
 
 ## Non-goals (this week)
 
-No scores/grades/readiness numbers · no SQL drill generation (harness stays dormant+green; parked) · no accounts or server-side storage (client-held state only) · no LinkedIn/job-board integration in runtime · no Realtime speech-to-speech · no resume rewriting.
+No scores/grades/readiness numbers · no SQL drill generation (harness stays dormant+green; parked) · no accounts and no *ambient* server-side storage — in-flight state is client-held; the single exception is the explicit **Save & share debrief** button (write-once `sessions` row → read-only shareable link, "anyone with the link can view" stated at the point of save) · no LinkedIn/job-board integration in runtime · no Realtime speech-to-speech · no resume rewriting.
 
 ## Known failure modes (Honesty pillar — say them out loud)
 

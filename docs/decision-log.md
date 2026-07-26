@@ -136,3 +136,14 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
 - **`/results` and `/compiler/[lang]` deleted** with the pivot — closing the 21-Jul readiness-bar
   cut-list violation and removing the fake always-pass Run button (both were Honesty-pillar
   liabilities). False "runs entirely on-device" landing/compile copy dies in the same pass.
+- **Supabase persistence added as explicit "Save & share debrief" (evening addendum) — Timothy's
+  call, made against the no-DB recommendation.** Scope hard-limited: in-flight session state stays
+  client-held (sessionStorage); the one server write is a user-clicked save of
+  `{plan, transcript, debrief}` into a single `sessions` table (uuid pk) via `@supabase/supabase-js`
+  server-side, returning a read-only shareable `/debrief/[id]`. No accounts, no RLS, no pgvector
+  (still cut). Rationale for accepting: turns persistence into a demo asset (judges can open a live
+  debrief URL) while the honesty stance survives as "nothing stored unless you click Save; anyone
+  with the link can view." Slots: table+save route Wed PM, share page Thu AM. Second sanctioned
+  web-only dep: `@supabase/supabase-js`. Paper design pass also pulled forward from Mon to Sun eve
+  (this session), so Monday's FE session starts at code. Env scaffold landed same evening
+  (`.env.example` gains Agnes/VideoDB/optional names; real files carry empty lines for Timothy).
