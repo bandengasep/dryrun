@@ -25,7 +25,7 @@
 
 ## Stack
 
-- **Monorepo:** pnpm workspace, Node 22, TS 5.x. `packages/core` = framework-agnostic library (schemas/parsers/diff/plan/session/debrief/evals; harness dormant); `web/` = Next 16 App Router + React 19, CSS Modules (no Tailwind), tokens in `globals.css` (dark navy + cyan, `--font-code: "Google Sans Code"`).
+- **Monorepo:** pnpm workspace, Node 22, TS 5.x. `packages/core` = framework-agnostic library (schemas/parsers/diff/plan/session/debrief/evals; harness dormant); `web/` = Next 16 App Router + React 19, CSS Modules (no Tailwind), tokens in `globals.css`. **Theme (locked 27 Jul): "Reading Room daylight"** — cool paper ground `#F5F7FB` (landing hero: gradient `#EDF1F7→#FFFFFF`), white surfaces, hairlines `#DEE4ED`, ink text `#1D2127`, **ink-blue primary `#2E4C8F`**, status coral/ochre/moss `#C05353·#A87E2F·#3E7D63`; type = **Fraunces** (display) + **Instrument Sans** (UI) + Google Sans Code (evidence voice). Source of truth: Paper file "Dryrun-WebApp" tokens + theme tile.
 - **LLM calls:** OpenAI Node SDK `openai@^6` — strict structured outputs via `responses.parse` + `zodTextFormat` for compile/plan/debrief; plain `chat.completions` **streaming** for the interviewer turn (the OpenAI-compatible lowest common denominator, so it runs on Agnes). Embeddings `text-embedding-3-small`.
 - **Streaming:** SSE (`text/event-stream`) for `/api/compile` (stage events) and `/api/session/turn` (token deltas + trailing `META` action); shared framing in `web/app/lib/stream.ts`; heartbeat comments every 10s; per-route `export const maxDuration`.
 - **Video answers (gated):** browser `MediaRecorder` → **direct upload to VideoDB via server-minted upload URL** (never proxied — ~4.5MB body cap) → `indexSpokenWords` → timed transcript; `turn.text` built only by `joinTimedWords` so char-offset → timestamp is exact arithmetic. Feature-flagged `NEXT_PUBLIC_ENABLE_VIDEO`; **go/no-go Wed 29 Jul 15:00** — on no-go the session ships text-only and the debrief loses nothing but timestamps.
@@ -65,7 +65,7 @@ docs/                          # spec-pivot-2026-07-26.md, decision-log.md, post
 4. **Video rung (gated):** `Recorder` component + `/api/video/upload-url` + `/api/video/transcript`.
 5. **Evals (Thursday-protected):** mechanical metrics in `src/evals` (grounding, citation stats, Jaccard, cost, uncitedRate) + keyed runner + corpus runs + OpenAI-vs-Agnes comparison + zero-shot baseline → `evals/results/` + README table.
 
-FE lane in parallel: Paper design first (brief → tokens → `/plan` `/session` `/debrief` artboards; keep the dark-navy/cyan identity), then pages from the artboards via `get_jsx`/`get_computed_styles`. Day one chores need no design: state bridge, deletions (`/results`, `/compiler/[lang]`, `landing.tsx` — the readiness bar and fake Run die there), Navbar tabs, `/compile` SSE trace, false "on-device" copy removal.
+FE lane in parallel: Paper design is DONE (27 Jul, Reading Room daylight theme — tokens + 4 artboards + theme tile in "Dryrun-WebApp"); build pages from the artboards via `get_jsx`/`get_computed_styles`. Landing layout additionally references the remixed Framer "Message" template (measured spec; Vercel-only — Framer never hosts). Day one chores need no design: state bridge, deletions (`/results`, `/compiler/[lang]`, `landing.tsx` — the readiness bar and fake Run die there), Navbar tabs, `/compile` SSE trace, false "on-device" copy removal.
 
 ## Success criteria (locked before building — see `docs/spec-pivot-2026-07-26.md`)
 

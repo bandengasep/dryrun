@@ -102,7 +102,7 @@ Decisions: **two-step compile** (gaps render ~30s sooner; diff stays a first-cla
 
 Components to build: `StageTrace, GapCard, GapKindChip, ReceiptsDrawer (shared /plan + /debrief), QuestionCard, QuestionRail, ChatStream, AnswerComposer, Recorder (getUserMedia+MediaRecorder→webm, states incl. failed→text fallback), QuoteChip, DebriefRow, DebriefPlayer`.
 
-**Paper design (Mon, before design-dependent pages):** follow the loaded Paper-guide workflow — post brief (keep dark-navy/cyan identity + Google Sans Code; sharpen toward "rehearsal room" clarity, not a rebrand) → tokens (Tailwind-v4 var format mirroring globals.css) → artboards for `/plan`, `/session`, `/debrief` + compile-trace states → screenshot reviews → `finish_working_on_nodes`. FE code translates via `get_jsx`/`get_computed_styles` (never screenshots).
+**Paper design: DONE (Sun eve–Mon AM, 27 Jul).** ⚠ AMENDED: the dark-navy/cyan identity was replaced by Timothy's call with **"Reading Room daylight"** (cool paper `#F5F7FB` / hero gradient `#EDF1F7→#FFFFFF`, white surfaces, hairlines `#DEE4ED`, ink text `#1D2127`, ink-blue primary `#2E4C8F`, status `#C05353/#A87E2F/#3E7D63`; Fraunces display + Instrument Sans UI + Google Sans Code evidence). Tokens + 4 artboards + theme tile live in Paper "Dryrun-WebApp". Landing layout additionally references the remixed Framer "Message" template as a measured spec (Vercel-only hosting). FE code translates via `get_jsx`/`get_computed_styles` (never screenshots).
 
 ### Evals (`src/evals/` pure metrics + vitest runner in `test/evals/`; results committed as `evals/results/*.json` + README table)
 
@@ -152,7 +152,7 @@ Displayed-question grounding 100% by construction (pre-guard model rate ≥95%) 
 - Secrets only in `.env` / `web/.env.local` (gitignored); `.env.example` stays placeholder-only; never echo key values (check placement via `git status` + length checks only). New env names: `AGNES_API_KEY` (+ base URL const), `VIDEODB_API_KEY`.
 - Only new dependency: `videodb` (web/). Mind pnpm 11 gates; commit lockfile.
 - Prefer inline work + focused subagents over big Workflow fan-outs (Timothy's spend cap has killed large Workflow runs before).
-- Paper design session: follow the loaded Paper-guide workflow (brief first, tokens, small chunks, screenshot reviews, finish_working_on_nodes). Keep the existing dark-navy/cyan identity — sharpen, don't rebrand.
+- Paper design is complete — do NOT redesign. Theme is "Reading Room daylight" (see AGENTS.md Stack); `globals.css` gets rewritten from the Paper tokens (light theme replaces the old dark navy entirely — no dark mode this week). Fonts via `next/font`: Fraunces, Instrument Sans, Google Sans Code.
 - Every feature carries receipts or it doesn't ship — unchanged law.
 
 ## Risk register

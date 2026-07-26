@@ -104,6 +104,24 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
   personalization brain. Full plan: `docs/superpowers/plans/2026-07-26-pivot-interview-rehearsal.md`.
   (Attribution note: the pre-pivot ground rules/cut list were Timothy's own 12-Jul close-out,
   superseded today by his decision — not constraints imposed by anyone else.)
+
+## 2026-07-27
+
+- **Theme relocked: "Reading Room daylight" replaces the dark navy/cyan identity** — Timothy's
+  call ("softer"), decided from two Paper style tiles (soft-dark "Fog Study" vs soft-light
+  "Reading Room") plus two accent/ground iterations. Final: cool paper ground `#F5F7FB` (landing
+  hero gradient `#EDF1F7→#FFFFFF` — cooled specifically to avoid reading as Anthropic-cream),
+  white surfaces, hairline `#DEE4ED`, ink text `#1D2127`, fountain-pen-blue primary `#2E4C8F`,
+  status coral/ochre/moss `#C05353/#A87E2F/#3E7D63`; Fraunces (display) + Instrument Sans (UI) +
+  Google Sans Code (evidence voice, unchanged). Rationale: receipts-are-paper metaphor made
+  visible; differentiation from the uniformly dark AI-tool field; light UIs read better in
+  compressed demo video. All 48 Paper tokens re-pointed and the four app artboards repainted +
+  screenshot-verified; Paper file "Dryrun-WebApp" is the single source of truth for `globals.css`.
+- **Framer's role settled: measured reference only, hosting stays Vercel-only.** The remixed
+  free "Message" template (Arthur Duchesne) supplies the landing's layout/spacing/section system
+  as a serialized spec; Framer cannot export code, so nothing deploys there. Its fake-content
+  sections are replaced on port: pricing → eval-numbers band, testimonials → labeled sample
+  debrief (fabricated social proof would breach the Honesty pillar).
 - **Stay on `openai@^6`; no Vercel AI SDK migration.** Researched against current docs: OpenAI's
   recommended path is exactly what's shipped (Responses API + strict structured outputs, typed
   streaming events); the AI SDK inserts its own Zod→JSON-schema conversion with documented
