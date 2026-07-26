@@ -89,3 +89,50 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
   commit: embedding vectors keyed by `data[].index` per API contract instead of array order.
 - **Local-dev secrets convention:** `web/.env.local` (gitignored via `.env.*`) carries the key
   for `next dev`; it is a copy of root `.env`. Final-week gitleaks sweep should know both exist.
+
+## 2026-07-26
+
+- **FULL PIVOT: DryRun becomes an interview-rehearsal compiler** — compile → session plan
+  (receipt-carrying questions) → live AI-interviewer mock → debrief that quotes the candidate's
+  own transcript. Timothy's call, made against explicit counsel to keep SQL-first, after (a) the
+  vague-JD concern (real postings mix concrete tool lines with soft competency lines; question
+  prep generalizes across both, SQL drills only fire on the concrete subset), (b) verifying the
+  Launchpad rubric verbatim (judges' final question: "would you interview the applicant"), and
+  (c) verifying sponsor fit (Agnes AI prize lane; VideoDB credits in hand). Alternative named
+  and parked *built*: the SQL harness + CI executability gate stay in-repo, dormant and green
+  — the challenge *generator* moves to post-hackathon. Gap engine survives untouched as the
+  personalization brain. Full plan: `docs/superpowers/plans/2026-07-26-pivot-interview-rehearsal.md`.
+  (Attribution note: the pre-pivot ground rules/cut list were Timothy's own 12-Jul close-out,
+  superseded today by his decision — not constraints imposed by anyone else.)
+- **Stay on `openai@^6`; no Vercel AI SDK migration.** Researched against current docs: OpenAI's
+  recommended path is exactly what's shipped (Responses API + strict structured outputs, typed
+  streaming events); the AI SDK inserts its own Zod→JSON-schema conversion with documented
+  OpenAI-specific incompatibilities — re-validating five wire schemas at T-5 days with no eval
+  net is pure risk; its unique win (partial-object streaming to React) isn't needed.
+- **Agnes AI joins as second provider through the existing client-injection seam**
+  (`new OpenAI({ baseURL: AGNES_BASE_URL })`); interviewer lane defaults to Agnes
+  (`agnes-2.0-flash`) with per-request failover to OpenAI, labeled in the UI. GMI Cloud parked
+  (no key). "Runtime = OpenAI only" relaxes to "runtime = OpenAI-compatible endpoints, keys in hand."
+- **LinkedIn permanently parked out of runtime.** Verified against stickerdaniel/linkedin-mcp-server's
+  own README: needs a persistent local Chromium + cookie session (not serverless-deployable) and
+  LinkedIn's UA prohibits automated access (ban risk). Dev-side MCP use for fixture gathering stays fine.
+- **Two-step compile** (`/api/compile` gaps → `/api/plan` questions): gaps render ~30s sooner, the
+  diff stays a first-class demo artifact, a plan retry doesn't re-buy two parses.
+- **Interviewer turn = `chat.completions` streaming + trailing `META:` sentinel line** (action:
+  ask_followup|advance|wrap_up, fail-soft, mid-text META inert): the OpenAI-compatible lowest
+  common denominator so the turn runs on Agnes; core owns prompt+protocol (`src/session`), web owns
+  transport. **The client is the state machine** (questionIndex, follow-up cap 2, wrap-up).
+- **Session state is client-held; no DB.** Routes stateless; `{plan, transcript}` re-sent per turn;
+  sessionStorage bridge (`dryrun-session-v1`, per-tab). Honest "nothing stored server-side" stance;
+  pgvector/Supabase stay out entirely.
+- **Video answers: direct-to-VideoDB upload via server-minted URL, never proxied** (~4.5MB Vercel
+  body cap). `turn.text` built only by `joinTimedWords` so debrief-quote spans map to timestamps by
+  exact arithmetic, never model-emitted. **Feature-flagged with a hard Wed 29 Jul 15:00 go/no-go**;
+  on no-go the session ships text-only and the debrief loses only timestamps. `videodb` (web/ only)
+  is the sole new dependency.
+- **Eval targets locked before building** (Problem pillar: "success criteria defined before you
+  built") — numbers in `docs/spec-pivot-2026-07-26.md`; corpus grows to 13 pairs (Timothy's CareerGO
+  exports, incl. the Venture BI/AI internship as fixture-04), gold sets hand-adjudicated Wed.
+- **`/results` and `/compiler/[lang]` deleted** with the pivot — closing the 21-Jul readiness-bar
+  cut-list violation and removing the fake always-pass Run button (both were Honesty-pillar
+  liabilities). False "runs entirely on-device" landing/compile copy dies in the same pass.
