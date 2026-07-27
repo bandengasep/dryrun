@@ -1,5 +1,6 @@
 import { describe, it, expect } from "vitest";
 import {
+  CompileResult,
   DroppedLine,
   Gap,
   InterviewQuestion,
@@ -198,5 +199,27 @@ describe("TranscriptTurn — the debrief's source of truth", () => {
       timedWords: null,
     });
     expect(t.questionId).toBeNull();
+  });
+});
+
+describe("CompileResult — the compile→plan wire contract", () => {
+  const RESULT = {
+    jd: {
+      sourceText: "Airflow required.",
+      lines: [{ id: "jd-1", text: "Airflow", span: { start: 0, end: 7, text: "Airflow" } }],
+      dropped: [],
+    },
+    resume: { sourceText: "Wrote SQL.", lines: [], dropped: [] },
+    gaps: [GAP],
+  };
+
+  it("validates the payload /api/compile emits and /api/plan receives", () => {
+    expect(CompileResult.parse(RESULT).gaps[0].id).toBe("gap-1");
+  });
+
+  it("rejects a malformed gap that made the round trip through the browser", () => {
+    expect(() =>
+      CompileResult.parse({ ...RESULT, gaps: [{ ...GAP, kind: "invented_kind" }] }),
+    ).toThrow();
   });
 });

@@ -80,6 +80,20 @@ export const ParsedResume = z.object({
 export type ParsedResume = z.infer<typeof ParsedResume>;
 
 /**
+ * Everything a compile produces: the parsed documents and the gaps between them.
+ * This is the wire contract between /api/compile and /api/plan, and the shape the
+ * client holds between the two — it lives here rather than in the web app so both
+ * ends validate against one definition. Carries the full parser output, not just
+ * gaps, because the receipts UI needs the source texts and line spans.
+ */
+export const CompileResult = z.object({
+  jd: ParsedJD,
+  resume: ParsedResume,
+  gaps: z.array(Gap),
+});
+export type CompileResult = z.infer<typeof CompileResult>;
+
+/**
  * What a question is asking the candidate to do. `behavioral` questions want a
  * lived story (and therefore carry STAR scaffolding); `conceptual` questions
  * want understanding of a thing the resume never evidenced, so there is no
