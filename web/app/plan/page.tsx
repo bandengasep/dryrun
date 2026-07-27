@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import type { Gap, InterviewQuestion, SessionPlan } from "@dryrun/core";
 import { useSession, useSessionDispatch, gapForQuestion } from "../lib/session-state";
 import { countByKind, KIND_ORDER, KIND_PLURAL } from "../lib/receipts";
+import { ROUTE_READY } from "../lib/routes";
 import GapCard from "../components/GapCard";
 import QuestionCard from "../components/QuestionCard";
 import ReceiptsDrawer from "../components/ReceiptsDrawer";
@@ -231,9 +232,11 @@ export default function PlanScreen() {
                 <span className={styles.footerNote}>
                   {questions.length} question{questions.length === 1 ? "" : "s"} compiled · nothing
                   is scored, in the session or after it
+                  {!ROUTE_READY.session && " · the rehearsal room isn't in this build yet"}
                 </span>
                 <button
                   onClick={() => router.push("/session")}
+                  disabled={!ROUTE_READY.session}
                   className="btn btn-primary btn-lg btn-shadow"
                 >
                   Start the session →
