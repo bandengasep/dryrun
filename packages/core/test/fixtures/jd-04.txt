@@ -1,0 +1,39 @@
+JOB TITLE
+Intern – BI/AI (Data analytics)
+
+Internship Student
+
+DEPARTMENT
+IT Department
+
+JOB SUMMARY
+
+Join our BI/AI team and get hands-on experience working with real business data and use cases. You will help build dashboards, analyse trends, and support AI-driven initiatives that improve daily operations and decision-making.
+
+In this role, you will work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams. This is a practical opportunity to learn modern tools, solve real problems and understand how data drives tangible business impact in a corporate environment.
+
+JOB RESPONSIBILITIES / AUTHORIZATION LEVEL
+
+- Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions.
+- Assist in building and enhancing Power BI dashboards to support business operations, planning and management reporting
+- Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making
+- Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites
+- Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment
+- Contribute to new analytics and AI use cases, including process improvements and automation initiatives.
+- Troubleshoot data/reporting issues and support continuous improvements post-deployment
+- Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide
+- Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions.
+
+EDUCATION and EXPERIENCE
+
+- Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline
+- Strong interest in data analytics, business intelligence, and AI-driven applications
+- Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)
+- Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects
+- Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus.
+
+JOB-RELATED SKILLS & PRE-REQUISITES
+
+- Strong analytical mindset with attention to detail
+- Willingness to learn and work with real business data and cross-functional teams
+- Good communication skills to translate data into meaningful insights.

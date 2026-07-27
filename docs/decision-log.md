@@ -201,3 +201,55 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
   for the Agnes-owns-the-interviewer-lane decision — a latency number, not a prize-lane assertion.
   (Receipts-critical structured calls stay on OpenAI strict SO regardless; that lane is untimed by
   the ≤3s criterion.)
+
+### First end-to-end measurements (Mon 27 Jul, dev server on localhost, gpt-5-mini)
+
+Recorded because the Evidence pillar wants numbers taken before they are convenient,
+and two of these miss targets that were locked on 26 Jul.
+
+- **Full chain works.** `/api/compile` (SSE) → `/api/plan` → `SessionPlan`, on fixture
+  pair 01: 23 requirements, 53 resume lines, **0 dropped quotes**, 23 gaps
+  (8 strong_differentiator / 8 weak_evidence / 7 missing_skill), then 6 questions,
+  **all 6 grounded in a real gap** and every one satisfying the kind↔STAR biconditional.
+  Every gap's `jdSpan` and `resumeSpan` slices back to its own text — the receipts
+  invariant re-checked against the source, not asserted.
+- **SSE framing verified against a real stream, not a mock.** First `stage` frame arrived
+  at **0.08s** (no buffering on the dev path), heartbeat comments landed at exactly 10s
+  intervals through the two long silent stretches, and `readSSE` reconstructed all four
+  stage events + the result when the captured bytes were replayed in **7-byte chunks**
+  (i.e. with frames deliberately split mid-boundary). Result re-validated as
+  `CompileResult`. Vercel's buffering behaviour is still unverified — that needs the
+  Tuesday preview deploy; localhost cannot prove it.
+- **⚠ LATENCY MISSES TARGET — the day's most important finding.** Measured:
+  | run | compile | plan |
+  |---|---|---|
+  | fixture pair 01 (23 reqs) | **80.5s** | **33.4s** |
+  | Venture BI/AI JD (35 reqs) | **146.3s** | not run |
+  Locked targets are compile p50 ≤60s and plan ≤20s. Both missed, and the real target
+  JD — the one the demo video opens on — missed by 2.4×. These are single dev-mode runs,
+  not a p50, but model latency dominates so production is unlikely to rescue it.
+  Identified lever, NOT yet applied: `reasoning_effort` on the structured lane, the same
+  knob that cut interviewer first-token from 4371ms to 1158ms. It is deliberately left
+  alone pending Timothy's call, because unlike the interviewer lane these are the
+  receipts-critical calls — trading reasoning for speed here could move gap precision/
+  recall, and Thursday's gold sets are the only honest arbiter of that. Options, in
+  preference order: (a) measure `reasoning_effort:"low"` on parse+diff against the gold
+  sets Thursday and adopt only if precision/recall hold; (b) split the JD parse into
+  concurrent chunks; (c) restate the target with the measurement, which the rubric
+  explicitly rewards over a quietly-missed number.
+- **⚠ Deploy-tier risk, newly load-bearing.** There is no DryRun project on Vercel yet
+  (team `timothy-hartanto-projects` has only `arsenal-world-cup-hub` and
+  `nbs-candidate-portal`). `/api/compile` declares `maxDuration = 300`, which requires
+  Fluid/Pro; on a Hobby-tier function cap a 146s compile is killed outright. This must be
+  settled before Tuesday's preview deploy, and it is now a demo blocker rather than a
+  detail.
+- **Gap redundancy observed (quality, not correctness).** The JD line "Build and maintain
+  SQL models and dashboards for funnel, retention and campaign analytics" parsed into two
+  atomic requirements, which produced two gaps sharing one `jdSpan`, which produced two
+  near-duplicate questions (q-1, q-2). Not a guard violation — both are properly grounded —
+  but it spends 2 of 6 question slots on one JD line. Candidate fix (post-measurement):
+  dedupe questions by `jdSpan.start` in the plan compiler. Logged for Thursday rather than
+  patched blind.
+- **Question-kind distribution skews behavioral**: 5 behavioral / 1 conceptual, against 7
+  missing_skill gaps that the policy says should yield conceptual questions. Worth watching
+  in the eval; the guard only enforces the STAR biconditional, not the kind mix.
