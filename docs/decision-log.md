@@ -165,3 +165,39 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
   web-only dep: `@supabase/supabase-js`. Paper design pass also pulled forward from Mon to Sun eve
   (this session), so Monday's FE session starts at code. Env scaffold landed same evening
   (`.env.example` gains Agnes/VideoDB/optional names; real files carry empty lines for Timothy).
+
+### Verify sprint (Mon 27 Jul AM, ~45 min, before any code)
+
+- **Agnes serves `/v1/responses` — but it SILENTLY IGNORES `text.format` json_schema. Do not use
+  `responses.parse` on Agnes.** Measured, not assumed: `POST /v1/responses` with a strict
+  `json_schema` format returns HTTP 200 and free prose (`"\n\nYes, during daylight hours the sky
+  typically appears blue…"`), reproduced 3/3 with two different schemas. Through the SDK this
+  surfaces as `responses.parse` throwing `SyntaxError: Unexpected token 'Y' … is not valid JSON` —
+  it fails loudly client-side, but the endpoint's 200 means schema support cannot be probed by
+  status code. Its `/responses` output also carries a `reasoning` item (`reasoning_text`) before
+  the `message` item. **Consequence:** the plan's contingency is now the primary path — every
+  Agnes structured call goes through `chat.completions` + `response_format: {type: "json_schema",
+  json_schema: {name, strict: true, schema}}`, which *is* honored (returned exactly
+  schema-conforming JSON; round-tripped through `z.toJSONSchema(Wire, { io: "output" })` and
+  re-validated with Zod: pass). This is the Thursday OpenAI-vs-Agnes plan-compile comparison's
+  adapter shape. The interviewer lane was already specced on `chat.completions`, so it is unaffected.
+- **Agnes model catalog (`GET /v1/models`, 5 models):** `agnes-2.0-flash`, `agnes-2.5-pro-alpha`,
+  `agnes-image-2.0-flash`, `agnes-image-2.1-flash`, `agnes-video-v2.0` — all
+  `supported_endpoint_types: ["openai"]`. `agnes-2.0-flash` stays the interviewer default.
+- **`openai@6` `chat.completions.create({stream: true})` verified against BOTH providers**, same
+  chunk shape: first chunk `delta.role` with empty content, then `delta.content` string deltas,
+  then a `finish_reason: "stop"` chunk with empty delta, then — with
+  `stream_options: {include_usage: true}` — a **final usage-only chunk** (`choices[0].delta` empty,
+  `usage` populated) before `[DONE]`. So cost capture must read `usage` off the *last* chunk, not
+  the finish_reason one. Agnes returns `{prompt,completion,total}_tokens` +
+  `completion_tokens_details.reasoning_tokens`.
+- **Latency finding that changes the failover config — measured, and it cuts toward Agnes.**
+  First-token on the interviewer prompt: **Agnes `agnes-2.0-flash` 1235 ms** vs **OpenAI
+  `gpt-5-mini` 4371 ms**. The gap is reasoning tokens: gpt-5-mini burned 256 of them before
+  emitting any text, blowing the locked ≤3s first-turn-token criterion. Retested with
+  `reasoning_effort` — `"minimal"` → **1158 ms / 0 reasoning tokens**, `"low"` → 1697 ms / 128.
+  **Decision: the OpenAI failover lane pins `reasoning_effort: "minimal"`** so failover still meets
+  the ≤3s bar; default (medium) would fail it. Independently, this is the first measured evidence
+  for the Agnes-owns-the-interviewer-lane decision — a latency number, not a prize-lane assertion.
+  (Receipts-critical structured calls stay on OpenAI strict SO regardless; that lane is untimed by
+  the ≤3s criterion.)
