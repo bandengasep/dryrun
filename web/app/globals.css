@@ -251,8 +251,12 @@ body {
   cursor: pointer;
   font-family: inherit;
 }
-.btn-link:hover {
+.btn-link:hover:not(:disabled) {
   text-decoration: underline;
+}
+.btn-link:disabled {
+  color: var(--color-muted);
+  cursor: not-allowed;
 }
 
 .btn-sm {
