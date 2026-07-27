@@ -1,0 +1,38 @@
+/* Paper: the tint is the kind colour at 10% (#C053531A / #A87E2F1A / #3E7D631A). */
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+  padding: var(--spacing-1) var(--spacing-3);
+  border-radius: var(--radius-full);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  line-height: 16px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+  background-color: currentColor;
+}
+
+.missing_skill {
+  color: var(--color-missing);
+  background-color: rgba(192, 83, 83, 0.1);
+}
+
+.weak_evidence {
+  color: var(--color-weak);
+  background-color: rgba(168, 126, 47, 0.1);
+}
+
+.strong_differentiator {
+  color: var(--color-strong);
+  background-color: rgba(62, 125, 99, 0.1);
+}

@@ -89,3 +89,167 @@ list, receipts-everywhere, execution-as-ground-truth, OpenAI-only runtime) live 
   commit: embedding vectors keyed by `data[].index` per API contract instead of array order.
 - **Local-dev secrets convention:** `web/.env.local` (gitignored via `.env.*`) carries the key
   for `next dev`; it is a copy of root `.env`. Final-week gitleaks sweep should know both exist.
+
+## 2026-07-26
+
+- **FULL PIVOT: DryRun becomes an interview-rehearsal compiler** — compile → session plan
+  (receipt-carrying questions) → live AI-interviewer mock → debrief that quotes the candidate's
+  own transcript. Timothy's call, made against explicit counsel to keep SQL-first, after (a) the
+  vague-JD concern (real postings mix concrete tool lines with soft competency lines; question
+  prep generalizes across both, SQL drills only fire on the concrete subset), (b) verifying the
+  Launchpad rubric verbatim (judges' final question: "would you interview the applicant"), and
+  (c) verifying sponsor fit (Agnes AI prize lane; VideoDB credits in hand). Alternative named
+  and parked *built*: the SQL harness + CI executability gate stay in-repo, dormant and green
+  — the challenge *generator* moves to post-hackathon. Gap engine survives untouched as the
+  personalization brain. Full plan: `docs/superpowers/plans/2026-07-26-pivot-interview-rehearsal.md`.
+  (Attribution note: the pre-pivot ground rules/cut list were Timothy's own 12-Jul close-out,
+  superseded today by his decision — not constraints imposed by anyone else.)
+
+## 2026-07-27
+
+- **Theme relocked: "Reading Room daylight" replaces the dark navy/cyan identity** — Timothy's
+  call ("softer"), decided from two Paper style tiles (soft-dark "Fog Study" vs soft-light
+  "Reading Room") plus two accent/ground iterations. Final: cool paper ground `#F5F7FB` (landing
+  hero gradient `#EDF1F7→#FFFFFF` — cooled specifically to avoid reading as Anthropic-cream),
+  white surfaces, hairline `#DEE4ED`, ink text `#1D2127`, fountain-pen-blue primary `#2E4C8F`,
+  status coral/ochre/moss `#C05353/#A87E2F/#3E7D63`; Fraunces (display) + Instrument Sans (UI) +
+  Google Sans Code (evidence voice, unchanged). Rationale: receipts-are-paper metaphor made
+  visible; differentiation from the uniformly dark AI-tool field; light UIs read better in
+  compressed demo video. All 48 Paper tokens re-pointed and the four app artboards repainted +
+  screenshot-verified; Paper file "Dryrun-WebApp" is the single source of truth for `globals.css`.
+- **Framer's role settled: measured reference only, hosting stays Vercel-only.** The remixed
+  free "Message" template (Arthur Duchesne) supplies the landing's layout/spacing/section system
+  as a serialized spec; Framer cannot export code, so nothing deploys there. Its fake-content
+  sections are replaced on port: pricing → eval-numbers band, testimonials → labeled sample
+  debrief (fabricated social proof would breach the Honesty pillar).
+- **Stay on `openai@^6`; no Vercel AI SDK migration.** Researched against current docs: OpenAI's
+  recommended path is exactly what's shipped (Responses API + strict structured outputs, typed
+  streaming events); the AI SDK inserts its own Zod→JSON-schema conversion with documented
+  OpenAI-specific incompatibilities — re-validating five wire schemas at T-5 days with no eval
+  net is pure risk; its unique win (partial-object streaming to React) isn't needed.
+- **Agnes AI joins as second provider through the existing client-injection seam**
+  (`new OpenAI({ baseURL: AGNES_BASE_URL })`); interviewer lane defaults to Agnes
+  (`agnes-2.0-flash`) with per-request failover to OpenAI, labeled in the UI. GMI Cloud parked
+  (no key). "Runtime = OpenAI only" relaxes to "runtime = OpenAI-compatible endpoints, keys in hand."
+- **LinkedIn permanently parked out of runtime.** Verified against stickerdaniel/linkedin-mcp-server's
+  own README: needs a persistent local Chromium + cookie session (not serverless-deployable) and
+  LinkedIn's UA prohibits automated access (ban risk). Dev-side MCP use for fixture gathering stays fine.
+- **Two-step compile** (`/api/compile` gaps → `/api/plan` questions): gaps render ~30s sooner, the
+  diff stays a first-class demo artifact, a plan retry doesn't re-buy two parses.
+- **Interviewer turn = `chat.completions` streaming + trailing `META:` sentinel line** (action:
+  ask_followup|advance|wrap_up, fail-soft, mid-text META inert): the OpenAI-compatible lowest
+  common denominator so the turn runs on Agnes; core owns prompt+protocol (`src/session`), web owns
+  transport. **The client is the state machine** (questionIndex, follow-up cap 2, wrap-up).
+- **Session state is client-held; no DB.** Routes stateless; `{plan, transcript}` re-sent per turn;
+  sessionStorage bridge (`dryrun-session-v1`, per-tab). Honest "nothing stored server-side" stance;
+  pgvector/Supabase stay out entirely.
+- **Video answers: direct-to-VideoDB upload via server-minted URL, never proxied** (~4.5MB Vercel
+  body cap). `turn.text` built only by `joinTimedWords` so debrief-quote spans map to timestamps by
+  exact arithmetic, never model-emitted. **Feature-flagged with a hard Wed 29 Jul 15:00 go/no-go**;
+  on no-go the session ships text-only and the debrief loses only timestamps. `videodb` (web/ only)
+  is the sole new dependency.
+- **Eval targets locked before building** (Problem pillar: "success criteria defined before you
+  built") — numbers in `docs/spec-pivot-2026-07-26.md`; corpus grows to 13 pairs (Timothy's CareerGO
+  exports, incl. the Venture BI/AI internship as fixture-04), gold sets hand-adjudicated Wed.
+- **`/results` and `/compiler/[lang]` deleted** with the pivot — closing the 21-Jul readiness-bar
+  cut-list violation and removing the fake always-pass Run button (both were Honesty-pillar
+  liabilities). False "runs entirely on-device" landing/compile copy dies in the same pass.
+- **Supabase persistence added as explicit "Save & share debrief" (evening addendum) — Timothy's
+  call, made against the no-DB recommendation.** Scope hard-limited: in-flight session state stays
+  client-held (sessionStorage); the one server write is a user-clicked save of
+  `{plan, transcript, debrief}` into a single `sessions` table (uuid pk) via `@supabase/supabase-js`
+  server-side, returning a read-only shareable `/debrief/[id]`. No accounts, no RLS, no pgvector
+  (still cut). Rationale for accepting: turns persistence into a demo asset (judges can open a live
+  debrief URL) while the honesty stance survives as "nothing stored unless you click Save; anyone
+  with the link can view." Slots: table+save route Wed PM, share page Thu AM. Second sanctioned
+  web-only dep: `@supabase/supabase-js`. Paper design pass also pulled forward from Mon to Sun eve
+  (this session), so Monday's FE session starts at code. Env scaffold landed same evening
+  (`.env.example` gains Agnes/VideoDB/optional names; real files carry empty lines for Timothy).
+
+### Verify sprint (Mon 27 Jul AM, ~45 min, before any code)
+
+- **Agnes serves `/v1/responses` — but it SILENTLY IGNORES `text.format` json_schema. Do not use
+  `responses.parse` on Agnes.** Measured, not assumed: `POST /v1/responses` with a strict
+  `json_schema` format returns HTTP 200 and free prose (`"\n\nYes, during daylight hours the sky
+  typically appears blue…"`), reproduced 3/3 with two different schemas. Through the SDK this
+  surfaces as `responses.parse` throwing `SyntaxError: Unexpected token 'Y' … is not valid JSON` —
+  it fails loudly client-side, but the endpoint's 200 means schema support cannot be probed by
+  status code. Its `/responses` output also carries a `reasoning` item (`reasoning_text`) before
+  the `message` item. **Consequence:** the plan's contingency is now the primary path — every
+  Agnes structured call goes through `chat.completions` + `response_format: {type: "json_schema",
+  json_schema: {name, strict: true, schema}}`, which *is* honored (returned exactly
+  schema-conforming JSON; round-tripped through `z.toJSONSchema(Wire, { io: "output" })` and
+  re-validated with Zod: pass). This is the Thursday OpenAI-vs-Agnes plan-compile comparison's
+  adapter shape. The interviewer lane was already specced on `chat.completions`, so it is unaffected.
+- **Agnes model catalog (`GET /v1/models`, 5 models):** `agnes-2.0-flash`, `agnes-2.5-pro-alpha`,
+  `agnes-image-2.0-flash`, `agnes-image-2.1-flash`, `agnes-video-v2.0` — all
+  `supported_endpoint_types: ["openai"]`. `agnes-2.0-flash` stays the interviewer default.
+- **`openai@6` `chat.completions.create({stream: true})` verified against BOTH providers**, same
+  chunk shape: first chunk `delta.role` with empty content, then `delta.content` string deltas,
+  then a `finish_reason: "stop"` chunk with empty delta, then — with
+  `stream_options: {include_usage: true}` — a **final usage-only chunk** (`choices[0].delta` empty,
+  `usage` populated) before `[DONE]`. So cost capture must read `usage` off the *last* chunk, not
+  the finish_reason one. Agnes returns `{prompt,completion,total}_tokens` +
+  `completion_tokens_details.reasoning_tokens`.
+- **Latency finding that changes the failover config — measured, and it cuts toward Agnes.**
+  First-token on the interviewer prompt: **Agnes `agnes-2.0-flash` 1235 ms** vs **OpenAI
+  `gpt-5-mini` 4371 ms**. The gap is reasoning tokens: gpt-5-mini burned 256 of them before
+  emitting any text, blowing the locked ≤3s first-turn-token criterion. Retested with
+  `reasoning_effort` — `"minimal"` → **1158 ms / 0 reasoning tokens**, `"low"` → 1697 ms / 128.
+  **Decision: the OpenAI failover lane pins `reasoning_effort: "minimal"`** so failover still meets
+  the ≤3s bar; default (medium) would fail it. Independently, this is the first measured evidence
+  for the Agnes-owns-the-interviewer-lane decision — a latency number, not a prize-lane assertion.
+  (Receipts-critical structured calls stay on OpenAI strict SO regardless; that lane is untimed by
+  the ≤3s criterion.)
+
+### First end-to-end measurements (Mon 27 Jul, dev server on localhost, gpt-5-mini)
+
+Recorded because the Evidence pillar wants numbers taken before they are convenient,
+and two of these miss targets that were locked on 26 Jul.
+
+- **Full chain works.** `/api/compile` (SSE) → `/api/plan` → `SessionPlan`, on fixture
+  pair 01: 23 requirements, 53 resume lines, **0 dropped quotes**, 23 gaps
+  (8 strong_differentiator / 8 weak_evidence / 7 missing_skill), then 6 questions,
+  **all 6 grounded in a real gap** and every one satisfying the kind↔STAR biconditional.
+  Every gap's `jdSpan` and `resumeSpan` slices back to its own text — the receipts
+  invariant re-checked against the source, not asserted.
+- **SSE framing verified against a real stream, not a mock.** First `stage` frame arrived
+  at **0.08s** (no buffering on the dev path), heartbeat comments landed at exactly 10s
+  intervals through the two long silent stretches, and `readSSE` reconstructed all four
+  stage events + the result when the captured bytes were replayed in **7-byte chunks**
+  (i.e. with frames deliberately split mid-boundary). Result re-validated as
+  `CompileResult`. Vercel's buffering behaviour is still unverified — that needs the
+  Tuesday preview deploy; localhost cannot prove it.
+- **⚠ LATENCY MISSES TARGET — the day's most important finding.** Measured:
+  | run | compile | plan |
+  |---|---|---|
+  | fixture pair 01 (23 reqs) | **80.5s** | **33.4s** |
+  | Venture BI/AI JD (35 reqs) | **146.3s** | not run |
+  Locked targets are compile p50 ≤60s and plan ≤20s. Both missed, and the real target
+  JD — the one the demo video opens on — missed by 2.4×. These are single dev-mode runs,
+  not a p50, but model latency dominates so production is unlikely to rescue it.
+  Identified lever, NOT yet applied: `reasoning_effort` on the structured lane, the same
+  knob that cut interviewer first-token from 4371ms to 1158ms. It is deliberately left
+  alone pending Timothy's call, because unlike the interviewer lane these are the
+  receipts-critical calls — trading reasoning for speed here could move gap precision/
+  recall, and Thursday's gold sets are the only honest arbiter of that. Options, in
+  preference order: (a) measure `reasoning_effort:"low"` on parse+diff against the gold
+  sets Thursday and adopt only if precision/recall hold; (b) split the JD parse into
+  concurrent chunks; (c) restate the target with the measurement, which the rubric
+  explicitly rewards over a quietly-missed number.
+- **⚠ Deploy-tier risk, newly load-bearing.** There is no DryRun project on Vercel yet
+  (team `timothy-hartanto-projects` has only `arsenal-world-cup-hub` and
+  `nbs-candidate-portal`). `/api/compile` declares `maxDuration = 300`, which requires
+  Fluid/Pro; on a Hobby-tier function cap a 146s compile is killed outright. This must be
+  settled before Tuesday's preview deploy, and it is now a demo blocker rather than a
+  detail.
+- **Gap redundancy observed (quality, not correctness).** The JD line "Build and maintain
+  SQL models and dashboards for funnel, retention and campaign analytics" parsed into two
+  atomic requirements, which produced two gaps sharing one `jdSpan`, which produced two
+  near-duplicate questions (q-1, q-2). Not a guard violation — both are properly grounded —
+  but it spends 2 of 6 question slots on one JD line. Candidate fix (post-measurement):
+  dedupe questions by `jdSpan.start` in the plan compiler. Logged for Thursday rather than
+  patched blind.
+- **Question-kind distribution skews behavioral**: 5 behavioral / 1 conceptual, against 7
+  missing_skill gaps that the policy says should yield conceptual questions. Worth watching
+  in the eval; the guard only enforces the STAR biconditional, not the kind mix.

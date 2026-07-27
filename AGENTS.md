@@ -1,62 +1,81 @@
-# DryRun — the interview compiler
+# DryRun — rehearse the interview you're about to have
 
-> Paste a job description and a resume; DryRun diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that's silent — then compiles a personalized interview environment: executable SQL challenges and behavioral questions, each traceable to the gap that produced it.
+> Paste a job description and a resume; DryRun diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that's silent — then compiles **your interview**: the questions you'll actually face, rehearsed live against an AI interviewer, debriefed with feedback that quotes your own words back to you. Nothing displayed without a receipt; nothing graded, everything cited.
 
-**Deadline: 31 Jul 2026, 23:59 SGT.** Submission = public repo + ≤3-min video + ≤1,000-word write-up.
-**Judged on five pillars** (Problem, Approach, Evidence, Constraints, Honesty & Trajectory), 1–5 each. Master rule: *a modest claim, proven, beats a grand claim, asserted.* Not polish.
-**Team:** Timothy (backend / agents / evals) · Vedika (UI/UX / video).
-Full product spec lives in `docs/spec.md` (copy of interview-compiler-spec.md). This file is operational — it is the canonical ops doc for **all** agent tooling; `CLAUDE.md` just imports it.
+**Pivoted 26 Jul** (was: executable-SQL-challenge compiler — see `docs/decision-log.md` 2026-07-26 and the full plan in `docs/superpowers/plans/2026-07-26-pivot-interview-rehearsal.md`; product spec: `docs/spec-pivot-2026-07-26.md`; the old `docs/spec.md` is historical).
+
+**Deadline: 31 Jul 2026, 23:59 SGT** (submit by 20:00 for buffer). Submission = public repo + ≤3-min video + ≤1,000-word write-up **using the five pillars as section headings**.
+**Rubric** (1–5 each): Problem (success criteria defined *before* building) · Approach (every decision reasoned, alternatives named) · Evidence (every claim backed by measurement/comparison/demonstration) · Constraints (cost, latency, reliability, safety) · Honesty & Trajectory (failure modes, limitations, next steps). Master rule: *a modest claim, proven, beats a grand claim, asserted.* Judges finally answer: would they interview the applicant. Prizes incl. **"Best Use of Agnes AI" ($500)**.
+
+**Ownership (from 26 Jul):** Claude sessions — Paper design + ALL code (core + web). Timothy — keys/redemptions, eval-corpus export + gold adjudication, go/no-go calls, submission. Vedika — landing/about copy, storyboard, 3-min video, write-up polish.
 
 ---
 
 ## Ground rules (every session)
 
-1. **The cut list is law.** Never build: readiness/aggregate scores, resume rewriting or bullet tailoring, persistent evidence-bank UI, ATS match scores, application tracker, company/competency prediction, answer auto-scoring, graph DBs (NetworkX/Neo4j), Redis, Realtime speech-to-speech. New ideas go to `docs/post-hackathon-ideas.md`, unevaluated, no exceptions until 31 Jul.
-2. **Receipts everywhere.** Every gap, question, and claim carries its source spans (JD line ↔ resume line ↔ gap ID). A feature that can't carry receipts doesn't ship.
-3. **Execution is ground truth.** A compiled challenge ships only if its own tests pass; CI enforces this.
-4. **Runtime = OpenAI only** ($150 hackathon credits). Claude Code is the dev tool; never put Anthropic APIs in the product runtime.
-5. **Verify APIs before coding, don't trust memory.** Pull current docs via Context7 (or your tool's docs lookup): the OpenAI **Node** SDK (`/openai/openai-node`, which redirects to `/websites/developers_openai`; structured outputs via `responses.parse` + `zodTextFormat`), `/supabase/supabase`, `/vercel/next.js`, `/websites/pnpm_io`.
-6. Ask before adding any dependency not in the stack lock. Log real architecture/scope decisions in `docs/decision-log.md` with date + one-line rationale.
-7. **Branch discipline.** Day-to-day work lives on `timothy` and Vedika's FE branches (currently `dryrun-FE-V0`; `vedika` is the older lane branch); nothing lands on `main` except via PR with CI green. Merge to `main` at least daily once real commits exist — `main` must always be demoable. Lanes barely overlap (`packages/core/` vs `web/`), so merges stay cheap; don't let the branches drift for days. (The repo is public, so this is enforced by the `protect-main` ruleset — requires a PR and the `verify` status check — not just convention.)
-8. **Secrets:** real values only ever go in `.env` (gitignored) and its copy `web/.env.local` (for `next dev`; also gitignored). `.env.example` is a tracked, placeholder-only template — never paste a key into it. GitHub push protection is on; `gitleaks` full-history scan runs final week.
+1. **Receipts everywhere — unchanged law, now three links deep.** Gap → JD span + resume span. Interview question → `gapId`. Debrief claim → verbatim transcript quote (`locateSpan`-validated; + video timestamp when the answer was recorded). A feature that can't carry receipts doesn't ship; a quote that fails mechanical validation is demoted to a visible `dropped[]`, never displayed, never silently discarded.
+2. **No scores, no grades — a stance, not a gap.** The debrief says what an answer covered and missed, quoting the candidate. It never emits numbers, letter grades, or pass/fail. (Extends the old no-readiness-score rule; unprovable claims lose judges.)
+3. **Client-held session state in flight; storage only on explicit "Save & share."** Serverless routes are stateless: the client re-sends `{plan, transcript}` each request; in-flight persistence is sessionStorage only (`dryrun-session-v1`). The ONE server-side write is the explicit **Save & share debrief** button (`sessions` table via `@supabase/supabase-js`, `SUPABASE_SECRET_KEY` server-side only → shareable read-only `/debrief/[id]`; "anyone with the link can view" stated on the button). No ambient storage, no accounts, no RLS complexity, no pgvector. (Timothy's 26-Jul-eve call over the no-DB recommendation — scoped to write-once shareable debriefs.)
+4. **Providers: OpenAI + Agnes AI, through the client-injection seam** (`new OpenAI({ baseURL, apiKey })` handed to core). Compile/plan/debrief default `gpt-5-mini`; the interviewer lane defaults to Agnes (`AGNES_BASE_URL`, default model `agnes-2.0-flash`) with per-request failover to OpenAI, honestly labeled in the UI. **No Vercel AI SDK. Never the Realtime speech-to-speech API** (credit trap).
+5. **Verify APIs before coding, don't trust memory.** ⚠ Open verification items: Agnes `/responses` support (else `chat.completions` + `response_format: json_schema`), VideoDB Node SDK upload-URL + timed-transcript methods. Use context7 / vendor docs; record findings in the decision log.
+6. **Cut list (do not build before 1 Aug):** SQL challenge *generator* (the harness stays in-repo, dormant and CI-green — it is Trajectory material), pgvector (Supabase itself is allowed ONLY for the Save-&-share table in rule 3), LinkedIn anywhere in runtime (verified infeasible serverless + ToS risk), GMI Cloud lane (no key), readiness/aggregate scores, resume rewriting, answer auto-scoring, accounts/auth beyond the cosmetic mock. New ideas → `docs/post-hackathon-ideas.md`, unevaluated.
+7. **Branch discipline.** Work on `timothy`; PR to `main` at least daily; `main` stays demoable; `protect-main` requires PR + green `verify` check.
+8. **Secrets:** real values only in `.env` (gitignored) and its copy `web/.env.local`. `.env.example` stays placeholder-only. Env names: `OPENAI_API_KEY`, `AGNES_API_KEY`, `VIDEODB_API_KEY` (+ optional `INTERVIEWER_PROVIDER`, `AGNES_BASE_URL`, `AGNES_MODEL`, `NEXT_PUBLIC_ENABLE_VIDEO`). Never echo key values; verify placement via `git status` + length checks.
+9. **Dependencies:** the sanctioned new dependencies are `videodb` and `@supabase/supabase-js` (both web/ only; core stays free of them). Mind pnpm 11 gates (`allowBuilds`, `minimumReleaseAge` excludes) and commit the lockfile (CI is `--frozen-lockfile`). Anything else: ask first.
 
-## Stack (all-TypeScript monorepo — relocked 13 Jul; mobile retired 12 Jul. See decision log.)
+## Stack
 
-- **Monorepo:** pnpm workspace, Node 22 LTS, TypeScript (pinned 5.x). One language across BE + FE so the receipts contract is a single shared type, not a Pydantic↔TS translation.
-- **packages/core/** (Timothy) — framework-agnostic TS library: schemas, parsers, diff, harness, evals. No web framework dependency; `src/` stays free of Node builtins (Node imports allowed in `test/` only).
-- **web/** (Vedika) — Next.js (App Router) + React 19; imports `@dryrun/core` types directly. One Vercel deploy for the whole app.
-- **Shared contract:** Zod schemas in `packages/core/src/schemas` are the single source of truth — they drive OpenAI's strict output format (`zodTextFormat`), the API response types, and Vedika's component props.
-- **Data:** Supabase Postgres + pgvector (`@supabase/supabase-js`). Keys use Supabase's new API-key scheme: server-side uses the **secret key** (`sb_secret_...`, env `SUPABASE_SECRET_KEY`) — the legacy `service_role`/`anon` JWT keys are deprecated (verified via Context7, 21 Jul).
-- **Models:** `gpt-5-mini` (fallback `gpt-4.1-mini`) via the OpenAI **Node** SDK with **strict structured outputs** (`responses.parse` + `zodTextFormat`); embeddings `text-embedding-3-small`; prompt caching on repeated JD context. Budget: full eval suite ≪ $150. SDK: `openai@^6` in `packages/core` **and** `web/` (the compile route constructs the client it injects; peer-compatible with our zod 4).
-- **Challenge sandbox:** `better-sqlite3` (chosen over `@duckdb/node-api` 21 Jul — sync API, ephemeral `:memory:` lifecycle; window functions cover analyst SQL) + **vitest**. Harness is the sanctioned Node-only zone of core: `src/harness/` is excluded from the isomorphic src guard, not exported from the barrel — import via `@dryrun/core/harness`.
+- **Monorepo:** pnpm workspace, Node 22, TS 5.x. `packages/core` = framework-agnostic library (schemas/parsers/diff/plan/session/debrief/evals; harness dormant); `web/` = Next 16 App Router + React 19, CSS Modules (no Tailwind), tokens in `globals.css`. **Theme (locked 27 Jul): "Reading Room daylight"** — cool paper ground `#F5F7FB` (landing hero: gradient `#EDF1F7→#FFFFFF`), white surfaces, hairlines `#DEE4ED`, ink text `#1D2127`, **ink-blue primary `#2E4C8F`**, status coral/ochre/moss `#C05353·#A87E2F·#3E7D63`; type = **Fraunces** (display) + **Instrument Sans** (UI) + Google Sans Code (evidence voice). Source of truth: Paper file "Dryrun-WebApp" tokens + theme tile.
+- **LLM calls:** OpenAI Node SDK `openai@^6` — strict structured outputs via `responses.parse` + `zodTextFormat` for compile/plan/debrief; plain `chat.completions` **streaming** for the interviewer turn (the OpenAI-compatible lowest common denominator, so it runs on Agnes). Embeddings `text-embedding-3-small`.
+- **Streaming:** SSE (`text/event-stream`) for `/api/compile` (stage events) and `/api/session/turn` (token deltas + trailing `META` action); shared framing in `web/app/lib/stream.ts`; heartbeat comments every 10s; per-route `export const maxDuration`.
+- **Video answers (gated):** browser `MediaRecorder` → **direct upload to VideoDB via server-minted upload URL** (never proxied — ~4.5MB body cap) → `indexSpokenWords` → timed transcript; `turn.text` built only by `joinTimedWords` so char-offset → timestamp is exact arithmetic. Feature-flagged `NEXT_PUBLIC_ENABLE_VIDEO`; **go/no-go Wed 29 Jul 15:00** — on no-go the session ships text-only and the debrief loses nothing but timestamps.
+
+### Provider matrix (which AI does what)
+
+| Call | Provider · model | Why |
+|---|---|---|
+| JD/resume parse · gap adjudication · plan compile · debrief compile | OpenAI · `gpt-5-mini` (strict SO) | receipts-critical → proven path |
+| Embeddings | OpenAI · `text-embedding-3-small` | shipped |
+| **Interviewer turns** | **Agnes · `agnes-2.0-flash`** streaming; OpenAI failover (labeled) | prize lane; conversational, no strict SO needed |
+| Plan compile (evals only) | also run on Agnes | the OpenAI-vs-Agnes comparison exhibit |
+| Video → timed transcript | **VideoDB** `indexSpokenWords` | timestamps for debrief receipts |
+| Save & share debrief | **Supabase** (`sessions` table, server-side secret key) | explicit write-once shareable link |
+| Zero-shot baseline | OpenAI · `gpt-5-mini` plain chat | the comparison target |
+
+Principle: receipts-critical structured calls stay on the proven OpenAI strict-SO path; the conversational lane goes to Agnes; VideoDB owns perception; Supabase stores only what the user explicitly saves.
 
 ## Layout
 
 ```
-packages/core/src/{schemas,parsers,diff,harness,evals}/   # backend TS library (Timothy)
-packages/core/test/   # vitest; incl. fixtures/ (hand-built JD×resume pairs)
-web/                  # Vedika's Next.js app: compile-trace UI, receipts drawer; imports @dryrun/core
-docs/                 # spec.md, decision-log.md, post-hackathon-ideas.md
-.github/workflows/ci.yml   # pnpm install + typecheck + vitest + next build
+packages/core/src/{schemas,parsers,diff,plan,session,debrief,evals}/   # library (harness/ dormant)
+packages/core/test/            # vitest; fixtures/ jd|resume-01..13 + gold/ (hand-adjudicated)
+packages/core/test/evals/      # keyed eval runner (RUN_EVALS=1), results → evals/results/*.json
+web/app/{compile,plan,session,debrief}/    # the four surfaces (results/ + compiler/ deleted 26 Jul)
+web/app/api/{compile,plan,session/turn,debrief,video/*}/route.ts
+web/app/lib/{stream,providers,session-state}.ts(x)
+docs/                          # spec-pivot-2026-07-26.md, decision-log.md, post-hackathon-ideas.md
 ```
 
-## Build order — Timothy's lane
+## Build order (from 27 Jul)
 
-- **Commit 1 — Schemas + strict SO calls.** Zod models for JD requirement lines and resume lines, one schema family, every line carrying a source span (char offsets). Parser calls via the OpenAI Responses API structured-output path (`openai.responses.parse({ text: { format: zodTextFormat(Model, "name") } })` — confirm current signature via Context7 before writing). One sample JD + one resume as fixtures. (Bootstrap `Gap`/`RequirementLine`/`ResumeLine` schemas already live in `packages/core/src/schemas`.) **Receipts strategy (21 Jul): models emit verbatim quotes, never char offsets; spans are computed by the deterministic locator in `packages/core/src/parsers/spans.ts`, and unlocatable quotes surface in a `dropped` array (feeds the citation-validity eval).** Plan: `docs/superpowers/plans/2026-07-21-commit-1-schemas-parsers.md`.
-- **Commit 2 — Diff + receipts, green on 3 hand-built fixtures. ✅ shipped 21 Jul (PR #6).** Embedding match (in-memory cosine at fixture scale; pgvector persistence is a later step, after the harness) + one batched LLM adjudication → typed set-difference: *missing / weak evidence / strong differentiator*, every row with JD-span + resume-span receipts from the parsers' precomputed spans. Live-green on all 3 pairs; `/api/compile` runs the real pipeline. **The `Gap` schema froze here.**
-- **Commit 3 — Sandboxed SQL harness. 🔄 built 21 Jul, PR #7 open (CI green, awaiting merge).** Given a challenge spec (`ChallengeSpec`: setup DDL+seed, reference solution, tests), execute in an ephemeral in-memory `better-sqlite3` instance; reject any challenge whose own tests fail, and any spec with no test exercising the reference solution. CI runs it as the named "Challenge executability" step. PR #7 also carries the Commit-2 review follow-ups (candidate-set receipt guard, vector index ordering) and the 21-Jul docs pass. Plan: `docs/superpowers/plans/2026-07-21-commit-3-sql-harness.md`.
-- **Then:** pgvector persistence → Challenge Compiler (SQL-first) → Behavioral Compiler (STAR scaffolds, cites weak-evidence rows, no scoring) → **Eval Suite**: gap-detection precision on 15–20 hand-adjudicated pairs, citation-validity rate, 100% challenge executability (CI), run-to-run Jaccard consistency over 20 runs, cost + latency per compile, and the zero-shot ChatGPT baseline (its hallucinated-gap and uncited-claim rate vs ours). The eval numbers are the Evidence pillar — treat them as a feature, not an afterthought. **Open question (Timothy's call, 21 Jul):** whether to pull the Challenge Compiler ahead of pgvector for demo value — the `/results` challenge cards are still mock data, and in-memory cosine covers demo scale. If reordered, log it.
+0. **Commit 0 — this docs pass.** ✅
+1. **Plan compiler:** schemas (`SessionPlan`, `InterviewQuestion`, `StarHints`) + `src/plan` with grounding guards (unknown `gapId` → throw; behavioral without STAR → throw; conceptual with STAR → coerce null) + `/api/plan` + `/api/compile` SSE rewrite. Offline guard tests ship with it.
+2. **Session:** `src/session` (`buildInterviewerMessages`, `splitReplyAndMeta` — client is the state machine, follow-ups capped at 2) + `/api/session/turn` (Agnes lane, OpenAI failover) + Agnes live smoke. Preview deploy: **verify SSE on real Vercel, not localhost**.
+3. **Debrief:** `TranscriptTurn`/`DebriefReport` schemas + `src/debrief` (batched call → `locateSpan` validation → demote failures to `dropped[]`) + `timeline.ts` (pure span→timestamp mechanics) + `/api/debrief`.
+4. **Video rung (gated):** `Recorder` component + `/api/video/upload-url` + `/api/video/transcript`.
+5. **Evals (Thursday-protected):** mechanical metrics in `src/evals` (grounding, citation stats, Jaccard, cost, uncitedRate) + keyed runner + corpus runs + OpenAI-vs-Agnes comparison + zero-shot baseline → `evals/results/` + README table.
+
+FE lane in parallel: Paper design is DONE (27 Jul, Reading Room daylight theme — tokens + 4 artboards + theme tile in "Dryrun-WebApp"); build pages from the artboards via `get_jsx`/`get_computed_styles`. Landing layout additionally references the remixed Framer "Message" template (measured spec; Vercel-only — Framer never hosts). Day one chores need no design: state bridge, deletions (`/results`, `/compiler/[lang]`, `landing.tsx` — the readiness bar and fake Run die there), Navbar tabs, `/compile` SSE trace, false "on-device" copy removal.
+
+## Success criteria (locked before building — see `docs/spec-pivot-2026-07-26.md`)
+
+Displayed-question grounding 100% by construction (pre-guard ≥95%) · displayed debrief quotes 100% mechanically valid (dropped <10%) · Jaccard ≥0.6 over 20 runs · gold precision ≥0.8 / recall ≥0.7 · compile ≤$0.05, session ≤$0.25 median · compile p50 ≤60s, plan ≤20s, first turn token ≤3s, debrief ≤45s · quote→timestamp exact ≥90% · baseline uncited-rate reported side-by-side.
 
 ## Vedika handoff points
 
-- Compile-trace UI + receipts drawer import the diff engine's types straight from `@dryrun/core` (no JSON translation layer). **The `Gap` schema is frozen as of 21 Jul (Commit 2 / PR #6)**; breaking changes require a decision-log entry and a ping to her — and surface as TypeScript errors in `web/`.
-- Mock-mode flow and the 3-min video storyboard are hers; neither blocks the MVP demo path.
-- **FE status (21 Jul, merged to `main`):** pages landed — landing, `/compile`, `/results`, `/compiler/[lang]`, `/about`, navbar + mock auth. `web/app/api/compile/route.ts` **runs the real pipeline since PR #6** (parse ×2 + `diffGaps`, same `{gaps: Gap[]}` shape, per-request client so builds stay key-free). A real compile takes ~30–90s — the UI wants a loading state. ⚠️ **Open cut-list item on `main`:** PR #4 was merged (21 Jul) with `web/app/results/page.tsx` still hardcoding `READINESS_PERCENT = 65` + animated readiness bar — cut-list item #1. Vedika swaps it for something receipt-backed (e.g., per-kind gap counts) in a follow-up PR; must be gone before the demo/video.
+- **Schema freeze:** `SessionPlan` / `TranscriptTurn` / `DebriefReport` freeze after Tue 28 Jul (same regime as `Gap`, frozen 21 Jul): breaking changes need a decision-log entry + a ping.
+- Copy passes (landing/about, honest claims only), storyboard Wed, first takes Thu, final 3-min cut Fri (suggested arc: open on Timothy's real Venture-JD compile, close on baseline-vs-ours numbers).
 
-## P1 fence (only after the MVP demo path is green end-to-end)
+## Final-week checklist (Thu 30 – Fri 31)
 
-Context paste (true-gap vs presentation-gap reclassification, receipts required) · text mock mode (no scoring claims) · voice mock turn (Whisper STT + `gpt-4o-mini-tts` — never the Realtime API; it burns the credits).
-
-## Final-week checklist (29–30 Jul)
-
-Re-scan BoardingPass + app stores for newly shipped interview-prep features; if found, narrow the pitch to the receipts + execution-verified mechanism. Run `gitleaks detect` over the full history as final insurance; confirm CI badge, video link, and write-up in README.
+BoardingPass + app-store rescan for newly shipped interview-prep features (narrow the pitch to receipts + mechanical citation validation if crowded) · `gitleaks detect` over full history · CI badge green · eval table in README · video link + write-up in README · submit by 20:00 Fri.

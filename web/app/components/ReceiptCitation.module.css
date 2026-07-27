@@ -1,0 +1,46 @@
+/* Paper: "ReceiptJD" / "ReceiptResume" inside GapCard-Missing-Expanded. */
+
+.row {
+  display: flex;
+  gap: var(--spacing-3);
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3) var(--spacing-4);
+}
+
+/* Fixed slot: both labels occupy one lane so the quotes start on the same x. */
+.label {
+  width: 64px;
+  flex-shrink: 0;
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  line-height: 16px;
+  letter-spacing: var(--tracking-wide);
+  color: var(--color-muted);
+}
+
+.labelEmphasis {
+  color: var(--color-primary);
+}
+
+.quote {
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  color: var(--color-text-2);
+  overflow-wrap: anywhere;
+}
+
+.absence,
+.unverified {
+  font-family: var(--font-code);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+  font-style: italic;
+  color: var(--color-muted);
+}
+
+.unverified {
+  color: var(--color-missing);
+}

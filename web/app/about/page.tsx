@@ -24,7 +24,8 @@ export default function About() {
             <p className={styles.sectionText}>
               Paste a job description and your resume. Dry Run diffs them into evidenced gaps — every gap cites the
               exact line from the JD that demands it and the exact line (or silence) from your resume that speaks to
-              it. Then we compile personalized coding, SQL, and system design challenges directly from those gaps.
+              it. Those gaps compile into the questions you&apos;re likely to face, you rehearse them against an AI
+              interviewer, and the debrief afterwards quotes your own answers back to you.
             </p>
           </section>
 
@@ -32,10 +33,10 @@ export default function About() {
             <h2 className={styles.sectionTitle}>How It Works</h2>
             <div className={styles.stepsGrid}>
               {[
-                { num: "1", title: "Paste", desc: "Upload a JD and your resume" },
-                { num: "2", title: "Diff", desc: "We extract gaps with receipts" },
-                { num: "3", title: "Compile", desc: "Generate personalized challenges" },
-                { num: "4", title: "Practice", desc: "Run code, sharpen your skills" },
+                { num: "1", title: "Compile", desc: "Diff a JD against your resume into gaps with receipts" },
+                { num: "2", title: "Plan", desc: "Each gap compiles into a question you'll face" },
+                { num: "3", title: "Session", desc: "Rehearse live against an AI interviewer" },
+                { num: "4", title: "Debrief", desc: "Feedback that quotes your own answers" },
               ].map((step) => (
                 <div key={step.num} className={styles.stepCard}>
                   <div className={styles.stepBadge}>{step.num}</div>
@@ -50,11 +51,11 @@ export default function About() {
             <h2 className={styles.sectionTitle}>Key Features</h2>
             <ul className={styles.featureList}>
               {[
-                "On-device processing — no uploads, no account needed",
-                "Evidence-based gaps — every claim is traceable to the source",
-                "Executable challenges — all SQL and code runs in a sandbox",
-                "Real-time feedback — see what works, what doesn't",
-                "Targeted practice — focus only on what matters for your target role",
+                "Evidence-based gaps — every claim is traceable to the source line",
+                "Every question cites the gap that produced it — no generic question banks",
+                "Debrief feedback quotes you verbatim; a quote that fails validation is withheld, not shown",
+                "No scores, no grades — a stance, not a gap in the product",
+                "Your documents stay in this browser tab unless you explicitly save a debrief to share",
               ].map((feature) => (
                 <li key={feature} className={styles.featureItem}>
                   <span className={styles.checkMark}>✓</span>

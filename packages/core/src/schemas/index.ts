@@ -79,6 +79,117 @@ export const ParsedResume = z.object({
 });
 export type ParsedResume = z.infer<typeof ParsedResume>;
 
+/**
+ * Everything a compile produces: the parsed documents and the gaps between them.
+ * This is the wire contract between /api/compile and /api/plan, and the shape the
+ * client holds between the two — it lives here rather than in the web app so both
+ * ends validate against one definition. Carries the full parser output, not just
+ * gaps, because the receipts UI needs the source texts and line spans.
+ */
+export const CompileResult = z.object({
+  jd: ParsedJD,
+  resume: ParsedResume,
+  gaps: z.array(Gap),
+});
+export type CompileResult = z.infer<typeof CompileResult>;
+
+/**
+ * What a question is asking the candidate to do. `behavioral` questions want a
+ * lived story (and therefore carry STAR scaffolding); `conceptual` questions
+ * want understanding of a thing the resume never evidenced, so there is no
+ * story to scaffold.
+ */
+export const QuestionKind = z.enum(["behavioral", "conceptual"]);
+export type QuestionKind = z.infer<typeof QuestionKind>;
+
+/**
+ * One-line prompts scaffolding a STAR answer. Hints only — they tell the
+ * candidate what each beat should contain, never what to say. Behavioral
+ * questions always carry them; conceptual questions never do (see
+ * InterviewQuestion).
+ */
+export const StarHints = z.object({
+  situation: z.string(),
+  task: z.string(),
+  action: z.string(),
+  result: z.string(),
+});
+export type StarHints = z.infer<typeof StarHints>;
+
+/**
+ * A question the candidate is likely to face, compiled from one measured gap.
+ * `gapId` is THE receipt — it chains question → gap → JD span + resume span, so
+ * every question on screen can be traced to the line that demands it. A question
+ * citing an unknown gap is rejected in compileSessionPlan (grounding guard),
+ * never rendered.
+ *
+ * Invariant, enforced at compile time and pinned by tests:
+ *   kind === "behavioral"  ⟺  starHints !== null
+ */
+export const InterviewQuestion = z.object({
+  id: z.string(),
+  kind: QuestionKind,
+  /** Must reference a Gap.id present in the same SessionPlan. */
+  gapId: z.string(),
+  question: z.string(),
+  starHints: StarHints.nullable(),
+  /** Why this gap produces this question — shown in the receipts drawer. */
+  rationale: z.string(),
+});
+export type InterviewQuestion = z.infer<typeof InterviewQuestion>;
+
+/**
+ * The compiled interview: everything the session and the debrief need, in one
+ * self-contained object. Deliberately carries `gaps` and the source texts so
+ * client-held state is complete — serverless routes are stateless, so the client
+ * re-sends this per request and the FE resolves `question.gapId` → spans locally
+ * without another round trip.
+ */
+export const SessionPlan = z.object({
+  id: z.string(),
+  /** ISO-8601 timestamp, set at compile time. */
+  createdAt: z.iso.datetime(),
+  jdText: z.string(),
+  resumeText: z.string(),
+  gaps: z.array(Gap),
+  questions: z.array(InterviewQuestion).min(1),
+});
+export type SessionPlan = z.infer<typeof SessionPlan>;
+
+/**
+ * One word of a video answer's timed transcript, in seconds from the start of
+ * the recording. VideoDB emits these; they are the raw material for mapping a
+ * debrief quote's character offsets back to a timestamp.
+ */
+export const TimedWord = z.object({
+  start: z.number().nonnegative(),
+  end: z.number().nonnegative(),
+  text: z.string(),
+});
+export type TimedWord = z.infer<typeof TimedWord>;
+
+/**
+ * One turn of the rehearsal. `questionId` links a turn to the plan question it
+ * belongs to (null for free-floating interviewer chatter such as the opening
+ * greeting or the wrap-up).
+ *
+ * For `mode: "video"` turns, `text` is built ONLY by joinTimedWords over
+ * `timedWords` — never transcribed independently — so a character offset into
+ * `text` maps to a timestamp by exact arithmetic rather than by search. That is
+ * why the debrief validates quotes against `turn.text` and not against any video
+ * primitive: when video is off, the same code path still works and only the
+ * timestamps are absent.
+ */
+export const TranscriptTurn = z.object({
+  role: z.enum(["interviewer", "candidate"]),
+  questionId: z.string().nullable(),
+  text: z.string(),
+  mode: z.enum(["text", "video"]),
+  videoId: z.string().nullable(),
+  timedWords: z.array(TimedWord).nullable(),
+});
+export type TranscriptTurn = z.infer<typeof TranscriptTurn>;
+
 /** JSON-safe subset of SQLite values used in challenge expectations. */
 export const SqlValue = z.union([z.string(), z.number(), z.null()]);
 export type SqlValue = z.infer<typeof SqlValue>;

@@ -3,73 +3,71 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "./AuthContext";
-import Loader from "./Loader";
-import logoImg from "../assets/logo-img.png";
+import { useStageAvailability } from "../lib/session-state";
 
+// The tabs are the product's four stages, in the order they happen. A stage you
+// haven't reached yet is disabled rather than hidden: seeing that a rehearsal
+// and a debrief come after the compile is most of the explanation of what this
+// is, and hiding them would cost that for no benefit.
 const TABS = [
-  { label: "Home", path: "/" },
-  { label: "About", path: "/about" },
-  { label: "Interview Compiler", path: "/compile" },
-];
-
-function isTabActive(tabPath: string, pathname: string) {
-  if (tabPath === "/") return pathname === "/";
-  if (tabPath === "/compile") {
-    return pathname.startsWith("/compile") || pathname.startsWith("/compiler") || pathname.startsWith("/results");
-  }
-  return pathname.startsWith(tabPath);
-}
+  { label: "Compile", path: "/compile", stage: null },
+  { label: "Plan", path: "/plan", stage: "plan" },
+  { label: "Session", path: "/session", stage: "session" },
+  { label: "Debrief", path: "/debrief", stage: "debrief" },
+] as const;
 
 export default function Navbar() {
   const router = useRouter();
   const pathname = usePathname() ?? "/";
+  const availability = useStageAvailability();
   const { isLoggedIn, login, logout } = useAuth();
   const [showAuthModal, setShowAuthModal] = useState<"login" | "signup" | null>(null);
   const [authEmail, setAuthEmail] = useState("");
   const [authPassword, setAuthPassword] = useState("");
-  const [isAuthenticating, setIsAuthenticating] = useState(false);
 
   const handleAuthSubmit = () => {
-    setIsAuthenticating(true);
-    // Placeholder delay standing in for a real auth call — swap for the actual request later.
-    setTimeout(() => {
-      login();
-      setIsAuthenticating(false);
-      setShowAuthModal(null);
-      setAuthEmail("");
-      setAuthPassword("");
-    }, 3000);
+    // Cosmetic only — there is no account system, and nothing about a rehearsal
+    // is stored against one. It resolves instantly rather than faking a network
+    // delay: a spinner that measures nothing is the same lie as a progress bar
+    // that measures nothing.
+    login();
+    setShowAuthModal(null);
+    setAuthEmail("");
+    setAuthPassword("");
   };
 
   const handleLogout = () => {
     logout();
     router.push("/");
-    setShowAuthModal("login");
   };
 
   return (
     <>
       <header className="site-header">
-        {/* Logo */}
         <button className="logo" onClick={() => router.push("/")}>
-          <img src={logoImg.src} alt="Dry Run logo" className="logo-img" />
-          <span className="logo-text">Dry Run</span>
+          <span className="logo-dot" aria-hidden="true" />
+          <span className="logo-text">dryrun</span>
         </button>
 
-        {/* Nav tabs */}
-        <div className="nav-tabs">
-          {TABS.map((tab) => (
-            <button
-              key={tab.label}
-              onClick={() => router.push(tab.path)}
-              className={`nav-tab ${isTabActive(tab.path, pathname) ? "nav-tab-active" : ""}`}
-            >
-              {tab.label}
-            </button>
-          ))}
-        </div>
+        <nav className="nav-tabs" aria-label="Stages">
+          {TABS.map((tab) => {
+            const reachable = tab.stage === null || availability[tab.stage];
+            const active = pathname.startsWith(tab.path);
+            return (
+              <button
+                key={tab.label}
+                onClick={() => router.push(tab.path)}
+                disabled={!reachable}
+                aria-current={active ? "page" : undefined}
+                title={reachable ? undefined : `${tab.label} unlocks once the previous stage is done`}
+                className={`nav-tab ${active ? "nav-tab-active" : ""}`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </nav>
 
-        {/* Auth buttons / Profile menu */}
         {isLoggedIn ? (
           <div className="profile-menu">
             <button className="profile-trigger" aria-label="Account menu">
@@ -96,7 +94,6 @@ export default function Navbar() {
         )}
       </header>
 
-      {/* Auth Modal */}
       {showAuthModal && (
         <div className="modal-overlay" onClick={() => setShowAuthModal(null)}>
           <div className="modal-card" onClick={(e) => e.stopPropagation()}>
@@ -125,28 +122,21 @@ export default function Navbar() {
             </div>
 
             <div className="modal-actions">
-              <button
-                onClick={handleAuthSubmit}
-                disabled={isAuthenticating}
-                className="btn btn-primary btn-block btn-modal"
-              >
+              <button onClick={handleAuthSubmit} className="btn btn-primary btn-block btn-modal">
                 {showAuthModal === "login" ? "Login" : "Sign up"}
               </button>
 
-              <button
-                onClick={() => setShowAuthModal(null)}
-                disabled={isAuthenticating}
-                className="btn btn-outline btn-block btn-modal"
-              >
+              <button onClick={() => setShowAuthModal(null)} className="btn btn-outline btn-block btn-modal">
                 Cancel
               </button>
             </div>
+
+            <p className="footer-note" style={{ marginBottom: 0, marginTop: "var(--spacing-4)" }}>
+              Accounts are a placeholder — nothing is stored against one. Your
+              rehearsal stays in this tab either way.
+            </p>
           </div>
         </div>
-      )}
-
-      {isAuthenticating && (
-        <Loader label={showAuthModal === "signup" ? "Creating your account…" : "Signing you in…"} />
       )}
     </>
   );

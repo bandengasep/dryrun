@@ -7,8 +7,9 @@
 
 .pageTitle {
   color: var(--color-text);
+  font-family: var(--font-display);
   font-size: 40px;
-  font-weight: 800;
+  font-weight: var(--font-weight-semibold);
   margin-bottom: 24px;
   letter-spacing: -0.5px;
 }
@@ -20,9 +21,9 @@
 }
 
 .sectionTitle {
-  color: var(--color-cyan);
+  color: var(--color-primary);
   font-size: 24px;
-  font-weight: 700;
+  font-weight: var(--font-weight-semibold);
   margin-bottom: 12px;
 }
 
@@ -49,19 +50,19 @@
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: var(--color-cyan);
+  background-color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-on-accent);
-  font-weight: 800;
+  color: var(--color-on-primary);
+  font-weight: var(--font-weight-semibold);
   margin-bottom: 8px;
 }
 
 .stepTitle {
   color: var(--color-text);
   font-size: 16px;
-  font-weight: 700;
+  font-weight: var(--font-weight-semibold);
   margin-bottom: 6px;
 }
 
@@ -84,6 +85,6 @@
 }
 
 .checkMark {
-  color: var(--color-cyan);
+  color: var(--color-primary);
   margin-right: 8px;
 }
