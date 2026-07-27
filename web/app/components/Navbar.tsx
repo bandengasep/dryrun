@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "./AuthContext";
 import { useStageAvailability } from "../lib/session-state";
+import { ROUTE_READY } from "../lib/routes";
 
 // The tabs are the product's four stages, in the order they happen. A stage you
 // haven't reached yet is disabled rather than hidden: seeing that a rehearsal
@@ -53,13 +54,19 @@ export default function Navbar() {
           {TABS.map((tab) => {
             const reachable = tab.stage === null || availability[tab.stage];
             const active = pathname.startsWith(tab.path);
+            // Say which of the two reasons it is — "finish the previous stage"
+            // is misleading advice when the route simply isn't built yet.
+            const why =
+              tab.stage !== null && tab.stage !== "plan" && !ROUTE_READY[tab.stage]
+                ? `${tab.label} isn't in this build yet`
+                : `${tab.label} unlocks once the previous stage is done`;
             return (
               <button
                 key={tab.label}
                 onClick={() => router.push(tab.path)}
                 disabled={!reachable}
                 aria-current={active ? "page" : undefined}
-                title={reachable ? undefined : `${tab.label} unlocks once the previous stage is done`}
+                title={reachable ? undefined : why}
                 className={`nav-tab ${active ? "nav-tab-active" : ""}`}
               >
                 {tab.label}

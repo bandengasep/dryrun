@@ -30,6 +30,7 @@ import {
   type Gap,
   type InterviewQuestion,
 } from "@dryrun/core";
+import { ROUTE_READY } from "./routes";
 
 // DebriefReport lands with build-order step 3 (Tue). Until core exports it the
 // slot is carried opaquely — the bridge only stores and rehydrates it, and
@@ -207,6 +208,10 @@ export function useSessionDispatch(): Dispatch<SessionAction> {
  * Which stages the user can currently reach. Drives the Navbar: a stage with no
  * state behind it is shown disabled rather than hidden, because the four stages
  * are the shape of the product and hiding them would hide what it does.
+ *
+ * Two things have to be true to reach a stage — the state it needs exists, and
+ * its route is actually in this build. Without the second condition, enabling a
+ * tab the moment its state appears would offer the user a 404.
  */
 export type StageAvailability = {
   plan: boolean;
@@ -219,8 +224,8 @@ export function useStageAvailability(): StageAvailability {
   return useMemo(
     () => ({
       plan: compile !== null,
-      session: plan !== null,
-      debrief: transcript.some((t) => t.role === "candidate"),
+      session: plan !== null && ROUTE_READY.session,
+      debrief: transcript.some((t) => t.role === "candidate") && ROUTE_READY.debrief,
     }),
     [compile, plan, transcript],
   );
