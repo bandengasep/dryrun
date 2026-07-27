@@ -1,144 +1,83 @@
 "use client";
 
+// INTERIM landing. The full build follows docs/landing-spec-2026-07-27.md — nav,
+// hero with the trace-card proof block, receipts trio, four stages, sample
+// debrief, evidence band, FAQ, final CTA — and lands once /plan is real.
+//
+// What this pass does is the part that couldn't wait: the headline is the
+// pivoted one, the four stages are named, and the two dishonest bits are gone.
+// The old page claimed "Runs entirely on-device. No account, no upload." — the
+// compile calls OpenAI with the pasted text, so every clause of that was false.
+// It also linked a "Watch demo" button at youtu.be/demo, which does not exist.
+//
+// The Vanta/three.js CDN background went with them: it was configured in the
+// dead dark-navy palette, and two render-blocking unpkg scripts are a poor
+// trade for a decoration on a page whose whole argument is restraint.
+
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
-import Script from "next/script";
-import logoImg from "./assets/logo-img.png";
 import styles from "./page.module.css";
 
-const BRAND_TEXT = "Dry Run";
-const BRAND_TAG = `<${BRAND_TEXT}>`;
-
-function CodeTag({ text }: { text: string }) {
-  return (
-    <>
-      {text.split("").map((ch, i) => (
-        <span key={i} className={ch === "<" || ch === ">" ? styles.tagBracket : undefined}>
-          {ch}
-        </span>
-      ))}
-    </>
-  );
-}
+const STAGES = [
+  {
+    name: "Compile",
+    body: "Paste a job description and a resume. Every gap cites the JD line that demands it and the resume line that's silent.",
+  },
+  {
+    name: "Plan",
+    body: "The questions you'll actually face, each one traceable back to the gap that produced it.",
+  },
+  {
+    name: "Session",
+    body: "Rehearse them live against an AI interviewer that follows up on what you actually said.",
+  },
+  {
+    name: "Debrief",
+    body: "What each answer covered and missed — every claim quoting your own words back to you.",
+  },
+];
 
 export default function Landing() {
   const router = useRouter();
-  const [threeLoaded, setThreeLoaded] = useState(false);
-  const [vantaLoaded, setVantaLoaded] = useState(false);
-  const vantaRef = useRef<HTMLDivElement>(null);
-  const vantaEffect = useRef<{ destroy: () => void } | null>(null);
-
-  useEffect(() => {
-    if (!threeLoaded || !vantaLoaded || !vantaRef.current || vantaEffect.current) return;
-
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const w = window as unknown as { VANTA: { NET: (opts: Record<string, unknown>) => { destroy: () => void } } };
-
-    vantaEffect.current = w.VANTA.NET({
-      el: vantaRef.current,
-      mouseControls: !prefersReducedMotion,
-      touchControls: !prefersReducedMotion,
-      gyroControls: false,
-      minHeight: 200.0,
-      minWidth: 200.0,
-      scale: 1.0,
-      scaleMobile: 1.0,
-      color: 0x22d3ee, // --color-cyan
-      backgroundColor: 0x0a0f1c, // --color-bg
-      points: prefersReducedMotion ? 4.0 : 9.0,
-      maxDistance: prefersReducedMotion ? 0 : 20.0,
-      spacing: 18.0,
-      showDots: true,
-    });
-
-    return () => {
-      vantaEffect.current?.destroy();
-      vantaEffect.current = null;
-    };
-  }, [threeLoaded, vantaLoaded]);
-
-  const [typedBrand, setTypedBrand] = useState("");
-
-  useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) {
-      setTypedBrand(BRAND_TAG);
-      return;
-    }
-
-    let i = 0;
-    const interval = setInterval(() => {
-      i += 1;
-      setTypedBrand(BRAND_TAG.slice(0, i));
-      if (i >= BRAND_TAG.length) clearInterval(interval);
-    }, 120);
-
-    return () => clearInterval(interval);
-  }, []);
 
   return (
     <main className={`app-main ${styles.main}`}>
-      {/* Animated background */}
-      <Script
-        src="https://unpkg.com/three@0.134.0/build/three.min.js"
-        strategy="afterInteractive"
-        onLoad={() => setThreeLoaded(true)}
-      />
-      {threeLoaded && (
-        // Vanta's UMD bundle reads window.THREE at parse time, so it must not
-        // even start loading until three.min.js has set that global.
-        <Script
-          src="https://unpkg.com/vanta@0.5.24/dist/vanta.net.min.js"
-          strategy="afterInteractive"
-          onLoad={() => setVantaLoaded(true)}
-        />
-      )}
-
-      <div ref={vantaRef} className={styles.animatedBg} />
-
-      {/* Main content */}
-      <div className={styles.heroSection}>
+      <section className={styles.hero}>
         <div className={styles.heroInner}>
-          {/* Brand logo */}
-          <img src={logoImg.src} alt="Dry Run logo" className={styles.heroLogoImg} />
+          <p className={`kicker ${styles.kicker}`}>Interview rehearsal, with receipts</p>
 
-          {/* Brand text */}
-          <h1 className={styles.heroTitle}>
-            <CodeTag text={typedBrand} />
-            <span className={styles.typeCursor}>▌</span>
+          <h1 className={`display-1 ${styles.title}`}>
+            Rehearse the interview you&apos;re about to have.
           </h1>
 
-          {/* Subheading */}
-          <p className={styles.subheading}>Turn a job description into targeted interview practice.</p>
-
-          {/* Description */}
-          <p className={styles.description}>
-            Paste a JD and your resume. Dry Run diffs them into evidenced gaps — every gap citing the JD line that
-            demands it and the resume line that&apos;s silent — then generates personalized coding and system design
-            challenges.
+          <p className={`lead ${styles.lead}`}>
+            DryRun diffs a job description against your resume into evidenced gaps, compiles
+            the questions those gaps produce, and debriefs you afterwards by quoting your own
+            answers.
           </p>
 
-          {/* CTA Buttons */}
           <div className={styles.ctaGroup}>
-            <button
-              onClick={() => router.push("/compile")}
-              className="btn btn-primary btn-lg btn-block btn-shadow"
-            >
-              Start an interview →
-            </button>
-
-            <button
-              onClick={() => window.open("https://youtu.be/demo", "_blank")}
-              className="btn btn-outline btn-lg btn-block"
-            >
-              Watch demo
+            <button onClick={() => router.push("/compile")} className="btn btn-primary btn-lg btn-shadow">
+              Compile your interview →
             </button>
           </div>
 
-          {/* Footer note */}
-          <p className="footer-note">Runs entirely on-device. No account, no upload.</p>
+          <p className={`footer-note ${styles.stance}`}>
+            Nothing is graded. Nothing is displayed without a receipt.
+          </p>
         </div>
-      </div>
+      </section>
+
+      <section className={styles.stages}>
+        <ol className={styles.stageList}>
+          {STAGES.map((stage, i) => (
+            <li key={stage.name} className={styles.stage}>
+              <span className={`kicker ${styles.stageNum}`}>{String(i + 1).padStart(2, "0")}</span>
+              <h2 className={styles.stageName}>{stage.name}</h2>
+              <p className={styles.stageBody}>{stage.body}</p>
+            </li>
+          ))}
+        </ol>
+      </section>
     </main>
   );
 }

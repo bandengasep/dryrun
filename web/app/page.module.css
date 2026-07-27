@@ -1,91 +1,106 @@
 .main {
   position: relative;
-  overflow: hidden;
 }
 
-.animatedBg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 0;
-}
-
-@keyframes blinkCursor {
-  0%,
-  49% {
-    opacity: 1;
-  }
-  50%,
-  100% {
-    opacity: 0;
-  }
-}
-
-.typeCursor {
-  display: inline-block;
-  margin-left: 2px;
-  color: var(--color-cyan);
-  animation: blinkCursor 1s step-end infinite;
-}
-
-.tagBracket {
-  color: var(--color-cyan);
-}
-
-.heroSection {
-  flex: 1;
+/* The daylight ground. Section 1 of the landing spec's measured rhythm:
+   160px top / 64px bottom, content max-width 1128px, 16px side padding. */
+.hero {
+  background: var(--gradient-ground);
+  border-bottom: 1px solid var(--hairline);
+  padding: 160px var(--spacing-4) var(--spacing-16);
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 20px;
-  position: relative;
-  z-index: 5;
 }
 
 .heroInner {
-  max-width: 560px;
+  max-width: 1128px;
   width: 100%;
-  text-align: center;
 }
 
-.heroLogoImg {
-  width: 160px;
-  height: 160px;
-  display: block;
-  margin: 0 auto -51px;
+.kicker {
+  margin: 0 0 var(--spacing-6);
 }
 
-.heroTitle {
+/* Headline blocks cap at 640px — the spec's copy measure, and the reason the
+   line breaks land where they do. */
+.title {
+  max-width: 640px;
   color: var(--color-text);
-  font-size: 40px;
-  letter-spacing: -1px;
-  margin-bottom: 12px;
-  line-height: 1.2;
-  font-family: var(--font-code);
-  font-weight: normal;
 }
 
-.subheading {
-  color: var(--color-text-2);
-  font-size: 18px;
-  line-height: 1.5;
-  margin-bottom: 32px;
-  font-weight: 500;
-}
-
-.description {
-  color: var(--color-muted);
-  font-size: 15px;
-  line-height: 1.6;
-  max-width: 480px;
-  margin: 0 auto 40px;
+.lead {
+  max-width: 580px;
+  margin-top: var(--spacing-6);
 }
 
 .ctaGroup {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: var(--spacing-3);
+  margin-top: var(--spacing-10);
+}
+
+.stance {
+  margin: var(--spacing-6) 0 0;
+}
+
+/* Standard section: 96px top and bottom. */
+.stages {
+  padding: 96px var(--spacing-6);
+  display: flex;
+  justify-content: center;
+}
+
+.stageList {
+  max-width: 1128px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-6);
+}
+
+@media (max-width: 900px) {
+  .stageList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .hero {
+    padding-top: 96px;
+  }
+}
+
+@media (max-width: 560px) {
+  .stageList {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* The stages sit directly on the paper, separated by a rule rather than boxed
+   in cards — four cards here would read as four products. */
+.stage {
+  border-top: 1px solid var(--hairline);
+  padding-top: var(--spacing-4);
+}
+
+.stageNum {
+  display: block;
+  color: var(--color-primary);
+}
+
+.stageName {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.3px;
+  color: var(--color-text);
+  margin: var(--spacing-3) 0 var(--spacing-2);
+}
+
+.stageBody {
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-text-2);
+  margin: 0;
+  max-width: 330px;
 }

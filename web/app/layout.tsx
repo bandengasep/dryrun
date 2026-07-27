@@ -3,6 +3,7 @@ import { Fraunces, Instrument_Sans, Google_Sans_Code } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./components/AuthContext";
 import Navbar from "./components/Navbar";
+import { SessionStateProvider } from "./lib/session-state";
 
 // Three faces, three jobs (Paper "Dryrun-WebApp" theme tile):
 //   Fraunces          — display. The one warm, bookish voice on the page.
@@ -46,10 +47,15 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={`${fraunces.variable} ${instrumentSans.variable} ${googleSansCode.variable}`}
     >
       <body>
-        <AuthProvider>
-          <Navbar />
-          {children}
-        </AuthProvider>
+        {/* The session bridge wraps the Navbar too — the stage tabs read the
+            same client-held state the pages do, so a tab can't offer a stage
+            that has nothing behind it. */}
+        <SessionStateProvider>
+          <AuthProvider>
+            <Navbar />
+            {children}
+          </AuthProvider>
+        </SessionStateProvider>
       </body>
     </html>
   );
