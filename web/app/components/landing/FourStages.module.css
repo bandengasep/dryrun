@@ -1,0 +1,71 @@
+.section {
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  padding: 96px var(--spacing-6);
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 1128px;
+  width: 100%;
+}
+
+.rail {
+  margin: var(--spacing-10) 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-6);
+}
+
+/* Sits directly on the surface, separated by a rule at the top rather than
+   boxed — the rule reads as "next in the pipeline", a card would read as a
+   fourth separate product. */
+.stage {
+  border-top: 2px solid var(--color-primary);
+  padding-top: var(--spacing-4);
+}
+
+.stageHead {
+  display: flex;
+  align-items: baseline;
+  gap: var(--spacing-3);
+}
+
+.num {
+  color: var(--color-primary);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.3px;
+  color: var(--color-text);
+}
+
+.body {
+  margin: var(--spacing-3) 0 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-text-2);
+  max-width: 330px;
+}
+
+@media (max-width: 900px) {
+  .rail {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .rail {
+    grid-template-columns: 1fr;
+  }
+  .body {
+    max-width: none;
+  }
+}
