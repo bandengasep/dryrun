@@ -10,7 +10,7 @@
 
 ## Stack
 
-All-TypeScript **pnpm workspace** (Node 22, TypeScript 5.x). One language across backend and frontend so the receipts contract is a single shared type — Zod schemas in `packages/core` drive OpenAI's strict structured output, the API types, and the React props alike. LLM providers: **OpenAI + Agnes AI** (OpenAI-compatible, wired through the same client-injection seam). Video answers: **VideoDB** (direct upload → timed transcripts). **No database** — session state is client-held; routes are stateless. Dormant sandbox: `better-sqlite3` + vitest harness with its CI gate (the parked SQL-challenge tier).
+All-TypeScript **pnpm workspace** (Node 22, TypeScript 5.x). One language across backend and frontend so the receipts contract is a single shared type — Zod schemas in `packages/core` drive OpenAI's strict structured output, the API types, and the React props alike. LLM providers: **OpenAI + Agnes AI** (OpenAI-compatible, wired through the same client-injection seam). Video answers: **VideoDB** (direct upload → timed transcripts). **Almost no database** — in-flight session state is client-held and routes are stateless; the single server-side write is the explicit "Save & share debrief" button (one `sessions` row, read back only through our own server). Dormant sandbox: `better-sqlite3` + vitest harness with its CI gate (the parked SQL-challenge tier).
 
 ## Status (26 Jul — post-pivot)
 
@@ -42,12 +42,40 @@ docs/                   # spec-pivot-2026-07-26.md, decision-log.md, post-hackat
 ## Getting started
 
 ```bash
+# 1 — Toolchain. Node 22+ (see .nvmrc) and the pinned pnpm.
+node -v                            # must be >= 22; `nvm use` picks it up from .nvmrc
+corepack enable                    # installs the pinned pnpm 11.5.1
+
+# 2 — Get the current code.
+#     `git fetch` alone updates refs but NOT your files. You need the pull.
+git checkout main && git pull
+
+# 3 — Install. Re-run after every pull: dependencies change.
 pnpm install
-cp .env.example .env               # fill in OPENAI_API_KEY (live suites + compile route)
-pnpm --filter @dryrun/core test    # vitest — live suites self-skip without a key (CI runs keyless)
-pnpm --filter web dev              # http://localhost:3000 (route reads web/.env.local)
+
+# 4 — Keys. The web app reads web/.env.local.
+#     A root .env is NOT read by Next.js and will not make the app work.
+cp .env.example web/.env.local     # then fill in OPENAI_API_KEY (+ AGNES_API_KEY)
+cp .env.example .env               # separate copy, only for packages/core live tests
+
+# 5 — Run.
+pnpm --filter web dev              # http://localhost:3000
+pnpm --filter @dryrun/core test    # vitest — live suites self-skip without a key
 pnpm typecheck                     # tsc across all packages
 ```
+
+### If it doesn't run
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| Pages look old / missing `/plan` | You fetched but never merged, or you're on a stale branch (`vedika` and `dryrun-FE-V0` are dozens of commits behind and are **not** updated) | `git checkout main && git pull` |
+| `Cannot find module 'pdfjs-dist'` (or `mammoth`, `@supabase/supabase-js`) | New dependencies landed in a commit you just pulled | `pnpm install` |
+| App loads, but compiling returns *"Missing credentials … OPENAI_API_KEY"* | No `web/.env.local` — this is the most common one, and a root `.env` does not fix it | step 4 above |
+| `pnpm: command not found` | pnpm not on PATH | `corepack enable` |
+| Unsupported-engine or syntax errors on startup | Node older than 22 | `nvm install 22 && nvm use` |
+
+The app **starts without any keys** — the landing and `/compile` render fine. Only the
+model-backed routes fail, so "the site loads but compiling errors" always means keys.
 
 ## Docs
 
