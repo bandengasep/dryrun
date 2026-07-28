@@ -28,6 +28,20 @@ export interface PlanOptions {
   model?: string;
   /** Hard cap on questions in the compiled plan. */
   maxQuestions?: number;
+  /**
+   * Called with the parsed wire object BEFORE the grounding/STAR guards run.
+   * Eval-only hook for measuring the model's pre-guard rates (the displayed
+   * rate is 100% by construction, so it isn't the interesting number) —
+   * never set by product code.
+   */
+  onWire?: (wire: unknown) => void;
+  /**
+   * Spread LAST into the responses.parse request params (e.g.
+   * `{ reasoning: { effort: "low" } }`). Eval-only lever for the
+   * latency-vs-quality tradeoff on the receipts-critical plan-compile stage —
+   * never set by product code.
+   */
+  requestOverrides?: Record<string, unknown>;
 }
 
 /** Raised on refusals, empty plans, or ungrounded questions. */
@@ -80,6 +94,7 @@ export async function compileSessionPlan(
       { role: "user", content: JSON.stringify(payload) },
     ],
     text: { format: zodTextFormat(PlanWire, "session_plan") },
+    ...opts.requestOverrides,
   });
   const wire = response.output_parsed;
   if (!wire) {
@@ -87,6 +102,7 @@ export async function compileSessionPlan(
       "Plan compile returned no structured output (refusal or empty response)",
     );
   }
+  opts.onWire?.(wire);
   if (wire.questions.length === 0) {
     throw new PlanError("Plan compile returned zero questions");
   }

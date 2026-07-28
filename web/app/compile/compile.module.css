@@ -133,6 +133,27 @@
   max-width: 280px;
 }
 
+/* The draft-review strip under a just-extracted textarea: names the file and
+   how much of it was actually read, so "compile" is a decision made with the
+   provenance in view, not a leap of faith in an opaque paste. Cleared the
+   moment the text is edited — see extractionBaselineRef in DocumentInput. */
+.provenance {
+  margin-top: var(--spacing-2);
+  color: var(--color-muted);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  line-height: 16px;
+}
+
+/* Screenshots are lossier than a text layer (measured: 10/49 lines verbatim),
+   so the warning gets its own line in the weak-evidence tone rather than
+   folding quietly into the muted provenance line. */
+.provenanceWarn {
+  margin-top: 2px;
+  color: var(--color-weak);
+  font-weight: var(--font-weight-medium);
+}
+
 .actions {
   display: flex;
   align-items: center;

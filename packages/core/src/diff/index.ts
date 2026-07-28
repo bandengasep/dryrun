@@ -26,6 +26,13 @@ export interface DiffOptions {
   embeddingModel?: string;
   /** Candidate resume lines shown to the adjudicator per requirement. */
   topK?: number;
+  /**
+   * Spread LAST into the responses.parse request params (e.g.
+   * `{ reasoning: { effort: "low" } }`). Eval-only lever for the
+   * latency-vs-quality tradeoff on the receipts-critical adjudication stage —
+   * never set by product code.
+   */
+  requestOverrides?: Record<string, unknown>;
 }
 
 /** Raised on refusals, coverage holes, or fabricated citations. */
@@ -120,6 +127,7 @@ export async function diffGaps(
       { role: "user", content: JSON.stringify(payload) },
     ],
     text: { format: zodTextFormat(DiffWire, "gap_verdicts") },
+    ...opts.requestOverrides,
   });
   const wire = response.output_parsed;
   if (!wire) {

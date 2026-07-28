@@ -25,18 +25,13 @@ import {
 } from "react";
 import {
   CompileResult,
+  DebriefReport,
   SessionPlan,
   TranscriptTurn,
   type Gap,
   type InterviewQuestion,
 } from "@dryrun/core";
 import { ROUTE_READY } from "./routes";
-
-// DebriefReport lands with build-order step 3 (Tue). Until core exports it the
-// slot is carried opaquely — the bridge only stores and rehydrates it, and
-// /debrief is its only reader, so a precise type here buys nothing and would
-// need a second edit when the real schema arrives.
-type DebriefReportPlaceholder = unknown;
 
 export const SESSION_STORAGE_KEY = "dryrun-session-v1";
 
@@ -48,7 +43,7 @@ export type SessionState = {
   /** The rehearsal so far, oldest turn first. Re-sent on every /api/session/turn. */
   transcript: TranscriptTurn[];
   /** The output of /api/debrief. */
-  debrief: DebriefReportPlaceholder | null;
+  debrief: DebriefReport | null;
 };
 
 const EMPTY: SessionState = {
@@ -66,7 +61,7 @@ export type SessionAction =
   | { type: "transcript/append"; turn: TranscriptTurn }
   /** Replace the last turn — used while an interviewer reply streams in. */
   | { type: "transcript/replaceLast"; turn: TranscriptTurn }
-  | { type: "debrief/set"; debrief: DebriefReportPlaceholder }
+  | { type: "debrief/set"; debrief: DebriefReport }
   | { type: "reset" }
   /** Rehydration from sessionStorage. Never persisted back on its own. */
   | { type: "hydrate"; state: SessionState };
@@ -139,7 +134,17 @@ function parsePersisted(raw: unknown): SessionState | null {
     transcript.push(parsed.data);
   }
 
-  return { compile, plan, transcript, debrief: o.debrief ?? null };
+  // Unlike compile/plan/transcript, a malformed debrief drops only itself: it
+  // is downstream of the transcript rather than a prerequisite for it, so
+  // there is no reason a stale or hand-edited debrief blob should cost the
+  // user their whole session.
+  let debrief: DebriefReport | null = null;
+  if (o.debrief != null) {
+    const parsed = DebriefReport.safeParse(o.debrief);
+    debrief = parsed.success ? parsed.data : null;
+  }
+
+  return { compile, plan, transcript, debrief };
 }
 
 function readStoredSession(): SessionState | null {

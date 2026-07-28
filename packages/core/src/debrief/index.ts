@@ -40,6 +40,11 @@ export interface DebriefOptions {
   client: OpenAI;
   /** Compile model (stack lock: gpt-5-mini). */
   model?: string;
+  /**
+   * Called with the parsed wire object BEFORE the coverage/quote guards run.
+   * Eval-only hook — never set by product code.
+   */
+  onWire?: (wire: unknown) => void;
 }
 
 const DEBRIEF_SYSTEM_PROMPT = [
@@ -115,6 +120,7 @@ export async function compileDebrief(
       "Debrief returned no structured output (refusal or empty response)",
     );
   }
+  opts.onWire?.(wire);
 
   const planQuestionIds = new Set(plan.questions.map((q) => q.id));
   const byQuestion = new Map<string, DebriefWire["questions"][number]>();

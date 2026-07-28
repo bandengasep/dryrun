@@ -17,7 +17,8 @@
   "scripts": {
     "typecheck": "tsc --noEmit && tsc --noEmit -p test",
     "test": "vitest run",
-    "test:executability": "vitest run test/harness.test.ts"
+    "test:executability": "vitest run test/harness.test.ts",
+    "evals": "RUN_EVALS=1 vitest run test/evals"
   },
   "dependencies": {
     "openai": "^6.48.0",
