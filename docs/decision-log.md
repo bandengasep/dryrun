@@ -253,3 +253,43 @@ and two of these miss targets that were locked on 26 Jul.
 - **Question-kind distribution skews behavioral**: 5 behavioral / 1 conceptual, against 7
   missing_skill gaps that the policy says should yield conceptual questions. Worth watching
   in the eval; the guard only enforces the STAR biconditional, not the kind mix.
+
+## 2026-07-28
+
+- **Vercel deploy landed; SSE buffering risk (plan risk #3) CLOSED by measurement.** Against
+  production `dryrun-web-pi.vercel.app`: first `stage` frame at **0.64s**, heartbeat comments
+  arriving live at 10s intervals through both silent stretches, `result` at 99.65s — frames
+  arrive as they happen, so Vercel is not buffering the stream. The `Cache-Control:
+  no-transform` + `X-Accel-Buffering: no` headers are sufficient, and SSE runs fine on the
+  plain Node runtime (Edge buys nothing — confirmed in Vercel's own function docs).
+- **Fluid Compute does not, and cannot, fix DryRun's latency — recorded so nobody re-opens it.**
+  The 99s compile is gpt-5-mini inference; the function is idle awaiting a third party. What
+  Fluid does give us, all of it already default: **300s max duration on every plan** (Hobby
+  caps at 300, Pro at 800), which retires the "maxDuration=300 needs a paid upgrade" blocker
+  raised on 27 Jul; **Active CPU pricing**, which bills only while the CPU works, so ~99% of a
+  compile's wall time is billed at the low memory-only rate; and bytecode caching for cold
+  starts. Also learned: **request bodies are 100MB on Fluid, not 4.5MB** — the figure the
+  "never proxy video uploads" decision was built on is outdated. That decision stands on its
+  own merits (client-direct upload is still better), but the stated reason needs correcting.
+  Latency levers are therefore all model-side: `reasoning_effort` on parse/diff, the already-
+  defined `FALLBACK_MODEL` (`gpt-4.1-mini`, non-reasoning) for the parsers, or chunking the JD
+  parse (66s of the 99s). All three trade against gap quality → deferred to Thursday's gold sets.
+- **JD-by-URL cut before it was built, on evidence.** Measured with a browser User-Agent:
+  NBS CareerGO — the posting the demo video opens on — returns **HTTP 302 to a login wall**
+  (145 words, all of it the login page); Lever returns a 297KB JS shell with 30 words;
+  Greenhouse redirects to a board index. LinkedIn was already parked (rule 6). A URL box would
+  fail on our own demo posting and on the most recognizable job sites. → `post-hackathon-ideas.md`.
+- **Screenshot ingestion accepted, but vision is never the source of record.** Timothy's
+  workaround for the login wall is a full-page PNG, so images become a supported input. Measured
+  `gpt-5-mini` transcription of a rendered JD page against known source text: **10 of 49 lines
+  verbatim**, `Intern – BI/AI` (en-dash) → `Intern - BI/AI` (hyphen), and one paragraph split
+  into three lines reproducing the page's visual wrapping. The danger this exposes is specific:
+  feeding vision output into `sourceText` leaves the span invariant **passing** while every
+  receipt quotes text no employer wrote — a green check over a false claim. Structural answer:
+  **all extracted text lands in the editable textarea and the user presses Compile**, so the
+  source of record is always human-confirmed. Applies to every upload mode, one code path.
+  (Bonus robustness datum: an accidental all-black render returned "I can't detect any text in
+  this image" rather than a fabricated posting — kept as a regression check.)
+- **PDF/DOCX/image ingestion approved for BOTH the JD and resume inputs**, client-side, via
+  `pdfjs-dist` + `mammoth` (web/ only; core stays free of them — ground rule 9 sign-off from
+  Timothy). Design: `docs/superpowers/specs/2026-07-28-document-ingestion-design.md`.
