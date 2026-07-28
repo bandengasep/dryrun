@@ -1,0 +1,28 @@
+AI Transformation Engineer
+Company: StarHub Ltd · Location: SG
+
+Role Overview
+As a AI Transformation Engineer, you will help translate AI and automation ideas into working solutions that improve how StarHub's network and operations teams run day to day. You will work alongside senior engineers to build, test, and deploy practical AI use cases — from automating manual workflows to surfacing insights from network and operational data.
+This is a hands-on, learning-focused role for an early-career engineer. You will get broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful.
+
+Key Responsibilities
+1. Building & Delivering AI Solutions
+Support the design, development, and testing of AI and automation use cases under the guidance of senior engineers.
+Build and maintain data pipelines and scripts that prepare, clean, and transform network and operational data for AI models.
+Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools.
+2. Automation & Process Improvement
+Identify repetitive manual tasks across engineering and operations that are good candidates for automation.
+Implement workflow automations and monitor them in production, escalating issues and iterating on improvements.
+3. Data, Testing & Documentation
+Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria.
+Document solutions, data sources, and design decisions so work is reproducible and auditable.
+4. Collaboration & Compliance
+Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing.
+Follow PDPA and internal data-governance practices when handling customer and network data.
+
+Qualifications
+Degree (or final-year / recent graduate) in Computer Science, Data Science, Engineering, or a related field.
+0-2 years; internships, academic projects, or personal projects in AI, data, or automation are welcomed.
+Working knowledge of Python, ML and AI; basic understanding of how LLMs and SLMs are used in applications.
+Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects.
+Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization
