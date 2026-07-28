@@ -6,3 +6,4 @@ export * from "./parsers";
 export * from "./diff";
 export * from "./plan";
 export * from "./session";
+export * from "./ingest";
