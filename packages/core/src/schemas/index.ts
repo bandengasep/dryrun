@@ -191,6 +191,81 @@ export const TranscriptTurn = z.object({
 export type TranscriptTurn = z.infer<typeof TranscriptTurn>;
 
 /**
+ * A verbatim quote from the candidate's own transcript, re-located mechanically
+ * with the same span locator the parsers use. `turnIndex` says which turn, and
+ * `span` indexes into that turn's `text`, so the invariant is identical to the
+ * JD/resume one:
+ *   transcript[turnIndex].text.slice(span.start, span.end) === span.text
+ * `videoTime` is computed arithmetically from the turn's timed words — never
+ * emitted by a model — and is null for text answers.
+ */
+export const TranscriptQuote = z.object({
+  turnIndex: z.number().int().nonnegative(),
+  span: SourceSpan,
+  videoTime: z
+    .object({ startSec: z.number().nonnegative(), endSec: z.number().nonnegative() })
+    .nullable(),
+});
+export type TranscriptQuote = z.infer<typeof TranscriptQuote>;
+
+/**
+ * Something the answer did cover. Every one carries a quote — this is the rule
+ * that makes the debrief auditable rather than assertive. A claim whose quote
+ * fails to re-locate is demoted to `dropped`, never displayed.
+ */
+export const CoveragePoint = z.object({
+  claim: z.string(),
+  quote: TranscriptQuote,
+});
+export type CoveragePoint = z.infer<typeof CoveragePoint>;
+
+/**
+ * Something the answer did not cover. Carries NO quote by design: you cannot
+ * quote an absence. Same precedent as a `missing_skill` gap, whose resume
+ * receipt is null because the silence is the evidence.
+ */
+export const MissedPoint = z.object({
+  claim: z.string(),
+});
+export type MissedPoint = z.infer<typeof MissedPoint>;
+
+/** A coverage claim whose quote could not be found in the transcript. Shown as a count, never hidden. */
+export const DroppedQuote = z.object({
+  questionId: z.string(),
+  claim: z.string(),
+  quote: z.string(),
+  reason: z.literal("quote_not_found"),
+});
+export type DroppedQuote = z.infer<typeof DroppedQuote>;
+
+/**
+ * The debrief for one question. `gapId` is copied from the plan rather than
+ * taken from the model, so the receipt chain question → gap → JD/resume spans
+ * cannot be rewritten at debrief time.
+ */
+export const QuestionDebrief = z.object({
+  questionId: z.string(),
+  gapId: z.string(),
+  summary: z.string(),
+  covered: z.array(CoveragePoint),
+  missed: z.array(MissedPoint),
+  /** False when the candidate never answered — rendered as "not attempted". */
+  attempted: z.boolean(),
+});
+export type QuestionDebrief = z.infer<typeof QuestionDebrief>;
+
+/**
+ * The whole debrief. No scores, no grades, no pass/fail — anywhere, by design.
+ * `dropped` is surfaced in the UI as an honesty footer.
+ */
+export const DebriefReport = z.object({
+  planId: z.string(),
+  perQuestion: z.array(QuestionDebrief),
+  dropped: z.array(DroppedQuote),
+});
+export type DebriefReport = z.infer<typeof DebriefReport>;
+
+/**
  * Request bodies for the stateful-looking-but-stateless session routes. The
  * client holds the session and re-sends it every turn, so these are the shapes
  * that cross the wire repeatedly — defined here so the route validates against
