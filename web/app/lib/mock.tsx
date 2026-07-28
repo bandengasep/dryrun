@@ -132,7 +132,35 @@ function splitLinesWithSpans(sourceText: string): { text: string; span: SourceSp
     cursor = start + trimmed.length;
     out.push({ text: trimmed, span: { start, end: start + trimmed.length, text: trimmed } });
   }
+  // Paragraph paste (a real JD copied from a posting is often one block):
+  // fewer than 3 newline segments means line-splitting carved nothing useful,
+  // so fall back to sentence boundaries — same indexOf-with-cursor span
+  // discipline, so the receipts invariant holds for sentence fragments too.
+  if (out.length < 3) {
+    const sentences = sourceText.match(/[^.!?\n]+[.!?]+/g) ?? [];
+    if (sentences.length >= 3) {
+      const bySentence: { text: string; span: SourceSpan }[] = [];
+      let sCursor = 0;
+      for (const raw of sentences) {
+        const trimmed = raw.trim();
+        if (trimmed.length === 0) continue;
+        const start = sourceText.indexOf(trimmed, sCursor);
+        if (start === -1) continue;
+        sCursor = start + trimmed.length;
+        bySentence.push({
+          text: trimmed,
+          span: { start, end: start + trimmed.length, text: trimmed },
+        });
+      }
+      return bySentence;
+    }
+  }
   return out;
+}
+
+/** Shorten a quoted span for prose templates — receipts stay full-length. */
+function shortQuote(text: string, max = 64): string {
+  return text.length <= max ? text : `${text.slice(0, max).trimEnd()}…`;
 }
 
 // ---------------------------------------------------------------------------
@@ -252,18 +280,18 @@ export function mockPlan(compile: CompileResult): SessionPlan {
         id: `q-${questions.length + 1}`,
         kind: "behavioral",
         gapId: gap.id,
-        question: `Tell me about a specific time you worked with "${gap.jdSpan.text}". Walk me through what you did.`,
+        question: `Tell me about a specific time you worked with "${shortQuote(gap.jdSpan.text)}". Walk me through what you did.`,
         starHints: { ...STAR_HINTS_TEMPLATE },
-        rationale: `Offline mock: keyword overlap suggested only partial coverage of "${gap.jdSpan.text}" — this probes how deep it actually goes.`,
+        rationale: `Offline mock: keyword overlap suggested only partial coverage of "${shortQuote(gap.jdSpan.text)}" — this probes how deep it actually goes.`,
       });
     } else if (gap.kind === "missing_skill") {
       questions.push({
         id: `q-${questions.length + 1}`,
         kind: "conceptual",
         gapId: gap.id,
-        question: `The role asks for "${gap.jdSpan.text}", and nothing in your resume shared a keyword with it. How would you approach it?`,
+        question: `The role asks for "${shortQuote(gap.jdSpan.text)}", and nothing in your resume shared a keyword with it. How would you approach it?`,
         starHints: null,
-        rationale: `Offline mock: no resume line overlapped "${gap.jdSpan.text}" by keyword — a conceptual check instead of a story.`,
+        rationale: `Offline mock: no resume line overlapped "${shortQuote(gap.jdSpan.text)}" by keyword — a conceptual check instead of a story.`,
       });
     } else if (gap.kind === "strong_differentiator") {
       if (flexUsed) continue;
@@ -272,9 +300,9 @@ export function mockPlan(compile: CompileResult): SessionPlan {
         id: `q-${questions.length + 1}`,
         kind: "conceptual",
         gapId: gap.id,
-        question: `Your resume shows strong keyword overlap on "${gap.jdSpan.text}". What's the most advanced thing you've done with it?`,
+        question: `Your resume shows strong keyword overlap on "${shortQuote(gap.jdSpan.text)}". What's the most advanced thing you've done with it?`,
         starHints: null,
-        rationale: `Offline mock: keyword overlap was strongest here — one flex question on "${gap.jdSpan.text}".`,
+        rationale: `Offline mock: keyword overlap was strongest here — one flex question on "${shortQuote(gap.jdSpan.text)}".`,
       });
     }
   }

@@ -10,12 +10,16 @@ import { ensureMockFlagFromUrl, mockCompile, mockEnabled, MockBanner } from "../
 import StageTrace, { type StageRow } from "../components/StageTrace";
 import styles from "./compile.module.css";
 
-const SAMPLE_JD =
-  "Senior Backend Engineer. You will design scalable distributed systems and REST APIs. " +
-  "Strong Python and SQL required. Experience with system design, algorithms, AWS and Docker. 5+ years.";
-const SAMPLE_RESUME =
-  "Software engineer with 3 years building Python services and REST APIs. " +
-  "Comfortable with Docker and some SQL. Built graph and tree algorithms at university.";
+const SAMPLE_JD = `Senior Backend Engineer — Platform Team
+Design scalable distributed systems and REST APIs serving production traffic.
+Strong Python and SQL required for data-heavy services.
+Experience with system design and algorithms at scale.
+Deploy and operate services on AWS with Docker.
+5+ years of professional backend experience.`;
+const SAMPLE_RESUME = `Software engineer with 3 years building Python services and REST APIs.
+Shipped containerized services with Docker in a small platform team.
+Comfortable with SQL for reporting queries and joins.
+Built graph and tree algorithms for a university research project.`;
 
 /** Every format the extraction seam understands — both the file-picker's
  *  `accept` attribute and drag-and-drop (which the accept attribute cannot
