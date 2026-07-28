@@ -320,6 +320,23 @@ and two of these miss targets that were locked on 26 Jul.
   link can view" is therefore a property of our route's behaviour, not of a public table policy
   that could later be widened by accident. Write-once: no update or delete path exists, so a
   shared link cannot be altered after it is handed out.
+## 2026-07-29
+
+- **VIDEO: NO-GO, called Wed 00:45 — 14 hours ahead of the pre-committed 15:00 gate.** Evidence:
+  zero transport code existed (no `videodb` dep, no Recorder, no `NEXT_PUBLIC_ENABLE_VIDEO` in code)
+  while the session/debrief PAGES were also still unbuilt and evals were a stub. The substrate
+  (TimedWord, TranscriptTurn.mode/videoId/timedWords, joinTimedWords, timeForSpan, debrief
+  videoTime — 14 passing timeline tests) ships dormant, so the debrief loses only timestamps,
+  exactly as the gate was designed. Timothy's call on recommendation. VideoDB → post-hackathon.
+- **Finish-line plan adopted (docs/superpowers/plans/2026-07-29-finish-line-plan.md):** six
+  parallel lanes under one-writer-per-file ownership — A ingest wiring + ?mock=1 · B /session ·
+  C /debrief + /debrief/[id] · D landing (full 9-section spec) · E evals (P0) · F docs/cleanups.
+  Both ROUTE_READY booleans flip in ONE integration commit after live E2E. Latency policy
+  pre-committed: levers (reasoning_effort, prompt trim) adopted only if gold precision ≥0.8 /
+  recall ≥0.7 hold, else targets restated with measurements. Gold corpus target: 8 pairs,
+  Timothy adjudicates Wed evening. Implementation lanes run on Sonnet (Fable orchestrates only)
+  to conserve weekly limits — Timothy's ask, Wed 00:50.
+
 - **Debrief meets its latency target — the first one that does.** 22.7s against ≤45s, on a
   2-question session. Live output: 5 covered points, every quote slicing back to the candidate's
   own turn (`turn.text.slice(start,end) === span.text`) and every one attributable to the
