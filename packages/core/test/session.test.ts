@@ -4,6 +4,7 @@ import {
   splitReplyAndMeta,
   SessionError,
   MAX_FOLLOWUPS,
+  KICKOFF_USER_MESSAGE,
 } from "../src/session";
 import type { Gap, SessionPlan, TranscriptTurn } from "../src/schemas";
 
@@ -212,5 +213,45 @@ describe("buildInterviewerMessages — core owns the prompt, web owns transport"
       questionIndex: 0,
     });
     expect(messages.every((m) => m.content.trim().length > 0)).toBe(true);
+  });
+});
+
+describe("buildInterviewerMessages — provider compatibility floor", () => {
+  // Agnes rejects a system-only messages array with
+  //   400 "No user query found in messages."
+  // whereas OpenAI accepts it. The first turn of every interview has an empty
+  // transcript, so without this the opening question — the most visible moment
+  // in the demo — would always fail over off the Agnes lane.
+  it("always includes at least one user message, even with an empty transcript", () => {
+    const messages = buildInterviewerMessages({ plan: PLAN, transcript: [], questionIndex: 0 });
+    expect(messages.some((m) => m.role === "user")).toBe(true);
+  });
+
+  it("appends the kickoff only when the transcript has no candidate turn", () => {
+    const withCandidate = buildInterviewerMessages({
+      plan: PLAN,
+      transcript: [turn("interviewer", "Q?"), turn("candidate", "My answer.")],
+      questionIndex: 0,
+    });
+    expect(withCandidate.filter((m) => m.content === KICKOFF_USER_MESSAGE)).toHaveLength(0);
+  });
+
+  it("appends the kickoff when the transcript holds only interviewer turns", () => {
+    const messages = buildInterviewerMessages({
+      plan: PLAN,
+      transcript: [turn("interviewer", "Welcome.")],
+      questionIndex: 0,
+    });
+    expect(messages[messages.length - 1]).toEqual({
+      role: "user",
+      content: KICKOFF_USER_MESSAGE,
+    });
+  });
+
+  it("marks the kickoff as stage direction so it can never read as a candidate quote", () => {
+    // The debrief quotes candidate turns verbatim. Synthetic text must be
+    // unmistakable even though it never enters the transcript.
+    expect(KICKOFF_USER_MESSAGE.startsWith("(")).toBe(true);
+    expect(KICKOFF_USER_MESSAGE.endsWith(")")).toBe(true);
   });
 });

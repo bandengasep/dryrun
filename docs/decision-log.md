@@ -293,3 +293,21 @@ and two of these miss targets that were locked on 26 Jul.
 - **PDF/DOCX/image ingestion approved for BOTH the JD and resume inputs**, client-side, via
   `pdfjs-dist` + `mammoth` (web/ only; core stays free of them — ground rule 9 sign-off from
   Timothy). Design: `docs/superpowers/specs/2026-07-28-document-ingestion-design.md`.
+- **Agnes rejects a system-only messages array — found by live smoke, fixed in core.**
+  `400 {"message":"No user query found in messages."}` where OpenAI accepts the same payload.
+  The first turn of every interview has an empty transcript, so `buildInterviewerMessages`
+  returned exactly one system message and **every opening question silently failed over to
+  OpenAI** — losing the Agnes lane at precisely the moment the demo is watching. Fix:
+  `KICKOFF_USER_MESSAGE`, a bracketed stage direction (`"(The candidate is ready. Ask your
+  question.)"`) appended as a `user` message whenever the transcript holds no candidate turn.
+  Deliberately not first-person and never written into the transcript, so the debrief — which
+  quotes candidate turns verbatim — can never pick it up. After the fix the turn route reports
+  `provider: agnes, failover: false`. This is the second Agnes-vs-OpenAI incompatibility found
+  by measurement rather than docs; both were invisible to schema/type checking.
+- **⚠ First-turn-token target missed on BOTH providers.** Locked target ≤3s. Measured through
+  the route (dev server, 562-token prompt): Agnes **6.25s / 6.14s / 0.55s** across three
+  identical runs — the outlier looks like gateway-side caching, so ~6.2s is the honest figure.
+  The earlier 1.235s direct probe used a 265-token prompt, so the system prompt's size is
+  implicated. Cheapest untried lever is trimming the interviewer system prompt (currently
+  ~1.2k chars incl. gap receipts). Recorded rather than quietly re-baselined; the failover lane
+  already pins `reasoning_effort:"minimal"` for the same reason.

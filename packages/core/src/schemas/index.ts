@@ -190,6 +190,25 @@ export const TranscriptTurn = z.object({
 });
 export type TranscriptTurn = z.infer<typeof TranscriptTurn>;
 
+/**
+ * Request bodies for the stateful-looking-but-stateless session routes. The
+ * client holds the session and re-sends it every turn, so these are the shapes
+ * that cross the wire repeatedly — defined here so the route validates against
+ * the same definition the client built from.
+ */
+export const SessionTurnRequest = z.object({
+  plan: SessionPlan,
+  transcript: z.array(TranscriptTurn),
+  questionIndex: z.number().int().nonnegative(),
+});
+export type SessionTurnRequest = z.infer<typeof SessionTurnRequest>;
+
+export const DebriefRequest = z.object({
+  plan: SessionPlan,
+  transcript: z.array(TranscriptTurn),
+});
+export type DebriefRequest = z.infer<typeof DebriefRequest>;
+
 /** JSON-safe subset of SQLite values used in challenge expectations. */
 export const SqlValue = z.union([z.string(), z.number(), z.null()]);
 export type SqlValue = z.infer<typeof SqlValue>;

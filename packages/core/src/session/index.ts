@@ -22,6 +22,23 @@ export class SessionError extends Error {}
 /** Follow-ups the client allows per question before forcing an advance. */
 export const MAX_FOLLOWUPS = 2;
 
+/**
+ * Appended as a `user` message when the transcript contains no candidate turn.
+ *
+ * Agnes rejects a messages array with no user message —
+ * `400 "No user query found in messages."` — where OpenAI accepts one. The
+ * first turn of every interview has an empty transcript, so without this the
+ * opening question would fail over to OpenAI every single time, silently
+ * costing the Agnes lane exactly the moment the demo is watching. (Measured
+ * 28 Jul against the live gateway.)
+ *
+ * Written as bracketed stage direction, never as a first-person line, so it
+ * cannot be mistaken for something the candidate said. It exists only in the
+ * model's context — it is never appended to the transcript, so the debrief,
+ * which quotes candidate turns verbatim, can never see it.
+ */
+export const KICKOFF_USER_MESSAGE = "(The candidate is ready. Ask your question.)";
+
 export const TURN_ACTIONS = ["ask_followup", "advance", "wrap_up"] as const;
 export type TurnAction = (typeof TURN_ACTIONS)[number];
 
@@ -105,6 +122,11 @@ export function buildInterviewerMessages(state: SessionState): ChatMessage[] {
       role: t.role === "interviewer" ? "assistant" : "user",
       content: t.text,
     });
+  }
+  // Guarantee a user message exists — see KICKOFF_USER_MESSAGE. This is a
+  // provider-compatibility floor, not a prompt choice.
+  if (!messages.some((m) => m.role === "user")) {
+    messages.push({ role: "user", content: KICKOFF_USER_MESSAGE });
   }
   return messages;
 }
