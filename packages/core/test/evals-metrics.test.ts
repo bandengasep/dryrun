@@ -238,16 +238,24 @@ describe("meanPairwiseJaccard", () => {
 });
 
 describe("PRICES / costUSD", () => {
-  it("never has an invented (non-null) price value on file", () => {
+  it("every price entry cites a source; no price exists without one", () => {
     for (const price of Object.values(PRICES)) {
-      expect(price.inPerM).toBeNull();
-      expect(price.outPerM).toBeNull();
-      expect(price.source).toMatch(/orchestrator/i);
+      expect(price.source.length).toBeGreaterThan(10);
+      // A half-filled price would silently miscost calls: in and out are
+      // filled together or not at all (0 is a legitimate rate — embeddings
+      // bill no output tokens — null is "no price on file").
+      expect(price.inPerM === null).toBe(price.outPerM === null);
     }
   });
 
+  it("prices a known model from the table (worked example, pinned)", () => {
+    // gpt-5-mini at $0.25/M in + $2.00/M out → 1k tokens each way = $0.00225
+    expect(costUSD("gpt-5-mini", { inputTokens: 1000, outputTokens: 1000 })).toBeCloseTo(0.00225, 6);
+  });
+
   it("returns null for a model with no price on file", () => {
-    expect(costUSD("gpt-5-mini", { inputTokens: 1000, outputTokens: 1000 })).toBeNull();
+    // gpt-4.1-mini is deliberately unpriced (rare fallback; tokens still reported)
+    expect(costUSD("gpt-4.1-mini", { inputTokens: 1000, outputTokens: 1000 })).toBeNull();
   });
 
   it("returns null for a completely unknown model id", () => {
