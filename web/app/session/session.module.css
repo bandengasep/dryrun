@@ -1,0 +1,181 @@
+/* Layout note: .site-header (globals.css) runs ~65px tall (16px vertical
+   padding + a ~34px row). The shell below targets the remaining viewport so
+   the chat stream can own its own internal scroll rather than the whole page
+   scrolling — exact to a few px, close enough that nothing clips in practice. */
+.shell {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - 65px);
+}
+
+.railWrap {
+  border-right: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  min-height: 0;
+  overflow: hidden;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  min-width: 0;
+}
+
+/* ---------- Top bar ---------- */
+
+.topbar {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-6);
+  border-bottom: 1px solid var(--hairline);
+  background-color: var(--color-surface);
+}
+
+.topbarLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.progress {
+  color: var(--color-muted);
+}
+
+.topbarRight {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+.usage {
+  color: var(--color-muted);
+}
+
+.endQuiet {
+  background: none;
+  border: none;
+  color: var(--color-text-2);
+  font-size: var(--text-sm);
+  cursor: pointer;
+  font-family: inherit;
+  padding: 0;
+}
+.endQuiet:hover {
+  color: var(--color-missing);
+}
+
+.endConfirmRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.endConfirmLabel {
+  color: var(--color-text-2);
+  font-size: var(--text-sm);
+}
+
+/* ---------- Error banner ----------
+   The transcript stays on screen — this sits between it and the composer, the
+   same coral-on-tint treatment /plan uses for a failed compile. A stream
+   failure never erases the conversation that already happened. */
+
+.errorBanner {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  flex-wrap: wrap;
+  background-color: rgba(192, 83, 83, 0.06);
+  border-top: 1px solid var(--color-missing);
+  padding: var(--spacing-4) var(--spacing-6);
+}
+
+.errorTitle {
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin: 0;
+}
+
+.errorMessage {
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  line-height: 18px;
+  color: var(--color-text-2);
+  margin: var(--spacing-1) 0 0;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Wrapped panel ---------- */
+
+.wrappedPanel {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-6);
+  flex-wrap: wrap;
+  padding: var(--spacing-6);
+  border-top: 1px solid var(--hairline);
+  background-color: var(--color-surface);
+}
+
+.wrappedTitle {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: -0.3px;
+  color: var(--color-text);
+  margin: 0 0 var(--spacing-1);
+}
+
+.wrappedBody {
+  font-size: var(--text-sm);
+  line-height: 20px;
+  color: var(--color-text-2);
+  margin: 0;
+  max-width: 480px;
+}
+
+/* ---------- No-plan guard ---------- */
+
+.guard {
+  max-width: var(--container-content);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-12) var(--spacing-6) var(--spacing-16);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  align-items: flex-start;
+}
+
+.guardTitle {
+  margin: 0;
+}
+
+.guardSubtitle {
+  margin: 0 0 var(--spacing-2);
+  max-width: 560px;
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+  .railWrap {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    max-height: 240px;
+    overflow-y: auto;
+  }
+}

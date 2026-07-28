@@ -1,0 +1,21 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  color: var(--color-text-2);
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  flex-shrink: 0;
+}
+
+.ok {
+  background-color: var(--color-strong);
+}
+
+.failover {
+  background-color: var(--color-weak);
+}

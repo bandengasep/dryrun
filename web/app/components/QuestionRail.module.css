@@ -1,0 +1,95 @@
+.rail {
+  height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-4) var(--spacing-3);
+  gap: var(--spacing-1);
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3);
+  border-radius: var(--radius-md);
+}
+
+.itemCurrent {
+  background-color: var(--primary-06);
+}
+
+.itemDone {
+  opacity: 0.85;
+}
+
+.itemUpcoming {
+  opacity: 0.6;
+}
+
+/* ---------- Status dot ----------
+   done = moss (the same "resolved" colour the gap chips use), current =
+   ink-blue primary, upcoming = a hollow ring — three distinct shapes, not
+   just three colours, so the state reads even without colour. */
+
+.dot {
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-top: 5px;
+  border-radius: var(--radius-full);
+}
+
+.dotDone {
+  background-color: var(--color-strong);
+}
+
+.dotCurrent {
+  background-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--primary-10);
+}
+
+.dotUpcoming {
+  background-color: transparent;
+  border: 1.5px solid var(--color-border-strong);
+}
+
+.body {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.qid {
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+.label {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: 18px;
+  color: var(--color-text);
+}
+
+.itemCurrent .label {
+  font-weight: var(--font-weight-medium);
+}
+
+.why {
+  align-self: flex-start;
+  margin-top: 2px;
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  cursor: pointer;
+  font-family: inherit;
+}
+.why:hover {
+  text-decoration: underline;
+}
