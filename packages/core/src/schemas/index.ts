@@ -284,6 +284,19 @@ export const DebriefRequest = z.object({
 });
 export type DebriefRequest = z.infer<typeof DebriefRequest>;
 
+/**
+ * The payload of the one deliberate server-side write in the product: the
+ * user-clicked "Save & share debrief". Everything else in flight is client-held.
+ * Validated on the way in and again on the way out, because a shared link
+ * renders from whatever the database returns.
+ */
+export const SavedSession = z.object({
+  plan: SessionPlan,
+  transcript: z.array(TranscriptTurn),
+  debrief: DebriefReport,
+});
+export type SavedSession = z.infer<typeof SavedSession>;
+
 /** JSON-safe subset of SQLite values used in challenge expectations. */
 export const SqlValue = z.union([z.string(), z.number(), z.null()]);
 export type SqlValue = z.infer<typeof SqlValue>;

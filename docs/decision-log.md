@@ -311,3 +311,19 @@ and two of these miss targets that were locked on 26 Jul.
   implicated. Cheapest untried lever is trimming the interviewer system prompt (currently
   ~1.2k chars incl. gap receipts). Recorded rather than quietly re-baselined; the failover lane
   already pins `reasoning_effort:"minimal"` for the same reason.
+- **Debrief, session-turn and save routes landed; `sessions` RLS verified by probe, not assumed.**
+  The table Timothy created has RLS enabled with **no policies**, which is the right shape for
+  this design: the publishable key can neither read nor write, so every access is mediated
+  server-side by `SUPABASE_SECRET_KEY`. Verified against the live project rather than reasoned
+  about — anon `GET /rest/v1/sessions?id=eq.<real id>` returns `[]` and anon `POST` returns
+  **401**, while the server route saved and returned a shareable id in 2.1s. "Anyone with the
+  link can view" is therefore a property of our route's behaviour, not of a public table policy
+  that could later be widened by accident. Write-once: no update or delete path exists, so a
+  shared link cannot be altered after it is handed out.
+- **Debrief meets its latency target — the first one that does.** 22.7s against ≤45s, on a
+  2-question session. Live output: 5 covered points, every quote slicing back to the candidate's
+  own turn (`turn.text.slice(start,end) === span.text`) and every one attributable to the
+  candidate rather than the interviewer; 9 missed points carrying no quotes; the unanswered
+  question marked not-attempted without a model call; 0 dropped. Quality note for Thursday: 9
+  missed points for one answer is verbose and should probably be capped — not a correctness
+  issue, so logged rather than patched mid-build.
