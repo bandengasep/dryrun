@@ -2,7 +2,7 @@
 // is arithmetic over data the client already holds, so a receipt can never be
 // something the UI made up while rendering.
 
-import type { CompileResult, Gap, GapKind, SourceSpan } from "@dryrun/core";
+import type { CompileResult, Gap, GapKind, SessionPlan, SourceSpan } from "@dryrun/core";
 
 export const KIND_LABEL: Record<GapKind, string> = {
   missing_skill: "missing",
@@ -67,4 +67,22 @@ export function gapTitle(gap: Gap, compile: CompileResult | null): string {
  */
 export function spanMatchesSource(sourceText: string, span: SourceSpan): boolean {
   return sourceText.slice(span.start, span.end) === span.text;
+}
+
+/**
+ * Reshape a SessionPlan into the CompileResult shape ReceiptsDrawer expects,
+ * so /debrief can reuse the exact same drawer /plan uses rather than building
+ * a second "show me what this is based on" component.
+ *
+ * `lines` and `dropped` come back empty on purpose: ReceiptsDrawer and
+ * gapTitle only ever read `sourceText` and the gap's own spans — the
+ * requirement-line lookup in gapTitle falls back to `gap.jdSpan.text` when a
+ * line can't be resolved, which is exactly what happens here, honestly.
+ */
+export function planToCompileShape(plan: SessionPlan): CompileResult {
+  return {
+    jd: { sourceText: plan.jdText, lines: [], dropped: [] },
+    resume: { sourceText: plan.resumeText, lines: [], dropped: [] },
+    gaps: plan.gaps,
+  };
 }
