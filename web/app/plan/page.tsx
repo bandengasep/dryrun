@@ -14,6 +14,7 @@ import type { Gap, InterviewQuestion, SessionPlan } from "@dryrun/core";
 import { useSession, useSessionDispatch, gapForQuestion } from "../lib/session-state";
 import { countByKind, KIND_ORDER, KIND_PLURAL } from "../lib/receipts";
 import { ROUTE_READY } from "../lib/routes";
+import { ensureMockFlagFromUrl, mockEnabled, mockPlan, MockBanner } from "../lib/mock";
 import GapCard from "../components/GapCard";
 import QuestionCard from "../components/QuestionCard";
 import ReceiptsDrawer from "../components/ReceiptsDrawer";
@@ -41,9 +42,44 @@ export default function PlanScreen() {
   // compiles twice and we pay for it twice.
   const requested = useRef(false);
 
+  // Read after mount only — the server has no sessionStorage, so reading the
+  // flag during the first client render would disagree with the server's
+  // always-false render and trip a hydration mismatch. Also latches ?mock=1
+  // in case this page is the mock entry point (e.g. a shared link).
+  //
+  // `mockReady` gates the auto-compile effect below on this resolving first.
+  // Without it, the auto-compile effect's own mount pass fires in the same
+  // commit as this one but reads the pre-update `mock = false` closure — the
+  // `requested` ref latches on that first pass, so it would call the real
+  // /api/plan fetch once and never retry with the correct (mock) branch.
+  const [mock, setMock] = useState(false);
+  const [mockReady, setMockReady] = useState(false);
+  useEffect(() => {
+    ensureMockFlagFromUrl();
+    setMock(mockEnabled());
+    setMockReady(true);
+  }, []);
+
   const compilePlan = useCallback(async () => {
     if (!compile) return;
     setStatus({ phase: "compiling" });
+
+    // Offline demo mode: synthesize the plan client-side by keyword overlap
+    // instead of POSTing /api/plan — no network, no model call.
+    if (mock) {
+      try {
+        dispatch({ type: "plan/set", plan: mockPlan(compile) });
+        setStatus({ phase: "ready" });
+      } catch (e) {
+        setStatus({
+          phase: "error",
+          message: e instanceof Error ? e.message : String(e),
+          kind: "generic",
+        });
+      }
+      return;
+    }
+
     try {
       const res = await fetch("/api/plan", {
         method: "POST",
@@ -68,14 +104,15 @@ export default function PlanScreen() {
         kind: "generic",
       });
     }
-  }, [compile, dispatch]);
+  }, [compile, dispatch, mock]);
 
   useEffect(() => {
+    if (!mockReady) return;
     if (!compile || plan || requested.current) return;
     if (compile.gaps.length === 0) return;
     requested.current = true;
     void compilePlan();
-  }, [compile, plan, compilePlan]);
+  }, [compile, plan, compilePlan, mockReady]);
 
   const retry = () => {
     requested.current = true;
@@ -108,6 +145,8 @@ export default function PlanScreen() {
   return (
     <main className="app-main">
       <div className={styles.content}>
+        {mock && <MockBanner />}
+
         <header className={styles.header}>
           <p className="kicker">
             Session plan · compiled from {compile.gaps.length}{" "}
