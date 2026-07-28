@@ -12,6 +12,6 @@
  * it is a real runtime decision that survives the Wednesday go/no-go.)
  */
 export const ROUTE_READY = {
-  session: false,
-  debrief: false,
+  session: true,
+  debrief: true,
 } as const;
