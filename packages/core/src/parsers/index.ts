@@ -25,6 +25,13 @@ export interface ParserOptions {
   client: OpenAI;
   /** Override the runtime model (stack lock: gpt-5-mini, fallback gpt-4.1-mini). */
   model?: string;
+  /**
+   * Spread LAST into the responses.parse request params (e.g.
+   * `{ reasoning: { effort: "low" } }`). Eval-only lever for the
+   * latency-vs-quality tradeoff on the receipts-critical parse stage — never
+   * set by product code.
+   */
+  requestOverrides?: Record<string, unknown>;
 }
 
 /** Raised when the model returns no structured output (refusal/empty). */
@@ -54,6 +61,7 @@ export async function parseJD(
       { role: "user", content: jdText },
     ],
     text: { format: zodTextFormat(JDWire, "jd_requirements") },
+    ...opts.requestOverrides,
   });
   const wire = response.output_parsed;
   if (!wire) {
@@ -92,6 +100,7 @@ export async function parseResume(
       { role: "user", content: resumeText },
     ],
     text: { format: zodTextFormat(ResumeWire, "resume_lines") },
+    ...opts.requestOverrides,
   });
   const wire = response.output_parsed;
   if (!wire) {
