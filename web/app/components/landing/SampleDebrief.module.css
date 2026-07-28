@@ -1,0 +1,128 @@
+.section {
+  background-color: var(--color-bg);
+  padding: 96px var(--spacing-6);
+  display: flex;
+  justify-content: center;
+}
+
+.content {
+  max-width: 1128px;
+  width: 100%;
+}
+
+.heading {
+  max-width: 640px;
+  margin: var(--spacing-3) 0 0;
+  color: var(--color-text);
+}
+
+.sub {
+  max-width: 580px;
+  margin: var(--spacing-4) 0 0;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  color: var(--color-text-2);
+}
+
+.card {
+  margin-top: var(--spacing-10);
+  max-width: 640px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-6);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-5);
+}
+
+.question {
+  margin: 0 0 var(--spacing-1);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  padding-bottom: var(--spacing-4);
+  border-bottom: 1px solid var(--hairline);
+}
+
+.row {
+  display: flex;
+  gap: var(--spacing-4);
+}
+
+.tag {
+  flex-shrink: 0;
+  width: 76px;
+  height: fit-content;
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.tagCovered {
+  color: var(--color-strong);
+  background-color: rgba(62, 125, 99, 0.1);
+}
+
+.tagMissed {
+  color: var(--color-muted);
+  background-color: var(--color-surface-2);
+}
+
+.rowBody {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.quoteChip {
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.quoteText {
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  line-height: var(--leading-snug);
+}
+
+.quoteMeta {
+  align-self: flex-start;
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+.rowNote {
+  margin: 0;
+  font-size: var(--text-sm);
+  line-height: var(--leading-body);
+  color: var(--color-text-2);
+}
+
+.footerNote {
+  margin: var(--spacing-6) 0 0;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+@media (max-width: 560px) {
+  .row {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+  .tag {
+    width: fit-content;
+  }
+}

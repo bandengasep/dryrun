@@ -156,11 +156,11 @@ export function meanPairwiseJaccard(runs: Gap[][]): number {
  * number (see AGENTS.md rule 5: verify before recommending).
  */
 export const PRICES: Record<string, { inPerM: number | null; outPerM: number | null; source: string }> = {
-  "gpt-5-mini": { inPerM: null, outPerM: null, source: "orchestrator fills from published pricing" },
-  "gpt-4.1-mini": { inPerM: null, outPerM: null, source: "orchestrator fills from published pricing" },
-  "text-embedding-3-small": { inPerM: null, outPerM: null, source: "orchestrator fills from published pricing" },
-  "agnes-2.0-flash": { inPerM: null, outPerM: null, source: "orchestrator fills from published pricing" },
-  "agnes-2.5-pro-alpha": { inPerM: null, outPerM: null, source: "orchestrator fills from published pricing" },
+  "gpt-5-mini": { inPerM: 0.25, outPerM: 2.0, source: "OpenAI standard API rate per 1M tokens, cross-checked against two trackers 29 Jul 2026; sanity-check against the billed invoice before the write-up" },
+  "gpt-4.1-mini": { inPerM: null, outPerM: null, source: "fallback model, rarely invoked — left unpriced rather than guessed; tokens still reported" },
+  "text-embedding-3-small": { inPerM: 0.02, outPerM: 0.0, source: "long-published OpenAI embedding rate per 1M tokens; output tokens are not billed for embeddings" },
+  "agnes-2.0-flash": { inPerM: null, outPerM: null, source: "Agnes publishes no per-token price (free tier) — cost reported as null, tokens reported exactly" },
+  "agnes-2.5-pro-alpha": { inPerM: null, outPerM: null, source: "Agnes publishes no per-token price — cost null, tokens exact" },
 };
 
 export interface CallUsage {
