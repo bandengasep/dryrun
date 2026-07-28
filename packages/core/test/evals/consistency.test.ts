@@ -36,22 +36,42 @@ describe.skipIf(!evalsEnabled)("consistency — run-to-run Jaccard stability of 
           parseResume(pair.resumeText, { client }),
         ]);
 
+        // A run where the citation guard rejects the adjudication (DiffError)
+        // is DATA, not a crash: it is exactly the per-run reliability rate the
+        // guard exists to expose. Count it, report it, and compute Jaccard
+        // over the runs that survived — killing the whole suite on one
+        // rejected run (as this suite originally did) hid the number.
         let completed = 0;
-        const runs = await runPool(RUNS_PER_PAIR, CONCURRENCY, async () => {
-          const gaps = await diffGaps(jd, resume, { client });
-          completed++;
-          console.log(`[consistency] pair-${pair.n}: run ${completed}/${RUNS_PER_PAIR} done (${gaps.length} gaps)`);
-          return gaps;
+        const outcomes = await runPool(RUNS_PER_PAIR, CONCURRENCY, async () => {
+          try {
+            const gaps = await diffGaps(jd, resume, { client });
+            completed++;
+            console.log(`[consistency] pair-${pair.n}: run ${completed}/${RUNS_PER_PAIR} done (${gaps.length} gaps)`);
+            return { ok: true as const, gaps };
+          } catch (e) {
+            completed++;
+            const message = e instanceof Error ? e.message : String(e);
+            console.log(`[consistency] pair-${pair.n}: run ${completed}/${RUNS_PER_PAIR} GUARD-REJECTED — ${message}`);
+            return { ok: false as const, message };
+          }
         });
 
-        const meanJaccard = meanPairwiseJaccard(runs);
+        const okRuns = outcomes.filter((o) => o.ok).map((o) => o.gaps);
+        const rejected = outcomes.filter((o) => !o.ok);
+        const meanJaccard = okRuns.length >= 2 ? meanPairwiseJaccard(okRuns) : null;
         perPair.push({
           n: pair.n,
-          runs: runs.length,
-          gapCounts: runs.map((r) => r.length),
+          runsAttempted: outcomes.length,
+          runsSucceeded: okRuns.length,
+          guardRejectedRuns: rejected.length,
+          guardRejectionMessages: rejected.map((r) => r.message),
+          gapCounts: okRuns.map((r) => r.length),
           meanPairwiseJaccard: meanJaccard,
         });
-        console.log(`[consistency] pair-${pair.n}: meanPairwiseJaccard=${meanJaccard.toFixed(3)}`);
+        console.log(
+          `[consistency] pair-${pair.n}: meanPairwiseJaccard=${meanJaccard === null ? "n/a" : meanJaccard.toFixed(3)} ` +
+            `(${okRuns.length}/${outcomes.length} runs survived the guard)`,
+        );
       }
 
       writeResult("consistency", {
