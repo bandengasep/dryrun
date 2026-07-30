@@ -5,7 +5,8 @@ import {
   buildInterviewerMessages,
   splitReplyAndMeta,
 } from "@dryrun/core";
-import { sseResponse, type SSEEmit } from "../../../lib/stream";
+import type { SSEEmit } from "../../../lib/stream";
+import { sseResponse } from "../../../lib/sse-response";
 import {
   makeInterviewerLane,
   makeOpenAILane,
@@ -65,9 +66,13 @@ export async function POST(req: Request) {
   // Built before the stream opens: a bad index should be an HTTP 400, not an
   // error event the client has to unpack.
   const messages = buildInterviewerMessages({ plan, transcript, questionIndex });
+  const langfuseOpts = {
+    route: "session-turn",
+    metadata: { questionIndex, transcriptTurns: transcript.length },
+  };
 
   return sseResponse(async (emit) => {
-    const primary = makeInterviewerLane();
+    const primary = makeInterviewerLane(langfuseOpts);
     let full: string;
 
     try {
@@ -78,7 +83,7 @@ export async function POST(req: Request) {
       // tokens are out, retrying would duplicate half a sentence — so a
       // mid-stream failure rethrows and surfaces as an `error` event.
       if (primary.provider !== "agnes") throw primaryError;
-      full = await streamTurn(makeOpenAILane(), messages, emit, true);
+      full = await streamTurn(makeOpenAILane(langfuseOpts), messages, emit, true);
     }
 
     // The model SUGGESTS what happens next; the client decides and enforces the

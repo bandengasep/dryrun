@@ -28,7 +28,7 @@ describe.skipIf(!evalsEnabled)("grounding — plan-compile pre-guard rates", () 
 
       for (const pair of pairs) {
         const client = new OpenAI();
-        const metered = makeMeteredClient(client);
+        const metered = makeMeteredClient(client, { suite: "grounding", pair: pair.n });
 
         const [jd, resume] = await Promise.all([
           parseJD(pair.jdText, { client: metered.client }),
@@ -70,12 +70,24 @@ describe.skipIf(!evalsEnabled)("grounding — plan-compile pre-guard rates", () 
         );
       }
 
-      writeResult("grounding", {
-        corpus: pairs.map((p) => p.n),
-        config: { model: "gpt-5-mini (default)" },
-        metrics: {},
-        perPair,
-      });
+      const groundingRates = perPair
+        .map((p) => (p as { grounding?: { rate: number } }).grounding?.rate)
+        .filter((r): r is number => typeof r === "number");
+      const starRates = perPair
+        .map((p) => (p as { star?: number }).star)
+        .filter((r): r is number => typeof r === "number");
+      const mean = (xs: number[]) => (xs.length === 0 ? null : xs.reduce((a, b) => a + b, 0) / xs.length);
+
+      await writeResult(
+        "grounding",
+        {
+          corpus: pairs.map((p) => p.n),
+          config: { model: "gpt-5-mini (default)" },
+          metrics: {},
+          perPair,
+        },
+        { grounding_rate: mean(groundingRates), star_compliance_rate: mean(starRates) },
+      );
     },
   );
 });

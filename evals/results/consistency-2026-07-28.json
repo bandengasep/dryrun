@@ -1,0 +1,77 @@
+{
+  "startedAt": "2026-07-28T18:04:52.883Z",
+  "gitCommit": "edbf36c3e0f38103976cd4bae545ad70b4e5c2a9",
+  "corpus": [
+    "01",
+    "04"
+  ],
+  "config": {
+    "runsPerPair": 20,
+    "concurrency": 4,
+    "model": "gpt-5-mini (default)"
+  },
+  "metrics": {},
+  "perPair": [
+    {
+      "n": "01",
+      "runsAttempted": 20,
+      "runsSucceeded": 20,
+      "guardRejectedRuns": 0,
+      "guardRejectionMessages": [],
+      "gapCounts": [
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22,
+        22
+      ],
+      "meanPairwiseJaccard": 0.7942022175083019
+    },
+    {
+      "n": "04",
+      "runsAttempted": 20,
+      "runsSucceeded": 18,
+      "guardRejectedRuns": 2,
+      "guardRejectionMessages": [
+        "Verdict for jd-26 is \"strong_differentiator\" but cites cv-11, which is not among its candidates — a receipt is required",
+        "Verdict for jd-43 is \"strong_differentiator\" but cites cv-14, which is not among its candidates — a receipt is required"
+      ],
+      "gapCounts": [
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56,
+        56
+      ],
+      "meanPairwiseJaccard": 0.8996435353874779
+    }
+  ]
+}

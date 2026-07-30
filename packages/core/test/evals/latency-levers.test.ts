@@ -48,7 +48,10 @@ describe.skipIf(!evalsEnabled)(
 
             for (let run = 0; run < RUNS_PER_CONFIG; run++) {
               const client = new OpenAI();
-              const metered = makeMeteredClient(client);
+              const metered = makeMeteredClient(client, {
+                suite: "latency-levers",
+                pair: `${config.name}:${n}:run${run}`,
+              });
               const parseOpts = { client: metered.client, requestOverrides: config.requestOverrides };
 
               const start = performance.now();
@@ -88,12 +91,25 @@ describe.skipIf(!evalsEnabled)(
           }
         }
 
-        writeResult("latency-levers", {
-          corpus: PAIR_NS,
-          config: { configs: CONFIGS.map((c) => c.name), runsPerConfig: RUNS_PER_CONFIG, planPair: PLAN_PAIR_N },
-          metrics: {},
-          perPair: perRun,
-        });
+        const meanWallMsByConfig: Record<string, number | null> = {};
+        for (const c of CONFIGS) {
+          const ms = perRun
+            .filter((r) => (r as { config: string }).config === c.name)
+            .map((r) => (r as { wallMs: number }).wallMs);
+          meanWallMsByConfig[`wallMs_${c.name}`] =
+            ms.length === 0 ? null : ms.reduce((a, b) => a + b, 0) / ms.length;
+        }
+
+        await writeResult(
+          "latency-levers",
+          {
+            corpus: PAIR_NS,
+            config: { configs: CONFIGS.map((c) => c.name), runsPerConfig: RUNS_PER_CONFIG, planPair: PLAN_PAIR_N },
+            metrics: {},
+            perPair: perRun,
+          },
+          meanWallMsByConfig,
+        );
 
         expect(perRun.length).toBeGreaterThan(0);
       },

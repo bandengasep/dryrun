@@ -91,13 +91,18 @@ describe.skipIf(!evalsEnabled)("baseline — zero-shot ChatGPT, no receipts cont
 
       const totalClaims = perPair.reduce((s, p) => s + p.uncited.claims, 0);
       const totalUncited = perPair.reduce((s, p) => s + p.uncited.uncited, 0);
+      const aggregateUncitedRate = totalClaims === 0 ? null : totalUncited / totalClaims;
 
-      writeResult("baseline", {
-        corpus: pairs.map((p) => p.n),
-        config: { model: BASELINE_MODEL, note: "leniently-parsed free text, no structured-output contract" },
-        metrics: { aggregateUncitedRate: totalClaims === 0 ? null : totalUncited / totalClaims },
-        perPair,
-      });
+      await writeResult(
+        "baseline",
+        {
+          corpus: pairs.map((p) => p.n),
+          config: { model: BASELINE_MODEL, note: "leniently-parsed free text, no structured-output contract" },
+          metrics: { aggregateUncitedRate },
+          perPair,
+        },
+        { baseline_uncited_rate: aggregateUncitedRate },
+      );
 
       expect(perPair.length).toBeGreaterThan(0);
     },

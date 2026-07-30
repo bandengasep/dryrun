@@ -1,0 +1,857 @@
+{
+  "jd": {
+    "sourceText": "Data Analyst — Growth Team\nAcme Commerce Pte Ltd, Singapore\n\nAbout the role\nYou will turn raw event data into decisions for the growth team.\n\nWhat you will do\n- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting\n- Partner with product managers to design and analyze A/B experiments\n- Own the weekly business review metrics pipeline end to end\n- Communicate findings to non-technical stakeholders\n\nWhat we are looking for\n- 3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)\n- Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design\n- Proficiency in Python for analysis (pandas, notebooks)\n- Experience with a BI tool such as Tableau or Looker\n- Familiarity with dbt and version-controlled analytics workflows is a plus\n- Excellent written and verbal communication in English\n",
+    "lines": [
+      {
+        "id": "jd-1",
+        "text": "Turn raw event data into decisions",
+        "span": {
+          "start": 76,
+          "end": 140,
+          "text": "You will turn raw event data into decisions for the growth team."
+        }
+      },
+      {
+        "id": "jd-2",
+        "text": "Build and maintain SQL models",
+        "span": {
+          "start": 159,
+          "end": 250,
+          "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+        }
+      },
+      {
+        "id": "jd-3",
+        "text": "Build and maintain dashboards",
+        "span": {
+          "start": 159,
+          "end": 250,
+          "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+        }
+      },
+      {
+        "id": "jd-4",
+        "text": "Funnel reporting",
+        "span": {
+          "start": 159,
+          "end": 250,
+          "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+        }
+      },
+      {
+        "id": "jd-5",
+        "text": "Retention reporting",
+        "span": {
+          "start": 159,
+          "end": 250,
+          "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+        }
+      },
+      {
+        "id": "jd-6",
+        "text": "Campaign reporting",
+        "span": {
+          "start": 159,
+          "end": 250,
+          "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+        }
+      },
+      {
+        "id": "jd-7",
+        "text": "Partner with product managers",
+        "span": {
+          "start": 251,
+          "end": 320,
+          "text": "- Partner with product managers to design and analyze A/B experiments"
+        }
+      },
+      {
+        "id": "jd-8",
+        "text": "Design A/B experiments",
+        "span": {
+          "start": 251,
+          "end": 320,
+          "text": "- Partner with product managers to design and analyze A/B experiments"
+        }
+      },
+      {
+        "id": "jd-9",
+        "text": "Analyze A/B experiments",
+        "span": {
+          "start": 251,
+          "end": 320,
+          "text": "- Partner with product managers to design and analyze A/B experiments"
+        }
+      },
+      {
+        "id": "jd-10",
+        "text": "Own the weekly business review metrics pipeline end-to-end",
+        "span": {
+          "start": 321,
+          "end": 381,
+          "text": "- Own the weekly business review metrics pipeline end to end"
+        }
+      },
+      {
+        "id": "jd-11",
+        "text": "Communicate findings to non-technical stakeholders",
+        "span": {
+          "start": 382,
+          "end": 434,
+          "text": "- Communicate findings to non-technical stakeholders"
+        }
+      },
+      {
+        "id": "jd-12",
+        "text": "3+ years of hands-on SQL against a production data warehouse",
+        "span": {
+          "start": 462,
+          "end": 556,
+          "text": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+        }
+      },
+      {
+        "id": "jd-13",
+        "text": "BigQuery",
+        "span": {
+          "start": 524,
+          "end": 532,
+          "text": "BigQuery"
+        }
+      },
+      {
+        "id": "jd-14",
+        "text": "Snowflake",
+        "span": {
+          "start": 536,
+          "end": 545,
+          "text": "Snowflake"
+        }
+      },
+      {
+        "id": "jd-15",
+        "text": "Strong grounding in statistics",
+        "span": {
+          "start": 557,
+          "end": 650,
+          "text": "- Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+        }
+      },
+      {
+        "id": "jd-16",
+        "text": "hypothesis testing",
+        "span": {
+          "start": 591,
+          "end": 609,
+          "text": "hypothesis testing"
+        }
+      },
+      {
+        "id": "jd-17",
+        "text": "confidence intervals",
+        "span": {
+          "start": 611,
+          "end": 631,
+          "text": "confidence intervals"
+        }
+      },
+      {
+        "id": "jd-18",
+        "text": "experiment design",
+        "span": {
+          "start": 633,
+          "end": 650,
+          "text": "experiment design"
+        }
+      },
+      {
+        "id": "jd-19",
+        "text": "Proficiency in Python for analysis",
+        "span": {
+          "start": 651,
+          "end": 707,
+          "text": "- Proficiency in Python for analysis (pandas, notebooks)"
+        }
+      },
+      {
+        "id": "jd-20",
+        "text": "pandas",
+        "span": {
+          "start": 689,
+          "end": 695,
+          "text": "pandas"
+        }
+      },
+      {
+        "id": "jd-21",
+        "text": "notebooks",
+        "span": {
+          "start": 697,
+          "end": 706,
+          "text": "notebooks"
+        }
+      },
+      {
+        "id": "jd-22",
+        "text": "Experience with a BI tool",
+        "span": {
+          "start": 708,
+          "end": 761,
+          "text": "- Experience with a BI tool such as Tableau or Looker"
+        }
+      },
+      {
+        "id": "jd-23",
+        "text": "Tableau",
+        "span": {
+          "start": 744,
+          "end": 751,
+          "text": "Tableau"
+        }
+      },
+      {
+        "id": "jd-24",
+        "text": "Looker",
+        "span": {
+          "start": 755,
+          "end": 761,
+          "text": "Looker"
+        }
+      },
+      {
+        "id": "jd-25",
+        "text": "Familiarity with dbt and version-controlled analytics workflows is a plus",
+        "span": {
+          "start": 762,
+          "end": 837,
+          "text": "- Familiarity with dbt and version-controlled analytics workflows is a plus"
+        }
+      },
+      {
+        "id": "jd-26",
+        "text": "dbt",
+        "span": {
+          "start": 781,
+          "end": 784,
+          "text": "dbt"
+        }
+      },
+      {
+        "id": "jd-27",
+        "text": "version-controlled analytics workflows",
+        "span": {
+          "start": 789,
+          "end": 827,
+          "text": "version-controlled analytics workflows"
+        }
+      },
+      {
+        "id": "jd-28",
+        "text": "Excellent written communication in English",
+        "span": {
+          "start": 838,
+          "end": 893,
+          "text": "- Excellent written and verbal communication in English"
+        }
+      },
+      {
+        "id": "jd-29",
+        "text": "Excellent verbal communication in English",
+        "span": {
+          "start": 838,
+          "end": 893,
+          "text": "- Excellent written and verbal communication in English"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "resume": {
+    "sourceText": "TIMOTHY TAN\nMSBA Candidate, National University of Singapore — graduating Aug 2026\n\nEDUCATION\nMSc Business Analytics, NUS. Coursework: statistics, machine learning, data management.\nBBA (Finance), Universitas Indonesia.\n\nEXPERIENCE\nData Analyst Intern, ShopFast (Jan–Jun 2026)\n- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team\n- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis\n- Presented findings to the marketing lead in a monthly review\n\nBusiness Analyst Intern, Bank Sentosa (2024)\n- Built Excel models for branch performance tracking\n- Automated a monthly report with VBA macros\n\nSKILLS\nSQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)\n",
+    "lines": [
+      {
+        "id": "cv-1",
+        "text": "TIMOTHY TAN",
+        "span": {
+          "start": 0,
+          "end": 11,
+          "text": "TIMOTHY TAN"
+        }
+      },
+      {
+        "id": "cv-2",
+        "text": "MSBA Candidate, National University of Singapore — graduating Aug 2026",
+        "span": {
+          "start": 12,
+          "end": 82,
+          "text": "MSBA Candidate, National University of Singapore — graduating Aug 2026"
+        }
+      },
+      {
+        "id": "cv-3",
+        "text": "MSc Business Analytics, NUS. Coursework: statistics, machine learning, data management.",
+        "span": {
+          "start": 94,
+          "end": 181,
+          "text": "MSc Business Analytics, NUS. Coursework: statistics, machine learning, data management."
+        }
+      },
+      {
+        "id": "cv-4",
+        "text": "BBA (Finance), Universitas Indonesia.",
+        "span": {
+          "start": 182,
+          "end": 219,
+          "text": "BBA (Finance), Universitas Indonesia."
+        }
+      },
+      {
+        "id": "cv-5",
+        "text": "Data Analyst Intern, ShopFast (Jan–Jun 2026)",
+        "span": {
+          "start": 232,
+          "end": 276,
+          "text": "Data Analyst Intern, ShopFast (Jan–Jun 2026)"
+        }
+      },
+      {
+        "id": "cv-6",
+        "text": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team",
+        "span": {
+          "start": 277,
+          "end": 363,
+          "text": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+        }
+      },
+      {
+        "id": "cv-7",
+        "text": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis",
+        "span": {
+          "start": 364,
+          "end": 444,
+          "text": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+        }
+      },
+      {
+        "id": "cv-8",
+        "text": "- Presented findings to the marketing lead in a monthly review",
+        "span": {
+          "start": 445,
+          "end": 507,
+          "text": "- Presented findings to the marketing lead in a monthly review"
+        }
+      },
+      {
+        "id": "cv-9",
+        "text": "Business Analyst Intern, Bank Sentosa (2024)",
+        "span": {
+          "start": 509,
+          "end": 553,
+          "text": "Business Analyst Intern, Bank Sentosa (2024)"
+        }
+      },
+      {
+        "id": "cv-10",
+        "text": "- Built Excel models for branch performance tracking",
+        "span": {
+          "start": 554,
+          "end": 606,
+          "text": "- Built Excel models for branch performance tracking"
+        }
+      },
+      {
+        "id": "cv-11",
+        "text": "- Automated a monthly report with VBA macros",
+        "span": {
+          "start": 607,
+          "end": 651,
+          "text": "- Automated a monthly report with VBA macros"
+        }
+      },
+      {
+        "id": "cv-12",
+        "text": "SQL (BigQuery)",
+        "span": {
+          "start": 660,
+          "end": 674,
+          "text": "SQL (BigQuery)"
+        }
+      },
+      {
+        "id": "cv-13",
+        "text": "Python (pandas, matplotlib)",
+        "span": {
+          "start": 676,
+          "end": 703,
+          "text": "Python (pandas, matplotlib)"
+        }
+      },
+      {
+        "id": "cv-14",
+        "text": "Excel",
+        "span": {
+          "start": 562,
+          "end": 567,
+          "text": "Excel"
+        }
+      },
+      {
+        "id": "cv-15",
+        "text": "Tableau (coursework only)",
+        "span": {
+          "start": 712,
+          "end": 737,
+          "text": "Tableau (coursework only)"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "gaps": [
+    {
+      "id": "gap-1",
+      "kind": "weak_evidence",
+      "requirementId": "jd-1",
+      "jdSpan": {
+        "start": 76,
+        "end": 140,
+        "text": "You will turn raw event data into decisions for the growth team."
+      },
+      "resumeLineId": "cv-7",
+      "resumeSpan": {
+        "start": 364,
+        "end": 444,
+        "text": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+      },
+      "rationale": "Cleaning and joining clickstream tables for an ad-hoc churn analysis (cv-7) shows working with raw event data but does not explicitly state driving decisions for the growth team."
+    },
+    {
+      "id": "gap-2",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-2",
+      "jdSpan": {
+        "start": 159,
+        "end": 250,
+        "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+      },
+      "resumeLineId": "cv-6",
+      "resumeSpan": {
+        "start": 277,
+        "end": 363,
+        "text": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+      },
+      "rationale": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team (cv-6) directly demonstrates building SQL models for reporting."
+    },
+    {
+      "id": "gap-3",
+      "kind": "weak_evidence",
+      "requirementId": "jd-3",
+      "jdSpan": {
+        "start": 159,
+        "end": 250,
+        "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+      },
+      "resumeLineId": "cv-10",
+      "resumeSpan": {
+        "start": 554,
+        "end": 606,
+        "text": "- Built Excel models for branch performance tracking"
+      },
+      "rationale": "Built Excel models for branch performance tracking (cv-10) suggests producing analytic artifacts similar to dashboards but does not explicitly state dashboard creation or maintenance."
+    },
+    {
+      "id": "gap-4",
+      "kind": "weak_evidence",
+      "requirementId": "jd-4",
+      "jdSpan": {
+        "start": 159,
+        "end": 250,
+        "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+      },
+      "resumeLineId": "cv-7",
+      "resumeSpan": {
+        "start": 364,
+        "end": 444,
+        "text": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+      },
+      "rationale": "Cleaning and joining clickstream tables for churn analysis (cv-7) is related to funnel-like event data work but does not explicitly describe funnel reporting."
+    },
+    {
+      "id": "gap-5",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-5",
+      "jdSpan": {
+        "start": 159,
+        "end": 250,
+        "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+      },
+      "resumeLineId": "cv-6",
+      "resumeSpan": {
+        "start": 277,
+        "end": 363,
+        "text": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+      },
+      "rationale": "Explicitly wrote SQL queries in BigQuery to build a weekly retention report for the growth team (cv-6), directly evidencing retention reporting."
+    },
+    {
+      "id": "gap-6",
+      "kind": "weak_evidence",
+      "requirementId": "jd-6",
+      "jdSpan": {
+        "start": 159,
+        "end": 250,
+        "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+      },
+      "resumeLineId": "cv-8",
+      "resumeSpan": {
+        "start": 445,
+        "end": 507,
+        "text": "- Presented findings to the marketing lead in a monthly review"
+      },
+      "rationale": "Presented findings to the marketing lead in a monthly review (cv-8) indicates involvement with marketing stakeholders but does not explicitly state campaign reporting."
+    },
+    {
+      "id": "gap-7",
+      "kind": "missing_skill",
+      "requirementId": "jd-7",
+      "jdSpan": {
+        "start": 251,
+        "end": 320,
+        "text": "- Partner with product managers to design and analyze A/B experiments"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line explicitly mentions partnering with product managers."
+    },
+    {
+      "id": "gap-8",
+      "kind": "missing_skill",
+      "requirementId": "jd-8",
+      "jdSpan": {
+        "start": 251,
+        "end": 320,
+        "text": "- Partner with product managers to design and analyze A/B experiments"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line explicitly states designing A/B experiments."
+    },
+    {
+      "id": "gap-9",
+      "kind": "missing_skill",
+      "requirementId": "jd-9",
+      "jdSpan": {
+        "start": 251,
+        "end": 320,
+        "text": "- Partner with product managers to design and analyze A/B experiments"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line explicitly describes analyzing A/B experiments."
+    },
+    {
+      "id": "gap-10",
+      "kind": "weak_evidence",
+      "requirementId": "jd-10",
+      "jdSpan": {
+        "start": 321,
+        "end": 381,
+        "text": "- Own the weekly business review metrics pipeline end to end"
+      },
+      "resumeLineId": "cv-6",
+      "resumeSpan": {
+        "start": 277,
+        "end": 363,
+        "text": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+      },
+      "rationale": "Wrote SQL queries to build a weekly retention report (cv-6) demonstrates owning a weekly report but does not confirm end-to-end ownership of the full metrics pipeline."
+    },
+    {
+      "id": "gap-11",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-11",
+      "jdSpan": {
+        "start": 382,
+        "end": 434,
+        "text": "- Communicate findings to non-technical stakeholders"
+      },
+      "resumeLineId": "cv-8",
+      "resumeSpan": {
+        "start": 445,
+        "end": 507,
+        "text": "- Presented findings to the marketing lead in a monthly review"
+      },
+      "rationale": "Presented findings to the marketing lead in a monthly review (cv-8) directly shows communicating results to non-technical stakeholders."
+    },
+    {
+      "id": "gap-12",
+      "kind": "weak_evidence",
+      "requirementId": "jd-12",
+      "jdSpan": {
+        "start": 462,
+        "end": 556,
+        "text": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+      },
+      "resumeLineId": "cv-6",
+      "resumeSpan": {
+        "start": 277,
+        "end": 363,
+        "text": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+      },
+      "rationale": "Wrote SQL queries in BigQuery (cv-6) shows hands-on SQL against a data warehouse but does not provide evidence of 3+ years of experience."
+    },
+    {
+      "id": "gap-13",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-13",
+      "jdSpan": {
+        "start": 524,
+        "end": 532,
+        "text": "BigQuery"
+      },
+      "resumeLineId": "cv-6",
+      "resumeSpan": {
+        "start": 277,
+        "end": 363,
+        "text": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+      },
+      "rationale": "Wrote SQL queries in BigQuery to build a weekly retention report (cv-6), directly evidencing BigQuery experience."
+    },
+    {
+      "id": "gap-14",
+      "kind": "missing_skill",
+      "requirementId": "jd-14",
+      "jdSpan": {
+        "start": 536,
+        "end": 545,
+        "text": "Snowflake"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions Snowflake."
+    },
+    {
+      "id": "gap-15",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-15",
+      "jdSpan": {
+        "start": 557,
+        "end": 650,
+        "text": "- Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+      },
+      "resumeLineId": "cv-3",
+      "resumeSpan": {
+        "start": 94,
+        "end": 181,
+        "text": "MSc Business Analytics, NUS. Coursework: statistics, machine learning, data management."
+      },
+      "rationale": "MSc Business Analytics with coursework in statistics (cv-3) demonstrates a formal grounding in statistics."
+    },
+    {
+      "id": "gap-16",
+      "kind": "missing_skill",
+      "requirementId": "jd-16",
+      "jdSpan": {
+        "start": 591,
+        "end": 609,
+        "text": "hypothesis testing"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the provided lines explicitly mention hypothesis testing."
+    },
+    {
+      "id": "gap-17",
+      "kind": "missing_skill",
+      "requirementId": "jd-17",
+      "jdSpan": {
+        "start": 611,
+        "end": 631,
+        "text": "confidence intervals"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the provided lines explicitly mention confidence intervals."
+    },
+    {
+      "id": "gap-18",
+      "kind": "missing_skill",
+      "requirementId": "jd-18",
+      "jdSpan": {
+        "start": 633,
+        "end": 650,
+        "text": "experiment design"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No line explicitly describes experiment design."
+    },
+    {
+      "id": "gap-19",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-19",
+      "jdSpan": {
+        "start": 651,
+        "end": 707,
+        "text": "- Proficiency in Python for analysis (pandas, notebooks)"
+      },
+      "resumeLineId": "cv-7",
+      "resumeSpan": {
+        "start": 364,
+        "end": 444,
+        "text": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+      },
+      "rationale": "Cleaned and joined clickstream tables with pandas (cv-7) demonstrates applied proficiency in Python for analysis."
+    },
+    {
+      "id": "gap-20",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-20",
+      "jdSpan": {
+        "start": 689,
+        "end": 695,
+        "text": "pandas"
+      },
+      "resumeLineId": "cv-7",
+      "resumeSpan": {
+        "start": 364,
+        "end": 444,
+        "text": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+      },
+      "rationale": "Explicit use of pandas to clean and join clickstream tables for analysis (cv-7) directly evidences pandas experience."
+    },
+    {
+      "id": "gap-21",
+      "kind": "missing_skill",
+      "requirementId": "jd-21",
+      "jdSpan": {
+        "start": 697,
+        "end": 706,
+        "text": "notebooks"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line explicitly mentions using notebooks."
+    },
+    {
+      "id": "gap-22",
+      "kind": "weak_evidence",
+      "requirementId": "jd-22",
+      "jdSpan": {
+        "start": 708,
+        "end": 761,
+        "text": "- Experience with a BI tool such as Tableau or Looker"
+      },
+      "resumeLineId": "cv-15",
+      "resumeSpan": {
+        "start": 712,
+        "end": 737,
+        "text": "Tableau (coursework only)"
+      },
+      "rationale": "Tableau coursework (cv-15) indicates exposure to a BI tool but is qualified as coursework only, not professional experience."
+    },
+    {
+      "id": "gap-23",
+      "kind": "weak_evidence",
+      "requirementId": "jd-23",
+      "jdSpan": {
+        "start": 744,
+        "end": 751,
+        "text": "Tableau"
+      },
+      "resumeLineId": "cv-15",
+      "resumeSpan": {
+        "start": 712,
+        "end": 737,
+        "text": "Tableau (coursework only)"
+      },
+      "rationale": "Tableau is listed as coursework only (cv-15), showing familiarity but not professional Tableau experience."
+    },
+    {
+      "id": "gap-24",
+      "kind": "missing_skill",
+      "requirementId": "jd-24",
+      "jdSpan": {
+        "start": 755,
+        "end": 761,
+        "text": "Looker"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions Looker."
+    },
+    {
+      "id": "gap-25",
+      "kind": "missing_skill",
+      "requirementId": "jd-25",
+      "jdSpan": {
+        "start": 762,
+        "end": 837,
+        "text": "- Familiarity with dbt and version-controlled analytics workflows is a plus"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the provided lines mention dbt or version-controlled analytics workflows."
+    },
+    {
+      "id": "gap-26",
+      "kind": "missing_skill",
+      "requirementId": "jd-26",
+      "jdSpan": {
+        "start": 781,
+        "end": 784,
+        "text": "dbt"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line explicitly mentions dbt."
+    },
+    {
+      "id": "gap-27",
+      "kind": "missing_skill",
+      "requirementId": "jd-27",
+      "jdSpan": {
+        "start": 789,
+        "end": 827,
+        "text": "version-controlled analytics workflows"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line explicitly references version-controlled analytics workflows or tools like git."
+    },
+    {
+      "id": "gap-28",
+      "kind": "weak_evidence",
+      "requirementId": "jd-28",
+      "jdSpan": {
+        "start": 838,
+        "end": 893,
+        "text": "- Excellent written and verbal communication in English"
+      },
+      "resumeLineId": "cv-8",
+      "resumeSpan": {
+        "start": 445,
+        "end": 507,
+        "text": "- Presented findings to the marketing lead in a monthly review"
+      },
+      "rationale": "Presented findings to the marketing lead in a monthly review (cv-8) demonstrates verbal communication to stakeholders but does not explicitly evidence strong written communication."
+    },
+    {
+      "id": "gap-29",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-29",
+      "jdSpan": {
+        "start": 838,
+        "end": 893,
+        "text": "- Excellent written and verbal communication in English"
+      },
+      "resumeLineId": "cv-8",
+      "resumeSpan": {
+        "start": 445,
+        "end": 507,
+        "text": "- Presented findings to the marketing lead in a monthly review"
+      },
+      "rationale": "Presenting findings to the marketing lead in a monthly review (cv-8) directly shows verbal communication with non-technical stakeholders."
+    }
+  ]
+}

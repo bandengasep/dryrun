@@ -74,12 +74,32 @@ describe.skipIf(!evalsEnabled)("consistency — run-to-run Jaccard stability of 
         );
       }
 
-      writeResult("consistency", {
-        corpus: targets.map((p) => p.n),
-        config: { runsPerPair: RUNS_PER_PAIR, concurrency: CONCURRENCY, model: "gpt-5-mini (default)" },
-        metrics: {},
-        perPair,
-      });
+      const jaccards = perPair
+        .map((p) => (p as { meanPairwiseJaccard: number | null }).meanPairwiseJaccard)
+        .filter((j): j is number => typeof j === "number");
+      const totalAttempted = perPair.reduce<number>(
+        (s, p) => s + (p as { runsAttempted: number }).runsAttempted,
+        0,
+      );
+      const totalRejected = perPair.reduce<number>(
+        (s, p) => s + (p as { guardRejectedRuns: number }).guardRejectedRuns,
+        0,
+      );
+      const meanJaccard = jaccards.length === 0 ? null : jaccards.reduce((a, b) => a + b, 0) / jaccards.length;
+
+      await writeResult(
+        "consistency",
+        {
+          corpus: targets.map((p) => p.n),
+          config: { runsPerPair: RUNS_PER_PAIR, concurrency: CONCURRENCY, model: "gpt-5-mini (default)" },
+          metrics: {},
+          perPair,
+        },
+        {
+          mean_pairwise_jaccard: meanJaccard,
+          guard_rejection_rate: totalAttempted === 0 ? null : totalRejected / totalAttempted,
+        },
+      );
 
       expect(perPair.length).toBeGreaterThan(0);
     },

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { CompileResult, compileSessionPlan, PlanError } from "@dryrun/core";
 import { makeStructuredClient } from "../../lib/providers";
+import { flushLangfuse } from "../../lib/langfuse";
 
 // One batched strict-SO call over the compiled gaps.
 export const maxDuration = 120;
@@ -42,7 +43,7 @@ export async function POST(req: Request) {
 
   try {
     const plan = await compileSessionPlan(gaps, jd.sourceText, resume.sourceText, {
-      client: makeStructuredClient(),
+      client: makeStructuredClient({ route: "plan", metadata: { gapCount: gaps.length } }),
     });
     return NextResponse.json({ plan });
   } catch (e) {
@@ -59,5 +60,7 @@ export async function POST(req: Request) {
       { error: e instanceof Error ? e.message : String(e) },
       { status: 500 },
     );
+  } finally {
+    await flushLangfuse();
   }
 }

@@ -47,7 +47,13 @@ export interface PlanOptions {
 /** Raised on refusals, empty plans, or ungrounded questions. */
 export class PlanError extends Error {}
 
-const PLAN_SYSTEM_PROMPT = [
+/**
+ * Exported for Langfuse prompt registration (scripts/langfuse-push-prompts.ts
+ * in web/) only — a copy for reference/diffing in the Langfuse UI. Nothing in
+ * the runtime path fetches a prompt back from Langfuse; this constant remains
+ * the single source of truth actually sent to the model below.
+ */
+export const PLAN_SYSTEM_PROMPT = [
   "You compile a mock-interview question set from measured gaps between a job description and a candidate's resume.",
   "Each gap is already evidenced: it cites the JD line that demands something and the resume line (if any) that speaks to it.",
   "Emit one question per gap you choose to cover, in the order the gaps are given. Echo that gap's id in `gapId` — never invent an id.",

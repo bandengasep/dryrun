@@ -1,0 +1,302 @@
+{
+  "startedAt": "2026-07-28T17:30:30.926Z",
+  "gitCommit": "120d3823273a2d622f2de96da3fb95e8f4e0f7ce",
+  "corpus": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05"
+  ],
+  "config": {
+    "model": "gpt-5-mini (default)"
+  },
+  "metrics": {},
+  "perPair": [
+    {
+      "n": "01",
+      "gapCount": 29,
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 54260.612625,
+          "usage": {
+            "input_tokens": 343,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 3641,
+            "output_tokens_details": {
+              "reasoning_tokens": 3008
+            },
+            "total_tokens": 3984
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 71054.95687499999,
+          "usage": {
+            "input_tokens": 284,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 4706,
+            "output_tokens_details": {
+              "reasoning_tokens": 4480
+            },
+            "total_tokens": 4990
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 38441.243665999995,
+          "usage": {
+            "input_tokens": 2828,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 3643,
+            "output_tokens_details": {
+              "reasoning_tokens": 1856
+            },
+            "total_tokens": 6471
+          }
+        }
+      ]
+    },
+    {
+      "n": "02",
+      "gapCount": 28,
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 42498.141417000006,
+          "usage": {
+            "input_tokens": 380,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 3654,
+            "output_tokens_details": {
+              "reasoning_tokens": 2944
+            },
+            "total_tokens": 4034
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 76771.26408299999,
+          "usage": {
+            "input_tokens": 285,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 4791,
+            "output_tokens_details": {
+              "reasoning_tokens": 4224
+            },
+            "total_tokens": 5076
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 30197.19279100001,
+          "usage": {
+            "input_tokens": 2647,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 2663,
+            "output_tokens_details": {
+              "reasoning_tokens": 1536
+            },
+            "total_tokens": 5310
+          }
+        }
+      ]
+    },
+    {
+      "n": "03",
+      "gapCount": 18,
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 24111.54037500001,
+          "usage": {
+            "input_tokens": 327,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1980,
+            "output_tokens_details": {
+              "reasoning_tokens": 1728
+            },
+            "total_tokens": 2307
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 47859.730542000005,
+          "usage": {
+            "input_tokens": 358,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 3758,
+            "output_tokens_details": {
+              "reasoning_tokens": 3200
+            },
+            "total_tokens": 4116
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 24959.28345799999,
+          "usage": {
+            "input_tokens": 2459,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 2441,
+            "output_tokens_details": {
+              "reasoning_tokens": 1472
+            },
+            "total_tokens": 4900
+          }
+        }
+      ]
+    },
+    {
+      "n": "04",
+      "gapCount": 40,
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 50074.78704100003,
+          "usage": {
+            "input_tokens": 640,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 4236,
+            "output_tokens_details": {
+              "reasoning_tokens": 2880
+            },
+            "total_tokens": 4876
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 71192.99925,
+          "usage": {
+            "input_tokens": 828,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 5727,
+            "output_tokens_details": {
+              "reasoning_tokens": 4352
+            },
+            "total_tokens": 6555
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 55664.404792000016,
+          "usage": {
+            "input_tokens": 5177,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 5315,
+            "output_tokens_details": {
+              "reasoning_tokens": 3200
+            },
+            "total_tokens": 10492
+          }
+        }
+      ]
+    },
+    {
+      "n": "05",
+      "gapCount": 53,
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 24572.935125000018,
+          "usage": {
+            "input_tokens": 828,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 2251,
+            "output_tokens_details": {
+              "reasoning_tokens": 1408
+            },
+            "total_tokens": 3079
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 102876.82770900003,
+          "usage": {
+            "input_tokens": 660,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 6946,
+            "output_tokens_details": {
+              "reasoning_tokens": 4416
+            },
+            "total_tokens": 7606
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5-mini",
+          "ms": 67623.02874999994,
+          "usage": {
+            "input_tokens": 9743,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 6555,
+            "output_tokens_details": {
+              "reasoning_tokens": 3648
+            },
+            "total_tokens": 16298
+          }
+        }
+      ]
+    }
+  ]
+}

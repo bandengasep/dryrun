@@ -1,0 +1,229 @@
+{
+  "gaps": [
+    {
+      "id": "gap-1",
+      "jdQuote": "You will keep the pipelines and services that move our shipment data reliable and fast.",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions maintaining pipelines, shipment data, or services related to reliability/performance.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-2",
+      "jdQuote": "- Operate and scale the batch pipelines that feed our data warehouse",
+      "resumeQuote": "- Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database",
+      "kind": "weak_evidence",
+      "rationale": "cv-18 shows basic SQL queries against an agency reporting database but does not indicate operating or scaling batch pipelines feeding a data warehouse.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-3",
+      "jdQuote": "- Automate provisioning and deployment across our AWS environments",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line references AWS provisioning, deployment, or automation.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-4",
+      "jdQuote": "- Improve observability, alerting and incident response for data services",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line describes work on observability, monitoring, or alerting for data services.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-5",
+      "jdQuote": "- Improve observability, alerting and incident response for data services",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions improving or implementing alerting for data services.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-6",
+      "jdQuote": "- Improve observability, alerting and incident response for data services",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line references incident response or related practices for data services.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-7",
+      "jdQuote": "- Build internal tooling so product teams can self-serve platform resources",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line describes building internal tooling or self-serve platform resources for product teams.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-8",
+      "jdQuote": "- 4+ years operating production infrastructure on AWS (EC2, S3, IAM, VPC)",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line indicates multi-year experience operating production AWS infrastructure.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-9",
+      "jdQuote": "EC2",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions EC2 or equivalent experience.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-10",
+      "jdQuote": "S3",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions S3 or related experience.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-11",
+      "jdQuote": "IAM",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line references IAM or identity/access management experience.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-12",
+      "jdQuote": "VPC",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions VPC or networking experience in cloud environments.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-13",
+      "jdQuote": "- Hands-on experience deploying and running services on Kubernetes",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line indicates deploying or running services on Kubernetes.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-14",
+      "jdQuote": "- Infrastructure as code with Terraform, reviewed and applied through CI",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line references Terraform or infrastructure-as-code work.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-15",
+      "jdQuote": "- Infrastructure as code with Terraform, reviewed and applied through CI",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line describes reviewing or applying Terraform through CI.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-16",
+      "jdQuote": "- Experience building and operating Airflow DAGs for scheduled data pipelines",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions building or operating Airflow DAGs or scheduled data pipelines.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-17",
+      "jdQuote": "- Proficiency writing production services in Go or Python",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line demonstrates proficiency writing production services in Go.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-18",
+      "jdQuote": "- Proficiency writing production services in Go or Python",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line demonstrates proficiency writing production services in Python.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-19",
+      "jdQuote": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning",
+      "resumeQuote": "SQL (basic SELECT queries)",
+      "kind": "weak_evidence",
+      "rationale": "cv-56 lists SQL (basic SELECT queries), indicating some SQL skill but not strong SQL or data-warehouse-level expertise or tuning.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-20",
+      "jdQuote": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line references day-to-day operations of Redshift or Snowflake/data warehouse management.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-21",
+      "jdQuote": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning",
+      "resumeQuote": "basic SQL queries",
+      "kind": "weak_evidence",
+      "rationale": "cv-22 notes basic SQL queries which touches querying but does not demonstrate query tuning for data warehouses.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-22",
+      "jdQuote": "Redshift",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions experience with Amazon Redshift.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-23",
+      "jdQuote": "Snowflake",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions experience with Snowflake.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-24",
+      "jdQuote": "- Participation in a weekly on-call rotation for platform incidents",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line indicates participation in an on-call rotation for platform incidents.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-25",
+      "jdQuote": "- Clear written communication: runbooks, postmortems and incident updates",
+      "resumeQuote": "- Presented quarterly results to client stakeholders in PowerPoint",
+      "kind": "weak_evidence",
+      "rationale": "cv-30 shows presenting quarterly results to stakeholders, evidencing communication skills but not runbooks, postmortems, or incident-update writing specifically.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-26",
+      "jdQuote": "- Clear written communication: runbooks, postmortems and incident updates",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line indicates writing runbooks or operational documentation.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-27",
+      "jdQuote": "- Clear written communication: runbooks, postmortems and incident updates",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line indicates writing postmortems.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-28",
+      "jdQuote": "- Clear written communication: runbooks, postmortems and incident updates",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line indicates writing incident updates.",
+      "verdict": ""
+    }
+  ],
+  "missedRequirements": []
+}

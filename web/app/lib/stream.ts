@@ -1,7 +1,13 @@
-// Shared SSE framing for the two streaming routes (/api/compile, and
-// /api/session/turn from Tuesday). Server side builds the stream; client side
-// parses it. Both halves live together so the wire format has exactly one
-// definition.
+// Shared SSE wire format for the two streaming routes (/api/compile, and
+// /api/session/turn from Tuesday). Client side parses it here; server side
+// builds it in ./sse-response.ts. The two live in separate files — NOT
+// together as originally — because this one is imported by client components
+// (compile/page.tsx, session/useInterviewSession.ts) and must stay free of
+// server-only code. sse-response.ts pulled in Langfuse's OpenTelemetry
+// exporter (grpc/tls, Node-only) when it briefly lived here, which broke the
+// client bundle (`Module not found: Can't resolve 'tls'`) — split for that
+// reason, not just tidiness. Both files still agree on exactly one wire
+// format definition (encodeSSE here, consumed by sse-response.ts).
 //
 // Heartbeat comments (`: heartbeat`) go out every 10s: they keep proxies from
 // treating a quiet stream as dead during the long silent stretch while
@@ -14,74 +20,9 @@
 
 export type SSEEmit = (event: string, data: unknown) => void;
 
-const SSE_HEADERS = {
-  "Content-Type": "text/event-stream; charset=utf-8",
-  // no-transform additionally asks intermediaries not to re-chunk or compress,
-  // which is what turns a live stream into one buffered blob at the end.
-  "Cache-Control": "no-cache, no-transform",
-  Connection: "keep-alive",
-  // Nginx-family proxies buffer by default; this opts out.
-  "X-Accel-Buffering": "no",
-} as const;
-
 /** Serialize one SSE frame. Multi-line payloads are JSON, so never contain raw newlines. */
 export function encodeSSE(event: string, data: unknown): string {
   return `event: ${event}\ndata: ${JSON.stringify(data)}\n\n`;
-}
-
-/**
- * Wrap an async producer in a streaming Response. `run` receives an `emit`
- * function and may emit as many events as it likes; when it resolves the stream
- * closes.
- *
- * A throw inside `run` becomes a final `error` event rather than a failed
- * response: by then the 200 and the headers are already on the wire, so an
- * HTTP-level error is no longer available to us. The client must therefore
- * treat "stream ended without a result" as a failure — never as success.
- */
-export function sseResponse(
-  run: (emit: SSEEmit) => Promise<void>,
-  opts: { heartbeatMs?: number } = {},
-): Response {
-  const heartbeatMs = opts.heartbeatMs ?? 10_000;
-  const encoder = new TextEncoder();
-  let heartbeat: ReturnType<typeof setInterval> | undefined;
-
-  const stream = new ReadableStream<Uint8Array>({
-    async start(controller) {
-      let closed = false;
-      const write = (chunk: string) => {
-        if (closed) return;
-        try {
-          controller.enqueue(encoder.encode(chunk));
-        } catch {
-          // Client hung up mid-write; stop trying to push into a dead stream.
-          closed = true;
-        }
-      };
-      const emit: SSEEmit = (event, data) => write(encodeSSE(event, data));
-
-      heartbeat = setInterval(() => write(": heartbeat\n\n"), heartbeatMs);
-      try {
-        await run(emit);
-      } catch (e) {
-        emit("error", { message: e instanceof Error ? e.message : String(e) });
-      } finally {
-        clearInterval(heartbeat);
-        closed = true;
-        try {
-          controller.close();
-        } catch {
-          // Already closed by a client disconnect.
-        }
-      }
-    },
-    cancel() {
-      if (heartbeat) clearInterval(heartbeat);
-    },
-  });
-
-  return new Response(stream, { headers: SSE_HEADERS });
 }
 
 export type SSEHandlers = Record<string, (data: never) => void>;

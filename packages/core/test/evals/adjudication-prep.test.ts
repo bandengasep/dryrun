@@ -31,7 +31,7 @@ describe.skipIf(!evalsEnabled)(
 
         for (const pair of pairs) {
           const client = new OpenAI();
-          const metered = makeMeteredClient(client);
+          const metered = makeMeteredClient(client, { suite: "adjudication-prep", pair: pair.n });
 
           const [jd, resume] = await Promise.all([
             parseJD(pair.jdText, { client: metered.client }),
@@ -70,7 +70,7 @@ describe.skipIf(!evalsEnabled)(
           console.log(`[adjudication-prep] pair-${pair.n}: ${gaps.length} gaps written`);
         }
 
-        writeResult("adjudication-prep", {
+        await writeResult("adjudication-prep", {
           corpus: pairs.map((p) => p.n),
           config: { model: "gpt-5-mini (default)" },
           metrics: {},

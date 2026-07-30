@@ -53,7 +53,15 @@ export interface SessionState {
   questionIndex: number;
 }
 
-const PERSONA = [
+/**
+ * Exported for Langfuse prompt registration (scripts/langfuse-push-prompts.ts
+ * in web/) only — a copy for reference/diffing in the Langfuse UI. This is the
+ * static persona half of the interviewer's system prompt; buildInterviewerMessages
+ * below appends the per-turn question/receipt context that can't be pre-registered
+ * (it depends on the live gap/question), so the Langfuse copy is necessarily partial.
+ * Nothing in the runtime path fetches a prompt back from Langfuse.
+ */
+export const PERSONA = [
   "You are a hiring interviewer running a practice interview. You are warm, direct, and brief.",
   "Speak like a person, not a form: one or two sentences, no bullet lists, no headings, no emoji.",
   "Never grade, score, rate, or praise-inflate the candidate. Do not say how well they did — that is the debrief's job, and the debrief does not grade either.",

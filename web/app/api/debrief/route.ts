@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { DebriefError, DebriefRequest, compileDebrief } from "@dryrun/core";
 import { makeStructuredClient } from "../../lib/providers";
+import { flushLangfuse } from "../../lib/langfuse";
 
 // One batched strict-SO call over the answered questions.
 export const maxDuration = 300;
@@ -33,7 +34,10 @@ export async function POST(req: Request) {
 
   try {
     const debrief = await compileDebrief(plan, transcript, {
-      client: makeStructuredClient(),
+      client: makeStructuredClient({
+        route: "debrief",
+        metadata: { questionCount: plan.questions.length, transcriptTurns: transcript.length },
+      }),
     });
     return NextResponse.json({ debrief });
   } catch (e) {
@@ -46,5 +50,7 @@ export async function POST(req: Request) {
       { error: e instanceof Error ? e.message : String(e) },
       { status: 500 },
     );
+  } finally {
+    await flushLangfuse();
   }
 }
