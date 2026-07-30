@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { propagateAttributes } from "@langfuse/tracing";
 import { DebriefError, DebriefRequest, compileDebrief } from "@dryrun/core";
 import { makeStructuredClient } from "../../lib/providers";
 import { flushLangfuse } from "../../lib/langfuse";
@@ -33,12 +34,16 @@ export async function POST(req: Request) {
   const { plan, transcript } = parsed.data;
 
   try {
-    const debrief = await compileDebrief(plan, transcript, {
-      client: makeStructuredClient({
-        route: "debrief",
-        metadata: { questionCount: plan.questions.length, transcriptTurns: transcript.length },
+    // Trace-level name: observeOpenAI's generationName only names the
+    // observation, which leaves the trace itself blank in the Langfuse UI.
+    const debrief = await propagateAttributes({ traceName: "debrief" }, () =>
+      compileDebrief(plan, transcript, {
+        client: makeStructuredClient({
+          route: "debrief",
+          metadata: { questionCount: plan.questions.length, transcriptTurns: transcript.length },
+        }),
       }),
-    });
+    );
     return NextResponse.json({ debrief });
   } catch (e) {
     // A structural guard firing means the model produced something unshippable —

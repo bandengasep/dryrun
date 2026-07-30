@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { propagateAttributes } from "@langfuse/tracing";
 import type OpenAI from "openai";
 import {
   SessionTurnRequest,
@@ -21,8 +22,8 @@ export const maxDuration = 120;
 /**
  * Produce the interviewer's next turn.
  *
- * SSE: `provider {name, model, failover}` → `delta {text}`… → `meta {action, reply}`
- * → `done {usage}`.
+ * SSE: `provider {name, model, failover}` → `delta {text}`… →
+ * `usage {provider, model, usage}` → `meta {action, reply}` → `done {}`.
  *
  * `provider` is emitted FIRST, and only once a token has genuinely arrived, so
  * the UI can label who is answering before any text lands. The Agnes/OpenAI
@@ -71,27 +72,32 @@ export async function POST(req: Request) {
     metadata: { questionIndex, transcriptTurns: transcript.length },
   };
 
-  return sseResponse(async (emit) => {
-    const primary = makeInterviewerLane(langfuseOpts);
-    let full: string;
+  // Trace-level name: observeOpenAI's generationName only names the
+  // observation, which leaves the trace itself blank in the Langfuse UI. The
+  // wrap sits outside both lanes so a failover's second trace is named too.
+  return sseResponse((emit) =>
+    propagateAttributes({ traceName: "session-turn" }, async () => {
+      const primary = makeInterviewerLane(langfuseOpts);
+      let full: string;
 
-    try {
-      full = await streamTurn(primary, messages, emit, false);
-    } catch (primaryError) {
-      // streamTurn emits nothing until its first token, so if it threw before
-      // that the wire is still clean and the failover lane can claim it. Once
-      // tokens are out, retrying would duplicate half a sentence — so a
-      // mid-stream failure rethrows and surfaces as an `error` event.
-      if (primary.provider !== "agnes") throw primaryError;
-      full = await streamTurn(makeOpenAILane(langfuseOpts), messages, emit, true);
-    }
+      try {
+        full = await streamTurn(primary, messages, emit, false);
+      } catch (primaryError) {
+        // streamTurn emits nothing until its first token, so if it threw before
+        // that the wire is still clean and the failover lane can claim it. Once
+        // tokens are out, retrying would duplicate half a sentence — so a
+        // mid-stream failure rethrows and surfaces as an `error` event.
+        if (primary.provider !== "agnes") throw primaryError;
+        full = await streamTurn(makeOpenAILane(langfuseOpts), messages, emit, true);
+      }
 
-    // The model SUGGESTS what happens next; the client decides and enforces the
-    // 2-follow-up cap. Absent or malformed sentinels degrade to ask_followup.
-    const { reply, action } = splitReplyAndMeta(full);
-    emit("meta", { action, reply });
-    emit("done", {});
-  });
+      // The model SUGGESTS what happens next; the client decides and enforces the
+      // 2-follow-up cap. Absent or malformed sentinels degrade to ask_followup.
+      const { reply, action } = splitReplyAndMeta(full);
+      emit("meta", { action, reply });
+      emit("done", {});
+    }),
+  );
 }
 
 /**

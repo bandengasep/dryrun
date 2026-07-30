@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { propagateAttributes } from "@langfuse/tracing";
 import { CompileResult, compileSessionPlan, PlanError } from "@dryrun/core";
 import { makeStructuredClient } from "../../lib/providers";
 import { flushLangfuse } from "../../lib/langfuse";
@@ -42,9 +43,13 @@ export async function POST(req: Request) {
   }
 
   try {
-    const plan = await compileSessionPlan(gaps, jd.sourceText, resume.sourceText, {
-      client: makeStructuredClient({ route: "plan", metadata: { gapCount: gaps.length } }),
-    });
+    // Trace-level name: observeOpenAI's generationName only names the
+    // observation, which leaves the trace itself blank in the Langfuse UI.
+    const plan = await propagateAttributes({ traceName: "plan" }, () =>
+      compileSessionPlan(gaps, jd.sourceText, resume.sourceText, {
+        client: makeStructuredClient({ route: "plan", metadata: { gapCount: gaps.length } }),
+      }),
+    );
     return NextResponse.json({ plan });
   } catch (e) {
     // A guard rejection is the system working, not an outage: the model tried to

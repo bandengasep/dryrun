@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
+import { propagateAttributes } from "@langfuse/tracing";
 import { parseJD, parseResume, diffGaps } from "@dryrun/core";
 import { sseResponse } from "../../lib/sse-response";
 import { makeStructuredClient } from "../../lib/providers";
-import { flushLangfuse } from "../../lib/langfuse";
 
 // Two parse calls (in parallel) + one embeddings call + one diff call.
 export const maxDuration = 300;
@@ -10,17 +10,13 @@ export const maxDuration = 300;
 /**
  * Compile a JD + resume into evidenced gaps.
  *
- * Streams by default (`event: stage` ×2 → `event: result` | `event: error`) so
+ * Streams (`event: stage` ×2 → `event: result` | `event: error`) so
  * the compile trace is visible while ~40s of model latency elapses, instead of a
  * spinner that proves nothing. The stages are emitted around the real awaits —
  * they are a trace, not an animation.
  *
  * The gaps are the first artifact and stay a first-class one; questions are
  * compiled separately by /api/plan, so a plan retry never re-buys the parses.
- *
- * TEMPORARY: a client that doesn't ask for `text/event-stream` still gets the
- * old `{ gaps }` JSON. This keeps `main` demoable while /compile migrates to
- * readSSE in the FE session landing today — delete the JSON branch once it has.
  */
 export async function POST(req: Request) {
   let jdText: string;
@@ -39,60 +35,38 @@ export async function POST(req: Request) {
     );
   }
 
-  const wantsStream = (req.headers.get("accept") ?? "").includes(
-    "text/event-stream",
-  );
-
-  if (!wantsStream) {
-    try {
+  // Trace-level name: observeOpenAI's generationName only names the
+  // observation, which leaves the trace itself blank in the Langfuse UI.
+  return sseResponse((emit) =>
+    propagateAttributes({ traceName: "compile" }, async () => {
       const client = makeStructuredClient({
         route: "compile",
         metadata: { jdChars: jdText.length, resumeChars: resumeText.length },
       });
+
+      emit("stage", { stage: "parsing" });
       const [jd, resume] = await Promise.all([
         parseJD(jdText, { client }),
         parseResume(resumeText, { client }),
       ]);
+      emit("stage", {
+        stage: "parsing",
+        done: true,
+        requirements: jd.lines.length,
+        resumeLines: resume.lines.length,
+        // Quotes the parser could not anchor to the source. Surfaced, not hidden —
+        // this number is the citation-validity eval's input.
+        dropped: jd.dropped.length + resume.dropped.length,
+      });
+
+      emit("stage", { stage: "diffing" });
       const gaps = await diffGaps(jd, resume, { client });
-      return NextResponse.json({ jd, resume, gaps });
-    } catch (e) {
-      return NextResponse.json(
-        { error: e instanceof Error ? e.message : String(e) },
-        { status: 500 },
-      );
-    } finally {
-      await flushLangfuse();
-    }
-  }
+      emit("stage", { stage: "diffing", done: true, gaps: gaps.length });
 
-  return sseResponse(async (emit) => {
-    const client = makeStructuredClient({
-      route: "compile",
-      metadata: { jdChars: jdText.length, resumeChars: resumeText.length },
-    });
-
-    emit("stage", { stage: "parsing" });
-    const [jd, resume] = await Promise.all([
-      parseJD(jdText, { client }),
-      parseResume(resumeText, { client }),
-    ]);
-    emit("stage", {
-      stage: "parsing",
-      done: true,
-      requirements: jd.lines.length,
-      resumeLines: resume.lines.length,
-      // Quotes the parser could not anchor to the source. Surfaced, not hidden —
-      // this number is the citation-validity eval's input.
-      dropped: jd.dropped.length + resume.dropped.length,
-    });
-
-    emit("stage", { stage: "diffing" });
-    const gaps = await diffGaps(jd, resume, { client });
-    emit("stage", { stage: "diffing", done: true, gaps: gaps.length });
-
-    // Full parser output, not just gaps: the client holds session state, and the
-    // plan/debrief surfaces need the source texts and line spans to render
-    // receipts without another round trip.
-    emit("result", { jd, resume, gaps });
-  });
+      // Full parser output, not just gaps: the client holds session state, and the
+      // plan/debrief surfaces need the source texts and line spans to render
+      // receipts without another round trip.
+      emit("result", { jd, resume, gaps });
+    }),
+  );
 }
