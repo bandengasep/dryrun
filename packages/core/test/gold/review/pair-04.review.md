@@ -1,5 +1,8 @@
 # Pair 04 — adjudication review sheet (40 gaps, 0 adjudicated)
 
+> **Sources:** JD = `test/fixtures/jd-04.txt` · Resume = `test/fixtures/resume-04.txt`
+> Verdicts go in `test/gold/pair-04.adjudication.json`
+>
 > GENERATED READING AID — mechanical re-presentation of pair-04.adjudication.json
 > plus fixture context. No judgments live here; verdicts go in the JSON.
 >

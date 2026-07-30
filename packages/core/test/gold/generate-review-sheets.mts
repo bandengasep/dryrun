@@ -72,6 +72,9 @@ for (const n of pairNs) {
   const parts: string[] = [
     `# Pair ${n} — adjudication review sheet (${adjudication.gaps.length} gaps, ${filled} adjudicated)`,
     "",
+    `> **Sources:** JD = \`test/fixtures/jd-${n}.txt\` · Resume = \`test/fixtures/resume-${n}.txt\``,
+    `> Verdicts go in \`test/gold/pair-${n}.adjudication.json\``,
+    ">",
     "> GENERATED READING AID — mechanical re-presentation of pair-" + n + ".adjudication.json",
     "> plus fixture context. No judgments live here; verdicts go in the JSON.",
     ">",
