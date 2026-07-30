@@ -26,3 +26,6 @@ coverage/
 *.swp
 .idea/
 .vscode/
+
+# local E2E scratch files (test uploads, render fixtures)
+.tmp-e2e/
