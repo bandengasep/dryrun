@@ -408,6 +408,19 @@ and two of these miss targets that were locked on 26 Jul.
   (d) The engine-verbosity finding stands on mechanical evidence alone: 168 gaps collapse to 89
   distinct JD requirements; pair-05 is 53 gaps over 18 requirements with one kitchen-sink skills
   line accounting for 16 — the dedupe lever's motivating exhibit, no gold needed.
+- **Shipped and FROZEN (Thu eve, PR #17 merged, prod-verified).** The day's full ledger landed on
+  main in one PR: baseline audit tooling + re-run, gold taxonomy validator + grouped review
+  sheets, README Evidence table, F-cleanups (route-level Langfuse trace names via
+  `propagateAttributes` — verified by a live probe producing a NAMED prod trace; compile's dead
+  TEMP JSON branch deleted; turn-route wire docs corrected; AGENTS layout un-drifted), and the
+  **mic-dictation rung** behind `NEXT_PUBLIC_ENABLE_MIC` (built by a Sonnet lane, orchestrator-
+  reviewed): final segments land as editable draft text — review-before-send keeps the debrief's
+  quote validation honest — with a cloud-STT disclosure while listening; compiled away entirely
+  when the flag is unset. **Kill switch = unset the Vercel env var + redeploy** (the pre-committed
+  Fri-22:00 revert path). Mic ships explicitly as an UNEVALUATED input convenience. CI green
+  (203 core tests), web build green both flag states, prod deploy flipped and probe-confirmed.
+  **Product is frozen for Saturday's recording; all remaining work is submission materials**
+  (write-up, video, gitleaks, BoardingPass rescan, README links, final smoke).
 
 ## 2026-07-29
 
