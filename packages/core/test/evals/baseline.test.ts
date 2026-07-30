@@ -7,6 +7,7 @@
 import { describe, it, expect } from "vitest";
 import OpenAI from "openai";
 import { uncitedRate } from "../../src/evals";
+import { locateSpan } from "../../src/parsers/spans";
 import { evalsEnabled, loadPairs, writeResult } from "./harness";
 
 const BASELINE_MODEL = "gpt-5-mini";
@@ -24,6 +25,20 @@ const BASELINE_PROMPT = [
 interface BaselineItem {
   question: string;
   quote: string | null;
+}
+
+// Raw model text and per-item verdicts are persisted so the headline rate can
+// be audited post-hoc: a 3-char quote that locates trivially and a full
+// requirement line score the same in uncitedRate, and only the persisted
+// items can tell them apart. qLines vs itemsParsed exposes how many Q-lines
+// the lenient parser dropped (a Q with no parseable Quote line vanishes).
+interface BaselinePairResult {
+  n: string;
+  itemsParsed: number;
+  qLines: number;
+  uncited: ReturnType<typeof uncitedRate>;
+  items: { question: string; quote: string | null; located: boolean; quoteChars: number | null }[];
+  raw: string;
 }
 
 /**
@@ -66,7 +81,7 @@ describe.skipIf(!evalsEnabled)("baseline — zero-shot ChatGPT, no receipts cont
       const pairs = loadPairs();
       expect(pairs.length).toBeGreaterThan(0);
 
-      const perPair: { n: string; itemsParsed: number; uncited: ReturnType<typeof uncitedRate> }[] = [];
+      const perPair: BaselinePairResult[] = [];
 
       for (const pair of pairs) {
         const response = await client.chat.completions.create({
@@ -81,11 +96,21 @@ describe.skipIf(!evalsEnabled)("baseline — zero-shot ChatGPT, no receipts cont
         });
         const text = response.choices[0]?.message?.content ?? "";
         const items = parseBaseline(text);
+        const qLines = text
+          .split("\n")
+          .filter((l) => /^Q(?:uestion)?\s*[:.\-]/i.test(l.trim())).length;
+        const sources = [pair.jdText, pair.resumeText];
+        const detailed = items.map((i) => ({
+          question: i.question,
+          quote: i.quote,
+          located: i.quote !== null && sources.some((s) => locateSpan(s, i.quote as string) !== null),
+          quoteChars: i.quote === null ? null : i.quote.length,
+        }));
         const claims = items.map((i) => ({ text: i.question, quote: i.quote }));
-        const stats = uncitedRate(claims, [pair.jdText, pair.resumeText]);
-        perPair.push({ n: pair.n, itemsParsed: items.length, uncited: stats });
+        const stats = uncitedRate(claims, sources);
+        perPair.push({ n: pair.n, itemsParsed: items.length, qLines, uncited: stats, items: detailed, raw: text });
         console.log(
-          `[baseline] pair-${pair.n}: parsed ${items.length} items, uncitedRate=${stats.rate.toFixed(2)}`,
+          `[baseline] pair-${pair.n}: parsed ${items.length}/${qLines} Q-lines, uncitedRate=${stats.rate.toFixed(2)}`,
         );
       }
 
@@ -93,15 +118,25 @@ describe.skipIf(!evalsEnabled)("baseline — zero-shot ChatGPT, no receipts cont
       const totalUncited = perPair.reduce((s, p) => s + p.uncited.uncited, 0);
       const aggregateUncitedRate = totalClaims === 0 ? null : totalUncited / totalClaims;
 
+      const quoted = perPair.flatMap((p) => p.items.filter((i) => i.quoteChars !== null));
+      const lens = quoted.map((i) => i.quoteChars as number).sort((a, b) => a - b);
+      const medianQuoteChars = lens.length === 0 ? null : lens[Math.floor(lens.length / 2)];
+      const shortQuoteRate =
+        quoted.length === 0 ? null : quoted.filter((i) => (i.quoteChars as number) < 20).length / quoted.length;
+      const noneCount = perPair.reduce((s, p) => s + p.items.filter((i) => i.quote === null).length, 0);
+
       await writeResult(
         "baseline",
         {
           corpus: pairs.map((p) => p.n),
-          config: { model: BASELINE_MODEL, note: "leniently-parsed free text, no structured-output contract" },
-          metrics: { aggregateUncitedRate },
+          config: {
+            model: BASELINE_MODEL,
+            note: "leniently-parsed free text, no structured-output contract; raw outputs + per-item verdicts persisted for audit",
+          },
+          metrics: { aggregateUncitedRate, medianQuoteChars, shortQuoteRate, noneCount },
           perPair,
         },
-        { baseline_uncited_rate: aggregateUncitedRate },
+        { baseline_uncited_rate: aggregateUncitedRate, baseline_median_quote_chars: medianQuoteChars },
       );
 
       expect(perPair.length).toBeGreaterThan(0);
