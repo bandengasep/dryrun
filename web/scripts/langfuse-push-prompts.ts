@@ -1,8 +1,10 @@
 // Upserts DryRun's three compile-time system prompts into Langfuse Prompt
 // Management, labeled "production":
-//   dryrun/plan-compile      <- PLAN_SYSTEM_PROMPT     (packages/core/src/plan)
-//   dryrun/interviewer       <- PERSONA                (packages/core/src/session)
-//   dryrun/debrief-compile   <- DEBRIEF_SYSTEM_PROMPT  (packages/core/src/debrief)
+//   plan-compile      <- PLAN_SYSTEM_PROMPT     (packages/core/src/plan)
+//   interviewer       <- PERSONA                (packages/core/src/session)
+//   debrief-compile   <- DEBRIEF_SYSTEM_PROMPT  (packages/core/src/debrief)
+// (Top-level names, no folder prefix: the Langfuse project "dryrun-app" is
+// dedicated to DryRun, so a dryrun/ folder inside it was redundant nesting.)
 //
 // These are REFERENCE copies for browsing/diffing/experimenting in the
 // Langfuse UI. This script does NOT wire runtime prompt fetching into the
@@ -50,9 +52,9 @@ async function main() {
   const langfuse = new LangfuseClient();
 
   const prompts: { name: string; prompt: string }[] = [
-    { name: "dryrun/plan-compile", prompt: PLAN_SYSTEM_PROMPT },
-    { name: "dryrun/interviewer", prompt: PERSONA },
-    { name: "dryrun/debrief-compile", prompt: DEBRIEF_SYSTEM_PROMPT },
+    { name: "plan-compile", prompt: PLAN_SYSTEM_PROMPT },
+    { name: "interviewer", prompt: PERSONA },
+    { name: "debrief-compile", prompt: DEBRIEF_SYSTEM_PROMPT },
   ];
 
   for (const { name, prompt } of prompts) {

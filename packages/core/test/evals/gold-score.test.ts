@@ -3,10 +3,10 @@
 // test/gold/*.adjudication.json + *.model.json off disk, so it's cheap and
 // safe to run in a normal `pnpm test`. When nothing has been adjudicated yet
 // it skips with an explanatory message instead of failing.
-import { describe, it } from "vitest";
+import { describe, expect, it } from "vitest";
 import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { scoreGold, type GoldAdjudication } from "../../src/evals";
+import { scoreGold, validateGoldAdjudication, type GoldAdjudication } from "../../src/evals";
 import type { Gap } from "../../src/schemas";
 import { writeResult } from "./harness";
 
@@ -32,6 +32,16 @@ const pairNs = listPairNs();
 const anyVerdictFilled = pairNs.some((n) => readAdjudication(n).gaps.some((g) => g.verdict.trim().length > 0));
 
 describe("gold-score — precision/recall against hand adjudication", () => {
+  // Runs even with zero verdicts filled: a malformed sheet (typo'd verdict,
+  // bad wrong_kind suffix, empty missedRequirements entry) fails HERE, loudly
+  // and named, instead of silently counting as a disagreement in scoreGold.
+  it("adjudication files are taxonomy-valid", () => {
+    for (const n of pairNs) {
+      const problems = validateGoldAdjudication(readAdjudication(n));
+      expect(problems, `pair-${n}.adjudication.json:\n  ${problems.join("\n  ")}`).toEqual([]);
+    }
+  });
+
   if (!anyVerdictFilled) {
     it.skip(
       "no verdicts filled in yet — run `pnpm evals` (writes test/gold/*.adjudication.json scaffolding), " +

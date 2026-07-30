@@ -20,7 +20,7 @@ export function langfuseEnabled(): boolean {
  * Flush buffered spans before a serverless function's response finishes.
  * No-op keyless (the processor is never constructed — see ./langfuse-otel).
  * Call from a `finally` in JSON routes, and it is already wired into
- * sseResponse's teardown (./stream.ts) for the two SSE routes.
+ * sseResponse's teardown (./sse-response.ts) for the two SSE routes.
  */
 export async function flushLangfuse(): Promise<void> {
   if (!langfuseSpanProcessor) return;

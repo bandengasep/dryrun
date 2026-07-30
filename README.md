@@ -4,7 +4,7 @@
 
 > Paste a job description and a resume; DryRun diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that's silent — then compiles **your interview**: the questions those gaps predict, rehearsed live against an AI interviewer, debriefed with feedback that quotes your own answers back to you. Nothing displayed without a receipt; nothing graded, everything cited. *(Pivoted 26 Jul from the executable-SQL-challenge surface — decision log has the reasoning; the SQL harness stays in-repo, dormant and CI-green.)*
 
-**Hackathon submission — deadline 31 Jul 2026, 23:59 SGT.** Public repo + ≤3-min video + ≤1,000-word write-up. Judged on five pillars: Problem · Approach · Evidence · Constraints · Honesty & Trajectory. Guiding rule: *a modest claim, proven, beats a grand claim, asserted.*
+**Hackathon submission — deadline extended to Sun 2 Aug 2026 (announced 30 Jul); submitting Sat 1 Aug evening.** Public repo + ≤3-min video + ≤1,000-word write-up with the five pillars as section headings: Problem · Approach · Evidence · Constraints · Honesty & Trajectory. Guiding rule: *a modest claim, proven, beats a grand claim, asserted.* Video + write-up links land here before submission.
 
 **Team:** Timothy (backend / agents / evals) · Vedika (UI/UX / video).
 
@@ -12,17 +12,44 @@
 
 All-TypeScript **pnpm workspace** (Node 22, TypeScript 5.x). One language across backend and frontend so the receipts contract is a single shared type — Zod schemas in `packages/core` drive OpenAI's strict structured output, the API types, and the React props alike. LLM providers: **OpenAI + Agnes AI** (OpenAI-compatible, wired through the same client-injection seam). Video answers: **VideoDB** (direct upload → timed transcripts). **Almost no database** — in-flight session state is client-held and routes are stateless; the single server-side write is the explicit "Save & share debrief" button (one `sessions` row, read back only through our own server). Dormant sandbox: `better-sqlite3` + vitest harness with its CI gate (the parked SQL-challenge tier).
 
-## Status (26 Jul — post-pivot)
+## Status (30 Jul)
+
+**Live at [dryrun-web-pi.vercel.app](https://dryrun-web-pi.vercel.app)** — the whole journey, E2E-verified with real API calls.
 
 | Piece | State |
 |---|---|
-| JD / resume parsers — strict structured outputs, receipts computed by a deterministic locator (never trusted from the model); unlocatable quotes surface in `dropped` | ✅ shipped, live-tested |
-| Gap diff engine — embedding match + one batched adjudication → *missing / weak evidence / strong differentiator*, every row carrying JD + resume spans | ✅ shipped, live-green on 3 hand-built fixture pairs |
-| `/api/compile` — runs the real pipeline end to end | ✅ shipped (SSE trace rewrite this week) |
-| SQL challenge harness + CI executability gate | ✅ shipped, dormant (generator parked post-hackathon) |
-| Session-plan compiler (receipt-carrying interview questions) · mock session (Agnes/OpenAI interviewer) · debrief (transcript-quoted feedback, no scores) · video answers (VideoDB, gated) · eval suite | ⏳ this week — see `docs/superpowers/plans/2026-07-26-pivot-interview-rehearsal.md` |
+| Full pipeline: compile (SSE trace) → plan (receipt-carrying questions) → session room (Agnes interviewer, labeled OpenAI failover) → debrief (transcript-quoted, no scores) | ✅ shipped, live |
+| Ingest, both columns: paste / .txt / .md / .docx / .pdf / screenshot — extraction lands as an editable draft, the user confirms before compile (vision is never the source of record) | ✅ shipped |
+| Save & share debrief — the one explicit server-side write; read-only link, write-once | ✅ shipped |
+| `?mock=1` offline demo mode | ✅ shipped |
+| Langfuse observability — masked prod traces, versioned prompts, eval suites push scores | ✅ shipped |
+| Eval suite + banked results | ✅ `evals/results/` — see Evidence below |
+| SQL challenge harness + CI executability gate | dormant, CI-green (parked tier) |
+| Video answers (VideoDB timed transcripts) | **no-go at the pre-committed gate** — substrate ships dormant (14 passing timeline tests); debrief loses only timestamps |
 
 The invariant everything hangs on: `sourceText.slice(span.start, span.end) === span.text` — every gap receipt is a literal slice of the submitted documents, enforced by code.
+
+## Evidence — every locked criterion, measured
+
+Success criteria were locked **before building** (`docs/spec-pivot-2026-07-26.md`, 26 Jul). Every criterion appears below — met, missed, or restated; none silently dropped. Misses follow the pre-committed policy: restate with the measurement rather than quietly re-baseline.
+
+| Criterion | Target (locked 26 Jul) | Measured | Verdict |
+|---|---|---|---|
+| Displayed-question grounding | 100% by construction; pre-guard ≥95% | Pre-guard **29/29 (100%)** across 5 pairs; displayed rate guard-enforced (unknown `gapId` throws) — `evals/results/grounding-2026-07-28.json` | **Met** |
+| Displayed debrief quotes valid | 100% by construction; dropped <10% | Live session: every quote slices back to the candidate's own turn, **0 dropped** (single live session, disclosed); failures demote to a visible `dropped[]`, never displayed | **Met** |
+| Gap-set consistency | mean pairwise Jaccard ≥0.6 (20 runs/pair) | **0.794** (pair-01, 20/20 runs) · **0.900** (pair-04, 18/20; 2 runs guard-rejected) — `consistency-2026-07-28.json` | **Met** (2 pairs measured) |
+| Gap precision / recall vs gold | ≥0.8 / ≥0.7, human-adjudicated | **Not measured — descoped 30 Jul** (adjudicator ill; AI adjudication declined twice on circularity — decision log). Protocol, grouped review sheets, and strict taxonomy validation are committed and CI-green in `test/gold/`; corpus reached 5 pairs, not the spec table's 13 | **Restated** (first post-deadline task) |
+| Cost | compile ≤$0.05 · session ≤$0.25 median | **Not captured** — cost threading in the eval suites nulls out (logged 29 Jul); Agnes publishes no per-token price, and we report tokens rather than invent one | **Restated** |
+| Latency: compile p50 | ≤60s | **99.65s** prod (fixture pair) · **146.3s** real Venture JD — single runs, not a p50; JD parse is 66s of the 99s. Levers named (reasoning effort, chunked parse) but unadopted: the quality gate needed gold | **Missed — restated** |
+| Latency: plan | ≤20s | **33.4s** on the shipped OpenAI lane. The Agnes lane measured **13.2s mean at receipts parity** in the comparison suite — meets the target; adoption deferred (same gold gate) | **Missed — restated** |
+| Latency: first turn token | ≤3s | **~6.2s** on both providers (562-token prompt; a 265-token probe hit 1.2s — prompt-trim lever untried) | **Missed — restated** |
+| Latency: debrief | ≤45s | **22.7s** (live 2-question session) | **Met** |
+| Video quote→timestamp | ≥90% exact | Lane **no-go'd at the pre-committed Wed 15:00 gate, called 14h early on evidence**; substrate ships dormant with 14 passing timeline tests (exact arithmetic by construction, unexercised in product) | **Restated** (the gate working as designed) |
+| Zero-shot baseline uncited-rate | reported side-by-side | **Reported: 1.03%** (28 Jul) · **0.0%** (30 Jul audited re-run: 100/100 quotes verbatim, median 91 chars, full parse coverage) — `baseline-2026-07-30.json` | **Met** — and it did not show what we expected (see below) |
+
+**On the baseline:** we built it expecting fabricated quotes; measured, gpt-5-mini quotes verbatim essentially always when politely asked. We report that unflattering result instead of burying it, because it sharpens the actual claim: the baseline's citedness is a *habit with no enforcement* (the 28-Jul run did fabricate once, and nothing would ever catch the day it does), its quotes are unanchored strings a reader cannot verify without exactly the locator machinery this product ships, and verifying the baseline's 0% *required* that machinery. DryRun's claim was never "models can't quote" — it's that **nothing is displayed without a mechanically validated receipt, and validation failures are shown, not hidden**.
+
+**Provider exhibit (Constraints/Approach):** on plan-compile, Agnes (`agnes-2.0-flash`, `chat.completions` + `json_schema`) ran **2.40× faster than OpenAI at receipts parity** — 13.2s vs 31.6s mean, grounding 12/12 on both, STAR compliance 100% on both (n=2 pairs) — `provider-comparison-2026-07-28.json`.
 
 ## Layout
 
@@ -33,7 +60,7 @@ packages/core/          # backend TS library
   src/diff/             # embedding match + LLM adjudication → typed set-difference
   src/plan|session|debrief/  # this week: question compiler, interviewer protocol, cited debrief
   src/harness/          # dormant SQL sandbox (import via @dryrun/core/harness)
-  src/evals/            # metric implementations (stub today; built with the features this week)
+  src/evals/            # metric implementations (pure, offline-tested); keyed runner in test/evals/
 web/                    # Next.js (App Router); imports @dryrun/core
 docs/                   # spec-pivot-2026-07-26.md, decision-log.md, post-hackathon-ideas.md
 .github/workflows/      # ci.yml — pnpm install + typecheck + vitest + harness gate + next build

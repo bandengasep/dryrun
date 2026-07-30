@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { propagateAttributes } from "@langfuse/tracing";
 import { makeStructuredClient } from "../../lib/providers";
 import { flushLangfuse } from "../../lib/langfuse";
 
@@ -64,18 +65,22 @@ export async function POST(req: Request) {
       route: "extract-image",
       metadata: { imageDataUrlChars: imageDataUrl.length },
     });
-    const completion = await client.chat.completions.create({
-      model: process.env.VISION_MODEL ?? "gpt-5-mini",
-      messages: [
-        {
-          role: "user",
-          content: [
-            { type: "text", text: TRANSCRIBE_PROMPT },
-            { type: "image_url", image_url: { url: imageDataUrl } },
-          ],
-        },
-      ],
-    });
+    // Trace-level name: observeOpenAI's generationName only names the
+    // observation, which leaves the trace itself blank in the Langfuse UI.
+    const completion = await propagateAttributes({ traceName: "extract-image" }, () =>
+      client.chat.completions.create({
+        model: process.env.VISION_MODEL ?? "gpt-5-mini",
+        messages: [
+          {
+            role: "user",
+            content: [
+              { type: "text", text: TRANSCRIBE_PROMPT },
+              { type: "image_url", image_url: { url: imageDataUrl } },
+            ],
+          },
+        ],
+      }),
+    );
 
     const text = (completion.choices[0]?.message?.content ?? "").trim();
 

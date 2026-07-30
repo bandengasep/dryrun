@@ -352,6 +352,62 @@ and two of these miss targets that were locked on 26 Jul.
   grpc/tls out of the browser bundle — found by a keyless `next build` breaking, fixed, both
   builds verified green. Eval suites now push headline numbers as Langfuse scores.
   ⚠ Prod traces need `LANGFUSE_*` env vars added to the Vercel project (Timothy, dashboard, 2 min).
+- **Competitive rescan: LinkedIn Premium's AI Role Play found — pitch stays STANDALONE; no pivot,
+  no fold-in; mic dictation waits behind an evidence gate.** Timothy surfaced LinkedIn Learning's
+  AI Role Play (30 Jul screenshots + docs: interview role-play scoped to a skill/course, voice or
+  text, post-session Strengths/Areas-of-Improvement assessment plus course recommendations,
+  accuracy handled by a "powered by AI and may make mistakes" disclaimer, Premium-gated; refs:
+  Microsoft Support "AI-powered LinkedIn role play", UChicago Academic Tech overview 2026-06-03).
+  This executes the AGENTS final-week "rescan for newly shipped interview-prep features" item for
+  LinkedIn (BoardingPass rescan still pending Fri/Sat), and the pre-committed response applied:
+  narrow the pitch, don't pivot. Adjudication — all Timothy's calls, 30 Jul brainstorm session:
+  (a) **Four "fold their feature in" readings rejected on pre-committed grounds**: literal
+  integration (no public API; runtime LinkedIn is cut-listed — ToS + serverless-infeasible,
+  26 Jul) · voice parity via the Realtime speech-to-speech API (banned, credit trap, rule 4) ·
+  LinkedIn JD/profile import (same cut-list line) · adopting strengths/weaknesses assessment
+  (violates the named no-scores stance).
+  (b) **Pitch stays standalone.** DryRun does not define itself against LinkedIn in any headline;
+  the brand appears exactly once — write-up Problem section, as demand proof. Approach names the
+  *pattern* ("assess-and-advise interview coaches": AI-asserted judgment behind a disclaimer) as
+  the rejected alternative, brand-free — satisfying "alternatives named" without a second mention.
+  No landing FAQ comparison, no README pitch change, no video comparison beat; the video keeps its
+  planned arc (open on the real Venture-JD compile, close on baseline-vs-ours numbers).
+  (c) **VideoDB video-answers lane stays NO-GO** — re-examined fairly (substrate consumers now
+  exist; deadline extended) and re-rejected: the rule-5 SDK verification was never done, the full
+  rung costs 10–15h against a fully allocated budget, and reversing an evidence-based no-go ~24h
+  before submission would convert the Constraints/Honesty exhibit into its opposite.
+  (d) **Mic dictation = gated stretch**: browser `webkitSpeechRecognition` (Chrome/Edge/Safari;
+  Firefox unshipped) → transcribed speech lands as an **editable draft** in the session composer —
+  review-before-send keeps the receipts chain intact, the same honesty pattern as document
+  extraction. Feature-flagged `NEXT_PUBLIC_ENABLE_MIC`, honest cloud-STT disclosure line near the
+  button. Builds Friday PM ONLY after the uncitedRate audit + README eval table + F-cleanups land
+  and gold adjudication is on track; hard revert/flag-off if not E2E-green by Fri 22:00 — Vedika
+  records Saturday against a frozen, verified build. If the gate never opens, the sketch lives in
+  post-hackathon-ideas as Trajectory material.
+  **Write-up notes (for the drafting session)**: Problem = one sentence citing LinkedIn's launch
+  as mainstream demand proof; Approach = assess-and-advise as the named rejected alternative
+  (disclaimer vs. mechanical validation); Constraints/Honesty = voice-modality gap stated plainly,
+  video no-go framed as the gate working; if the mic rung ships, it is described as an unevaluated
+  input convenience, never an evaluated surface. The wedge axes that survive contact are the
+  measured ones: specificity (compiled from THE JD × YOUR resume), provenance (question → gapId →
+  JD + resume spans, 100% grounding), verifiability (locateSpan-validated quotes + visible
+  `dropped[]`).
+
+- **Gold adjudication DESCOPED — reported as not-measured, never faked.** Timothy's call (30 Jul
+  eve): ill (sore throat ruled out even the dictation workflow), and the extension hours are
+  consumed by the remaining evidence/freeze lanes. AI adjudication was declined twice this week
+  (Codex reverted 30 Jul; Claude declined same day when asked directly) — the standing rule is
+  gold stays HUMAN or UNMEASURED, never synthetic. Consequences, all pre-committed branches:
+  (a) README criterion row becomes "gold precision/recall: not measured — descoped; adjudication
+  protocol, grouped review sheets, and strict taxonomy validation are committed and CI-green"
+  (the infrastructure is the Trajectory exhibit; first post-deadline task).
+  (b) Latency levers are NOT adopted — the lever policy's no-gold branch applies: targets
+  restated with measurements (compile ~100–146s vs ≤60s, first-token ~6.2s vs ≤3s).
+  (c) Micro-adjudication stays open, not owed: pair-01 alone (22 requirements, typed not spoken,
+  ~15 min) would revive the row as "n=1 pair, disclosed" if energy appears Fri/Sat.
+  (d) The engine-verbosity finding stands on mechanical evidence alone: 168 gaps collapse to 89
+  distinct JD requirements; pair-05 is 53 gaps over 18 requirements with one kitchen-sink skills
+  line accounting for 16 — the dedupe lever's motivating exhibit, no gold needed.
 
 ## 2026-07-29
 

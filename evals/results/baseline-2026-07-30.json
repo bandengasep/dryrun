@@ -1,0 +1,688 @@
+{
+  "startedAt": "2026-07-30T01:59:53.386Z",
+  "gitCommit": "63315b3d98d2c10ab8d497c21a4f0754dc29f92a",
+  "corpus": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05"
+  ],
+  "config": {
+    "model": "gpt-5-mini",
+    "note": "leniently-parsed free text, no structured-output contract; raw outputs + per-item verdicts persisted for audit"
+  },
+  "metrics": {
+    "aggregateUncitedRate": 0,
+    "medianQuoteChars": 91,
+    "shortQuoteRate": 0,
+    "noneCount": 0
+  },
+  "perPair": [
+    {
+      "n": "01",
+      "itemsParsed": 16,
+      "qLines": 16,
+      "uncited": {
+        "claims": 16,
+        "uncited": 0,
+        "rate": 0
+      },
+      "items": [
+        {
+          "question": "Walk me through the weekly retention report you built in BigQuery—what tables, key metrics, and SQL logic did you implement?",
+          "quote": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team",
+          "located": true,
+          "quoteChars": 86
+        },
+        {
+          "question": "The JD asks for 3+ years of hands-on SQL in a production warehouse—can you describe the depth and scale of your SQL experience and any production deployments?",
+          "quote": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)",
+          "located": true,
+          "quoteChars": 94
+        },
+        {
+          "question": "How would you design SQL models and dashboards for funnel and campaign reporting—what metrics and transformations would you include?",
+          "quote": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting",
+          "located": true,
+          "quoteChars": 91
+        },
+        {
+          "question": "Tell me about a time you partnered with product managers on an A/B test, or how you would design and analyze one (hypothesis, metrics, stats).",
+          "quote": "- Partner with product managers to design and analyze A/B experiments",
+          "located": true,
+          "quoteChars": 69
+        },
+        {
+          "question": "Explain the data cleaning and joining steps you performed with pandas on clickstream data—what issues did you encounter and how did you resolve them?",
+          "quote": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis",
+          "located": true,
+          "quoteChars": 80
+        },
+        {
+          "question": "How would you own the weekly business review metrics pipeline end to end (scheduling, monitoring, data quality, alerting)?",
+          "quote": "- Own the weekly business review metrics pipeline end to end",
+          "located": true,
+          "quoteChars": 60
+        },
+        {
+          "question": "Give an example of how you communicated technical findings to a non-technical stakeholder—what format and level of detail did you use?",
+          "quote": "- Presented findings to the marketing lead in a monthly review",
+          "located": true,
+          "quoteChars": 62
+        },
+        {
+          "question": "Describe your grounding in statistics: how do you apply hypothesis testing, confidence intervals, and experiment design in practice?",
+          "quote": "Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design",
+          "located": true,
+          "quoteChars": 91
+        },
+        {
+          "question": "What is your experience with Python notebooks and pandas for analysis—can you walk me through the notebook you used for the churn analysis?",
+          "quote": "Proficiency in Python for analysis (pandas, notebooks)",
+          "located": true,
+          "quoteChars": 54
+        },
+        {
+          "question": "What experience do you have building dashboards in Tableau or Looker, and can you describe a dashboard you designed for stakeholders?",
+          "quote": "Experience with a BI tool such as Tableau or Looker",
+          "located": true,
+          "quoteChars": 51
+        },
+        {
+          "question": "Are you familiar with dbt or version-controlled analytics workflows, and how would you apply them to manage SQL models?",
+          "quote": "Familiarity with dbt and version-controlled analytics workflows is a plus",
+          "located": true,
+          "quoteChars": 73
+        },
+        {
+          "question": "How did you automate the monthly report with VBA macros, and how would that experience translate to automating a weekly metrics pipeline?",
+          "quote": "- Automated a monthly report with VBA macros",
+          "located": true,
+          "quoteChars": 44
+        },
+        {
+          "question": "The role is about turning raw event data into decisions—describe a concrete recommendation you produced from raw event or clickstream data.",
+          "quote": "You will turn raw event data into decisions for the growth team.",
+          "located": true,
+          "quoteChars": 64
+        },
+        {
+          "question": "What BigQuery-specific optimizations (partitioning, clustering, query tuning) have you used on large event tables?",
+          "quote": "SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)",
+          "located": true,
+          "quoteChars": 77
+        },
+        {
+          "question": "Tell me about a project from your MSc coursework where you applied statistics, machine learning, or data management relevant to this role.",
+          "quote": "MSc Business Analytics, NUS. Coursework: statistics, machine learning, data management.",
+          "located": true,
+          "quoteChars": 87
+        },
+        {
+          "question": "The role requires excellent written and verbal communication in English—can you give an example of presenting complex analysis to an English-speaking audience?",
+          "quote": "Excellent written and verbal communication in English",
+          "located": true,
+          "quoteChars": 53
+        }
+      ],
+      "raw": "Q: Walk me through the weekly retention report you built in BigQuery—what tables, key metrics, and SQL logic did you implement?\nQuote: - Wrote SQL queries in BigQuery to build a weekly retention report for the growth team\nQ: The JD asks for 3+ years of hands-on SQL in a production warehouse—can you describe the depth and scale of your SQL experience and any production deployments?\nQuote: 3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)\nQ: How would you design SQL models and dashboards for funnel and campaign reporting—what metrics and transformations would you include?\nQuote: - Build and maintain SQL models and dashboards for funnel, retention and campaign reporting\nQ: Tell me about a time you partnered with product managers on an A/B test, or how you would design and analyze one (hypothesis, metrics, stats).\nQuote: - Partner with product managers to design and analyze A/B experiments\nQ: Explain the data cleaning and joining steps you performed with pandas on clickstream data—what issues did you encounter and how did you resolve them?\nQuote: - Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis\nQ: How would you own the weekly business review metrics pipeline end to end (scheduling, monitoring, data quality, alerting)?\nQuote: - Own the weekly business review metrics pipeline end to end\nQ: Give an example of how you communicated technical findings to a non-technical stakeholder—what format and level of detail did you use?\nQuote: - Presented findings to the marketing lead in a monthly review\nQ: Describe your grounding in statistics: how do you apply hypothesis testing, confidence intervals, and experiment design in practice?\nQuote: Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design\nQ: What is your experience with Python notebooks and pandas for analysis—can you walk me through the notebook you used for the churn analysis?\nQuote: Proficiency in Python for analysis (pandas, notebooks)\nQ: What experience do you have building dashboards in Tableau or Looker, and can you describe a dashboard you designed for stakeholders?\nQuote: Experience with a BI tool such as Tableau or Looker\nQ: Are you familiar with dbt or version-controlled analytics workflows, and how would you apply them to manage SQL models?\nQuote: Familiarity with dbt and version-controlled analytics workflows is a plus\nQ: How did you automate the monthly report with VBA macros, and how would that experience translate to automating a weekly metrics pipeline?\nQuote: - Automated a monthly report with VBA macros\nQ: The role is about turning raw event data into decisions—describe a concrete recommendation you produced from raw event or clickstream data.\nQuote: You will turn raw event data into decisions for the growth team.\nQ: What BigQuery-specific optimizations (partitioning, clustering, query tuning) have you used on large event tables?\nQuote: SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)\nQ: Tell me about a project from your MSc coursework where you applied statistics, machine learning, or data management relevant to this role.\nQuote: MSc Business Analytics, NUS. Coursework: statistics, machine learning, data management.\nQ: The role requires excellent written and verbal communication in English—can you give an example of presenting complex analysis to an English-speaking audience?\nQuote: Excellent written and verbal communication in English"
+    },
+    {
+      "n": "02",
+      "itemsParsed": 17,
+      "qLines": 17,
+      "uncited": {
+        "claims": 17,
+        "uncited": 0,
+        "rate": 0
+      },
+      "items": [
+        {
+          "question": "Describe your experience operating production infrastructure on AWS and the specific services you've used (EC2, S3, IAM, VPC).",
+          "quote": "- 4+ years operating production infrastructure on AWS (EC2, S3, IAM, VPC)",
+          "located": true,
+          "quoteChars": 73
+        },
+        {
+          "question": "What hands-on experience do you have deploying and running services on Kubernetes?",
+          "quote": "- Hands-on experience deploying and running services on Kubernetes",
+          "located": true,
+          "quoteChars": 66
+        },
+        {
+          "question": "Tell me about projects where you used Terraform and how you integrated it with CI for reviews and applies.",
+          "quote": "- Infrastructure as code with Terraform, reviewed and applied through CI",
+          "located": true,
+          "quoteChars": 72
+        },
+        {
+          "question": "Explain your experience building and operating Airflow DAGs for scheduled data pipelines.",
+          "quote": "- Experience building and operating Airflow DAGs for scheduled data pipelines",
+          "located": true,
+          "quoteChars": 77
+        },
+        {
+          "question": "Which languages have you written production services in, and can you give examples in Go or Python?",
+          "quote": "- Proficiency writing production services in Go or Python",
+          "located": true,
+          "quoteChars": 57
+        },
+        {
+          "question": "Describe your experience with data warehouses (Redshift or Snowflake) and any query tuning you've done.",
+          "quote": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning",
+          "located": true,
+          "quoteChars": 101
+        },
+        {
+          "question": "Are you comfortable participating in a weekly on-call rotation for platform incidents? Give examples of incident handling you've done.",
+          "quote": "- Participation in a weekly on-call rotation for platform incidents",
+          "located": true,
+          "quoteChars": 67
+        },
+        {
+          "question": "Show examples of runbooks, postmortems, or incident updates you've written and your approach to documentation.",
+          "quote": "- Clear written communication: runbooks, postmortems and incident updates",
+          "located": true,
+          "quoteChars": 73
+        },
+        {
+          "question": "How have you operated or scaled batch pipelines that feed a data warehouse or reporting system?",
+          "quote": "- Operate and scale the batch pipelines that feed our data warehouse",
+          "located": true,
+          "quoteChars": 68
+        },
+        {
+          "question": "Describe how you've automated provisioning and deployment across AWS environments.",
+          "quote": "- Automate provisioning and deployment across our AWS environments",
+          "located": true,
+          "quoteChars": 66
+        },
+        {
+          "question": "Tell me about work you’ve done to improve observability, alerting or incident response for data services.",
+          "quote": "- Improve observability, alerting and incident response for data services",
+          "located": true,
+          "quoteChars": 73
+        },
+        {
+          "question": "Have you built internal tooling to enable product teams to self-serve platform resources? Describe the tooling and adoption.",
+          "quote": "- Build internal tooling so product teams can self-serve platform resources",
+          "located": true,
+          "quoteChars": 75
+        },
+        {
+          "question": "Your resume lists \"SQL (basic SELECT queries)\" — can you walk through some of the SQL you wrote and how you'd approach more advanced queries or tuning?",
+          "quote": "SQL (basic SELECT queries)",
+          "located": true,
+          "quoteChars": 26
+        },
+        {
+          "question": "You \"Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database\" — what schema or optimization challenges did you face?",
+          "quote": "- Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database",
+          "located": true,
+          "quoteChars": 96
+        },
+        {
+          "question": "You have Excel skills including pivot tables and VLOOKUP; how would you translate ad-hoc Excel reports into automated data pipelines or dashboards?",
+          "quote": "Excel (pivot tables, VLOOKUP)",
+          "located": true,
+          "quoteChars": 29
+        },
+        {
+          "question": "You transitioned from a marketing background; why are you applying for a platform engineer — how do your skills transfer?",
+          "quote": "BBA (Marketing), Singapore Management University, graduated 2024. Coursework: consumer behavior, marketing analytics.",
+          "located": true,
+          "quoteChars": 117
+        },
+        {
+          "question": "How do you communicate technical information to non-technical stakeholders? Give an example of a report or presentation you delivered.",
+          "quote": "- Presented quarterly results to client stakeholders in PowerPoint",
+          "located": true,
+          "quoteChars": 66
+        }
+      ],
+      "raw": "Q: Describe your experience operating production infrastructure on AWS and the specific services you've used (EC2, S3, IAM, VPC).\nQuote: - 4+ years operating production infrastructure on AWS (EC2, S3, IAM, VPC)\nQ: What hands-on experience do you have deploying and running services on Kubernetes?\nQuote: - Hands-on experience deploying and running services on Kubernetes\nQ: Tell me about projects where you used Terraform and how you integrated it with CI for reviews and applies.\nQuote: - Infrastructure as code with Terraform, reviewed and applied through CI\nQ: Explain your experience building and operating Airflow DAGs for scheduled data pipelines.\nQuote: - Experience building and operating Airflow DAGs for scheduled data pipelines\nQ: Which languages have you written production services in, and can you give examples in Go or Python?\nQuote: - Proficiency writing production services in Go or Python\nQ: Describe your experience with data warehouses (Redshift or Snowflake) and any query tuning you've done.\nQuote: - Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning\nQ: Are you comfortable participating in a weekly on-call rotation for platform incidents? Give examples of incident handling you've done.\nQuote: - Participation in a weekly on-call rotation for platform incidents\nQ: Show examples of runbooks, postmortems, or incident updates you've written and your approach to documentation.\nQuote: - Clear written communication: runbooks, postmortems and incident updates\nQ: How have you operated or scaled batch pipelines that feed a data warehouse or reporting system?\nQuote: - Operate and scale the batch pipelines that feed our data warehouse\nQ: Describe how you've automated provisioning and deployment across AWS environments.\nQuote: - Automate provisioning and deployment across our AWS environments\nQ: Tell me about work you’ve done to improve observability, alerting or incident response for data services.\nQuote: - Improve observability, alerting and incident response for data services\nQ: Have you built internal tooling to enable product teams to self-serve platform resources? Describe the tooling and adoption.\nQuote: - Build internal tooling so product teams can self-serve platform resources\nQ: Your resume lists \"SQL (basic SELECT queries)\" — can you walk through some of the SQL you wrote and how you'd approach more advanced queries or tuning?\nQuote: SQL (basic SELECT queries)\nQ: You \"Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database\" — what schema or optimization challenges did you face?\nQuote: - Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database\nQ: You have Excel skills including pivot tables and VLOOKUP; how would you translate ad-hoc Excel reports into automated data pipelines or dashboards?\nQuote: Excel (pivot tables, VLOOKUP)\nQ: You transitioned from a marketing background; why are you applying for a platform engineer — how do your skills transfer?\nQuote: BBA (Marketing), Singapore Management University, graduated 2024. Coursework: consumer behavior, marketing analytics.\nQ: How do you communicate technical information to non-technical stakeholders? Give an example of a report or presentation you delivered.\nQuote: - Presented quarterly results to client stakeholders in PowerPoint"
+    },
+    {
+      "n": "03",
+      "itemsParsed": 15,
+      "qLines": 15,
+      "uncited": {
+        "claims": 15,
+        "uncited": 0,
+        "rate": 0
+      },
+      "items": [
+        {
+          "question": "You will own the SQL models that power reporting and experimentation across the company — how have you managed ownership and long-term maintenance of core SQL models in past roles?",
+          "quote": "You will own the SQL models that power reporting and experimentation across the company.",
+          "located": true,
+          "quoteChars": 88
+        },
+        {
+          "question": "Can you walk me through the dbt migration you led across 40+ models and the key challenges you encountered?",
+          "quote": "- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart",
+          "located": true,
+          "quoteChars": 89
+        },
+        {
+          "question": "How do you design, build and maintain dbt models for core reporting marts? Explain your typical workflow.",
+          "quote": "- Design, build and maintain the dbt models behind our core reporting marts",
+          "located": true,
+          "quoteChars": 75
+        },
+        {
+          "question": "What practices do you use to ensure dbt tests, documentation and CI checks are effective and reliable?",
+          "quote": "- Production experience with dbt, including tests, documentation and CI checks",
+          "located": true,
+          "quoteChars": 78
+        },
+        {
+          "question": "Tell me about the Looker instance you built: how did you structure explores, access controls, and performance optimization?",
+          "quote": "- Built the company's Looker instance from scratch, now serving 120 weekly active viewers",
+          "located": true,
+          "quoteChars": 89
+        },
+        {
+          "question": "What BI dashboards have you shipped and maintained for leadership and operations, and how did you measure their impact?",
+          "quote": "- Ship and maintain BI dashboards used by leadership and operations teams",
+          "located": true,
+          "quoteChars": 73
+        },
+        {
+          "question": "Describe your experience modelling order, payments and logistics marts in Snowflake and how those models supported finance and ops.",
+          "quote": "- Modelled order, payments and logistics marts in Snowflake SQL used by finance and ops",
+          "located": true,
+          "quoteChars": 87
+        },
+        {
+          "question": "You list Snowflake and BigQuery experience — can you compare how you design data models differently between the two warehouses?",
+          "quote": "- 3+ years writing analytics SQL and building data models on a cloud warehouse (Snowflake or BigQuery)",
+          "located": true,
+          "quoteChars": 102
+        },
+        {
+          "question": "Have you built marketing attribution models in BigQuery? Walk me through one you maintained at Grabble.",
+          "quote": "- Wrote and maintained BigQuery SQL models for marketing attribution reporting",
+          "located": true,
+          "quoteChars": 78
+        },
+        {
+          "question": "The role expects hands-on Airflow experience — what scheduling and monitoring tools have you used, and how would you transition cron jobs to Airflow?",
+          "quote": "- Hands-on experience scheduling and monitoring pipelines with Airflow",
+          "located": true,
+          "quoteChars": 70
+        },
+        {
+          "question": "Give an example of an A/B experiment you helped define or analyze end to end, including metric definitions and analysis approach.",
+          "quote": "- Ability to design and analyze A/B experiments end to end",
+          "located": true,
+          "quoteChars": 58
+        },
+        {
+          "question": "You helped define success metrics for a pricing A/B test — what metrics did you propose and how did you validate them?",
+          "quote": "- Helped a product manager define success metrics for one pricing A/B test",
+          "located": true,
+          "quoteChars": 74
+        },
+        {
+          "question": "How do you communicate technical analyses and metric definitions to non-technical stakeholders (e.g., heads of finance and operations)?",
+          "quote": "- Clear written and verbal communication with non-technical stakeholders",
+          "located": true,
+          "quoteChars": 72
+        },
+        {
+          "question": "Describe the Python scripts you wrote to automate reporting and how you scheduled them; what would you improve if moving to a production scheduler?",
+          "quote": "- Automated recurring reporting jobs with Python scripts scheduled via cron",
+          "located": true,
+          "quoteChars": 75
+        },
+        {
+          "question": "How do you use Git and pull-request reviews in your analytics engineering workflow? Give an example of a code review process you follow.",
+          "quote": "SQL (Snowflake, BigQuery), dbt (tests, docs, CI), Looker, Python, Git and GitHub pull-request review",
+          "located": true,
+          "quoteChars": 100
+        }
+      ],
+      "raw": "Q: You will own the SQL models that power reporting and experimentation across the company — how have you managed ownership and long-term maintenance of core SQL models in past roles?\nQuote: You will own the SQL models that power reporting and experimentation across the company.\n\nQ: Can you walk me through the dbt migration you led across 40+ models and the key challenges you encountered?\nQuote: - Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart\n\nQ: How do you design, build and maintain dbt models for core reporting marts? Explain your typical workflow.\nQuote: - Design, build and maintain the dbt models behind our core reporting marts\n\nQ: What practices do you use to ensure dbt tests, documentation and CI checks are effective and reliable?\nQuote: - Production experience with dbt, including tests, documentation and CI checks\n\nQ: Tell me about the Looker instance you built: how did you structure explores, access controls, and performance optimization?\nQuote: - Built the company's Looker instance from scratch, now serving 120 weekly active viewers\n\nQ: What BI dashboards have you shipped and maintained for leadership and operations, and how did you measure their impact?\nQuote: - Ship and maintain BI dashboards used by leadership and operations teams\n\nQ: Describe your experience modelling order, payments and logistics marts in Snowflake and how those models supported finance and ops.\nQuote: - Modelled order, payments and logistics marts in Snowflake SQL used by finance and ops\n\nQ: You list Snowflake and BigQuery experience — can you compare how you design data models differently between the two warehouses?\nQuote: - 3+ years writing analytics SQL and building data models on a cloud warehouse (Snowflake or BigQuery)\n\nQ: Have you built marketing attribution models in BigQuery? Walk me through one you maintained at Grabble.\nQuote: - Wrote and maintained BigQuery SQL models for marketing attribution reporting\n\nQ: The role expects hands-on Airflow experience — what scheduling and monitoring tools have you used, and how would you transition cron jobs to Airflow?\nQuote: - Hands-on experience scheduling and monitoring pipelines with Airflow\n\nQ: Give an example of an A/B experiment you helped define or analyze end to end, including metric definitions and analysis approach.\nQuote: - Ability to design and analyze A/B experiments end to end\n\nQ: You helped define success metrics for a pricing A/B test — what metrics did you propose and how did you validate them?\nQuote: - Helped a product manager define success metrics for one pricing A/B test\n\nQ: How do you communicate technical analyses and metric definitions to non-technical stakeholders (e.g., heads of finance and operations)?\nQuote: - Clear written and verbal communication with non-technical stakeholders\n\nQ: Describe the Python scripts you wrote to automate reporting and how you scheduled them; what would you improve if moving to a production scheduler?\nQuote: - Automated recurring reporting jobs with Python scripts scheduled via cron\n\nQ: How do you use Git and pull-request reviews in your analytics engineering workflow? Give an example of a code review process you follow.\nQuote: SQL (Snowflake, BigQuery), dbt (tests, docs, CI), Looker, Python, Git and GitHub pull-request review"
+    },
+    {
+      "n": "04",
+      "itemsParsed": 30,
+      "qLines": 30,
+      "uncited": {
+        "claims": 30,
+        "uncited": 0,
+        "rate": 0
+      },
+      "items": [
+        {
+          "question": "Tell me about a time you supported the rollout of BI dashboards across multiple sites — how did you replicate, adapt and deploy reporting solutions?",
+          "quote": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions.",
+          "located": true,
+          "quoteChars": 137
+        },
+        {
+          "question": "Describe your experience building and enhancing Power BI dashboards to support business operations, planning and management reporting.",
+          "quote": "Assist in building and enhancing Power BI dashboards to support business operations, planning and management reporting",
+          "located": true,
+          "quoteChars": 118
+        },
+        {
+          "question": "Walk me through an example where you worked with real datasets to analyse trends, identify gaps, and support data-driven decision-making.",
+          "quote": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making",
+          "located": true,
+          "quoteChars": 97
+        },
+        {
+          "question": "Explain your experience performing data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites.",
+          "quote": "Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites",
+          "located": true,
+          "quoteChars": 120
+        },
+        {
+          "question": "How have you collaborated with business users such as Finance, Operations, Planning or Engineers to gather requirements and support UAT and deployment?",
+          "quote": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment",
+          "located": true,
+          "quoteChars": 136
+        },
+        {
+          "question": "Can you give an example of a new analytics or AI use case you contributed to, including any process improvements or automation initiatives?",
+          "quote": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives.",
+          "located": true,
+          "quoteChars": 104
+        },
+        {
+          "question": "Tell me about a time you troubleshooted data or reporting issues and implemented continuous improvements after deployment.",
+          "quote": "Troubleshoot data/reporting issues and support continuous improvements post-deployment",
+          "located": true,
+          "quoteChars": 86
+        },
+        {
+          "question": "How do you document data logic, report structures, and rollout approaches to enable scalable deployment?",
+          "quote": "Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide",
+          "located": true,
+          "quoteChars": 115
+        },
+        {
+          "question": "What exposure have you had to enterprise data platforms and how have you seen standardized analytics solutions scaled across regions?",
+          "quote": "Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions.",
+          "located": true,
+          "quoteChars": 121
+        },
+        {
+          "question": "Why are you interested in data analytics, business intelligence, and AI-driven applications?",
+          "quote": "Strong interest in data analytics, business intelligence, and AI-driven applications",
+          "located": true,
+          "quoteChars": 84
+        },
+        {
+          "question": "How would you describe your understanding of data modelling, data transformation, and reporting concepts?",
+          "quote": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)",
+          "located": true,
+          "quoteChars": 98
+        },
+        {
+          "question": "Which tools such as Excel, SQL and PowerBI have you used, and can you give specific project examples?",
+          "quote": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects",
+          "located": true,
+          "quoteChars": 99
+        },
+        {
+          "question": "Do you have experience with ETL processes, data modelling, or cloud data platforms (AWS/Azure)? If so, describe it.",
+          "quote": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus.",
+          "located": true,
+          "quoteChars": 91
+        },
+        {
+          "question": "Give examples demonstrating your strong analytical mindset and attention to detail.",
+          "quote": "Strong analytical mindset with attention to detail",
+          "located": true,
+          "quoteChars": 50
+        },
+        {
+          "question": "How do you communicate technical findings to non-technical stakeholders and translate data into meaningful insights?",
+          "quote": "Good communication skills to translate data into meaningful insights.",
+          "located": true,
+          "quoteChars": 69
+        },
+        {
+          "question": "Describe the migration of CoachBetter's core AI evaluation engine from Dify to Gemini + Langfuse — what was your role and what challenges did you solve?",
+          "quote": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.",
+          "located": true,
+          "quoteChars": 241
+        },
+        {
+          "question": "Walk me through the Pro-tier Client Insights feature you shipped using a parallelized fan-out/fan-in LLM pipeline — architecture, trade-offs and results.",
+          "quote": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.",
+          "located": true,
+          "quoteChars": 256
+        },
+        {
+          "question": "How did you build the AI analysis layer for ComChord's conversation-intelligence platform and encode the CHAT/ACT frameworks into Langfuse-versioned prompts?",
+          "quote": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output.",
+          "located": true,
+          "quoteChars": 239
+        },
+        {
+          "question": "What measures did you take to harden production LLM pipelines and which observability/debugging tools did you use?",
+          "quote": "Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.",
+          "located": true,
+          "quoteChars": 241
+        },
+        {
+          "question": "Tell me about your work driving enterprise data governance for a state-owned bank and how you reduced compliance risks.",
+          "quote": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%",
+          "located": true,
+          "quoteChars": 124
+        },
+        {
+          "question": "Describe the migration of a data warehouse from AWS Redshift to Snowflake and the refactoring of 500+ stored procedures — scope and challenges.",
+          "quote": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company.",
+          "located": true,
+          "quoteChars": 134
+        },
+        {
+          "question": "Discuss the Power BI risk profile dashboard you deployed that consolidated 100+ business units — technical and stakeholder aspects.",
+          "quote": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility.",
+          "located": true,
+          "quoteChars": 141
+        },
+        {
+          "question": "Explain the Power BI dashboard you built to track $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.",
+          "quote": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.",
+          "located": true,
+          "quoteChars": 118
+        },
+        {
+          "question": "How did you assess business processes and identify automation opportunities that reduced manual work by 60%?",
+          "quote": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.",
+          "located": true,
+          "quoteChars": 121
+        },
+        {
+          "question": "How do your AWS ML & AI certifications support your practical work — give examples of applying them.",
+          "quote": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.",
+          "located": true,
+          "quoteChars": 137
+        },
+        {
+          "question": "Which specific AWS certifications do you hold and how recent are they?",
+          "quote": "AWS Certified AI Practitioner Early Adopter, 2024/10",
+          "located": true,
+          "quoteChars": 52
+        },
+        {
+          "question": "Do you also hold AWS Certified Machine Learning and Data Analytics certifications? Describe how you used those skills.",
+          "quote": "AWS Certified Machine Learning – Specialty, 2023/12",
+          "located": true,
+          "quoteChars": 51
+        },
+        {
+          "question": "How has your M.Sc. in Business Analytics prepared you for an internship working with enterprise BI/AI use cases?",
+          "quote": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)",
+          "located": true,
+          "quoteChars": 127
+        },
+        {
+          "question": "Explain your experience with AI/LLM engineering tools (Gemini, Vercel AI SDK, Langfuse, Deepgram) and with data analytics & cloud automation.",
+          "quote": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)",
+          "located": true,
+          "quoteChars": 154
+        },
+        {
+          "question": "Give examples of how your project management, stakeholder management and communication skills have supported cross-functional deliveries.",
+          "quote": "Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication.",
+          "located": true,
+          "quoteChars": 105
+        }
+      ],
+      "raw": "Q: Tell me about a time you supported the rollout of BI dashboards across multiple sites — how did you replicate, adapt and deploy reporting solutions?\nQuote: Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions.\n\nQ: Describe your experience building and enhancing Power BI dashboards to support business operations, planning and management reporting.\nQuote: Assist in building and enhancing Power BI dashboards to support business operations, planning and management reporting\n\nQ: Walk me through an example where you worked with real datasets to analyse trends, identify gaps, and support data-driven decision-making.\nQuote: Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making\n\nQ: Explain your experience performing data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites.\nQuote: Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites\n\nQ: How have you collaborated with business users such as Finance, Operations, Planning or Engineers to gather requirements and support UAT and deployment?\nQuote: Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment\n\nQ: Can you give an example of a new analytics or AI use case you contributed to, including any process improvements or automation initiatives?\nQuote: Contribute to new analytics and AI use cases, including process improvements and automation initiatives.\n\nQ: Tell me about a time you troubleshooted data or reporting issues and implemented continuous improvements after deployment.\nQuote: Troubleshoot data/reporting issues and support continuous improvements post-deployment\n\nQ: How do you document data logic, report structures, and rollout approaches to enable scalable deployment?\nQuote: Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide\n\nQ: What exposure have you had to enterprise data platforms and how have you seen standardized analytics solutions scaled across regions?\nQuote: Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions.\n\nQ: Why are you interested in data analytics, business intelligence, and AI-driven applications?\nQuote: Strong interest in data analytics, business intelligence, and AI-driven applications\n\nQ: How would you describe your understanding of data modelling, data transformation, and reporting concepts?\nQuote: Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)\n\nQ: Which tools such as Excel, SQL and PowerBI have you used, and can you give specific project examples?\nQuote: Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects\n\nQ: Do you have experience with ETL processes, data modelling, or cloud data platforms (AWS/Azure)? If so, describe it.\nQuote: Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus.\n\nQ: Give examples demonstrating your strong analytical mindset and attention to detail.\nQuote: Strong analytical mindset with attention to detail\n\nQ: How do you communicate technical findings to non-technical stakeholders and translate data into meaningful insights?\nQuote: Good communication skills to translate data into meaningful insights.\n\nQ: Describe the migration of CoachBetter's core AI evaluation engine from Dify to Gemini + Langfuse — what was your role and what challenges did you solve?\nQuote: Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.\n\nQ: Walk me through the Pro-tier Client Insights feature you shipped using a parallelized fan-out/fan-in LLM pipeline — architecture, trade-offs and results.\nQuote: Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.\n\nQ: How did you build the AI analysis layer for ComChord's conversation-intelligence platform and encode the CHAT/ACT frameworks into Langfuse-versioned prompts?\nQuote: Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output.\n\nQ: What measures did you take to harden production LLM pipelines and which observability/debugging tools did you use?\nQuote: Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.\n\nQ: Tell me about your work driving enterprise data governance for a state-owned bank and how you reduced compliance risks.\nQuote: Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%\n\nQ: Describe the migration of a data warehouse from AWS Redshift to Snowflake and the refactoring of 500+ stored procedures — scope and challenges.\nQuote: Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company.\n\nQ: Discuss the Power BI risk profile dashboard you deployed that consolidated 100+ business units — technical and stakeholder aspects.\nQuote: Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility.\n\nQ: Explain the Power BI dashboard you built to track $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.\nQuote: Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.\n\nQ: How did you assess business processes and identify automation opportunities that reduced manual work by 60%?\nQuote: Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.\n\nQ: How do your AWS ML & AI certifications support your practical work — give examples of applying them.\nQuote: Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.\n\nQ: Which specific AWS certifications do you hold and how recent are they?\nQuote: AWS Certified AI Practitioner Early Adopter, 2024/10\n\nQ: Do you also hold AWS Certified Machine Learning and Data Analytics certifications? Describe how you used those skills.\nQuote: AWS Certified Machine Learning – Specialty, 2023/12\n\nQ: How has your M.Sc. in Business Analytics prepared you for an internship working with enterprise BI/AI use cases?\nQuote: M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)\n\nQ: Explain your experience with AI/LLM engineering tools (Gemini, Vercel AI SDK, Langfuse, Deepgram) and with data analytics & cloud automation.\nQuote: Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)\n\nQ: Give examples of how your project management, stakeholder management and communication skills have supported cross-functional deliveries.\nQuote: Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication."
+    },
+    {
+      "n": "05",
+      "itemsParsed": 22,
+      "qLines": 22,
+      "uncited": {
+        "claims": 22,
+        "uncited": 0,
+        "rate": 0
+      },
+      "items": [
+        {
+          "question": "Can you describe a recent LLM pipeline you built and how you handled observability and versioning?",
+          "quote": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.",
+          "located": true,
+          "quoteChars": 241
+        },
+        {
+          "question": "How would you design data pipelines to prepare and transform network and operational data for AI models?",
+          "quote": "Build and maintain data pipelines and scripts that prepare, clean, and transform network and operational data for AI models.",
+          "located": true,
+          "quoteChars": 124
+        },
+        {
+          "question": "Explain your experience with prompting, RAG workflows, and lightweight integrations for LLM-based tools.",
+          "quote": "Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools.",
+          "located": true,
+          "quoteChars": 113
+        },
+        {
+          "question": "Tell us about the multimodal audio+text work you prototyped and the role of Deepgram and Gemini in it.",
+          "quote": "prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.",
+          "located": true,
+          "quoteChars": 131
+        },
+        {
+          "question": "How have you hardened production LLM pipelines to improve reliability and debuggability?",
+          "quote": "Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.",
+          "located": true,
+          "quoteChars": 241
+        },
+        {
+          "question": "Describe an automation project where you identified manual tasks and implemented workflow automations.",
+          "quote": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.",
+          "located": true,
+          "quoteChars": 121
+        },
+        {
+          "question": "How did you reduce manual work by 60% for the Indonesian telco—what tools and approach did you use?",
+          "quote": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.",
+          "located": true,
+          "quoteChars": 121
+        },
+        {
+          "question": "How do you evaluate model outputs and measure success criteria like accuracy, latency, and reliability?",
+          "quote": "Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria.",
+          "located": true,
+          "quoteChars": 124
+        },
+        {
+          "question": "Give an example of documentation you produced for reproducibility and auditability of an AI solution.",
+          "quote": "Document solutions, data sources, and design decisions so work is reproducible and auditable.",
+          "located": true,
+          "quoteChars": 93
+        },
+        {
+          "question": "Have you worked with telecom or network data before? If so, describe the context.",
+          "quote": "Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects.",
+          "located": true,
+          "quoteChars": 117
+        },
+        {
+          "question": "How do you ensure compliance with PDPA and internal data-governance when handling customer and network data?",
+          "quote": "Follow PDPA and internal data-governance practices when handling customer and network data.",
+          "located": true,
+          "quoteChars": 91
+        },
+        {
+          "question": "What cloud platforms and deployment stacks have you used for ML/LLM systems?",
+          "quote": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)",
+          "located": true,
+          "quoteChars": 154
+        },
+        {
+          "question": "Walk through the migration from Dify to Gemini + Langfuse—what were key challenges and how did you address them?",
+          "quote": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.",
+          "located": true,
+          "quoteChars": 241
+        },
+        {
+          "question": "How do you implement prompt versioning and LLM observability in production?",
+          "quote": "bringing prompt versioning and full LLM observability in-house.",
+          "located": true,
+          "quoteChars": 63
+        },
+        {
+          "question": "Describe a time you worked on fan-out/fan-in pipelines and how you parallelized analyzers and compiled results.",
+          "quote": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler)",
+          "located": true,
+          "quoteChars": 120
+        },
+        {
+          "question": "What monitoring and tracing tools have you used for LLM systems and debugging user sessions?",
+          "quote": "standardized Langfuse tracing plus PostHog session replay for debugging.",
+          "located": true,
+          "quoteChars": 72
+        },
+        {
+          "question": "How comfortable are you with Python, Pandas, NumPy and building data pipelines?",
+          "quote": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization",
+          "located": true,
+          "quoteChars": 203
+        },
+        {
+          "question": "Describe your experience collaborating with cross-functional teams and participating in code reviews.",
+          "quote": "Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing.",
+          "located": true,
+          "quoteChars": 109
+        },
+        {
+          "question": "How have you bridged product goals and engineering work to deliver reliable, observable AI systems?",
+          "quote": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.",
+          "located": true,
+          "quoteChars": 137
+        },
+        {
+          "question": "Can you discuss your AWS ML and AI certifications and how they've influenced your engineering approach?",
+          "quote": "AWS Certified Machine Learning – Specialty, 2023/12",
+          "located": true,
+          "quoteChars": 51
+        },
+        {
+          "question": "The JD asks for 0-2 years of experience—how do you see this role fitting your 3+ years of experience?",
+          "quote": "0-2 years; internships, academic projects, or personal projects in AI, data, or automation are welcomed.",
+          "located": true,
+          "quoteChars": 104
+        },
+        {
+          "question": "Tell us about the conversation-intelligence platform you built and how CHAT/ACT frameworks were encoded into prompts and schema-validated outputs.",
+          "quote": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output.",
+          "located": true,
+          "quoteChars": 239
+        }
+      ],
+      "raw": "Q: Can you describe a recent LLM pipeline you built and how you handled observability and versioning?\nQuote: Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.\n\nQ: How would you design data pipelines to prepare and transform network and operational data for AI models?\nQuote: Build and maintain data pipelines and scripts that prepare, clean, and transform network and operational data for AI models.\n\nQ: Explain your experience with prompting, RAG workflows, and lightweight integrations for LLM-based tools.\nQuote: Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools.\n\nQ: Tell us about the multimodal audio+text work you prototyped and the role of Deepgram and Gemini in it.\nQuote: prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.\n\nQ: How have you hardened production LLM pipelines to improve reliability and debuggability?\nQuote: Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.\n\nQ: Describe an automation project where you identified manual tasks and implemented workflow automations.\nQuote: Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.\n\nQ: How did you reduce manual work by 60% for the Indonesian telco—what tools and approach did you use?\nQuote: Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.\n\nQ: How do you evaluate model outputs and measure success criteria like accuracy, latency, and reliability?\nQuote: Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria.\n\nQ: Give an example of documentation you produced for reproducibility and auditability of an AI solution.\nQuote: Document solutions, data sources, and design decisions so work is reproducible and auditable.\n\nQ: Have you worked with telecom or network data before? If so, describe the context.\nQuote: Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects.\n\nQ: How do you ensure compliance with PDPA and internal data-governance when handling customer and network data?\nQuote: Follow PDPA and internal data-governance practices when handling customer and network data.\n\nQ: What cloud platforms and deployment stacks have you used for ML/LLM systems?\nQuote: Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)\n\nQ: Walk through the migration from Dify to Gemini + Langfuse—what were key challenges and how did you address them?\nQuote: Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.\n\nQ: How do you implement prompt versioning and LLM observability in production?\nQuote: bringing prompt versioning and full LLM observability in-house.\n\nQ: Describe a time you worked on fan-out/fan-in pipelines and how you parallelized analyzers and compiled results.\nQuote: Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler)\n\nQ: What monitoring and tracing tools have you used for LLM systems and debugging user sessions?\nQuote: standardized Langfuse tracing plus PostHog session replay for debugging.\n\nQ: How comfortable are you with Python, Pandas, NumPy and building data pipelines?\nQuote: Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization\n\nQ: Describe your experience collaborating with cross-functional teams and participating in code reviews.\nQuote: Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing.\n\nQ: How have you bridged product goals and engineering work to deliver reliable, observable AI systems?\nQuote: Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.\n\nQ: Can you discuss your AWS ML and AI certifications and how they've influenced your engineering approach?\nQuote: AWS Certified Machine Learning – Specialty, 2023/12\n\nQ: The JD asks for 0-2 years of experience—how do you see this role fitting your 3+ years of experience?\nQuote: 0-2 years; internships, academic projects, or personal projects in AI, data, or automation are welcomed.\n\nQ: Tell us about the conversation-intelligence platform you built and how CHAT/ACT frameworks were encoded into prompts and schema-validated outputs.\nQuote: Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+    }
+  ]
+}

@@ -48,11 +48,11 @@ Principle: receipts-critical structured calls stay on the proven OpenAI strict-S
 
 ```
 packages/core/src/{schemas,parsers,diff,plan,session,debrief,evals}/   # library (harness/ dormant)
-packages/core/test/            # vitest; fixtures/ jd|resume-01..13 + gold/ (hand-adjudicated)
+packages/core/test/            # vitest; fixtures/ jd|resume-01..05 + gold/ (sheets + taxonomy validator)
 packages/core/test/evals/      # keyed eval runner (RUN_EVALS=1), results → evals/results/*.json
 web/app/{compile,plan,session,debrief}/    # the four surfaces (results/ + compiler/ deleted 26 Jul)
-web/app/api/{compile,plan,session/turn,debrief,video/*}/route.ts
-web/app/lib/{stream,providers,session-state}.ts(x)
+web/app/api/{compile,plan,debrief,extract-image,session/turn,session/save}/route.ts
+web/app/lib/{stream,sse-response,providers,session-state,sessions,extract,receipts,routes,mock,langfuse,langfuse-otel,langfuse-mask}.ts(x)
 docs/                          # spec-pivot-2026-07-26.md, decision-log.md, post-hackathon-ideas.md
 ```
 
