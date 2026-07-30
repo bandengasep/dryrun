@@ -41,7 +41,7 @@ describe("gold-score — precision/recall against hand adjudication", () => {
     return;
   }
 
-  it("computes precision/recall per pair and an aggregate, from whatever verdicts are filled in so far", () => {
+  it("computes precision/recall per pair and an aggregate, from whatever verdicts are filled in so far", async () => {
     interface PairScore {
       n: string;
       precision: number | null;
@@ -75,11 +75,15 @@ describe("gold-score — precision/recall against hand adjudication", () => {
     console.table(perPair);
     console.table([{ n: "aggregate", ...aggregate }]);
 
-    writeResult("gold-score", {
-      corpus: pairNs,
-      config: {},
-      metrics: { aggregate },
-      perPair,
-    });
+    await writeResult(
+      "gold-score",
+      {
+        corpus: pairNs,
+        config: {},
+        metrics: { aggregate },
+        perPair,
+      },
+      { gold_precision: aggregate.precision, gold_recall: aggregate.recall },
+    );
   });
 });

@@ -47,7 +47,13 @@ export interface DebriefOptions {
   onWire?: (wire: unknown) => void;
 }
 
-const DEBRIEF_SYSTEM_PROMPT = [
+/**
+ * Exported for Langfuse prompt registration (scripts/langfuse-push-prompts.ts
+ * in web/) only — a copy for reference/diffing in the Langfuse UI. Nothing in
+ * the runtime path fetches a prompt back from Langfuse; this constant remains
+ * the single source of truth actually sent to the model below.
+ */
+export const DEBRIEF_SYSTEM_PROMPT = [
   "You review a candidate's answers in a practice interview.",
   "For each question, say what the answer covered and what it left out.",
   "",

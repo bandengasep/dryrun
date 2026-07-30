@@ -1,0 +1,101 @@
+{
+  "startedAt": "2026-07-28T18:10:59.008Z",
+  "gitCommit": "edbf36c3e0f38103976cd4bae545ad70b4e5c2a9",
+  "corpus": [
+    "01",
+    "04"
+  ],
+  "config": {
+    "openaiModel": "gpt-5-mini (default)",
+    "agnesModel": "agnes-2.0-flash"
+  },
+  "metrics": {},
+  "perPair": [
+    {
+      "n": "01",
+      "gapCount": 27,
+      "openai": {
+        "wallMs": 34733.86587500002,
+        "threw": null,
+        "grounding": {
+          "grounded": 6,
+          "total": 6,
+          "rate": 1
+        },
+        "star": 1,
+        "kindMix": {
+          "behavioral": 5,
+          "conceptual": 1
+        },
+        "guards": {
+          "accepted": 6,
+          "rejected": 0,
+          "reasons": []
+        },
+        "costUSD": null
+      },
+      "agnes": {
+        "wallMs": 15030.871542000008,
+        "grounding": {
+          "grounded": 6,
+          "total": 6,
+          "rate": 1
+        },
+        "star": 1,
+        "kindMix": {
+          "conceptual": 4,
+          "behavioral": 2
+        },
+        "guards": {
+          "accepted": 6,
+          "rejected": 0,
+          "reasons": []
+        },
+        "costUSD": null
+      }
+    },
+    {
+      "n": "04",
+      "gapCount": 53,
+      "openai": {
+        "wallMs": 28502.266458,
+        "threw": null,
+        "grounding": {
+          "grounded": 6,
+          "total": 6,
+          "rate": 1
+        },
+        "star": 1,
+        "kindMix": {
+          "behavioral": 4,
+          "conceptual": 2
+        },
+        "guards": {
+          "accepted": 6,
+          "rejected": 0,
+          "reasons": []
+        },
+        "costUSD": null
+      },
+      "agnes": {
+        "wallMs": 11317.336749999959,
+        "grounding": {
+          "grounded": 6,
+          "total": 6,
+          "rate": 1
+        },
+        "star": 1,
+        "kindMix": {
+          "conceptual": 4,
+          "behavioral": 2
+        },
+        "guards": {
+          "accepted": 6,
+          "rejected": 0,
+          "reasons": []
+        },
+        "costUSD": null
+      }
+    }
+  ]
+}

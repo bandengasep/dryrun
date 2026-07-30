@@ -166,15 +166,24 @@ describe.skipIf(!evalsEnabled)(
           );
         }
 
-        writeResult("provider-comparison", {
-          corpus: PAIR_NS,
-          config: {
-            openaiModel: "gpt-5-mini (default)",
-            agnesModel: process.env.AGNES_MODEL ?? "agnes-2.0-flash",
+        const mean = (xs: number[]) => (xs.length === 0 ? null : xs.reduce((a, b) => a + b, 0) / xs.length);
+        type PairRow = { openai: { wallMs: number }; agnes: { wallMs: number } };
+        const openaiMsAvg = mean((perPair as PairRow[]).map((p) => p.openai.wallMs));
+        const agnesMsAvg = mean((perPair as PairRow[]).map((p) => p.agnes.wallMs));
+
+        await writeResult(
+          "provider-comparison",
+          {
+            corpus: PAIR_NS,
+            config: {
+              openaiModel: "gpt-5-mini (default)",
+              agnesModel: process.env.AGNES_MODEL ?? "agnes-2.0-flash",
+            },
+            metrics: {},
+            perPair,
           },
-          metrics: {},
-          perPair,
-        });
+          { openai_avg_ms: openaiMsAvg, agnes_avg_ms: agnesMsAvg },
+        );
 
         expect(perPair.length).toBeGreaterThanOrEqual(0);
       },

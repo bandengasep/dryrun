@@ -1,0 +1,35 @@
+HARTANTO, Timothy
+
+SUMMARY
+AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment.
+Specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis.
+Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.
+
+SKILLS
+Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)
+Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication.
+
+PROFESSIONAL EXPERIENCE
+ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT
+Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.
+Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.
+Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output.
+Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.
+
+PT Deloitte Consulting, Indonesia — Business Analyst, 2021/12 – 2024/09
+Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%
+Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company.
+Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility.
+Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.
+Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.
+
+ACHIEVEMENTS & AWARDS
+AWS Certified AI Practitioner Early Adopter, 2024/10
+AWS Certified Machine Learning – Specialty, 2023/12
+AWS Certified Data Analytics – Specialty, 2023/10
+
+EDUCATION
+M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)
+Data Science & Machine Learning Bootcamp, Purwadhika Digital School, 2024/10 – 2025/05
+Graduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08
+Bachelor of Business, Nanyang Business School, Nanyang Technological University, Singapore, 2013/08 – 2016/06

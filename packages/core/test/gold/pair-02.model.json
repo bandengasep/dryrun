@@ -1,0 +1,1170 @@
+{
+  "jd": {
+    "sourceText": "Platform Engineer — Data Infrastructure\nNorthbeam Logistics Pte Ltd, Singapore\n\nAbout the role\nYou will keep the pipelines and services that move our shipment data reliable and fast.\n\nWhat you will do\n- Operate and scale the batch pipelines that feed our data warehouse\n- Automate provisioning and deployment across our AWS environments\n- Improve observability, alerting and incident response for data services\n- Build internal tooling so product teams can self-serve platform resources\n\nWhat we are looking for\n- 4+ years operating production infrastructure on AWS (EC2, S3, IAM, VPC)\n- Hands-on experience deploying and running services on Kubernetes\n- Infrastructure as code with Terraform, reviewed and applied through CI\n- Experience building and operating Airflow DAGs for scheduled data pipelines\n- Proficiency writing production services in Go or Python\n- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning\n- Participation in a weekly on-call rotation for platform incidents\n- Clear written communication: runbooks, postmortems and incident updates\n",
+    "lines": [
+      {
+        "id": "jd-1",
+        "text": "Maintain reliable and fast shipment data pipelines and services",
+        "span": {
+          "start": 95,
+          "end": 182,
+          "text": "You will keep the pipelines and services that move our shipment data reliable and fast."
+        }
+      },
+      {
+        "id": "jd-2",
+        "text": "Operate and scale batch pipelines feeding our data warehouse",
+        "span": {
+          "start": 201,
+          "end": 269,
+          "text": "- Operate and scale the batch pipelines that feed our data warehouse"
+        }
+      },
+      {
+        "id": "jd-3",
+        "text": "Automate provisioning and deployment across AWS environments",
+        "span": {
+          "start": 270,
+          "end": 336,
+          "text": "- Automate provisioning and deployment across our AWS environments"
+        }
+      },
+      {
+        "id": "jd-4",
+        "text": "Improve observability for data services",
+        "span": {
+          "start": 337,
+          "end": 410,
+          "text": "- Improve observability, alerting and incident response for data services"
+        }
+      },
+      {
+        "id": "jd-5",
+        "text": "Improve alerting for data services",
+        "span": {
+          "start": 337,
+          "end": 410,
+          "text": "- Improve observability, alerting and incident response for data services"
+        }
+      },
+      {
+        "id": "jd-6",
+        "text": "Improve incident response for data services",
+        "span": {
+          "start": 337,
+          "end": 410,
+          "text": "- Improve observability, alerting and incident response for data services"
+        }
+      },
+      {
+        "id": "jd-7",
+        "text": "Build internal tooling to enable product teams to self-serve platform resources",
+        "span": {
+          "start": 411,
+          "end": 486,
+          "text": "- Build internal tooling so product teams can self-serve platform resources"
+        }
+      },
+      {
+        "id": "jd-8",
+        "text": "4+ years operating production infrastructure on AWS",
+        "span": {
+          "start": 512,
+          "end": 585,
+          "text": "- 4+ years operating production infrastructure on AWS (EC2, S3, IAM, VPC)"
+        }
+      },
+      {
+        "id": "jd-9",
+        "text": "Experience with EC2",
+        "span": {
+          "start": 567,
+          "end": 570,
+          "text": "EC2"
+        }
+      },
+      {
+        "id": "jd-10",
+        "text": "Experience with S3",
+        "span": {
+          "start": 572,
+          "end": 574,
+          "text": "S3"
+        }
+      },
+      {
+        "id": "jd-11",
+        "text": "Experience with IAM",
+        "span": {
+          "start": 576,
+          "end": 579,
+          "text": "IAM"
+        }
+      },
+      {
+        "id": "jd-12",
+        "text": "Experience with VPC",
+        "span": {
+          "start": 581,
+          "end": 584,
+          "text": "VPC"
+        }
+      },
+      {
+        "id": "jd-13",
+        "text": "Hands-on experience deploying and running services on Kubernetes",
+        "span": {
+          "start": 586,
+          "end": 652,
+          "text": "- Hands-on experience deploying and running services on Kubernetes"
+        }
+      },
+      {
+        "id": "jd-14",
+        "text": "Infrastructure as code using Terraform",
+        "span": {
+          "start": 653,
+          "end": 725,
+          "text": "- Infrastructure as code with Terraform, reviewed and applied through CI"
+        }
+      },
+      {
+        "id": "jd-15",
+        "text": "Review and apply Terraform through CI",
+        "span": {
+          "start": 653,
+          "end": 725,
+          "text": "- Infrastructure as code with Terraform, reviewed and applied through CI"
+        }
+      },
+      {
+        "id": "jd-16",
+        "text": "Experience building and operating Airflow DAGs for scheduled data pipelines",
+        "span": {
+          "start": 726,
+          "end": 803,
+          "text": "- Experience building and operating Airflow DAGs for scheduled data pipelines"
+        }
+      },
+      {
+        "id": "jd-17",
+        "text": "Proficiency writing production services in Go",
+        "span": {
+          "start": 804,
+          "end": 861,
+          "text": "- Proficiency writing production services in Go or Python"
+        }
+      },
+      {
+        "id": "jd-18",
+        "text": "Proficiency writing production services in Python",
+        "span": {
+          "start": 804,
+          "end": 861,
+          "text": "- Proficiency writing production services in Go or Python"
+        }
+      },
+      {
+        "id": "jd-19",
+        "text": "Strong SQL",
+        "span": {
+          "start": 862,
+          "end": 963,
+          "text": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning"
+        }
+      },
+      {
+        "id": "jd-20",
+        "text": "Day-to-day data warehouse operations (Redshift or Snowflake)",
+        "span": {
+          "start": 862,
+          "end": 963,
+          "text": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning"
+        }
+      },
+      {
+        "id": "jd-21",
+        "text": "Query tuning for data warehouses",
+        "span": {
+          "start": 862,
+          "end": 963,
+          "text": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning"
+        }
+      },
+      {
+        "id": "jd-22",
+        "text": "Experience with Redshift",
+        "span": {
+          "start": 917,
+          "end": 925,
+          "text": "Redshift"
+        }
+      },
+      {
+        "id": "jd-23",
+        "text": "Experience with Snowflake",
+        "span": {
+          "start": 929,
+          "end": 938,
+          "text": "Snowflake"
+        }
+      },
+      {
+        "id": "jd-24",
+        "text": "Participate in a weekly on-call rotation for platform incidents",
+        "span": {
+          "start": 964,
+          "end": 1031,
+          "text": "- Participation in a weekly on-call rotation for platform incidents"
+        }
+      },
+      {
+        "id": "jd-25",
+        "text": "Clear written communication",
+        "span": {
+          "start": 1032,
+          "end": 1105,
+          "text": "- Clear written communication: runbooks, postmortems and incident updates"
+        }
+      },
+      {
+        "id": "jd-26",
+        "text": "Write runbooks",
+        "span": {
+          "start": 1032,
+          "end": 1105,
+          "text": "- Clear written communication: runbooks, postmortems and incident updates"
+        }
+      },
+      {
+        "id": "jd-27",
+        "text": "Write postmortems",
+        "span": {
+          "start": 1032,
+          "end": 1105,
+          "text": "- Clear written communication: runbooks, postmortems and incident updates"
+        }
+      },
+      {
+        "id": "jd-28",
+        "text": "Write incident updates",
+        "span": {
+          "start": 1032,
+          "end": 1105,
+          "text": "- Clear written communication: runbooks, postmortems and incident updates"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "resume": {
+    "sourceText": "ARIA WIJAYA\nMarketing Analyst — Singapore\n\nEDUCATION\nBBA (Marketing), Singapore Management University, graduated 2024. Coursework: consumer behavior, marketing analytics.\n\nEXPERIENCE\nMarketing Analyst, Brightwave Media (Jul 2024–present)\n- Built monthly campaign performance reports in Excel for six retail clients\n- Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database\n- Tracked website traffic and funnel drop-off in Google Analytics\n- Presented quarterly results to client stakeholders in PowerPoint\n\nMarketing Intern, Lion City Retail Group (2023)\n- Scheduled social media posts and compiled engagement summaries for two brands\n- Maintained the campaign calendar and budget tracker in Excel\n\nSKILLS\nExcel (pivot tables, VLOOKUP), PowerPoint, Google Analytics, SQL (basic SELECT queries), Canva\n",
+    "lines": [
+      {
+        "id": "cv-1",
+        "text": "ARIA WIJAYA",
+        "span": {
+          "start": 0,
+          "end": 11,
+          "text": "ARIA WIJAYA"
+        }
+      },
+      {
+        "id": "cv-2",
+        "text": "Marketing Analyst — Singapore",
+        "span": {
+          "start": 12,
+          "end": 41,
+          "text": "Marketing Analyst — Singapore"
+        }
+      },
+      {
+        "id": "cv-3",
+        "text": "BBA (Marketing), Singapore Management University, graduated 2024.",
+        "span": {
+          "start": 53,
+          "end": 118,
+          "text": "BBA (Marketing), Singapore Management University, graduated 2024."
+        }
+      },
+      {
+        "id": "cv-4",
+        "text": "BBA (Marketing)",
+        "span": {
+          "start": 53,
+          "end": 68,
+          "text": "BBA (Marketing)"
+        }
+      },
+      {
+        "id": "cv-5",
+        "text": "Singapore Management University",
+        "span": {
+          "start": 70,
+          "end": 101,
+          "text": "Singapore Management University"
+        }
+      },
+      {
+        "id": "cv-6",
+        "text": "graduated 2024.",
+        "span": {
+          "start": 103,
+          "end": 118,
+          "text": "graduated 2024."
+        }
+      },
+      {
+        "id": "cv-7",
+        "text": "Coursework: consumer behavior, marketing analytics.",
+        "span": {
+          "start": 119,
+          "end": 170,
+          "text": "Coursework: consumer behavior, marketing analytics."
+        }
+      },
+      {
+        "id": "cv-8",
+        "text": "consumer behavior",
+        "span": {
+          "start": 131,
+          "end": 148,
+          "text": "consumer behavior"
+        }
+      },
+      {
+        "id": "cv-9",
+        "text": "marketing analytics",
+        "span": {
+          "start": 150,
+          "end": 169,
+          "text": "marketing analytics"
+        }
+      },
+      {
+        "id": "cv-10",
+        "text": "Marketing Analyst, Brightwave Media (Jul 2024–present)",
+        "span": {
+          "start": 183,
+          "end": 237,
+          "text": "Marketing Analyst, Brightwave Media (Jul 2024–present)"
+        }
+      },
+      {
+        "id": "cv-11",
+        "text": "Marketing Analyst",
+        "span": {
+          "start": 12,
+          "end": 29,
+          "text": "Marketing Analyst"
+        }
+      },
+      {
+        "id": "cv-12",
+        "text": "Brightwave Media",
+        "span": {
+          "start": 202,
+          "end": 218,
+          "text": "Brightwave Media"
+        }
+      },
+      {
+        "id": "cv-13",
+        "text": "Jul 2024–present",
+        "span": {
+          "start": 220,
+          "end": 236,
+          "text": "Jul 2024–present"
+        }
+      },
+      {
+        "id": "cv-14",
+        "text": "- Built monthly campaign performance reports in Excel for six retail clients",
+        "span": {
+          "start": 238,
+          "end": 314,
+          "text": "- Built monthly campaign performance reports in Excel for six retail clients"
+        }
+      },
+      {
+        "id": "cv-15",
+        "text": "monthly campaign performance reports",
+        "span": {
+          "start": 246,
+          "end": 282,
+          "text": "monthly campaign performance reports"
+        }
+      },
+      {
+        "id": "cv-16",
+        "text": "Excel",
+        "span": {
+          "start": 286,
+          "end": 291,
+          "text": "Excel"
+        }
+      },
+      {
+        "id": "cv-17",
+        "text": "six retail clients",
+        "span": {
+          "start": 296,
+          "end": 314,
+          "text": "six retail clients"
+        }
+      },
+      {
+        "id": "cv-18",
+        "text": "- Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database",
+        "span": {
+          "start": 315,
+          "end": 411,
+          "text": "- Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database"
+        }
+      },
+      {
+        "id": "cv-19",
+        "text": "Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database",
+        "span": {
+          "start": 317,
+          "end": 411,
+          "text": "Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database"
+        }
+      },
+      {
+        "id": "cv-20",
+        "text": "ad spend",
+        "span": {
+          "start": 324,
+          "end": 332,
+          "text": "ad spend"
+        }
+      },
+      {
+        "id": "cv-21",
+        "text": "conversion numbers",
+        "span": {
+          "start": 337,
+          "end": 355,
+          "text": "conversion numbers"
+        }
+      },
+      {
+        "id": "cv-22",
+        "text": "basic SQL queries",
+        "span": {
+          "start": 361,
+          "end": 378,
+          "text": "basic SQL queries"
+        }
+      },
+      {
+        "id": "cv-23",
+        "text": "agency reporting database",
+        "span": {
+          "start": 386,
+          "end": 411,
+          "text": "agency reporting database"
+        }
+      },
+      {
+        "id": "cv-24",
+        "text": "SQL",
+        "span": {
+          "start": 367,
+          "end": 370,
+          "text": "SQL"
+        }
+      },
+      {
+        "id": "cv-25",
+        "text": "- Tracked website traffic and funnel drop-off in Google Analytics",
+        "span": {
+          "start": 412,
+          "end": 477,
+          "text": "- Tracked website traffic and funnel drop-off in Google Analytics"
+        }
+      },
+      {
+        "id": "cv-26",
+        "text": "Tracked website traffic and funnel drop-off in Google Analytics",
+        "span": {
+          "start": 414,
+          "end": 477,
+          "text": "Tracked website traffic and funnel drop-off in Google Analytics"
+        }
+      },
+      {
+        "id": "cv-27",
+        "text": "website traffic",
+        "span": {
+          "start": 422,
+          "end": 437,
+          "text": "website traffic"
+        }
+      },
+      {
+        "id": "cv-28",
+        "text": "funnel drop-off",
+        "span": {
+          "start": 442,
+          "end": 457,
+          "text": "funnel drop-off"
+        }
+      },
+      {
+        "id": "cv-29",
+        "text": "Google Analytics",
+        "span": {
+          "start": 461,
+          "end": 477,
+          "text": "Google Analytics"
+        }
+      },
+      {
+        "id": "cv-30",
+        "text": "- Presented quarterly results to client stakeholders in PowerPoint",
+        "span": {
+          "start": 478,
+          "end": 544,
+          "text": "- Presented quarterly results to client stakeholders in PowerPoint"
+        }
+      },
+      {
+        "id": "cv-31",
+        "text": "Presented quarterly results to client stakeholders in PowerPoint",
+        "span": {
+          "start": 480,
+          "end": 544,
+          "text": "Presented quarterly results to client stakeholders in PowerPoint"
+        }
+      },
+      {
+        "id": "cv-32",
+        "text": "quarterly results",
+        "span": {
+          "start": 490,
+          "end": 507,
+          "text": "quarterly results"
+        }
+      },
+      {
+        "id": "cv-33",
+        "text": "client stakeholders",
+        "span": {
+          "start": 511,
+          "end": 530,
+          "text": "client stakeholders"
+        }
+      },
+      {
+        "id": "cv-34",
+        "text": "PowerPoint",
+        "span": {
+          "start": 534,
+          "end": 544,
+          "text": "PowerPoint"
+        }
+      },
+      {
+        "id": "cv-35",
+        "text": "Marketing Intern, Lion City Retail Group (2023)",
+        "span": {
+          "start": 546,
+          "end": 593,
+          "text": "Marketing Intern, Lion City Retail Group (2023)"
+        }
+      },
+      {
+        "id": "cv-36",
+        "text": "Marketing Intern",
+        "span": {
+          "start": 546,
+          "end": 562,
+          "text": "Marketing Intern"
+        }
+      },
+      {
+        "id": "cv-37",
+        "text": "Lion City Retail Group",
+        "span": {
+          "start": 564,
+          "end": 586,
+          "text": "Lion City Retail Group"
+        }
+      },
+      {
+        "id": "cv-38",
+        "text": "(2023)",
+        "span": {
+          "start": 587,
+          "end": 593,
+          "text": "(2023)"
+        }
+      },
+      {
+        "id": "cv-39",
+        "text": "- Scheduled social media posts and compiled engagement summaries for two brands",
+        "span": {
+          "start": 594,
+          "end": 673,
+          "text": "- Scheduled social media posts and compiled engagement summaries for two brands"
+        }
+      },
+      {
+        "id": "cv-40",
+        "text": "Scheduled social media posts and compiled engagement summaries for two brands",
+        "span": {
+          "start": 596,
+          "end": 673,
+          "text": "Scheduled social media posts and compiled engagement summaries for two brands"
+        }
+      },
+      {
+        "id": "cv-41",
+        "text": "Scheduled social media posts",
+        "span": {
+          "start": 596,
+          "end": 624,
+          "text": "Scheduled social media posts"
+        }
+      },
+      {
+        "id": "cv-42",
+        "text": "social media posts",
+        "span": {
+          "start": 606,
+          "end": 624,
+          "text": "social media posts"
+        }
+      },
+      {
+        "id": "cv-43",
+        "text": "engagement summaries",
+        "span": {
+          "start": 638,
+          "end": 658,
+          "text": "engagement summaries"
+        }
+      },
+      {
+        "id": "cv-44",
+        "text": "two brands",
+        "span": {
+          "start": 663,
+          "end": 673,
+          "text": "two brands"
+        }
+      },
+      {
+        "id": "cv-45",
+        "text": "- Maintained the campaign calendar and budget tracker in Excel",
+        "span": {
+          "start": 674,
+          "end": 736,
+          "text": "- Maintained the campaign calendar and budget tracker in Excel"
+        }
+      },
+      {
+        "id": "cv-46",
+        "text": "Maintained the campaign calendar and budget tracker in Excel",
+        "span": {
+          "start": 676,
+          "end": 736,
+          "text": "Maintained the campaign calendar and budget tracker in Excel"
+        }
+      },
+      {
+        "id": "cv-47",
+        "text": "campaign calendar",
+        "span": {
+          "start": 691,
+          "end": 708,
+          "text": "campaign calendar"
+        }
+      },
+      {
+        "id": "cv-48",
+        "text": "budget tracker",
+        "span": {
+          "start": 713,
+          "end": 727,
+          "text": "budget tracker"
+        }
+      },
+      {
+        "id": "cv-49",
+        "text": "Excel",
+        "span": {
+          "start": 286,
+          "end": 291,
+          "text": "Excel"
+        }
+      },
+      {
+        "id": "cv-50",
+        "text": "Excel (pivot tables, VLOOKUP), PowerPoint, Google Analytics, SQL (basic SELECT queries), Canva",
+        "span": {
+          "start": 745,
+          "end": 839,
+          "text": "Excel (pivot tables, VLOOKUP), PowerPoint, Google Analytics, SQL (basic SELECT queries), Canva"
+        }
+      },
+      {
+        "id": "cv-51",
+        "text": "Excel (pivot tables, VLOOKUP)",
+        "span": {
+          "start": 745,
+          "end": 774,
+          "text": "Excel (pivot tables, VLOOKUP)"
+        }
+      },
+      {
+        "id": "cv-52",
+        "text": "pivot tables",
+        "span": {
+          "start": 752,
+          "end": 764,
+          "text": "pivot tables"
+        }
+      },
+      {
+        "id": "cv-53",
+        "text": "VLOOKUP",
+        "span": {
+          "start": 766,
+          "end": 773,
+          "text": "VLOOKUP"
+        }
+      },
+      {
+        "id": "cv-54",
+        "text": "PowerPoint",
+        "span": {
+          "start": 534,
+          "end": 544,
+          "text": "PowerPoint"
+        }
+      },
+      {
+        "id": "cv-55",
+        "text": "Google Analytics",
+        "span": {
+          "start": 461,
+          "end": 477,
+          "text": "Google Analytics"
+        }
+      },
+      {
+        "id": "cv-56",
+        "text": "SQL (basic SELECT queries)",
+        "span": {
+          "start": 806,
+          "end": 832,
+          "text": "SQL (basic SELECT queries)"
+        }
+      },
+      {
+        "id": "cv-57",
+        "text": "basic SELECT queries",
+        "span": {
+          "start": 811,
+          "end": 831,
+          "text": "basic SELECT queries"
+        }
+      },
+      {
+        "id": "cv-58",
+        "text": "Canva",
+        "span": {
+          "start": 834,
+          "end": 839,
+          "text": "Canva"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "gaps": [
+    {
+      "id": "gap-1",
+      "kind": "missing_skill",
+      "requirementId": "jd-1",
+      "jdSpan": {
+        "start": 95,
+        "end": 182,
+        "text": "You will keep the pipelines and services that move our shipment data reliable and fast."
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions maintaining pipelines, shipment data, or services related to reliability/performance."
+    },
+    {
+      "id": "gap-2",
+      "kind": "weak_evidence",
+      "requirementId": "jd-2",
+      "jdSpan": {
+        "start": 201,
+        "end": 269,
+        "text": "- Operate and scale the batch pipelines that feed our data warehouse"
+      },
+      "resumeLineId": "cv-18",
+      "resumeSpan": {
+        "start": 315,
+        "end": 411,
+        "text": "- Pulled ad spend and conversion numbers with basic SQL queries in the agency reporting database"
+      },
+      "rationale": "cv-18 shows basic SQL queries against an agency reporting database but does not indicate operating or scaling batch pipelines feeding a data warehouse."
+    },
+    {
+      "id": "gap-3",
+      "kind": "missing_skill",
+      "requirementId": "jd-3",
+      "jdSpan": {
+        "start": 270,
+        "end": 336,
+        "text": "- Automate provisioning and deployment across our AWS environments"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line references AWS provisioning, deployment, or automation."
+    },
+    {
+      "id": "gap-4",
+      "kind": "missing_skill",
+      "requirementId": "jd-4",
+      "jdSpan": {
+        "start": 337,
+        "end": 410,
+        "text": "- Improve observability, alerting and incident response for data services"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line describes work on observability, monitoring, or alerting for data services."
+    },
+    {
+      "id": "gap-5",
+      "kind": "missing_skill",
+      "requirementId": "jd-5",
+      "jdSpan": {
+        "start": 337,
+        "end": 410,
+        "text": "- Improve observability, alerting and incident response for data services"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions improving or implementing alerting for data services."
+    },
+    {
+      "id": "gap-6",
+      "kind": "missing_skill",
+      "requirementId": "jd-6",
+      "jdSpan": {
+        "start": 337,
+        "end": 410,
+        "text": "- Improve observability, alerting and incident response for data services"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line references incident response or related practices for data services."
+    },
+    {
+      "id": "gap-7",
+      "kind": "missing_skill",
+      "requirementId": "jd-7",
+      "jdSpan": {
+        "start": 411,
+        "end": 486,
+        "text": "- Build internal tooling so product teams can self-serve platform resources"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line describes building internal tooling or self-serve platform resources for product teams."
+    },
+    {
+      "id": "gap-8",
+      "kind": "missing_skill",
+      "requirementId": "jd-8",
+      "jdSpan": {
+        "start": 512,
+        "end": 585,
+        "text": "- 4+ years operating production infrastructure on AWS (EC2, S3, IAM, VPC)"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line indicates multi-year experience operating production AWS infrastructure."
+    },
+    {
+      "id": "gap-9",
+      "kind": "missing_skill",
+      "requirementId": "jd-9",
+      "jdSpan": {
+        "start": 567,
+        "end": 570,
+        "text": "EC2"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions EC2 or equivalent experience."
+    },
+    {
+      "id": "gap-10",
+      "kind": "missing_skill",
+      "requirementId": "jd-10",
+      "jdSpan": {
+        "start": 572,
+        "end": 574,
+        "text": "S3"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions S3 or related experience."
+    },
+    {
+      "id": "gap-11",
+      "kind": "missing_skill",
+      "requirementId": "jd-11",
+      "jdSpan": {
+        "start": 576,
+        "end": 579,
+        "text": "IAM"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line references IAM or identity/access management experience."
+    },
+    {
+      "id": "gap-12",
+      "kind": "missing_skill",
+      "requirementId": "jd-12",
+      "jdSpan": {
+        "start": 581,
+        "end": 584,
+        "text": "VPC"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions VPC or networking experience in cloud environments."
+    },
+    {
+      "id": "gap-13",
+      "kind": "missing_skill",
+      "requirementId": "jd-13",
+      "jdSpan": {
+        "start": 586,
+        "end": 652,
+        "text": "- Hands-on experience deploying and running services on Kubernetes"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line indicates deploying or running services on Kubernetes."
+    },
+    {
+      "id": "gap-14",
+      "kind": "missing_skill",
+      "requirementId": "jd-14",
+      "jdSpan": {
+        "start": 653,
+        "end": 725,
+        "text": "- Infrastructure as code with Terraform, reviewed and applied through CI"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line references Terraform or infrastructure-as-code work."
+    },
+    {
+      "id": "gap-15",
+      "kind": "missing_skill",
+      "requirementId": "jd-15",
+      "jdSpan": {
+        "start": 653,
+        "end": 725,
+        "text": "- Infrastructure as code with Terraform, reviewed and applied through CI"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line describes reviewing or applying Terraform through CI."
+    },
+    {
+      "id": "gap-16",
+      "kind": "missing_skill",
+      "requirementId": "jd-16",
+      "jdSpan": {
+        "start": 726,
+        "end": 803,
+        "text": "- Experience building and operating Airflow DAGs for scheduled data pipelines"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions building or operating Airflow DAGs or scheduled data pipelines."
+    },
+    {
+      "id": "gap-17",
+      "kind": "missing_skill",
+      "requirementId": "jd-17",
+      "jdSpan": {
+        "start": 804,
+        "end": 861,
+        "text": "- Proficiency writing production services in Go or Python"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line demonstrates proficiency writing production services in Go."
+    },
+    {
+      "id": "gap-18",
+      "kind": "missing_skill",
+      "requirementId": "jd-18",
+      "jdSpan": {
+        "start": 804,
+        "end": 861,
+        "text": "- Proficiency writing production services in Go or Python"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line demonstrates proficiency writing production services in Python."
+    },
+    {
+      "id": "gap-19",
+      "kind": "weak_evidence",
+      "requirementId": "jd-19",
+      "jdSpan": {
+        "start": 862,
+        "end": 963,
+        "text": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning"
+      },
+      "resumeLineId": "cv-56",
+      "resumeSpan": {
+        "start": 806,
+        "end": 832,
+        "text": "SQL (basic SELECT queries)"
+      },
+      "rationale": "cv-56 lists SQL (basic SELECT queries), indicating some SQL skill but not strong SQL or data-warehouse-level expertise or tuning."
+    },
+    {
+      "id": "gap-20",
+      "kind": "missing_skill",
+      "requirementId": "jd-20",
+      "jdSpan": {
+        "start": 862,
+        "end": 963,
+        "text": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line references day-to-day operations of Redshift or Snowflake/data warehouse management."
+    },
+    {
+      "id": "gap-21",
+      "kind": "weak_evidence",
+      "requirementId": "jd-21",
+      "jdSpan": {
+        "start": 862,
+        "end": 963,
+        "text": "- Strong SQL and day-to-day data warehouse operations (Redshift or Snowflake), including query tuning"
+      },
+      "resumeLineId": "cv-22",
+      "resumeSpan": {
+        "start": 361,
+        "end": 378,
+        "text": "basic SQL queries"
+      },
+      "rationale": "cv-22 notes basic SQL queries which touches querying but does not demonstrate query tuning for data warehouses."
+    },
+    {
+      "id": "gap-22",
+      "kind": "missing_skill",
+      "requirementId": "jd-22",
+      "jdSpan": {
+        "start": 917,
+        "end": 925,
+        "text": "Redshift"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions experience with Amazon Redshift."
+    },
+    {
+      "id": "gap-23",
+      "kind": "missing_skill",
+      "requirementId": "jd-23",
+      "jdSpan": {
+        "start": 929,
+        "end": 938,
+        "text": "Snowflake"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions experience with Snowflake."
+    },
+    {
+      "id": "gap-24",
+      "kind": "missing_skill",
+      "requirementId": "jd-24",
+      "jdSpan": {
+        "start": 964,
+        "end": 1031,
+        "text": "- Participation in a weekly on-call rotation for platform incidents"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line indicates participation in an on-call rotation for platform incidents."
+    },
+    {
+      "id": "gap-25",
+      "kind": "weak_evidence",
+      "requirementId": "jd-25",
+      "jdSpan": {
+        "start": 1032,
+        "end": 1105,
+        "text": "- Clear written communication: runbooks, postmortems and incident updates"
+      },
+      "resumeLineId": "cv-30",
+      "resumeSpan": {
+        "start": 478,
+        "end": 544,
+        "text": "- Presented quarterly results to client stakeholders in PowerPoint"
+      },
+      "rationale": "cv-30 shows presenting quarterly results to stakeholders, evidencing communication skills but not runbooks, postmortems, or incident-update writing specifically."
+    },
+    {
+      "id": "gap-26",
+      "kind": "missing_skill",
+      "requirementId": "jd-26",
+      "jdSpan": {
+        "start": 1032,
+        "end": 1105,
+        "text": "- Clear written communication: runbooks, postmortems and incident updates"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line indicates writing runbooks or operational documentation."
+    },
+    {
+      "id": "gap-27",
+      "kind": "missing_skill",
+      "requirementId": "jd-27",
+      "jdSpan": {
+        "start": 1032,
+        "end": 1105,
+        "text": "- Clear written communication: runbooks, postmortems and incident updates"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line indicates writing postmortems."
+    },
+    {
+      "id": "gap-28",
+      "kind": "missing_skill",
+      "requirementId": "jd-28",
+      "jdSpan": {
+        "start": 1032,
+        "end": 1105,
+        "text": "- Clear written communication: runbooks, postmortems and incident updates"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line indicates writing incident updates."
+    }
+  ]
+}

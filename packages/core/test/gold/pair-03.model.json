@@ -1,0 +1,589 @@
+{
+  "jd": {
+    "sourceText": "Analytics Engineer — Data Platform Team\nNorthwind Retail Group, Singapore\n\nAbout the role\nYou will own the SQL models that power reporting and experimentation across the company.\n\nWhat you will do\n- Design, build and maintain the dbt models behind our core reporting marts\n- Ship and maintain BI dashboards used by leadership and operations teams\n- Partner with product and marketing on experiment analysis and metric definitions\n\nWhat we are looking for\n- 3+ years writing analytics SQL and building data models on a cloud warehouse (Snowflake or BigQuery)\n- Production experience with dbt, including tests, documentation and CI checks\n- Experience building and owning BI dashboards in Looker or Tableau\n- Hands-on experience scheduling and monitoring pipelines with Airflow\n- Ability to design and analyze A/B experiments end to end\n- Clear written and verbal communication with non-technical stakeholders\n- Working knowledge of Python for data transformation and automation\n- Comfortable with Git-based development workflows and code review\n",
+    "lines": [
+      {
+        "id": "jd-1",
+        "text": "Own SQL models that power reporting and experimentation",
+        "span": {
+          "start": 90,
+          "end": 178,
+          "text": "You will own the SQL models that power reporting and experimentation across the company."
+        }
+      },
+      {
+        "id": "jd-2",
+        "text": "Design, build and maintain dbt models",
+        "span": {
+          "start": 197,
+          "end": 272,
+          "text": "- Design, build and maintain the dbt models behind our core reporting marts"
+        }
+      },
+      {
+        "id": "jd-3",
+        "text": "Ship and maintain BI dashboards used by leadership and operations teams",
+        "span": {
+          "start": 273,
+          "end": 346,
+          "text": "- Ship and maintain BI dashboards used by leadership and operations teams"
+        }
+      },
+      {
+        "id": "jd-4",
+        "text": "Partner with product and marketing on experiment analysis and metric definitions",
+        "span": {
+          "start": 347,
+          "end": 429,
+          "text": "- Partner with product and marketing on experiment analysis and metric definitions"
+        }
+      },
+      {
+        "id": "jd-5",
+        "text": "3+ years writing analytics SQL",
+        "span": {
+          "start": 455,
+          "end": 557,
+          "text": "- 3+ years writing analytics SQL and building data models on a cloud warehouse (Snowflake or BigQuery)"
+        }
+      },
+      {
+        "id": "jd-6",
+        "text": "3+ years building data models on a cloud warehouse (Snowflake or BigQuery)",
+        "span": {
+          "start": 455,
+          "end": 557,
+          "text": "- 3+ years writing analytics SQL and building data models on a cloud warehouse (Snowflake or BigQuery)"
+        }
+      },
+      {
+        "id": "jd-7",
+        "text": "Production experience with dbt",
+        "span": {
+          "start": 558,
+          "end": 636,
+          "text": "- Production experience with dbt, including tests, documentation and CI checks"
+        }
+      },
+      {
+        "id": "jd-8",
+        "text": "Experience with dbt tests",
+        "span": {
+          "start": 558,
+          "end": 636,
+          "text": "- Production experience with dbt, including tests, documentation and CI checks"
+        }
+      },
+      {
+        "id": "jd-9",
+        "text": "Experience with dbt documentation",
+        "span": {
+          "start": 558,
+          "end": 636,
+          "text": "- Production experience with dbt, including tests, documentation and CI checks"
+        }
+      },
+      {
+        "id": "jd-10",
+        "text": "Experience with dbt CI checks",
+        "span": {
+          "start": 558,
+          "end": 636,
+          "text": "- Production experience with dbt, including tests, documentation and CI checks"
+        }
+      },
+      {
+        "id": "jd-11",
+        "text": "Experience building and owning BI dashboards in Looker",
+        "span": {
+          "start": 637,
+          "end": 704,
+          "text": "- Experience building and owning BI dashboards in Looker or Tableau"
+        }
+      },
+      {
+        "id": "jd-12",
+        "text": "Experience building and owning BI dashboards in Tableau",
+        "span": {
+          "start": 637,
+          "end": 704,
+          "text": "- Experience building and owning BI dashboards in Looker or Tableau"
+        }
+      },
+      {
+        "id": "jd-13",
+        "text": "Hands-on experience scheduling pipelines with Airflow",
+        "span": {
+          "start": 705,
+          "end": 775,
+          "text": "- Hands-on experience scheduling and monitoring pipelines with Airflow"
+        }
+      },
+      {
+        "id": "jd-14",
+        "text": "Hands-on experience monitoring pipelines with Airflow",
+        "span": {
+          "start": 705,
+          "end": 775,
+          "text": "- Hands-on experience scheduling and monitoring pipelines with Airflow"
+        }
+      },
+      {
+        "id": "jd-15",
+        "text": "Design and analyze A/B experiments end to end",
+        "span": {
+          "start": 776,
+          "end": 834,
+          "text": "- Ability to design and analyze A/B experiments end to end"
+        }
+      },
+      {
+        "id": "jd-16",
+        "text": "Clear written and verbal communication with non-technical stakeholders",
+        "span": {
+          "start": 835,
+          "end": 907,
+          "text": "- Clear written and verbal communication with non-technical stakeholders"
+        }
+      },
+      {
+        "id": "jd-17",
+        "text": "Working knowledge of Python for data transformation and automation",
+        "span": {
+          "start": 908,
+          "end": 976,
+          "text": "- Working knowledge of Python for data transformation and automation"
+        }
+      },
+      {
+        "id": "jd-18",
+        "text": "Comfortable with Git-based development workflows and code review",
+        "span": {
+          "start": 977,
+          "end": 1043,
+          "text": "- Comfortable with Git-based development workflows and code review"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "resume": {
+    "sourceText": "PRIYA NAIR\nSenior Analytics Engineer — 6 years of SQL and data modelling experience\n\nEDUCATION\nBSc Statistics, Nanyang Technological University, 2019.\n\nEXPERIENCE\nSenior Analytics Engineer, Finch Commerce (2022-present)\n- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart\n- Built the company's Looker instance from scratch, now serving 120 weekly active viewers\n- Modelled order, payments and logistics marts in Snowflake SQL used by finance and ops\n- Ran a weekly metrics review with the heads of finance and operations\n- Helped a product manager define success metrics for one pricing A/B test\n\nAnalytics Engineer, Grabble (2019-2022)\n- Wrote and maintained BigQuery SQL models for marketing attribution reporting\n- Automated recurring reporting jobs with Python scripts scheduled via cron\n\nSKILLS\nSQL (Snowflake, BigQuery), dbt (tests, docs, CI), Looker, Python, Git and GitHub pull-request review\n",
+    "lines": [
+      {
+        "id": "cv-1",
+        "text": "PRIYA NAIR",
+        "span": {
+          "start": 0,
+          "end": 10,
+          "text": "PRIYA NAIR"
+        }
+      },
+      {
+        "id": "cv-2",
+        "text": "Senior Analytics Engineer — 6 years of SQL and data modelling experience",
+        "span": {
+          "start": 11,
+          "end": 83,
+          "text": "Senior Analytics Engineer — 6 years of SQL and data modelling experience"
+        }
+      },
+      {
+        "id": "cv-3",
+        "text": "BSc Statistics, Nanyang Technological University, 2019.",
+        "span": {
+          "start": 95,
+          "end": 150,
+          "text": "BSc Statistics, Nanyang Technological University, 2019."
+        }
+      },
+      {
+        "id": "cv-4",
+        "text": "Senior Analytics Engineer, Finch Commerce (2022-present)",
+        "span": {
+          "start": 163,
+          "end": 219,
+          "text": "Senior Analytics Engineer, Finch Commerce (2022-present)"
+        }
+      },
+      {
+        "id": "cv-5",
+        "text": "- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart",
+        "span": {
+          "start": 220,
+          "end": 309,
+          "text": "- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart"
+        }
+      },
+      {
+        "id": "cv-6",
+        "text": "- Built the company's Looker instance from scratch, now serving 120 weekly active viewers",
+        "span": {
+          "start": 310,
+          "end": 399,
+          "text": "- Built the company's Looker instance from scratch, now serving 120 weekly active viewers"
+        }
+      },
+      {
+        "id": "cv-7",
+        "text": "- Modelled order, payments and logistics marts in Snowflake SQL used by finance and ops",
+        "span": {
+          "start": 400,
+          "end": 487,
+          "text": "- Modelled order, payments and logistics marts in Snowflake SQL used by finance and ops"
+        }
+      },
+      {
+        "id": "cv-8",
+        "text": "- Ran a weekly metrics review with the heads of finance and operations",
+        "span": {
+          "start": 488,
+          "end": 558,
+          "text": "- Ran a weekly metrics review with the heads of finance and operations"
+        }
+      },
+      {
+        "id": "cv-9",
+        "text": "- Helped a product manager define success metrics for one pricing A/B test",
+        "span": {
+          "start": 559,
+          "end": 633,
+          "text": "- Helped a product manager define success metrics for one pricing A/B test"
+        }
+      },
+      {
+        "id": "cv-10",
+        "text": "Analytics Engineer, Grabble (2019-2022)",
+        "span": {
+          "start": 635,
+          "end": 674,
+          "text": "Analytics Engineer, Grabble (2019-2022)"
+        }
+      },
+      {
+        "id": "cv-11",
+        "text": "- Wrote and maintained BigQuery SQL models for marketing attribution reporting",
+        "span": {
+          "start": 675,
+          "end": 753,
+          "text": "- Wrote and maintained BigQuery SQL models for marketing attribution reporting"
+        }
+      },
+      {
+        "id": "cv-12",
+        "text": "- Automated recurring reporting jobs with Python scripts scheduled via cron",
+        "span": {
+          "start": 754,
+          "end": 829,
+          "text": "- Automated recurring reporting jobs with Python scripts scheduled via cron"
+        }
+      },
+      {
+        "id": "cv-13",
+        "text": "SQL (Snowflake, BigQuery), dbt (tests, docs, CI), Looker, Python, Git and GitHub pull-request review",
+        "span": {
+          "start": 838,
+          "end": 938,
+          "text": "SQL (Snowflake, BigQuery), dbt (tests, docs, CI), Looker, Python, Git and GitHub pull-request review"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "gaps": [
+    {
+      "id": "gap-1",
+      "kind": "weak_evidence",
+      "requirementId": "jd-1",
+      "jdSpan": {
+        "start": 90,
+        "end": 178,
+        "text": "You will own the SQL models that power reporting and experimentation across the company."
+      },
+      "resumeLineId": "cv-11",
+      "resumeSpan": {
+        "start": 675,
+        "end": 753,
+        "text": "- Wrote and maintained BigQuery SQL models for marketing attribution reporting"
+      },
+      "rationale": "cv-11 states they wrote and maintained BigQuery SQL models for marketing attribution reporting, which shows model ownership for reporting but does not mention experimentation or company-wide scope."
+    },
+    {
+      "id": "gap-2",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-2",
+      "jdSpan": {
+        "start": 197,
+        "end": 272,
+        "text": "- Design, build and maintain the dbt models behind our core reporting marts"
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 220,
+        "end": 309,
+        "text": "- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart"
+      },
+      "rationale": "cv-5 describes leading a dbt migration across 40+ models and adding tests, docs and CI to every mart, directly evidencing design, build and maintenance of dbt models."
+    },
+    {
+      "id": "gap-3",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-3",
+      "jdSpan": {
+        "start": 273,
+        "end": 346,
+        "text": "- Ship and maintain BI dashboards used by leadership and operations teams"
+      },
+      "resumeLineId": "cv-6",
+      "resumeSpan": {
+        "start": 310,
+        "end": 399,
+        "text": "- Built the company's Looker instance from scratch, now serving 120 weekly active viewers"
+      },
+      "rationale": "cv-6 says they built the company's Looker instance from scratch now serving 120 weekly active viewers, demonstrating shipping and maintaining BI dashboards used by teams."
+    },
+    {
+      "id": "gap-4",
+      "kind": "weak_evidence",
+      "requirementId": "jd-4",
+      "jdSpan": {
+        "start": 347,
+        "end": 429,
+        "text": "- Partner with product and marketing on experiment analysis and metric definitions"
+      },
+      "resumeLineId": "cv-9",
+      "resumeSpan": {
+        "start": 559,
+        "end": 633,
+        "text": "- Helped a product manager define success metrics for one pricing A/B test"
+      },
+      "rationale": "cv-9 notes helping a product manager define success metrics for one pricing A/B test, indicating collaboration on experiment metrics but only for a single test."
+    },
+    {
+      "id": "gap-5",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-5",
+      "jdSpan": {
+        "start": 455,
+        "end": 557,
+        "text": "- 3+ years writing analytics SQL and building data models on a cloud warehouse (Snowflake or BigQuery)"
+      },
+      "resumeLineId": "cv-2",
+      "resumeSpan": {
+        "start": 11,
+        "end": 83,
+        "text": "Senior Analytics Engineer — 6 years of SQL and data modelling experience"
+      },
+      "rationale": "cv-2 explicitly states 6 years of SQL and data modelling experience, exceeding the 3+ year requirement."
+    },
+    {
+      "id": "gap-6",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-6",
+      "jdSpan": {
+        "start": 455,
+        "end": 557,
+        "text": "- 3+ years writing analytics SQL and building data models on a cloud warehouse (Snowflake or BigQuery)"
+      },
+      "resumeLineId": "cv-2",
+      "resumeSpan": {
+        "start": 11,
+        "end": 83,
+        "text": "Senior Analytics Engineer — 6 years of SQL and data modelling experience"
+      },
+      "rationale": "cv-2 lists 6 years of SQL and data modelling experience, which satisfies 3+ years building data models on cloud warehouses."
+    },
+    {
+      "id": "gap-7",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-7",
+      "jdSpan": {
+        "start": 558,
+        "end": 636,
+        "text": "- Production experience with dbt, including tests, documentation and CI checks"
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 220,
+        "end": 309,
+        "text": "- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart"
+      },
+      "rationale": "cv-5 reports leading a dbt migration across 40+ models and adding tests, docs and CI checks, showing production dbt experience."
+    },
+    {
+      "id": "gap-8",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-8",
+      "jdSpan": {
+        "start": 558,
+        "end": 636,
+        "text": "- Production experience with dbt, including tests, documentation and CI checks"
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 220,
+        "end": 309,
+        "text": "- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart"
+      },
+      "rationale": "cv-5 explicitly states they added tests during the dbt migration, evidencing experience with dbt tests."
+    },
+    {
+      "id": "gap-9",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-9",
+      "jdSpan": {
+        "start": 558,
+        "end": 636,
+        "text": "- Production experience with dbt, including tests, documentation and CI checks"
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 220,
+        "end": 309,
+        "text": "- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart"
+      },
+      "rationale": "cv-5 explicitly states they added documentation during the dbt migration, evidencing dbt documentation experience."
+    },
+    {
+      "id": "gap-10",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-10",
+      "jdSpan": {
+        "start": 558,
+        "end": 636,
+        "text": "- Production experience with dbt, including tests, documentation and CI checks"
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 220,
+        "end": 309,
+        "text": "- Led the dbt migration across 40+ models, adding tests, docs and CI checks to every mart"
+      },
+      "rationale": "cv-5 explicitly states they added CI checks to every mart during the dbt migration, evidencing dbt CI experience."
+    },
+    {
+      "id": "gap-11",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-11",
+      "jdSpan": {
+        "start": 637,
+        "end": 704,
+        "text": "- Experience building and owning BI dashboards in Looker or Tableau"
+      },
+      "resumeLineId": "cv-6",
+      "resumeSpan": {
+        "start": 310,
+        "end": 399,
+        "text": "- Built the company's Looker instance from scratch, now serving 120 weekly active viewers"
+      },
+      "rationale": "cv-6 built the company's Looker instance from scratch and it now serves 120 weekly active viewers, directly evidencing Looker dashboard ownership."
+    },
+    {
+      "id": "gap-12",
+      "kind": "missing_skill",
+      "requirementId": "jd-12",
+      "jdSpan": {
+        "start": 637,
+        "end": 704,
+        "text": "- Experience building and owning BI dashboards in Looker or Tableau"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the resume lines mention Tableau or explicit Tableau dashboard building or ownership."
+    },
+    {
+      "id": "gap-13",
+      "kind": "missing_skill",
+      "requirementId": "jd-13",
+      "jdSpan": {
+        "start": 705,
+        "end": 775,
+        "text": "- Hands-on experience scheduling and monitoring pipelines with Airflow"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions Airflow or scheduling pipelines with Airflow (only cron is mentioned)."
+    },
+    {
+      "id": "gap-14",
+      "kind": "missing_skill",
+      "requirementId": "jd-14",
+      "jdSpan": {
+        "start": 705,
+        "end": 775,
+        "text": "- Hands-on experience scheduling and monitoring pipelines with Airflow"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "No resume line mentions monitoring pipelines with Airflow or equivalent Airflow experience."
+    },
+    {
+      "id": "gap-15",
+      "kind": "weak_evidence",
+      "requirementId": "jd-15",
+      "jdSpan": {
+        "start": 776,
+        "end": 834,
+        "text": "- Ability to design and analyze A/B experiments end to end"
+      },
+      "resumeLineId": "cv-9",
+      "resumeSpan": {
+        "start": 559,
+        "end": 633,
+        "text": "- Helped a product manager define success metrics for one pricing A/B test"
+      },
+      "rationale": "cv-9 shows involvement in defining success metrics for a pricing A/B test but does not demonstrate full end-to-end design and analysis of experiments."
+    },
+    {
+      "id": "gap-16",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-16",
+      "jdSpan": {
+        "start": 835,
+        "end": 907,
+        "text": "- Clear written and verbal communication with non-technical stakeholders"
+      },
+      "resumeLineId": "cv-8",
+      "resumeSpan": {
+        "start": 488,
+        "end": 558,
+        "text": "- Ran a weekly metrics review with the heads of finance and operations"
+      },
+      "rationale": "cv-8 states they ran a weekly metrics review with the heads of finance and operations, demonstrating clear communication with non-technical stakeholders."
+    },
+    {
+      "id": "gap-17",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-17",
+      "jdSpan": {
+        "start": 908,
+        "end": 976,
+        "text": "- Working knowledge of Python for data transformation and automation"
+      },
+      "resumeLineId": "cv-12",
+      "resumeSpan": {
+        "start": 754,
+        "end": 829,
+        "text": "- Automated recurring reporting jobs with Python scripts scheduled via cron"
+      },
+      "rationale": "cv-12 states they automated recurring reporting jobs with Python scripts, evidencing practical Python use for transformation and automation."
+    },
+    {
+      "id": "gap-18",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-18",
+      "jdSpan": {
+        "start": 977,
+        "end": 1043,
+        "text": "- Comfortable with Git-based development workflows and code review"
+      },
+      "resumeLineId": "cv-13",
+      "resumeSpan": {
+        "start": 838,
+        "end": 938,
+        "text": "SQL (Snowflake, BigQuery), dbt (tests, docs, CI), Looker, Python, Git and GitHub pull-request review"
+      },
+      "rationale": "cv-13 explicitly lists Git and GitHub pull-request review, showing comfort with Git-based workflows and code review."
+    }
+  ]
+}

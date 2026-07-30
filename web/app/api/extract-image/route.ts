@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { makeStructuredClient } from "../../lib/providers";
+import { flushLangfuse } from "../../lib/langfuse";
 
 // One vision call. Measured ~25s for a full page of a job posting.
 export const maxDuration = 60;
@@ -59,7 +60,10 @@ export async function POST(req: Request) {
   }
 
   try {
-    const client = makeStructuredClient();
+    const client = makeStructuredClient({
+      route: "extract-image",
+      metadata: { imageDataUrlChars: imageDataUrl.length },
+    });
     const completion = await client.chat.completions.create({
       model: process.env.VISION_MODEL ?? "gpt-5-mini",
       messages: [
@@ -95,5 +99,7 @@ export async function POST(req: Request) {
       { error: e instanceof Error ? e.message : String(e) },
       { status: 500 },
     );
+  } finally {
+    await flushLangfuse();
   }
 }

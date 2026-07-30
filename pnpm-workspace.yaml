@@ -6,6 +6,10 @@ packages:
 # sharp is Next.js's optional image optimizer — allow its build.
 allowBuilds:
   better-sqlite3: true
+  # Pulled in by @opentelemetry/exporter-trace-otlp-http (Langfuse's OTEL export
+  # path). Its postinstall only checks dependents' semver-range style and warns
+  # on mismatch — inspected the script, no native compilation, safe to allow.
+  protobufjs: true
   sharp: true
 
 minimumReleaseAgeExclude:

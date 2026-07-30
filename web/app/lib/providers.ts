@@ -20,8 +20,38 @@
 //
 // Clients are constructed per request so `next build` never needs a key.
 import OpenAI from "openai";
+import { observeOpenAI } from "@langfuse/openai";
+import { langfuseEnabled } from "./langfuse";
 
 export type InterviewerProvider = "agnes" | "openai";
+
+/** Optional Langfuse context a caller may attach when constructing a lane. */
+export interface LangfuseTraceOptions {
+  /** Route name, e.g. "compile", "plan", "debrief", "session-turn" — becomes a tag. */
+  route?: string;
+  /** Cheap extra context (pair/stage counts, char lengths) — never raw JD/resume/transcript text. */
+  metadata?: Record<string, unknown>;
+}
+
+/**
+ * Wrap a client with Langfuse's OpenAI observer when Langfuse is configured;
+ * otherwise return the client unchanged. `generationName` identifies the lane
+ * ("structured" | "interviewer-agnes" | "interviewer-openai-failover") so
+ * traces are filterable by which lane produced them without opening each one.
+ */
+function withLangfuseObservability(
+  client: OpenAI,
+  generationName: string,
+  opts: LangfuseTraceOptions = {},
+): OpenAI {
+  if (!langfuseEnabled()) return client;
+  const tags = [`lane:${generationName}`, ...(opts.route ? [`route:${opts.route}`] : [])];
+  return observeOpenAI(client, {
+    generationName,
+    tags,
+    generationMetadata: { lane: generationName, route: opts.route, ...opts.metadata },
+  });
+}
 
 export const AGNES_BASE_URL_DEFAULT = "https://apihub.agnes-ai.com/v1";
 export const AGNES_MODEL_DEFAULT = "agnes-2.0-flash";
@@ -45,28 +75,29 @@ export interface InterviewerLane {
  * The receipts-critical lane: OpenAI, strict structured outputs.
  * Never Agnes — see the note at the top of this file.
  */
-export function makeStructuredClient(): OpenAI {
-  return new OpenAI();
+export function makeStructuredClient(opts: LangfuseTraceOptions = {}): OpenAI {
+  return withLangfuseObservability(new OpenAI(), "structured", opts);
 }
 
 /** The OpenAI interviewer lane — the default's failover, and usable directly. */
-export function makeOpenAILane(): InterviewerLane {
+export function makeOpenAILane(opts: LangfuseTraceOptions = {}): InterviewerLane {
   return {
     provider: "openai",
-    client: new OpenAI(),
+    client: withLangfuseObservability(new OpenAI(), "interviewer-openai-failover", opts),
     model: process.env.OPENAI_INTERVIEWER_MODEL ?? OPENAI_MODEL_DEFAULT,
     params: { reasoning_effort: "minimal" },
   };
 }
 
 /** The Agnes interviewer lane. */
-export function makeAgnesLane(): InterviewerLane {
+export function makeAgnesLane(opts: LangfuseTraceOptions = {}): InterviewerLane {
+  const client = new OpenAI({
+    apiKey: process.env.AGNES_API_KEY,
+    baseURL: process.env.AGNES_BASE_URL ?? AGNES_BASE_URL_DEFAULT,
+  });
   return {
     provider: "agnes",
-    client: new OpenAI({
-      apiKey: process.env.AGNES_API_KEY,
-      baseURL: process.env.AGNES_BASE_URL ?? AGNES_BASE_URL_DEFAULT,
-    }),
+    client: withLangfuseObservability(client, "interviewer-agnes", opts),
     model: process.env.AGNES_MODEL ?? AGNES_MODEL_DEFAULT,
     params: {},
   };
@@ -78,10 +109,10 @@ export function makeAgnesLane(): InterviewerLane {
  * key degrades to a working demo rather than a failed turn — the UI labels
  * whichever provider actually answered.
  */
-export function makeInterviewerLane(): InterviewerLane {
+export function makeInterviewerLane(opts: LangfuseTraceOptions = {}): InterviewerLane {
   const requested = (process.env.INTERVIEWER_PROVIDER ??
     "agnes") as InterviewerProvider;
-  if (requested === "openai") return makeOpenAILane();
-  if (!process.env.AGNES_API_KEY) return makeOpenAILane();
-  return makeAgnesLane();
+  if (requested === "openai") return makeOpenAILane(opts);
+  if (!process.env.AGNES_API_KEY) return makeOpenAILane(opts);
+  return makeAgnesLane(opts);
 }

@@ -1,10 +1,58 @@
 // Shared plumbing for the keyed eval suites (test/evals/*.test.ts): fixture
 // pairing, call metering, result persistence, a tiny concurrency pool, and the
 // RUN_EVALS gate. Nothing here calls a model itself.
+//
+// Langfuse (optional, keyless-inert): when LANGFUSE_* env vars are present
+// (test/setup.ts loads repo-root .env for every vitest run, same as
+// OPENAI_API_KEY), makeMeteredClient additionally wraps the client with
+// observeOpenAI so eval-suite model calls show up as traces, tagged with
+// {suite, pair, gitCommit}. writeResult pushes each suite's headline numbers
+// as Langfuse scores attached to a real `eval:<suite>` trace. This is a
+// SEPARATE OpenTelemetry registration from web/'s (this is a standalone
+// vitest process, not the Next.js app), and deliberately carries full,
+// unmasked input/output: fixture pairs are Timothy's own resume plus public
+// job postings, never real user PII, so there is nothing here for the
+// product's masking stance (AGENTS.md rule 6) to protect — masking would only
+// make eval traces useless for debugging real model output.
 import { execSync } from "node:child_process";
+import { createHash, randomBytes } from "node:crypto";
 import { mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import type OpenAI from "openai";
+import { observeOpenAI } from "@langfuse/openai";
+import { LangfuseClient } from "@langfuse/client";
+import { propagateAttributes, startObservation } from "@langfuse/tracing";
+import { LangfuseSpanProcessor } from "@langfuse/otel";
+import { NodeSDK } from "@opentelemetry/sdk-node";
+
+const langfuseKeysPresent = Boolean(
+  process.env.LANGFUSE_PUBLIC_KEY &&
+    process.env.LANGFUSE_SECRET_KEY &&
+    process.env.LANGFUSE_BASE_URL,
+);
+
+// Documented intent (see file header) rather than a masking toggle this file
+// actually reads — this harness never passes a `mask` option below, so eval
+// traces are always full IO. Setting the flag anyway keeps the contract
+// explicit for anyone who greps for it, and matches web/'s LANGFUSE_TRACE_FULL_IO
+// convention if this harness's masking behavior ever changes.
+if (langfuseKeysPresent) process.env.LANGFUSE_TRACE_FULL_IO ??= "1";
+
+let langfuseSpanProcessor: LangfuseSpanProcessor | undefined;
+let langfuseClient: LangfuseClient | undefined;
+if (langfuseKeysPresent) {
+  langfuseSpanProcessor = new LangfuseSpanProcessor();
+  new NodeSDK({ spanProcessors: [langfuseSpanProcessor] }).start();
+  langfuseClient = new LangfuseClient();
+}
+
+/** Whether this run's model calls/scores are also going to Langfuse. */
+export const langfuseEvalsEnabled = langfuseKeysPresent;
+
+/** A trace id deterministic in {suite, date} — reruns on the same day share one trace. */
+function evalTraceId(seed: string): string {
+  return createHash("sha256").update(seed).digest("hex").slice(0, 32);
+}
 
 /**
  * The RUN_EVALS gate — deliberately keyed on an explicit env var, NEVER on
@@ -86,6 +134,12 @@ export interface MeteredClient {
   calls: MeteredCall[];
 }
 
+/** Optional Langfuse context to tag this suite's traces with — see the file header. */
+export interface EvalLangfuseTags {
+  suite: string;
+  pair?: string;
+}
+
 /**
  * Wraps an OpenAI (or OpenAI-compatible) client's responses.parse and
  * chat.completions.create so every call's {model, wall-time, usage} is
@@ -96,8 +150,13 @@ export interface MeteredClient {
  * a stream arrives on a trailing usage-only chunk (see docs/decision-log.md
  * 2026-07-27), which this wrapper — built for non-streaming structured calls —
  * does not consume. Callers that stream should record usage themselves.
+ *
+ * When Langfuse is configured, the RETURNED client is additionally wrapped
+ * with observeOpenAI (applied last, so it wraps the metered methods above —
+ * both layers measure the same underlying call). `.calls` still reflects raw
+ * metering regardless of whether Langfuse is enabled.
  */
-export function makeMeteredClient(client: OpenAI): MeteredClient {
+export function makeMeteredClient(client: OpenAI, evalTags?: EvalLangfuseTags): MeteredClient {
   const calls: MeteredCall[] = [];
 
   const originalResponsesParse = client.responses.parse.bind(client.responses);
@@ -129,7 +188,25 @@ export function makeMeteredClient(client: OpenAI): MeteredClient {
     return result;
   }) as typeof client.chat.completions.create;
 
-  return { client, calls };
+  if (!langfuseKeysPresent) return { client, calls };
+
+  const generationName = evalTags
+    ? `${evalTags.suite}${evalTags.pair ? `:${evalTags.pair}` : ""}`
+    : "eval";
+  const observedClient = observeOpenAI(client, {
+    generationName,
+    tags: [
+      "eval",
+      ...(evalTags?.suite ? [`suite:${evalTags.suite}`] : []),
+      ...(evalTags?.pair ? [`pair:${evalTags.pair}`] : []),
+    ],
+    generationMetadata: {
+      suite: evalTags?.suite,
+      pair: evalTags?.pair,
+      gitCommit: gitCommit(),
+    },
+  });
+  return { client: observedClient, calls };
 }
 
 function gitCommit(): string | null {
@@ -152,8 +229,19 @@ export interface ResultPayload {
  * Writes one suite's results to evals/results/<name>-<yyyy-mm-dd>.json at the
  * repo root (created if absent). Returns the path written, mostly so a test
  * can log it.
+ *
+ * When Langfuse is configured and `scores` is given, also pushes each
+ * non-null numeric entry as a Langfuse score (e.g. grounding_rate,
+ * mean_pairwise_jaccard, guard_rejection_rate) attached to a real trace named
+ * `eval:<name>` — deterministic per {name, date}, so re-runs on the same day
+ * accumulate scores on one browsable trace rather than scattering across
+ * orphaned ids. No-op (score push skipped) keyless or when `scores` is omitted.
  */
-export function writeResult(name: string, payload: ResultPayload): string {
+export async function writeResult(
+  name: string,
+  payload: ResultPayload,
+  scores?: Record<string, number | null | undefined>,
+): Promise<string> {
   mkdirSync(RESULTS_DIR, { recursive: true });
   const date = new Date().toISOString().slice(0, 10);
   const filePath = resolve(RESULTS_DIR, `${name}-${date}.json`);
@@ -163,6 +251,42 @@ export function writeResult(name: string, payload: ResultPayload): string {
     ...payload,
   };
   writeFileSync(filePath, JSON.stringify(full, null, 2), "utf8");
+
+  if (langfuseKeysPresent && langfuseClient && scores) {
+    const entries = Object.entries(scores).filter(
+      (e): e is [string, number] => typeof e[1] === "number" && Number.isFinite(e[1]),
+    );
+    if (entries.length > 0) {
+      const traceId = evalTraceId(`eval:${name}:${date}`);
+      // propagateAttributes sets the TRACE-level name (startObservation's own
+      // `name` arg only names the root SPAN/observation, not the trace itself —
+      // without this the trace shows up in the Langfuse UI with a blank name,
+      // findable only by scrolling to its observation).
+      await propagateAttributes({ traceName: `eval:${name}` }, async () => {
+        const summary = startObservation(
+          `eval:${name}`,
+          {
+            input: { corpus: payload.corpus, config: payload.config },
+            metadata: { suite: name, gitCommit: full.gitCommit },
+          },
+          { parentSpanContext: { traceId, spanId: randomBytes(8).toString("hex"), traceFlags: 1 } },
+        );
+        summary.update({ output: { scores: Object.fromEntries(entries) } }).end();
+      });
+
+      for (const [scoreName, value] of entries) {
+        langfuseClient.score.create({
+          traceId,
+          name: scoreName,
+          value,
+          dataType: "NUMERIC",
+        });
+      }
+      await langfuseClient.flush();
+      await langfuseSpanProcessor?.forceFlush();
+    }
+  }
+
   return filePath;
 }
 

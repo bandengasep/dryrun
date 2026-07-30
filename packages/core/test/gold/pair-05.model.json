@@ -1,0 +1,1639 @@
+{
+  "jd": {
+    "sourceText": "AI Transformation Engineer\nCompany: StarHub Ltd · Location: SG\n\nRole Overview\nAs a AI Transformation Engineer, you will help translate AI and automation ideas into working solutions that improve how StarHub's network and operations teams run day to day. You will work alongside senior engineers to build, test, and deploy practical AI use cases — from automating manual workflows to surfacing insights from network and operational data.\nThis is a hands-on, learning-focused role for an early-career engineer. You will get broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful.\n\nKey Responsibilities\n1. Building & Delivering AI Solutions\nSupport the design, development, and testing of AI and automation use cases under the guidance of senior engineers.\nBuild and maintain data pipelines and scripts that prepare, clean, and transform network and operational data for AI models.\nDevelop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools.\n2. Automation & Process Improvement\nIdentify repetitive manual tasks across engineering and operations that are good candidates for automation.\nImplement workflow automations and monitor them in production, escalating issues and iterating on improvements.\n3. Data, Testing & Documentation\nRun experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria.\nDocument solutions, data sources, and design decisions so work is reproducible and auditable.\n4. Collaboration & Compliance\nWork closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing.\nFollow PDPA and internal data-governance practices when handling customer and network data.\n\nQualifications\nDegree (or final-year / recent graduate) in Computer Science, Data Science, Engineering, or a related field.\n0-2 years; internships, academic projects, or personal projects in AI, data, or automation are welcomed.\nWorking knowledge of Python, ML and AI; basic understanding of how LLMs and SLMs are used in applications.\nExposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects.\nFoundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization\n",
+    "lines": [
+      {
+        "id": "jd-1",
+        "text": "Translate AI and automation ideas into working solutions",
+        "span": {
+          "start": 78,
+          "end": 253,
+          "text": "As a AI Transformation Engineer, you will help translate AI and automation ideas into working solutions that improve how StarHub's network and operations teams run day to day."
+        }
+      },
+      {
+        "id": "jd-2",
+        "text": "Build, test, and deploy practical AI use cases",
+        "span": {
+          "start": 254,
+          "end": 436,
+          "text": "You will work alongside senior engineers to build, test, and deploy practical AI use cases — from automating manual workflows to surfacing insights from network and operational data."
+        }
+      },
+      {
+        "id": "jd-3",
+        "text": "Automate manual workflows",
+        "span": {
+          "start": 347,
+          "end": 436,
+          "text": "from automating manual workflows to surfacing insights from network and operational data."
+        }
+      },
+      {
+        "id": "jd-4",
+        "text": "Surface insights from network and operational data",
+        "span": {
+          "start": 347,
+          "end": 436,
+          "text": "from automating manual workflows to surfacing insights from network and operational data."
+        }
+      },
+      {
+        "id": "jd-5",
+        "text": "Exposure to data pipelines",
+        "span": {
+          "start": 522,
+          "end": 755,
+          "text": "broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful."
+        }
+      },
+      {
+        "id": "jd-6",
+        "text": "Exposure to machine learning",
+        "span": {
+          "start": 522,
+          "end": 755,
+          "text": "broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful."
+        }
+      },
+      {
+        "id": "jd-7",
+        "text": "Exposure to LLM-based tooling",
+        "span": {
+          "start": 522,
+          "end": 755,
+          "text": "broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful."
+        }
+      },
+      {
+        "id": "jd-8",
+        "text": "Exposure to process automation",
+        "span": {
+          "start": 522,
+          "end": 755,
+          "text": "broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful."
+        }
+      },
+      {
+        "id": "jd-9",
+        "text": "Support the design of AI and automation use cases under guidance of senior engineers",
+        "span": {
+          "start": 816,
+          "end": 931,
+          "text": "Support the design, development, and testing of AI and automation use cases under the guidance of senior engineers."
+        }
+      },
+      {
+        "id": "jd-10",
+        "text": "Develop AI and automation use cases under guidance of senior engineers",
+        "span": {
+          "start": 816,
+          "end": 931,
+          "text": "Support the design, development, and testing of AI and automation use cases under the guidance of senior engineers."
+        }
+      },
+      {
+        "id": "jd-11",
+        "text": "Test AI and automation use cases under guidance of senior engineers",
+        "span": {
+          "start": 816,
+          "end": 931,
+          "text": "Support the design, development, and testing of AI and automation use cases under the guidance of senior engineers."
+        }
+      },
+      {
+        "id": "jd-12",
+        "text": "Build and maintain data pipelines and scripts",
+        "span": {
+          "start": 932,
+          "end": 1056,
+          "text": "Build and maintain data pipelines and scripts that prepare, clean, and transform network and operational data for AI models."
+        }
+      },
+      {
+        "id": "jd-13",
+        "text": "Prepare, clean, and transform network and operational data for AI models",
+        "span": {
+          "start": 932,
+          "end": 1056,
+          "text": "Build and maintain data pipelines and scripts that prepare, clean, and transform network and operational data for AI models."
+        }
+      },
+      {
+        "id": "jd-14",
+        "text": "Develop and refine prompts for LLM-based internal tools",
+        "span": {
+          "start": 1057,
+          "end": 1170,
+          "text": "Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools."
+        }
+      },
+      {
+        "id": "jd-15",
+        "text": "Develop and refine retrieval (RAG) workflows",
+        "span": {
+          "start": 1057,
+          "end": 1170,
+          "text": "Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools."
+        }
+      },
+      {
+        "id": "jd-16",
+        "text": "Develop and refine lightweight integrations for LLM-based internal tools",
+        "span": {
+          "start": 1057,
+          "end": 1170,
+          "text": "Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools."
+        }
+      },
+      {
+        "id": "jd-17",
+        "text": "Identify repetitive manual tasks across engineering and operations for automation",
+        "span": {
+          "start": 1207,
+          "end": 1314,
+          "text": "Identify repetitive manual tasks across engineering and operations that are good candidates for automation."
+        }
+      },
+      {
+        "id": "jd-18",
+        "text": "Implement workflow automations",
+        "span": {
+          "start": 1315,
+          "end": 1426,
+          "text": "Implement workflow automations and monitor them in production, escalating issues and iterating on improvements."
+        }
+      },
+      {
+        "id": "jd-19",
+        "text": "Monitor workflow automations in production",
+        "span": {
+          "start": 1315,
+          "end": 1426,
+          "text": "Implement workflow automations and monitor them in production, escalating issues and iterating on improvements."
+        }
+      },
+      {
+        "id": "jd-20",
+        "text": "Escalate issues and iterate on improvements for automations",
+        "span": {
+          "start": 1315,
+          "end": 1426,
+          "text": "Implement workflow automations and monitor them in production, escalating issues and iterating on improvements."
+        }
+      },
+      {
+        "id": "jd-21",
+        "text": "Run experiments",
+        "span": {
+          "start": 1460,
+          "end": 1584,
+          "text": "Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria."
+        }
+      },
+      {
+        "id": "jd-22",
+        "text": "Evaluate model outputs",
+        "span": {
+          "start": 1460,
+          "end": 1584,
+          "text": "Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria."
+        }
+      },
+      {
+        "id": "jd-23",
+        "text": "Measure accuracy, latency, and reliability against clear success criteria",
+        "span": {
+          "start": 1460,
+          "end": 1584,
+          "text": "Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria."
+        }
+      },
+      {
+        "id": "jd-24",
+        "text": "Document solutions, data sources, and design decisions for reproducibility and auditability",
+        "span": {
+          "start": 1585,
+          "end": 1678,
+          "text": "Document solutions, data sources, and design decisions so work is reproducible and auditable."
+        }
+      },
+      {
+        "id": "jd-25",
+        "text": "Work closely with data, network, and platform engineers",
+        "span": {
+          "start": 1709,
+          "end": 1818,
+          "text": "Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing."
+        }
+      },
+      {
+        "id": "jd-26",
+        "text": "Take part in code reviews",
+        "span": {
+          "start": 1709,
+          "end": 1818,
+          "text": "Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing."
+        }
+      },
+      {
+        "id": "jd-27",
+        "text": "Participate in knowledge-sharing",
+        "span": {
+          "start": 1709,
+          "end": 1818,
+          "text": "Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing."
+        }
+      },
+      {
+        "id": "jd-28",
+        "text": "Follow PDPA and internal data-governance practices when handling customer and network data",
+        "span": {
+          "start": 1819,
+          "end": 1910,
+          "text": "Follow PDPA and internal data-governance practices when handling customer and network data."
+        }
+      },
+      {
+        "id": "jd-29",
+        "text": "Degree (or final-year / recent graduate) in Computer Science, Data Science, Engineering, or a related field",
+        "span": {
+          "start": 1927,
+          "end": 2035,
+          "text": "Degree (or final-year / recent graduate) in Computer Science, Data Science, Engineering, or a related field."
+        }
+      },
+      {
+        "id": "jd-30",
+        "text": "0-2 years (early-career)",
+        "span": {
+          "start": 2036,
+          "end": 2140,
+          "text": "0-2 years; internships, academic projects, or personal projects in AI, data, or automation are welcomed."
+        }
+      },
+      {
+        "id": "jd-31",
+        "text": "Internships, academic projects, or personal projects in AI, data, or automation are welcomed",
+        "span": {
+          "start": 2036,
+          "end": 2140,
+          "text": "0-2 years; internships, academic projects, or personal projects in AI, data, or automation are welcomed."
+        }
+      },
+      {
+        "id": "jd-32",
+        "text": "Working knowledge of Python",
+        "span": {
+          "start": 2141,
+          "end": 2247,
+          "text": "Working knowledge of Python, ML and AI; basic understanding of how LLMs and SLMs are used in applications."
+        }
+      },
+      {
+        "id": "jd-33",
+        "text": "Working knowledge of ML and AI",
+        "span": {
+          "start": 2141,
+          "end": 2247,
+          "text": "Working knowledge of Python, ML and AI; basic understanding of how LLMs and SLMs are used in applications."
+        }
+      },
+      {
+        "id": "jd-34",
+        "text": "Basic understanding of how LLMs and SLMs are used in applications",
+        "span": {
+          "start": 2141,
+          "end": 2247,
+          "text": "Working knowledge of Python, ML and AI; basic understanding of how LLMs and SLMs are used in applications."
+        }
+      },
+      {
+        "id": "jd-35",
+        "text": "Exposure to telecom or network data through study or projects",
+        "span": {
+          "start": 2248,
+          "end": 2365,
+          "text": "Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects."
+        }
+      },
+      {
+        "id": "jd-36",
+        "text": "Exposure to cloud platforms through study or projects",
+        "span": {
+          "start": 2248,
+          "end": 2365,
+          "text": "Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects."
+        }
+      },
+      {
+        "id": "jd-37",
+        "text": "Exposure to LLM tooling (e.g. RAG, prompting) through study or projects",
+        "span": {
+          "start": 2248,
+          "end": 2365,
+          "text": "Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects."
+        }
+      },
+      {
+        "id": "jd-38",
+        "text": "Foundational familiarity: Python",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-39",
+        "text": "Foundational familiarity: AI Agents",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-40",
+        "text": "Foundational familiarity: Git",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-41",
+        "text": "Foundational familiarity: Version Control",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-42",
+        "text": "Foundational familiarity: Rest APIs",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-43",
+        "text": "Foundational familiarity: ML Fundamentals",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-44",
+        "text": "Foundational familiarity: LLMs",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-45",
+        "text": "Foundational familiarity: SLMs",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-46",
+        "text": "Foundational familiarity: Prompting",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-47",
+        "text": "Foundational familiarity: RAG Basics",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-48",
+        "text": "Foundational familiarity: Pandas",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-49",
+        "text": "Foundational familiarity: NumPy",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-50",
+        "text": "Foundational familiarity: Data pipelines",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-51",
+        "text": "Foundational familiarity: Cloud Basics",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-52",
+        "text": "Foundational familiarity: Automation Scripting",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      },
+      {
+        "id": "jd-53",
+        "text": "Foundational familiarity: Data Visualization",
+        "span": {
+          "start": 2366,
+          "end": 2569,
+          "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "resume": {
+    "sourceText": "HARTANTO, Timothy\n\nSUMMARY\nAI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment.\nSpecializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis.\nBridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.\n\nSKILLS\nHard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)\nSoft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication.\n\nPROFESSIONAL EXPERIENCE\nComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT\nMigrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.\nShipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.\nBuilt the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output.\nHardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.\n\nPT Deloitte Consulting, Indonesia — Business Analyst, 2021/12 – 2024/09\nDrove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%\nMigrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company.\nDeployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility.\nBuilt Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.\nAssessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.\n\nACHIEVEMENTS & AWARDS\nAWS Certified AI Practitioner Early Adopter, 2024/10\nAWS Certified Machine Learning – Specialty, 2023/12\nAWS Certified Data Analytics – Specialty, 2023/10\n\nEDUCATION\nM.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)\nData Science & Machine Learning Bootcamp, Purwadhika Digital School, 2024/10 – 2025/05\nGraduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08\nBachelor of Business, Nanyang Business School, Nanyang Technological University, Singapore, 2013/08 – 2016/06\n",
+    "lines": [
+      {
+        "id": "cv-1",
+        "text": "HARTANTO, Timothy",
+        "span": {
+          "start": 0,
+          "end": 17,
+          "text": "HARTANTO, Timothy"
+        }
+      },
+      {
+        "id": "cv-2",
+        "text": "SUMMARY",
+        "span": {
+          "start": 19,
+          "end": 26,
+          "text": "SUMMARY"
+        }
+      },
+      {
+        "id": "cv-3",
+        "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment.",
+        "span": {
+          "start": 27,
+          "end": 212,
+          "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+        }
+      },
+      {
+        "id": "cv-4",
+        "text": "Specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis.",
+        "span": {
+          "start": 213,
+          "end": 379,
+          "text": "Specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis."
+        }
+      },
+      {
+        "id": "cv-5",
+        "text": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.",
+        "span": {
+          "start": 380,
+          "end": 517,
+          "text": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications."
+        }
+      },
+      {
+        "id": "cv-6",
+        "text": "SKILLS",
+        "span": {
+          "start": 519,
+          "end": 525,
+          "text": "SKILLS"
+        }
+      },
+      {
+        "id": "cv-7",
+        "text": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)",
+        "span": {
+          "start": 526,
+          "end": 680,
+          "text": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)"
+        }
+      },
+      {
+        "id": "cv-8",
+        "text": "Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication.",
+        "span": {
+          "start": 681,
+          "end": 786,
+          "text": "Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication."
+        }
+      },
+      {
+        "id": "cv-9",
+        "text": "PROFESSIONAL EXPERIENCE",
+        "span": {
+          "start": 788,
+          "end": 811,
+          "text": "PROFESSIONAL EXPERIENCE"
+        }
+      },
+      {
+        "id": "cv-10",
+        "text": "ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT",
+        "span": {
+          "start": 812,
+          "end": 868,
+          "text": "ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT"
+        }
+      },
+      {
+        "id": "cv-11",
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.",
+        "span": {
+          "start": 869,
+          "end": 1110,
+          "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+        }
+      },
+      {
+        "id": "cv-12",
+        "text": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.",
+        "span": {
+          "start": 1111,
+          "end": 1367,
+          "text": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection."
+        }
+      },
+      {
+        "id": "cv-13",
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output.",
+        "span": {
+          "start": 1368,
+          "end": 1607,
+          "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+        }
+      },
+      {
+        "id": "cv-14",
+        "text": "Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.",
+        "span": {
+          "start": 1608,
+          "end": 1849,
+          "text": "Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging."
+        }
+      },
+      {
+        "id": "cv-15",
+        "text": "PT Deloitte Consulting, Indonesia — Business Analyst, 2021/12 – 2024/09",
+        "span": {
+          "start": 1851,
+          "end": 1922,
+          "text": "PT Deloitte Consulting, Indonesia — Business Analyst, 2021/12 – 2024/09"
+        }
+      },
+      {
+        "id": "cv-16",
+        "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%",
+        "span": {
+          "start": 1923,
+          "end": 2047,
+          "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+        }
+      },
+      {
+        "id": "cv-17",
+        "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company.",
+        "span": {
+          "start": 2048,
+          "end": 2182,
+          "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+        }
+      },
+      {
+        "id": "cv-18",
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility.",
+        "span": {
+          "start": 2183,
+          "end": 2324,
+          "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+        }
+      },
+      {
+        "id": "cv-19",
+        "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.",
+        "span": {
+          "start": 2325,
+          "end": 2443,
+          "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+        }
+      },
+      {
+        "id": "cv-20",
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.",
+        "span": {
+          "start": 2444,
+          "end": 2565,
+          "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+        }
+      },
+      {
+        "id": "cv-21",
+        "text": "ACHIEVEMENTS & AWARDS",
+        "span": {
+          "start": 2567,
+          "end": 2588,
+          "text": "ACHIEVEMENTS & AWARDS"
+        }
+      },
+      {
+        "id": "cv-22",
+        "text": "AWS Certified AI Practitioner Early Adopter, 2024/10",
+        "span": {
+          "start": 2589,
+          "end": 2641,
+          "text": "AWS Certified AI Practitioner Early Adopter, 2024/10"
+        }
+      },
+      {
+        "id": "cv-23",
+        "text": "AWS Certified Machine Learning – Specialty, 2023/12",
+        "span": {
+          "start": 2642,
+          "end": 2693,
+          "text": "AWS Certified Machine Learning – Specialty, 2023/12"
+        }
+      },
+      {
+        "id": "cv-24",
+        "text": "AWS Certified Data Analytics – Specialty, 2023/10",
+        "span": {
+          "start": 2694,
+          "end": 2743,
+          "text": "AWS Certified Data Analytics – Specialty, 2023/10"
+        }
+      },
+      {
+        "id": "cv-25",
+        "text": "EDUCATION",
+        "span": {
+          "start": 2745,
+          "end": 2754,
+          "text": "EDUCATION"
+        }
+      },
+      {
+        "id": "cv-26",
+        "text": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)",
+        "span": {
+          "start": 2755,
+          "end": 2882,
+          "text": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)"
+        }
+      },
+      {
+        "id": "cv-27",
+        "text": "Data Science & Machine Learning Bootcamp, Purwadhika Digital School, 2024/10 – 2025/05",
+        "span": {
+          "start": 2883,
+          "end": 2969,
+          "text": "Data Science & Machine Learning Bootcamp, Purwadhika Digital School, 2024/10 – 2025/05"
+        }
+      },
+      {
+        "id": "cv-28",
+        "text": "Graduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08",
+        "span": {
+          "start": 2970,
+          "end": 3070,
+          "text": "Graduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08"
+        }
+      },
+      {
+        "id": "cv-29",
+        "text": "Bachelor of Business, Nanyang Business School, Nanyang Technological University, Singapore, 2013/08 – 2016/06",
+        "span": {
+          "start": 3071,
+          "end": 3180,
+          "text": "Bachelor of Business, Nanyang Business School, Nanyang Technological University, Singapore, 2013/08 – 2016/06"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "gaps": [
+    {
+      "id": "gap-1",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-1",
+      "jdSpan": {
+        "start": 78,
+        "end": 253,
+        "text": "As a AI Transformation Engineer, you will help translate AI and automation ideas into working solutions that improve how StarHub's network and operations teams run day to day."
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 380,
+        "end": 517,
+        "text": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications."
+      },
+      "rationale": "cv-5 explicitly states translating product goals into reliable, observable AI systems, directly matching translating AI ideas into working solutions."
+    },
+    {
+      "id": "gap-2",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-2",
+      "jdSpan": {
+        "start": 254,
+        "end": 436,
+        "text": "You will work alongside senior engineers to build, test, and deploy practical AI use cases — from automating manual workflows to surfacing insights from network and operational data."
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 380,
+        "end": 517,
+        "text": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications."
+      },
+      "rationale": "cv-5 describes translating product goals into reliable, observable AI systems, which indicates building and deploying practical AI use cases."
+    },
+    {
+      "id": "gap-3",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-3",
+      "jdSpan": {
+        "start": 347,
+        "end": 436,
+        "text": "from automating manual workflows to surfacing insights from network and operational data."
+      },
+      "resumeLineId": "cv-20",
+      "resumeSpan": {
+        "start": 2444,
+        "end": 2565,
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+      },
+      "rationale": "cv-20 reports assessing processes and identifying automation opportunities that reduced manual work by 60%, directly evidencing workflow automation."
+    },
+    {
+      "id": "gap-4",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-4",
+      "jdSpan": {
+        "start": 347,
+        "end": 436,
+        "text": "from automating manual workflows to surfacing insights from network and operational data."
+      },
+      "resumeLineId": "cv-18",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-18 describes deploying a Power BI risk-profile dashboard consolidating 100+ business units to streamline integration, demonstrating surfacing operational insights."
+    },
+    {
+      "id": "gap-5",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-5",
+      "jdSpan": {
+        "start": 522,
+        "end": 755,
+        "text": "broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful."
+      },
+      "resumeLineId": "cv-3",
+      "resumeSpan": {
+        "start": 27,
+        "end": 212,
+        "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+      },
+      "rationale": "cv-3 explicitly states end-to-end design and shipping of LLM-powered products from pipeline architecture to deployment, evidencing exposure to data pipelines."
+    },
+    {
+      "id": "gap-6",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-6",
+      "jdSpan": {
+        "start": 522,
+        "end": 755,
+        "text": "broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful."
+      },
+      "resumeLineId": "cv-23",
+      "resumeSpan": {
+        "start": 2642,
+        "end": 2693,
+        "text": "AWS Certified Machine Learning – Specialty, 2023/12"
+      },
+      "rationale": "cv-23 shows an AWS Certified Machine Learning – Specialty credential, directly evidencing exposure to machine learning."
+    },
+    {
+      "id": "gap-7",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-7",
+      "jdSpan": {
+        "start": 522,
+        "end": 755,
+        "text": "broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful."
+      },
+      "resumeLineId": "cv-4",
+      "resumeSpan": {
+        "start": 213,
+        "end": 379,
+        "text": "Specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis."
+      },
+      "rationale": "cv-4 explicitly specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability, showing exposure to LLM tooling."
+    },
+    {
+      "id": "gap-8",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-8",
+      "jdSpan": {
+        "start": 522,
+        "end": 755,
+        "text": "broad exposure across the technology transformation — data pipelines, machine learning, LLM-based tooling, and process automation — while building the judgement to deliver solutions that are reliable, compliant, and genuinely useful."
+      },
+      "resumeLineId": "cv-20",
+      "resumeSpan": {
+        "start": 2444,
+        "end": 2565,
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+      },
+      "rationale": "cv-20 documents assessing business processes and identifying automation opportunities that cut manual work by 60%, evidencing process automation experience."
+    },
+    {
+      "id": "gap-9",
+      "kind": "weak_evidence",
+      "requirementId": "jd-9",
+      "jdSpan": {
+        "start": 816,
+        "end": 931,
+        "text": "Support the design, development, and testing of AI and automation use cases under the guidance of senior engineers."
+      },
+      "resumeLineId": "cv-10",
+      "resumeSpan": {
+        "start": 812,
+        "end": 868,
+        "text": "ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT"
+      },
+      "rationale": "cv-10 lists an AI Engineer Intern role, which suggests supporting work under guidance but does not explicitly state supporting design under senior engineers."
+    },
+    {
+      "id": "gap-10",
+      "kind": "weak_evidence",
+      "requirementId": "jd-10",
+      "jdSpan": {
+        "start": 816,
+        "end": 931,
+        "text": "Support the design, development, and testing of AI and automation use cases under the guidance of senior engineers."
+      },
+      "resumeLineId": "cv-10",
+      "resumeSpan": {
+        "start": 812,
+        "end": 868,
+        "text": "ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT"
+      },
+      "rationale": "cv-10 indicates an AI Engineer internship, implying development under guidance but not explicitly describing developing use cases under senior engineers."
+    },
+    {
+      "id": "gap-11",
+      "kind": "weak_evidence",
+      "requirementId": "jd-11",
+      "jdSpan": {
+        "start": 816,
+        "end": 931,
+        "text": "Support the design, development, and testing of AI and automation use cases under the guidance of senior engineers."
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 380,
+        "end": 517,
+        "text": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications."
+      },
+      "rationale": "cv-5 mentions delivering reliable, observable AI systems (implying testing/observability) but does not explicitly state testing AI/automation use cases under guidance."
+    },
+    {
+      "id": "gap-12",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-12",
+      "jdSpan": {
+        "start": 932,
+        "end": 1056,
+        "text": "Build and maintain data pipelines and scripts that prepare, clean, and transform network and operational data for AI models."
+      },
+      "resumeLineId": "cv-11",
+      "resumeSpan": {
+        "start": 869,
+        "end": 1110,
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+      },
+      "rationale": "cv-11 describes building multi-stage scoring pipelines with structured-JSON output for an AI evaluation engine, directly evidencing pipeline construction and maintenance."
+    },
+    {
+      "id": "gap-13",
+      "kind": "missing_skill",
+      "requirementId": "jd-13",
+      "jdSpan": {
+        "start": 932,
+        "end": 1056,
+        "text": "Build and maintain data pipelines and scripts that prepare, clean, and transform network and operational data for AI models."
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the provided lines explicitly describe preparing, cleaning, or transforming network and operational data for AI models."
+    },
+    {
+      "id": "gap-14",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-14",
+      "jdSpan": {
+        "start": 1057,
+        "end": 1170,
+        "text": "Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools."
+      },
+      "resumeLineId": "cv-13",
+      "resumeSpan": {
+        "start": 1368,
+        "end": 1607,
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+      },
+      "rationale": "cv-13 explicitly describes encoding proprietary frameworks into Langfuse-versioned Gemini prompts, evidencing prompt development and refinement."
+    },
+    {
+      "id": "gap-15",
+      "kind": "weak_evidence",
+      "requirementId": "jd-15",
+      "jdSpan": {
+        "start": 1057,
+        "end": 1170,
+        "text": "Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools."
+      },
+      "resumeLineId": "cv-11",
+      "resumeSpan": {
+        "start": 869,
+        "end": 1110,
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+      },
+      "rationale": "cv-11 describes multi-stage scoring pipelines and Langfuse integration which touches retrieval/workflows indirectly but does not explicitly describe RAG workflows."
+    },
+    {
+      "id": "gap-16",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-16",
+      "jdSpan": {
+        "start": 1057,
+        "end": 1170,
+        "text": "Develop and refine prompts, retrieval (RAG) workflows, and lightweight integrations for LLM-based internal tools."
+      },
+      "resumeLineId": "cv-13",
+      "resumeSpan": {
+        "start": 1368,
+        "end": 1607,
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+      },
+      "rationale": "cv-13 describes delivering schema-validated direct-JSON LLM output and Langfuse-versioned prompts, demonstrating concrete lightweight integrations for LLM tools."
+    },
+    {
+      "id": "gap-17",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-17",
+      "jdSpan": {
+        "start": 1207,
+        "end": 1314,
+        "text": "Identify repetitive manual tasks across engineering and operations that are good candidates for automation."
+      },
+      "resumeLineId": "cv-20",
+      "resumeSpan": {
+        "start": 2444,
+        "end": 2565,
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+      },
+      "rationale": "cv-20 documents assessing business processes and identifying automation opportunities that reduced manual work by 60%, directly showing identification of repetitive tasks."
+    },
+    {
+      "id": "gap-18",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-18",
+      "jdSpan": {
+        "start": 1315,
+        "end": 1426,
+        "text": "Implement workflow automations and monitor them in production, escalating issues and iterating on improvements."
+      },
+      "resumeLineId": "cv-20",
+      "resumeSpan": {
+        "start": 2444,
+        "end": 2565,
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+      },
+      "rationale": "cv-20's work identifying and implementing automation opportunities that reduced manual work by 60% demonstrates implementing workflow automations."
+    },
+    {
+      "id": "gap-19",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-19",
+      "jdSpan": {
+        "start": 1315,
+        "end": 1426,
+        "text": "Implement workflow automations and monitor them in production, escalating issues and iterating on improvements."
+      },
+      "resumeLineId": "cv-14",
+      "resumeSpan": {
+        "start": 1608,
+        "end": 1849,
+        "text": "Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging."
+      },
+      "rationale": "cv-14 describes hardening production LLM pipelines with Langfuse tracing and PostHog session replay for debugging, which evidences production monitoring."
+    },
+    {
+      "id": "gap-20",
+      "kind": "weak_evidence",
+      "requirementId": "jd-20",
+      "jdSpan": {
+        "start": 1315,
+        "end": 1426,
+        "text": "Implement workflow automations and monitor them in production, escalating issues and iterating on improvements."
+      },
+      "resumeLineId": "cv-11",
+      "resumeSpan": {
+        "start": 869,
+        "end": 1110,
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+      },
+      "rationale": "cv-11 reports bringing prompt versioning and full LLM observability in-house, which supports escalation/iteration capabilities but does not explicitly state escalation or iterative improvements."
+    },
+    {
+      "id": "gap-21",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-21",
+      "jdSpan": {
+        "start": 1460,
+        "end": 1584,
+        "text": "Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria."
+      },
+      "resumeLineId": "cv-12",
+      "resumeSpan": {
+        "start": 1111,
+        "end": 1367,
+        "text": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection."
+      },
+      "rationale": "cv-12 describes shipping a parallelized LLM pipeline feature and prototyping a multimodal emotion-analysis POC, indicating running experiments and prototyping."
+    },
+    {
+      "id": "gap-22",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-22",
+      "jdSpan": {
+        "start": 1460,
+        "end": 1584,
+        "text": "Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria."
+      },
+      "resumeLineId": "cv-11",
+      "resumeSpan": {
+        "start": 869,
+        "end": 1110,
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+      },
+      "rationale": "cv-11 details migrating and building a multi-stage AI evaluation engine with structured scoring pipelines, which directly involves evaluating model outputs."
+    },
+    {
+      "id": "gap-23",
+      "kind": "weak_evidence",
+      "requirementId": "jd-23",
+      "jdSpan": {
+        "start": 1460,
+        "end": 1584,
+        "text": "Run experiments, evaluate model outputs, and help measure accuracy, latency, and reliability against clear success criteria."
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 380,
+        "end": 517,
+        "text": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications."
+      },
+      "rationale": "cv-5's focus on reliable, observable AI systems suggests familiarity with measuring metrics like accuracy and latency but does not explicitly mention measuring those criteria."
+    },
+    {
+      "id": "gap-24",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-24",
+      "jdSpan": {
+        "start": 1585,
+        "end": 1678,
+        "text": "Document solutions, data sources, and design decisions so work is reproducible and auditable."
+      },
+      "resumeLineId": "cv-16",
+      "resumeSpan": {
+        "start": 1923,
+        "end": 2047,
+        "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+      },
+      "rationale": "cv-16 reports driving enterprise data governance and auditing 100+ siloed databases to reduce compliance risks, evidencing documentation and auditability practices."
+    },
+    {
+      "id": "gap-25",
+      "kind": "weak_evidence",
+      "requirementId": "jd-25",
+      "jdSpan": {
+        "start": 1709,
+        "end": 1818,
+        "text": "Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing."
+      },
+      "resumeLineId": "cv-3",
+      "resumeSpan": {
+        "start": 27,
+        "end": 212,
+        "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+      },
+      "rationale": "cv-3 describes end-to-end product delivery from pipeline architecture to deployment, implying cross-functional work with engineers but not explicitly stating close collaboration or code reviews."
+    },
+    {
+      "id": "gap-26",
+      "kind": "weak_evidence",
+      "requirementId": "jd-26",
+      "jdSpan": {
+        "start": 1709,
+        "end": 1818,
+        "text": "Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing."
+      },
+      "resumeLineId": "cv-12",
+      "resumeSpan": {
+        "start": 1111,
+        "end": 1367,
+        "text": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection."
+      },
+      "rationale": "cv-12 describes shipping a Pro-tier feature on a complex LLM pipeline, which implies participation in development practices like code review but does not explicitly mention code reviews."
+    },
+    {
+      "id": "gap-27",
+      "kind": "weak_evidence",
+      "requirementId": "jd-27",
+      "jdSpan": {
+        "start": 1709,
+        "end": 1818,
+        "text": "Work closely with data, network, and platform engineers, and take part in code reviews and knowledge-sharing."
+      },
+      "resumeLineId": "cv-13",
+      "resumeSpan": {
+        "start": 1368,
+        "end": 1607,
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+      },
+      "rationale": "cv-13 describes building and delivering analysis reports, which may involve knowledge-sharing, but it does not explicitly state participating in knowledge-sharing activities."
+    },
+    {
+      "id": "gap-28",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-28",
+      "jdSpan": {
+        "start": 1819,
+        "end": 1910,
+        "text": "Follow PDPA and internal data-governance practices when handling customer and network data."
+      },
+      "resumeLineId": "cv-16",
+      "resumeSpan": {
+        "start": 1923,
+        "end": 2047,
+        "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+      },
+      "rationale": "cv-16 explicitly documents driving enterprise data governance and auditing 100+ databases, demonstrating adherence to data-governance and compliance practices."
+    },
+    {
+      "id": "gap-29",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-29",
+      "jdSpan": {
+        "start": 1927,
+        "end": 2035,
+        "text": "Degree (or final-year / recent graduate) in Computer Science, Data Science, Engineering, or a related field."
+      },
+      "resumeLineId": "cv-28",
+      "resumeSpan": {
+        "start": 2970,
+        "end": 3070,
+        "text": "Graduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08"
+      },
+      "rationale": "cv-28 shows a Graduate Diploma in Data Science (Applied), meeting the degree requirement in a relevant field."
+    },
+    {
+      "id": "gap-30",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-30",
+      "jdSpan": {
+        "start": 2036,
+        "end": 2140,
+        "text": "0-2 years; internships, academic projects, or personal projects in AI, data, or automation are welcomed."
+      },
+      "resumeLineId": "cv-10",
+      "resumeSpan": {
+        "start": 812,
+        "end": 868,
+        "text": "ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT"
+      },
+      "rationale": "cv-10 lists an AI Engineer Intern role, directly indicating early-career (internship) status within the 0–2 year range."
+    },
+    {
+      "id": "gap-31",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-31",
+      "jdSpan": {
+        "start": 2036,
+        "end": 2140,
+        "text": "0-2 years; internships, academic projects, or personal projects in AI, data, or automation are welcomed."
+      },
+      "resumeLineId": "cv-10",
+      "resumeSpan": {
+        "start": 812,
+        "end": 868,
+        "text": "ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT"
+      },
+      "rationale": "cv-10 explicitly documents an AI Engineer internship, which is an internship experience in AI/data/automation."
+    },
+    {
+      "id": "gap-32",
+      "kind": "missing_skill",
+      "requirementId": "jd-32",
+      "jdSpan": {
+        "start": 2141,
+        "end": 2247,
+        "text": "Working knowledge of Python, ML and AI; basic understanding of how LLMs and SLMs are used in applications."
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the provided lines explicitly state working knowledge of Python."
+    },
+    {
+      "id": "gap-33",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-33",
+      "jdSpan": {
+        "start": 2141,
+        "end": 2247,
+        "text": "Working knowledge of Python, ML and AI; basic understanding of how LLMs and SLMs are used in applications."
+      },
+      "resumeLineId": "cv-23",
+      "resumeSpan": {
+        "start": 2642,
+        "end": 2693,
+        "text": "AWS Certified Machine Learning – Specialty, 2023/12"
+      },
+      "rationale": "cv-23's AWS Certified Machine Learning – Specialty credential directly demonstrates working knowledge of ML and AI."
+    },
+    {
+      "id": "gap-34",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-34",
+      "jdSpan": {
+        "start": 2141,
+        "end": 2247,
+        "text": "Working knowledge of Python, ML and AI; basic understanding of how LLMs and SLMs are used in applications."
+      },
+      "resumeLineId": "cv-4",
+      "resumeSpan": {
+        "start": 213,
+        "end": 379,
+        "text": "Specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis."
+      },
+      "rationale": "cv-4 specializes in LLM pipeline orchestration, prompt engineering, and LLMOps, demonstrating understanding of how LLMs are used in applications."
+    },
+    {
+      "id": "gap-35",
+      "kind": "missing_skill",
+      "requirementId": "jd-35",
+      "jdSpan": {
+        "start": 2248,
+        "end": 2365,
+        "text": "Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects."
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the provided candidate lines explicitly reference exposure to telecom or network data through study or projects."
+    },
+    {
+      "id": "gap-36",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-36",
+      "jdSpan": {
+        "start": 2248,
+        "end": 2365,
+        "text": "Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects."
+      },
+      "resumeLineId": "cv-7",
+      "resumeSpan": {
+        "start": 526,
+        "end": 680,
+        "text": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)"
+      },
+      "rationale": "cv-7 lists Cloud Architecture & Automation (AWS, Vercel) among hard skills, evidencing exposure to cloud platforms through projects or work."
+    },
+    {
+      "id": "gap-37",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-37",
+      "jdSpan": {
+        "start": 2248,
+        "end": 2365,
+        "text": "Exposure to telecom or network data, cloud platforms, or LLM tooling (e.g. RAG, prompting) through study or projects."
+      },
+      "resumeLineId": "cv-4",
+      "resumeSpan": {
+        "start": 213,
+        "end": 379,
+        "text": "Specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis."
+      },
+      "rationale": "cv-4 explicitly lists prompt engineering and LLMOps/observability, showing exposure to LLM tooling such as prompting and related tooling."
+    },
+    {
+      "id": "gap-38",
+      "kind": "weak_evidence",
+      "requirementId": "jd-38",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-7",
+      "resumeSpan": {
+        "start": 526,
+        "end": 680,
+        "text": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)"
+      },
+      "rationale": "cv-7 lists AI/LLM engineering and data analytics as hard skills, which suggests foundational Python familiarity but does not explicitly state Python experience."
+    },
+    {
+      "id": "gap-39",
+      "kind": "weak_evidence",
+      "requirementId": "jd-39",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-13",
+      "resumeSpan": {
+        "start": 1368,
+        "end": 1607,
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+      },
+      "rationale": "cv-13 describes building an AI analysis layer with Langfuse-versioned prompts and structured outputs, which touches on AI agent-like tooling but does not explicitly mention AI agents."
+    },
+    {
+      "id": "gap-40",
+      "kind": "weak_evidence",
+      "requirementId": "jd-40",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-11",
+      "resumeSpan": {
+        "start": 869,
+        "end": 1110,
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+      },
+      "rationale": "cv-11 mentions prompt versioning and bringing observability in-house, implying version-control practices (e.g., Git) but does not explicitly state Git usage."
+    },
+    {
+      "id": "gap-41",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-41",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-13",
+      "resumeSpan": {
+        "start": 1368,
+        "end": 1607,
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+      },
+      "rationale": "cv-13 explicitly references Langfuse-versioned Gemini prompts, demonstrating explicit use of versioning/version-control practices."
+    },
+    {
+      "id": "gap-42",
+      "kind": "weak_evidence",
+      "requirementId": "jd-42",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-11",
+      "resumeSpan": {
+        "start": 869,
+        "end": 1110,
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+      },
+      "rationale": "cv-11 describes structured-JSON outputs and multi-stage pipelines which may use REST APIs, but it does not explicitly mention REST API experience."
+    },
+    {
+      "id": "gap-43",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-43",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-23",
+      "resumeSpan": {
+        "start": 2642,
+        "end": 2693,
+        "text": "AWS Certified Machine Learning – Specialty, 2023/12"
+      },
+      "rationale": "cv-23's AWS Certified Machine Learning – Specialty credential directly evidences familiarity with ML fundamentals."
+    },
+    {
+      "id": "gap-44",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-44",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-3",
+      "resumeSpan": {
+        "start": 27,
+        "end": 212,
+        "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+      },
+      "rationale": "cv-3 identifies the candidate as an AI/LLM engineer with 3+ years designing and shipping production LLM-powered products, demonstrating LLM familiarity."
+    },
+    {
+      "id": "gap-45",
+      "kind": "weak_evidence",
+      "requirementId": "jd-45",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-14",
+      "resumeSpan": {
+        "start": 1608,
+        "end": 1849,
+        "text": "Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging."
+      },
+      "rationale": "cv-14 documents production LLM pipelines with Deepgram diarization and Gemini stages, which touches on speech/multimodal tooling but does not explicitly confirm SLM-specific familiarity."
+    },
+    {
+      "id": "gap-46",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-46",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-13",
+      "resumeSpan": {
+        "start": 1368,
+        "end": 1607,
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+      },
+      "rationale": "cv-13 explicitly states encoding proprietary frameworks into Langfuse-versioned Gemini prompts, directly evidencing prompting expertise."
+    },
+    {
+      "id": "gap-47",
+      "kind": "weak_evidence",
+      "requirementId": "jd-47",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-11",
+      "resumeSpan": {
+        "start": 869,
+        "end": 1110,
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+      },
+      "rationale": "cv-11's migration to Gemini+Langfuse and multi-stage scoring pipelines suggests proximity to retrieval/RAG patterns but does not explicitly describe RAG workflows."
+    },
+    {
+      "id": "gap-48",
+      "kind": "missing_skill",
+      "requirementId": "jd-48",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the provided lines explicitly mention experience with Pandas."
+    },
+    {
+      "id": "gap-49",
+      "kind": "weak_evidence",
+      "requirementId": "jd-49",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-7",
+      "resumeSpan": {
+        "start": 526,
+        "end": 680,
+        "text": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)"
+      },
+      "rationale": "cv-7 lists data analytics and visualization among hard skills, which implies familiarity with numerical libraries like NumPy but does not explicitly mention NumPy."
+    },
+    {
+      "id": "gap-50",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-50",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-3",
+      "resumeSpan": {
+        "start": 27,
+        "end": 212,
+        "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+      },
+      "rationale": "cv-3 explicitly states end-to-end design and shipping of LLM-powered products from pipeline architecture to deployment, evidencing data-pipeline experience."
+    },
+    {
+      "id": "gap-51",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-51",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-22",
+      "resumeSpan": {
+        "start": 2589,
+        "end": 2641,
+        "text": "AWS Certified AI Practitioner Early Adopter, 2024/10"
+      },
+      "rationale": "cv-22 shows an AWS Certified AI Practitioner credential, demonstrating foundational cloud knowledge (AWS) relevant to cloud basics."
+    },
+    {
+      "id": "gap-52",
+      "kind": "weak_evidence",
+      "requirementId": "jd-52",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-13",
+      "resumeSpan": {
+        "start": 1368,
+        "end": 1607,
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+      },
+      "rationale": "cv-13 describes building schema-validated JSON outputs and Langfuse prompt pipelines which likely involved automation scripting but does not explicitly state scripting experience."
+    },
+    {
+      "id": "gap-53",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-53",
+      "jdSpan": {
+        "start": 2366,
+        "end": 2569,
+        "text": "Foundational familiarity in: Python/AI Agents/Git/Version Control/Rest APIs/ML Fundamentals/LLMs/SLMs/Prompting/RAG Basics/Pandas/NumPy/Data pipelines/Cloud Basics/Automation Scripting/Data Visualization"
+      },
+      "resumeLineId": "cv-18",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-18 describes deploying a Power BI risk-profile dashboard consolidating 100+ business units, directly evidencing data-visualization experience."
+    }
+  ]
+}

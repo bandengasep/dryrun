@@ -1,0 +1,1601 @@
+{
+  "jd": {
+    "sourceText": "JOB TITLE\nIntern – BI/AI (Data analytics)\n\nInternship Student\n\nDEPARTMENT\nIT Department\n\nJOB SUMMARY\n\nJoin our BI/AI team and get hands-on experience working with real business data and use cases. You will help build dashboards, analyse trends, and support AI-driven initiatives that improve daily operations and decision-making.\n\nIn this role, you will work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams. This is a practical opportunity to learn modern tools, solve real problems and understand how data drives tangible business impact in a corporate environment.\n\nJOB RESPONSIBILITIES / AUTHORIZATION LEVEL\n\n- Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions.\n- Assist in building and enhancing Power BI dashboards to support business operations, planning and management reporting\n- Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making\n- Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites\n- Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment\n- Contribute to new analytics and AI use cases, including process improvements and automation initiatives.\n- Troubleshoot data/reporting issues and support continuous improvements post-deployment\n- Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide\n- Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions.\n\nEDUCATION and EXPERIENCE\n\n- Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline\n- Strong interest in data analytics, business intelligence, and AI-driven applications\n- Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)\n- Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects\n- Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus.\n\nJOB-RELATED SKILLS & PRE-REQUISITES\n\n- Strong analytical mindset with attention to detail\n- Willingness to learn and work with real business data and cross-functional teams\n- Good communication skills to translate data into meaningful insights.\n",
+    "lines": [
+      {
+        "id": "jd-1",
+        "text": "Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline",
+        "span": {
+          "start": 1804,
+          "end": 1954,
+          "text": "Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline"
+        }
+      },
+      {
+        "id": "jd-2",
+        "text": "Strong interest in data analytics",
+        "span": {
+          "start": 1957,
+          "end": 2041,
+          "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+        }
+      },
+      {
+        "id": "jd-3",
+        "text": "Strong interest in business intelligence",
+        "span": {
+          "start": 1957,
+          "end": 2041,
+          "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+        }
+      },
+      {
+        "id": "jd-4",
+        "text": "Strong interest in AI-driven applications",
+        "span": {
+          "start": 1957,
+          "end": 2041,
+          "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+        }
+      },
+      {
+        "id": "jd-5",
+        "text": "Basic understanding of data analysis concepts",
+        "span": {
+          "start": 2044,
+          "end": 2142,
+          "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+        }
+      },
+      {
+        "id": "jd-6",
+        "text": "Basic understanding of data modelling",
+        "span": {
+          "start": 2044,
+          "end": 2142,
+          "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+        }
+      },
+      {
+        "id": "jd-7",
+        "text": "Basic understanding of data transformation",
+        "span": {
+          "start": 2044,
+          "end": 2142,
+          "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+        }
+      },
+      {
+        "id": "jd-8",
+        "text": "Basic understanding of reporting",
+        "span": {
+          "start": 2044,
+          "end": 2142,
+          "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+        }
+      },
+      {
+        "id": "jd-9",
+        "text": "Exposure to Excel",
+        "span": {
+          "start": 2145,
+          "end": 2244,
+          "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+        }
+      },
+      {
+        "id": "jd-10",
+        "text": "Exposure to SQL",
+        "span": {
+          "start": 2145,
+          "end": 2244,
+          "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+        }
+      },
+      {
+        "id": "jd-11",
+        "text": "Exposure to PowerBI",
+        "span": {
+          "start": 2145,
+          "end": 2244,
+          "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+        }
+      },
+      {
+        "id": "jd-12",
+        "text": "Exposure to data engineering concepts",
+        "span": {
+          "start": 2145,
+          "end": 2244,
+          "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+        }
+      },
+      {
+        "id": "jd-13",
+        "text": "Familiar with ETL processes (is a plus)",
+        "span": {
+          "start": 2247,
+          "end": 2338,
+          "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+        }
+      },
+      {
+        "id": "jd-14",
+        "text": "Familiar with data modelling (is a plus)",
+        "span": {
+          "start": 2247,
+          "end": 2338,
+          "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+        }
+      },
+      {
+        "id": "jd-15",
+        "text": "Familiar with cloud data platforms (AWS/Azure) (is a plus)",
+        "span": {
+          "start": 2247,
+          "end": 2338,
+          "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+        }
+      },
+      {
+        "id": "jd-16",
+        "text": "Support the rollout of enterprise BI dashboards across multiple sites",
+        "span": {
+          "start": 716,
+          "end": 853,
+          "text": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions."
+        }
+      },
+      {
+        "id": "jd-17",
+        "text": "Replicate, adapt, and deploy proven reporting solutions",
+        "span": {
+          "start": 716,
+          "end": 853,
+          "text": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions."
+        }
+      },
+      {
+        "id": "jd-18",
+        "text": "Assist in building and enhancing Power BI dashboards",
+        "span": {
+          "start": 856,
+          "end": 974,
+          "text": "Assist in building and enhancing Power BI dashboards to support business operations, planning and management reporting"
+        }
+      },
+      {
+        "id": "jd-19",
+        "text": "Work with real datasets",
+        "span": {
+          "start": 977,
+          "end": 1074,
+          "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+        }
+      },
+      {
+        "id": "jd-20",
+        "text": "Analyse trends",
+        "span": {
+          "start": 977,
+          "end": 1074,
+          "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+        }
+      },
+      {
+        "id": "jd-21",
+        "text": "Identify gaps in data",
+        "span": {
+          "start": 977,
+          "end": 1074,
+          "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+        }
+      },
+      {
+        "id": "jd-22",
+        "text": "Support data-driven decision-making",
+        "span": {
+          "start": 977,
+          "end": 1074,
+          "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+        }
+      },
+      {
+        "id": "jd-23",
+        "text": "Perform data preparation (ETL) and validation",
+        "span": {
+          "start": 1077,
+          "end": 1197,
+          "text": "Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites"
+        }
+      },
+      {
+        "id": "jd-24",
+        "text": "Collaborate with business users to gather requirements",
+        "span": {
+          "start": 1200,
+          "end": 1336,
+          "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment"
+        }
+      },
+      {
+        "id": "jd-25",
+        "text": "Support UAT and deployment",
+        "span": {
+          "start": 1200,
+          "end": 1336,
+          "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment"
+        }
+      },
+      {
+        "id": "jd-26",
+        "text": "Contribute to new analytics and AI use cases",
+        "span": {
+          "start": 1339,
+          "end": 1443,
+          "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+        }
+      },
+      {
+        "id": "jd-27",
+        "text": "Contribute to process improvements",
+        "span": {
+          "start": 1339,
+          "end": 1443,
+          "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+        }
+      },
+      {
+        "id": "jd-28",
+        "text": "Contribute to automation initiatives",
+        "span": {
+          "start": 1339,
+          "end": 1443,
+          "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+        }
+      },
+      {
+        "id": "jd-29",
+        "text": "Troubleshoot data/reporting issues",
+        "span": {
+          "start": 1446,
+          "end": 1532,
+          "text": "Troubleshoot data/reporting issues and support continuous improvements post-deployment"
+        }
+      },
+      {
+        "id": "jd-30",
+        "text": "Support continuous improvements post-deployment",
+        "span": {
+          "start": 1446,
+          "end": 1532,
+          "text": "Troubleshoot data/reporting issues and support continuous improvements post-deployment"
+        }
+      },
+      {
+        "id": "jd-31",
+        "text": "Document data logic, report structures, and rollout approach",
+        "span": {
+          "start": 1535,
+          "end": 1650,
+          "text": "Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide"
+        }
+      },
+      {
+        "id": "jd-32",
+        "text": "Gain exposure to enterprise data platforms",
+        "span": {
+          "start": 1653,
+          "end": 1774,
+          "text": "Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions."
+        }
+      },
+      {
+        "id": "jd-33",
+        "text": "Understand how standardized analytics solutions are scaled across regions",
+        "span": {
+          "start": 1653,
+          "end": 1774,
+          "text": "Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions."
+        }
+      },
+      {
+        "id": "jd-34",
+        "text": "Work with data platforms",
+        "span": {
+          "start": 354,
+          "end": 509,
+          "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams."
+        }
+      },
+      {
+        "id": "jd-35",
+        "text": "Work with reporting dashboards",
+        "span": {
+          "start": 354,
+          "end": 509,
+          "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams."
+        }
+      },
+      {
+        "id": "jd-36",
+        "text": "Work with automation solutions",
+        "span": {
+          "start": 354,
+          "end": 509,
+          "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams."
+        }
+      },
+      {
+        "id": "jd-37",
+        "text": "Collaborate with both IT and business teams",
+        "span": {
+          "start": 354,
+          "end": 509,
+          "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams."
+        }
+      },
+      {
+        "id": "jd-38",
+        "text": "Strong analytical mindset with attention to detail",
+        "span": {
+          "start": 2379,
+          "end": 2429,
+          "text": "Strong analytical mindset with attention to detail"
+        }
+      },
+      {
+        "id": "jd-39",
+        "text": "Willingness to learn and work with real business data and cross-functional teams",
+        "span": {
+          "start": 2432,
+          "end": 2512,
+          "text": "Willingness to learn and work with real business data and cross-functional teams"
+        }
+      },
+      {
+        "id": "jd-40",
+        "text": "Good communication skills to translate data into meaningful insights.",
+        "span": {
+          "start": 2515,
+          "end": 2584,
+          "text": "Good communication skills to translate data into meaningful insights."
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "resume": {
+    "sourceText": "HARTANTO, Timothy\n\nSUMMARY\nAI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment.\nSpecializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis.\nBridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.\n\nSKILLS\nHard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)\nSoft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication.\n\nPROFESSIONAL EXPERIENCE\nComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT\nMigrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.\nShipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.\nBuilt the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output.\nHardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.\n\nPT Deloitte Consulting, Indonesia — Business Analyst, 2021/12 – 2024/09\nDrove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%\nMigrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company.\nDeployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility.\nBuilt Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.\nAssessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.\n\nACHIEVEMENTS & AWARDS\nAWS Certified AI Practitioner Early Adopter, 2024/10\nAWS Certified Machine Learning – Specialty, 2023/12\nAWS Certified Data Analytics – Specialty, 2023/10\n\nEDUCATION\nM.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)\nData Science & Machine Learning Bootcamp, Purwadhika Digital School, 2024/10 – 2025/05\nGraduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08\nBachelor of Business, Nanyang Business School, Nanyang Technological University, Singapore, 2013/08 – 2016/06\n",
+    "lines": [
+      {
+        "id": "cv-1",
+        "text": "HARTANTO, Timothy",
+        "span": {
+          "start": 0,
+          "end": 17,
+          "text": "HARTANTO, Timothy"
+        }
+      },
+      {
+        "id": "cv-2",
+        "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment.",
+        "span": {
+          "start": 27,
+          "end": 212,
+          "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+        }
+      },
+      {
+        "id": "cv-3",
+        "text": "AI/LLM engineer",
+        "span": {
+          "start": 27,
+          "end": 42,
+          "text": "AI/LLM engineer"
+        }
+      },
+      {
+        "id": "cv-4",
+        "text": "3+ years of prior Big-4 data analytics experience",
+        "span": {
+          "start": 48,
+          "end": 97,
+          "text": "3+ years of prior Big-4 data analytics experience"
+        }
+      },
+      {
+        "id": "cv-5",
+        "text": "designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment.",
+        "span": {
+          "start": 103,
+          "end": 212,
+          "text": "designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+        }
+      },
+      {
+        "id": "cv-6",
+        "text": "Specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis.",
+        "span": {
+          "start": 213,
+          "end": 379,
+          "text": "Specializes in LLM pipeline orchestration, prompt engineering, and LLMOps/observability (Gemini, Vercel AI SDK, Langfuse), including multimodal audio + text analysis."
+        }
+      },
+      {
+        "id": "cv-7",
+        "text": "LLM pipeline orchestration",
+        "span": {
+          "start": 228,
+          "end": 254,
+          "text": "LLM pipeline orchestration"
+        }
+      },
+      {
+        "id": "cv-8",
+        "text": "prompt engineering",
+        "span": {
+          "start": 256,
+          "end": 274,
+          "text": "prompt engineering"
+        }
+      },
+      {
+        "id": "cv-9",
+        "text": "LLMOps/observability (Gemini, Vercel AI SDK, Langfuse)",
+        "span": {
+          "start": 280,
+          "end": 334,
+          "text": "LLMOps/observability (Gemini, Vercel AI SDK, Langfuse)"
+        }
+      },
+      {
+        "id": "cv-10",
+        "text": "multimodal audio + text analysis",
+        "span": {
+          "start": 346,
+          "end": 378,
+          "text": "multimodal audio + text analysis"
+        }
+      },
+      {
+        "id": "cv-11",
+        "text": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications.",
+        "span": {
+          "start": 380,
+          "end": 517,
+          "text": "Bridges business and engineering — translating product goals into reliable, observable AI systems — backed by AWS ML & AI certifications."
+        }
+      },
+      {
+        "id": "cv-12",
+        "text": "Bridges business and engineering",
+        "span": {
+          "start": 380,
+          "end": 412,
+          "text": "Bridges business and engineering"
+        }
+      },
+      {
+        "id": "cv-13",
+        "text": "translating product goals into reliable, observable AI systems",
+        "span": {
+          "start": 415,
+          "end": 477,
+          "text": "translating product goals into reliable, observable AI systems"
+        }
+      },
+      {
+        "id": "cv-14",
+        "text": "AWS ML & AI certifications",
+        "span": {
+          "start": 490,
+          "end": 516,
+          "text": "AWS ML & AI certifications"
+        }
+      },
+      {
+        "id": "cv-15",
+        "text": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)",
+        "span": {
+          "start": 526,
+          "end": 680,
+          "text": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)"
+        }
+      },
+      {
+        "id": "cv-16",
+        "text": "AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram)",
+        "span": {
+          "start": 539,
+          "end": 601,
+          "text": "AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram)"
+        }
+      },
+      {
+        "id": "cv-17",
+        "text": "Data Analytics & Visualization",
+        "span": {
+          "start": 603,
+          "end": 633,
+          "text": "Data Analytics & Visualization"
+        }
+      },
+      {
+        "id": "cv-18",
+        "text": "Cloud Architecture & Automation (AWS, Vercel)",
+        "span": {
+          "start": 635,
+          "end": 680,
+          "text": "Cloud Architecture & Automation (AWS, Vercel)"
+        }
+      },
+      {
+        "id": "cv-19",
+        "text": "Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication.",
+        "span": {
+          "start": 681,
+          "end": 786,
+          "text": "Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication."
+        }
+      },
+      {
+        "id": "cv-20",
+        "text": "Project Management",
+        "span": {
+          "start": 694,
+          "end": 712,
+          "text": "Project Management"
+        }
+      },
+      {
+        "id": "cv-21",
+        "text": "Business Development & Strategy",
+        "span": {
+          "start": 714,
+          "end": 745,
+          "text": "Business Development & Strategy"
+        }
+      },
+      {
+        "id": "cv-22",
+        "text": "Stakeholder Management & Communication.",
+        "span": {
+          "start": 747,
+          "end": 786,
+          "text": "Stakeholder Management & Communication."
+        }
+      },
+      {
+        "id": "cv-23",
+        "text": "ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT",
+        "span": {
+          "start": 812,
+          "end": 868,
+          "text": "ComChord Pte Ltd — AI Engineer Intern, 2026/03 – PRESENT"
+        }
+      },
+      {
+        "id": "cv-24",
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house.",
+        "span": {
+          "start": 869,
+          "end": 1110,
+          "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+        }
+      },
+      {
+        "id": "cv-25",
+        "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse",
+        "span": {
+          "start": 869,
+          "end": 974,
+          "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse"
+        }
+      },
+      {
+        "id": "cv-26",
+        "text": "building multi-stage scoring pipelines with structured-JSON output",
+        "span": {
+          "start": 976,
+          "end": 1042,
+          "text": "building multi-stage scoring pipelines with structured-JSON output"
+        }
+      },
+      {
+        "id": "cv-27",
+        "text": "bringing prompt versioning and full LLM observability in-house.",
+        "span": {
+          "start": 1047,
+          "end": 1110,
+          "text": "bringing prompt versioning and full LLM observability in-house."
+        }
+      },
+      {
+        "id": "cv-28",
+        "text": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.",
+        "span": {
+          "start": 1111,
+          "end": 1367,
+          "text": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler) and prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection."
+        }
+      },
+      {
+        "id": "cv-29",
+        "text": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler)",
+        "span": {
+          "start": 1111,
+          "end": 1231,
+          "text": "Shipped a Pro-tier Client Insights feature on a parallelized fan-out/fan-in LLM pipeline (3 Gemini analyzers + compiler)"
+        }
+      },
+      {
+        "id": "cv-30",
+        "text": "prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection.",
+        "span": {
+          "start": 1236,
+          "end": 1367,
+          "text": "prototyped a multimodal emotion-analysis POC fusing Deepgram diarization with per-utterance Gemini audio+text dissonance detection."
+        }
+      },
+      {
+        "id": "cv-31",
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output.",
+        "span": {
+          "start": 1368,
+          "end": 1607,
+          "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform, encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts and delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+        }
+      },
+      {
+        "id": "cv-32",
+        "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform",
+        "span": {
+          "start": 1368,
+          "end": 1445,
+          "text": "Built the AI analysis layer for ComChord's conversation-intelligence platform"
+        }
+      },
+      {
+        "id": "cv-33",
+        "text": "encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts",
+        "span": {
+          "start": 1447,
+          "end": 1526,
+          "text": "encoding proprietary CHAT/ACT frameworks into Langfuse-versioned Gemini prompts"
+        }
+      },
+      {
+        "id": "cv-34",
+        "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output.",
+        "span": {
+          "start": 1531,
+          "end": 1607,
+          "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+        }
+      },
+      {
+        "id": "cv-35",
+        "text": "Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging.",
+        "span": {
+          "start": 1608,
+          "end": 1849,
+          "text": "Hardened production LLM pipelines across both products with a Gemini speaker-labeling stage over Deepgram nova-3 diarization, transcription retry/pre-flight layers, and standardized Langfuse tracing plus PostHog session replay for debugging."
+        }
+      },
+      {
+        "id": "cv-36",
+        "text": "Hardened production LLM pipelines across both products",
+        "span": {
+          "start": 1608,
+          "end": 1662,
+          "text": "Hardened production LLM pipelines across both products"
+        }
+      },
+      {
+        "id": "cv-37",
+        "text": "with a Gemini speaker-labeling stage over Deepgram nova-3 diarization",
+        "span": {
+          "start": 1663,
+          "end": 1732,
+          "text": "with a Gemini speaker-labeling stage over Deepgram nova-3 diarization"
+        }
+      },
+      {
+        "id": "cv-38",
+        "text": "transcription retry/pre-flight layers",
+        "span": {
+          "start": 1734,
+          "end": 1771,
+          "text": "transcription retry/pre-flight layers"
+        }
+      },
+      {
+        "id": "cv-39",
+        "text": "standardized Langfuse tracing plus PostHog session replay for debugging.",
+        "span": {
+          "start": 1777,
+          "end": 1849,
+          "text": "standardized Langfuse tracing plus PostHog session replay for debugging."
+        }
+      },
+      {
+        "id": "cv-40",
+        "text": "PT Deloitte Consulting, Indonesia — Business Analyst, 2021/12 – 2024/09",
+        "span": {
+          "start": 1851,
+          "end": 1922,
+          "text": "PT Deloitte Consulting, Indonesia — Business Analyst, 2021/12 – 2024/09"
+        }
+      },
+      {
+        "id": "cv-41",
+        "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%",
+        "span": {
+          "start": 1923,
+          "end": 2047,
+          "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+        }
+      },
+      {
+        "id": "cv-42",
+        "text": "Drove enterprise data governance for a state-owned bank",
+        "span": {
+          "start": 1923,
+          "end": 1978,
+          "text": "Drove enterprise data governance for a state-owned bank"
+        }
+      },
+      {
+        "id": "cv-43",
+        "text": "auditing 100+ siloed databases",
+        "span": {
+          "start": 1980,
+          "end": 2010,
+          "text": "auditing 100+ siloed databases"
+        }
+      },
+      {
+        "id": "cv-44",
+        "text": "reducing compliance risks by 70%",
+        "span": {
+          "start": 2015,
+          "end": 2047,
+          "text": "reducing compliance risks by 70%"
+        }
+      },
+      {
+        "id": "cv-45",
+        "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company.",
+        "span": {
+          "start": 2048,
+          "end": 2182,
+          "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+        }
+      },
+      {
+        "id": "cv-46",
+        "text": "Migrated data warehouse from AWS Redshift to Snowflake",
+        "span": {
+          "start": 2048,
+          "end": 2102,
+          "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+        }
+      },
+      {
+        "id": "cv-47",
+        "text": "led refactoring of 500+ stored procedures for a multinational FMCG company.",
+        "span": {
+          "start": 2107,
+          "end": 2182,
+          "text": "led refactoring of 500+ stored procedures for a multinational FMCG company."
+        }
+      },
+      {
+        "id": "cv-48",
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility.",
+        "span": {
+          "start": 2183,
+          "end": 2324,
+          "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+        }
+      },
+      {
+        "id": "cv-49",
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility.",
+        "span": {
+          "start": 2183,
+          "end": 2324,
+          "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+        }
+      },
+      {
+        "id": "cv-50",
+        "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.",
+        "span": {
+          "start": 2325,
+          "end": 2443,
+          "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+        }
+      },
+      {
+        "id": "cv-51",
+        "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings.",
+        "span": {
+          "start": 2325,
+          "end": 2443,
+          "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+        }
+      },
+      {
+        "id": "cv-52",
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%.",
+        "span": {
+          "start": 2444,
+          "end": 2565,
+          "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+        }
+      },
+      {
+        "id": "cv-53",
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco",
+        "span": {
+          "start": 2444,
+          "end": 2535,
+          "text": "Assessed business processes and identified automation opportunities for an Indonesian telco"
+        }
+      },
+      {
+        "id": "cv-54",
+        "text": "reducing manual work by 60%.",
+        "span": {
+          "start": 2537,
+          "end": 2565,
+          "text": "reducing manual work by 60%."
+        }
+      },
+      {
+        "id": "cv-55",
+        "text": "AWS Certified AI Practitioner Early Adopter, 2024/10",
+        "span": {
+          "start": 2589,
+          "end": 2641,
+          "text": "AWS Certified AI Practitioner Early Adopter, 2024/10"
+        }
+      },
+      {
+        "id": "cv-56",
+        "text": "AWS Certified Machine Learning – Specialty, 2023/12",
+        "span": {
+          "start": 2642,
+          "end": 2693,
+          "text": "AWS Certified Machine Learning – Specialty, 2023/12"
+        }
+      },
+      {
+        "id": "cv-57",
+        "text": "AWS Certified Data Analytics – Specialty, 2023/10",
+        "span": {
+          "start": 2694,
+          "end": 2743,
+          "text": "AWS Certified Data Analytics – Specialty, 2023/10"
+        }
+      },
+      {
+        "id": "cv-58",
+        "text": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)",
+        "span": {
+          "start": 2755,
+          "end": 2882,
+          "text": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)"
+        }
+      },
+      {
+        "id": "cv-59",
+        "text": "Data Science & Machine Learning Bootcamp, Purwadhika Digital School, 2024/10 – 2025/05",
+        "span": {
+          "start": 2883,
+          "end": 2969,
+          "text": "Data Science & Machine Learning Bootcamp, Purwadhika Digital School, 2024/10 – 2025/05"
+        }
+      },
+      {
+        "id": "cv-60",
+        "text": "Graduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08",
+        "span": {
+          "start": 2970,
+          "end": 3070,
+          "text": "Graduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08"
+        }
+      },
+      {
+        "id": "cv-61",
+        "text": "Bachelor of Business, Nanyang Business School, Nanyang Technological University, Singapore, 2013/08 – 2016/06",
+        "span": {
+          "start": 3071,
+          "end": 3180,
+          "text": "Bachelor of Business, Nanyang Business School, Nanyang Technological University, Singapore, 2013/08 – 2016/06"
+        }
+      }
+    ],
+    "dropped": []
+  },
+  "gaps": [
+    {
+      "id": "gap-1",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-1",
+      "jdSpan": {
+        "start": 1804,
+        "end": 1954,
+        "text": "Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline"
+      },
+      "resumeLineId": "cv-58",
+      "resumeSpan": {
+        "start": 2755,
+        "end": 2882,
+        "text": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)"
+      },
+      "rationale": "cv-58 shows an M.Sc. in Business Analytics with expected 2025/07–2026/06, indicating the candidate is currently pursuing a relevant master's degree."
+    },
+    {
+      "id": "gap-2",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-2",
+      "jdSpan": {
+        "start": 1957,
+        "end": 2041,
+        "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+      },
+      "resumeLineId": "cv-4",
+      "resumeSpan": {
+        "start": 48,
+        "end": 97,
+        "text": "3+ years of prior Big-4 data analytics experience"
+      },
+      "rationale": "cv-4 documents 3+ years of prior Big‑4 data analytics experience, demonstrating sustained interest in data analytics."
+    },
+    {
+      "id": "gap-3",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-3",
+      "jdSpan": {
+        "start": 1957,
+        "end": 2041,
+        "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+      },
+      "resumeLineId": "cv-48",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-48 describes deploying a Power BI risk profile dashboard consolidating 100+ business units, showing clear business intelligence experience."
+    },
+    {
+      "id": "gap-4",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-4",
+      "jdSpan": {
+        "start": 1957,
+        "end": 2041,
+        "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+      },
+      "resumeLineId": "cv-15",
+      "resumeSpan": {
+        "start": 526,
+        "end": 680,
+        "text": "Hard Skills: AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram), Data Analytics & Visualization, Cloud Architecture & Automation (AWS, Vercel)"
+      },
+      "rationale": "cv-15 explicitly lists AI/LLM Engineering among hard skills, indicating strong interest in AI‑driven applications."
+    },
+    {
+      "id": "gap-5",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-5",
+      "jdSpan": {
+        "start": 2044,
+        "end": 2142,
+        "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+      },
+      "resumeLineId": "cv-4",
+      "resumeSpan": {
+        "start": 48,
+        "end": 97,
+        "text": "3+ years of prior Big-4 data analytics experience"
+      },
+      "rationale": "cv-4's 3+ years of Big‑4 data analytics experience indicates concrete understanding of data analysis concepts."
+    },
+    {
+      "id": "gap-6",
+      "kind": "weak_evidence",
+      "requirementId": "jd-6",
+      "jdSpan": {
+        "start": 2044,
+        "end": 2142,
+        "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+      },
+      "resumeLineId": "cv-17",
+      "resumeSpan": {
+        "start": 603,
+        "end": 633,
+        "text": "Data Analytics & Visualization"
+      },
+      "rationale": "cv-17 only lists 'Data Analytics & Visualization', which touches data modelling broadly but doesn’t explicitly demonstrate data modelling experience."
+    },
+    {
+      "id": "gap-7",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-7",
+      "jdSpan": {
+        "start": 2044,
+        "end": 2142,
+        "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+      },
+      "resumeLineId": "cv-45",
+      "resumeSpan": {
+        "start": 2048,
+        "end": 2182,
+        "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+      },
+      "rationale": "cv-45 details migrating a data warehouse and refactoring 500+ stored procedures, which directly evidences data transformation work."
+    },
+    {
+      "id": "gap-8",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-8",
+      "jdSpan": {
+        "start": 2044,
+        "end": 2142,
+        "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+      },
+      "resumeLineId": "cv-50",
+      "resumeSpan": {
+        "start": 2325,
+        "end": 2443,
+        "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+      },
+      "rationale": "cv-50 describes building a Power BI dashboard for daily C‑suite briefings, demonstrating concrete reporting experience."
+    },
+    {
+      "id": "gap-9",
+      "kind": "missing_skill",
+      "requirementId": "jd-9",
+      "jdSpan": {
+        "start": 2145,
+        "end": 2244,
+        "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+      },
+      "resumeLineId": null,
+      "resumeSpan": null,
+      "rationale": "None of the provided resume lines explicitly mention Excel or exposure to Excel."
+    },
+    {
+      "id": "gap-10",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-10",
+      "jdSpan": {
+        "start": 2145,
+        "end": 2244,
+        "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+      },
+      "resumeLineId": "cv-47",
+      "resumeSpan": {
+        "start": 2107,
+        "end": 2182,
+        "text": "led refactoring of 500+ stored procedures for a multinational FMCG company."
+      },
+      "rationale": "cv-47 states leading refactoring of 500+ stored procedures, which indicates direct SQL experience."
+    },
+    {
+      "id": "gap-11",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-11",
+      "jdSpan": {
+        "start": 2145,
+        "end": 2244,
+        "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+      },
+      "resumeLineId": "cv-48",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-48 explicitly describes deploying a Power BI dashboard, showing exposure to Power BI."
+    },
+    {
+      "id": "gap-12",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-12",
+      "jdSpan": {
+        "start": 2145,
+        "end": 2244,
+        "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+      },
+      "resumeLineId": "cv-2",
+      "resumeSpan": {
+        "start": 27,
+        "end": 212,
+        "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+      },
+      "rationale": "cv-2 describes designing and shipping production LLM products end‑to‑end including pipeline architecture, indicating exposure to data engineering concepts."
+    },
+    {
+      "id": "gap-13",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-13",
+      "jdSpan": {
+        "start": 2247,
+        "end": 2338,
+        "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+      },
+      "resumeLineId": "cv-45",
+      "resumeSpan": {
+        "start": 2048,
+        "end": 2182,
+        "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+      },
+      "rationale": "cv-45's data warehouse migration and large-scale stored procedure refactor imply hands‑on ETL/process work."
+    },
+    {
+      "id": "gap-14",
+      "kind": "weak_evidence",
+      "requirementId": "jd-14",
+      "jdSpan": {
+        "start": 2247,
+        "end": 2338,
+        "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+      },
+      "resumeLineId": "cv-4",
+      "resumeSpan": {
+        "start": 48,
+        "end": 97,
+        "text": "3+ years of prior Big-4 data analytics experience"
+      },
+      "rationale": "cv-4's Big‑4 data analytics background suggests possible exposure to data modelling but does not explicitly state data modelling experience."
+    },
+    {
+      "id": "gap-15",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-15",
+      "jdSpan": {
+        "start": 2247,
+        "end": 2338,
+        "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+      },
+      "resumeLineId": "cv-18",
+      "resumeSpan": {
+        "start": 635,
+        "end": 680,
+        "text": "Cloud Architecture & Automation (AWS, Vercel)"
+      },
+      "rationale": "cv-18 explicitly lists Cloud Architecture & Automation (AWS, Vercel), demonstrating familiarity with AWS cloud platforms."
+    },
+    {
+      "id": "gap-16",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-16",
+      "jdSpan": {
+        "start": 716,
+        "end": 853,
+        "text": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions."
+      },
+      "resumeLineId": "cv-48",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-48 reports deploying a Power BI dashboard consolidating 100+ business units, matching rollout of enterprise BI dashboards across multiple sites."
+    },
+    {
+      "id": "gap-17",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-17",
+      "jdSpan": {
+        "start": 716,
+        "end": 853,
+        "text": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions."
+      },
+      "resumeLineId": "cv-48",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-48's deployment consolidating 100+ business units demonstrates replicating/adapting and deploying reporting solutions."
+    },
+    {
+      "id": "gap-18",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-18",
+      "jdSpan": {
+        "start": 856,
+        "end": 974,
+        "text": "Assist in building and enhancing Power BI dashboards to support business operations, planning and management reporting"
+      },
+      "resumeLineId": "cv-50",
+      "resumeSpan": {
+        "start": 2325,
+        "end": 2443,
+        "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+      },
+      "rationale": "cv-50 describes building a Power BI dashboard used for daily C‑suite briefings, evidencing building and enhancing Power BI dashboards."
+    },
+    {
+      "id": "gap-19",
+      "kind": "weak_evidence",
+      "requirementId": "jd-19",
+      "jdSpan": {
+        "start": 977,
+        "end": 1074,
+        "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+      },
+      "resumeLineId": "cv-17",
+      "resumeSpan": {
+        "start": 603,
+        "end": 633,
+        "text": "Data Analytics & Visualization"
+      },
+      "rationale": "cv-17 lists 'Data Analytics & Visualization', which implies working with datasets but does not explicitly state working with real datasets."
+    },
+    {
+      "id": "gap-20",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-20",
+      "jdSpan": {
+        "start": 977,
+        "end": 1074,
+        "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+      },
+      "resumeLineId": "cv-50",
+      "resumeSpan": {
+        "start": 2325,
+        "end": 2443,
+        "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+      },
+      "rationale": "cv-50's Power BI dashboard tracking $100M+ Generative AI initiatives for daily C‑suite briefings demonstrates analysis of trends."
+    },
+    {
+      "id": "gap-21",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-21",
+      "jdSpan": {
+        "start": 977,
+        "end": 1074,
+        "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+      },
+      "resumeLineId": "cv-41",
+      "resumeSpan": {
+        "start": 1923,
+        "end": 2047,
+        "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+      },
+      "rationale": "cv-41 details auditing 100+ siloed databases as part of enterprise data governance, which implies identifying data gaps and governance issues."
+    },
+    {
+      "id": "gap-22",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-22",
+      "jdSpan": {
+        "start": 977,
+        "end": 1074,
+        "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+      },
+      "resumeLineId": "cv-50",
+      "resumeSpan": {
+        "start": 2325,
+        "end": 2443,
+        "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+      },
+      "rationale": "cv-50's dashboard built for daily C‑suite briefings demonstrates supporting data‑driven decision‑making."
+    },
+    {
+      "id": "gap-23",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-23",
+      "jdSpan": {
+        "start": 1077,
+        "end": 1197,
+        "text": "Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites"
+      },
+      "resumeLineId": "cv-45",
+      "resumeSpan": {
+        "start": 2048,
+        "end": 2182,
+        "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+      },
+      "rationale": "cv-45's data warehouse migration and refactoring of stored procedures indicate hands‑on data preparation and validation activities."
+    },
+    {
+      "id": "gap-24",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-24",
+      "jdSpan": {
+        "start": 1200,
+        "end": 1336,
+        "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment"
+      },
+      "resumeLineId": "cv-19",
+      "resumeSpan": {
+        "start": 681,
+        "end": 786,
+        "text": "Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication."
+      },
+      "rationale": "cv-19 lists stakeholder management and communication among soft skills, evidencing ability to collaborate with business users to gather requirements."
+    },
+    {
+      "id": "gap-25",
+      "kind": "weak_evidence",
+      "requirementId": "jd-25",
+      "jdSpan": {
+        "start": 1200,
+        "end": 1336,
+        "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment"
+      },
+      "resumeLineId": "cv-5",
+      "resumeSpan": {
+        "start": 103,
+        "end": 212,
+        "text": "designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+      },
+      "rationale": "cv-5 describes end‑to‑end product delivery including deployment but does not explicitly state supporting UAT."
+    },
+    {
+      "id": "gap-26",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-26",
+      "jdSpan": {
+        "start": 1339,
+        "end": 1443,
+        "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+      },
+      "resumeLineId": "cv-50",
+      "resumeSpan": {
+        "start": 2325,
+        "end": 2443,
+        "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+      },
+      "rationale": "cv-50's Power BI work tracking Generative AI initiatives demonstrates contribution to analytics and AI use cases."
+    },
+    {
+      "id": "gap-27",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-27",
+      "jdSpan": {
+        "start": 1339,
+        "end": 1443,
+        "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+      },
+      "resumeLineId": "cv-52",
+      "resumeSpan": {
+        "start": 2444,
+        "end": 2565,
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+      },
+      "rationale": "cv-52 quantifies assessing business processes and identifying automation opportunities that reduced manual work by 60%, showing process improvement."
+    },
+    {
+      "id": "gap-28",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-28",
+      "jdSpan": {
+        "start": 1339,
+        "end": 1443,
+        "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+      },
+      "resumeLineId": "cv-52",
+      "resumeSpan": {
+        "start": 2444,
+        "end": 2565,
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+      },
+      "rationale": "cv-52 explicitly describes identifying automation opportunities and a 60% reduction in manual work, evidencing contribution to automation initiatives."
+    },
+    {
+      "id": "gap-29",
+      "kind": "weak_evidence",
+      "requirementId": "jd-29",
+      "jdSpan": {
+        "start": 1446,
+        "end": 1532,
+        "text": "Troubleshoot data/reporting issues and support continuous improvements post-deployment"
+      },
+      "resumeLineId": "cv-48",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-48's large Power BI deployment implies experience with reporting issues and integration across units but does not explicitly describe troubleshooting post‑deployment."
+    },
+    {
+      "id": "gap-30",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-30",
+      "jdSpan": {
+        "start": 1446,
+        "end": 1532,
+        "text": "Troubleshoot data/reporting issues and support continuous improvements post-deployment"
+      },
+      "resumeLineId": "cv-36",
+      "resumeSpan": {
+        "start": 1608,
+        "end": 1662,
+        "text": "Hardened production LLM pipelines across both products"
+      },
+      "rationale": "cv-36 states 'Hardened production LLM pipelines across both products,' indicating post‑deployment improvement and support."
+    },
+    {
+      "id": "gap-31",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-31",
+      "jdSpan": {
+        "start": 1535,
+        "end": 1650,
+        "text": "Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide"
+      },
+      "resumeLineId": "cv-34",
+      "resumeSpan": {
+        "start": 1531,
+        "end": 1607,
+        "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+      },
+      "rationale": "cv-34 mentions delivering reports via schema‑validated direct‑JSON LLM output, which evidences documenting report schemas and structures."
+    },
+    {
+      "id": "gap-32",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-32",
+      "jdSpan": {
+        "start": 1653,
+        "end": 1774,
+        "text": "Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions."
+      },
+      "resumeLineId": "cv-41",
+      "resumeSpan": {
+        "start": 1923,
+        "end": 2047,
+        "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+      },
+      "rationale": "cv-41's enterprise data governance work auditing 100+ databases demonstrates direct exposure to enterprise data platforms."
+    },
+    {
+      "id": "gap-33",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-33",
+      "jdSpan": {
+        "start": 1653,
+        "end": 1774,
+        "text": "Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions."
+      },
+      "resumeLineId": "cv-48",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-48's consolidation of 100+ business units into a Power BI dashboard shows understanding of scaling standardized analytics solutions across many units/regions."
+    },
+    {
+      "id": "gap-34",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-34",
+      "jdSpan": {
+        "start": 354,
+        "end": 509,
+        "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams."
+      },
+      "resumeLineId": "cv-45",
+      "resumeSpan": {
+        "start": 2048,
+        "end": 2182,
+        "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+      },
+      "rationale": "cv-45's migration from AWS Redshift to Snowflake and stored procedure refactoring demonstrates working with data platforms and ETL processes."
+    },
+    {
+      "id": "gap-35",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-35",
+      "jdSpan": {
+        "start": 354,
+        "end": 509,
+        "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams."
+      },
+      "resumeLineId": "cv-48",
+      "resumeSpan": {
+        "start": 2183,
+        "end": 2324,
+        "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+      },
+      "rationale": "cv-48 describes deploying a Power BI dashboard across many business units, showing direct experience with reporting dashboards."
+    },
+    {
+      "id": "gap-36",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-36",
+      "jdSpan": {
+        "start": 354,
+        "end": 509,
+        "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams."
+      },
+      "resumeLineId": "cv-52",
+      "resumeSpan": {
+        "start": 2444,
+        "end": 2565,
+        "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+      },
+      "rationale": "cv-52 details identifying automation opportunities that reduced manual work by 60%, demonstrating experience with automation solutions."
+    },
+    {
+      "id": "gap-37",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-37",
+      "jdSpan": {
+        "start": 354,
+        "end": 509,
+        "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions, while collaborating with both IT and business teams."
+      },
+      "resumeLineId": "cv-12",
+      "resumeSpan": {
+        "start": 380,
+        "end": 412,
+        "text": "Bridges business and engineering"
+      },
+      "rationale": "cv-12 states 'Bridges business and engineering,' directly indicating collaboration with both IT and business teams."
+    },
+    {
+      "id": "gap-38",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-38",
+      "jdSpan": {
+        "start": 2379,
+        "end": 2429,
+        "text": "Strong analytical mindset with attention to detail"
+      },
+      "resumeLineId": "cv-4",
+      "resumeSpan": {
+        "start": 48,
+        "end": 97,
+        "text": "3+ years of prior Big-4 data analytics experience"
+      },
+      "rationale": "cv-4's 3+ years of Big‑4 data analytics experience implies a strong analytical mindset and attention to detail."
+    },
+    {
+      "id": "gap-39",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-39",
+      "jdSpan": {
+        "start": 2432,
+        "end": 2512,
+        "text": "Willingness to learn and work with real business data and cross-functional teams"
+      },
+      "resumeLineId": "cv-4",
+      "resumeSpan": {
+        "start": 48,
+        "end": 97,
+        "text": "3+ years of prior Big-4 data analytics experience"
+      },
+      "rationale": "cv-4's Big‑4 data analytics experience shows willingness and demonstrated history of working with real business data and cross‑functional teams."
+    },
+    {
+      "id": "gap-40",
+      "kind": "strong_differentiator",
+      "requirementId": "jd-40",
+      "jdSpan": {
+        "start": 2515,
+        "end": 2584,
+        "text": "Good communication skills to translate data into meaningful insights."
+      },
+      "resumeLineId": "cv-19",
+      "resumeSpan": {
+        "start": 681,
+        "end": 786,
+        "text": "Soft Skills: Project Management, Business Development & Strategy, Stakeholder Management & Communication."
+      },
+      "rationale": "cv-19 explicitly lists stakeholder management and communication among soft skills, indicating ability to translate data into insights."
+    }
+  ]
+}

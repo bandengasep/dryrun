@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { parseJD, parseResume, diffGaps } from "@dryrun/core";
-import { sseResponse } from "../../lib/stream";
+import { sseResponse } from "../../lib/sse-response";
 import { makeStructuredClient } from "../../lib/providers";
+import { flushLangfuse } from "../../lib/langfuse";
 
 // Two parse calls (in parallel) + one embeddings call + one diff call.
 export const maxDuration = 300;
@@ -44,7 +45,10 @@ export async function POST(req: Request) {
 
   if (!wantsStream) {
     try {
-      const client = makeStructuredClient();
+      const client = makeStructuredClient({
+        route: "compile",
+        metadata: { jdChars: jdText.length, resumeChars: resumeText.length },
+      });
       const [jd, resume] = await Promise.all([
         parseJD(jdText, { client }),
         parseResume(resumeText, { client }),
@@ -56,11 +60,16 @@ export async function POST(req: Request) {
         { error: e instanceof Error ? e.message : String(e) },
         { status: 500 },
       );
+    } finally {
+      await flushLangfuse();
     }
   }
 
   return sseResponse(async (emit) => {
-    const client = makeStructuredClient();
+    const client = makeStructuredClient({
+      route: "compile",
+      metadata: { jdChars: jdText.length, resumeChars: resumeText.length },
+    });
 
     emit("stage", { stage: "parsing" });
     const [jd, resume] = await Promise.all([

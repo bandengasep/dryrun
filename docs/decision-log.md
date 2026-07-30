@@ -320,6 +320,39 @@ and two of these miss targets that were locked on 26 Jul.
   link can view" is therefore a property of our route's behaviour, not of a public table policy
   that could later be widened by accident. Write-once: no update or delete path exists, so a
   shared link cannot be altered after it is handed out.
+## 2026-07-30
+
+- **LLM adjudication of the gold sets REJECTED; Codex verdicts reverted and the derived score
+  deleted.** Timothy delegated gold adjudication to ChatGPT Codex while sick, then reverted it
+  on the circularity concern ("ChatGPT measuring against ChatGPT") — the right call, and the
+  data agreed: Codex filled 168/168 verdicts but **zero missedRequirements on all five pairs**
+  (making recall a fake 1.0 by construction — the "what did the engine miss" half of the task
+  requires reading the JD independently and was silently skipped) plus a 28/28 rubber-stamp on
+  the worst-match pair. The contaminated `gold-score-2026-07-29.json` (precision 0.744 /
+  recall 1.0) was deleted rather than committed. Gold remains defined as HUMAN-adjudicated;
+  Codex's pass may be reused as disclosed triage (human reviews the 27 disagreements + samples
+  the agrees + fills missed requirements) once Timothy is well. Deadline extension to Sun 2 Aug
+  (announced 30 Jul) makes this comfortable.
+- **Langfuse integrated — tracing, prompt registration, and eval scores** (built docs-first on
+  SDK v4: `@langfuse/openai` `observeOpenAI` at the client-injection seam in `providers.ts`,
+  `LangfuseSpanProcessor` registered in Next's `instrumentation.ts`, explicit `forceFlush()` in
+  every LLM route incl. after SSE streams complete). Design decisions:
+  (a) **Production traces MASK document bodies** — strings >~200 chars redact to
+  `[masked: N chars]`. Rationale: JD/resume/answers are PII and the product's stance is
+  "nothing stored unless you save"; observability must not quietly violate it. Eval runs on our
+  own fixtures set `LANGFUSE_TRACE_FULL_IO=1` and trace fully. Usage/model/latency always visible.
+  (b) **Prompts registered, not runtime-fetched**: `dryrun/plan-compile`, `dryrun/interviewer`,
+  `dryrun/debrief-compile` live in Langfuse versioned + labeled `production`
+  (`web/scripts/langfuse-push-prompts.ts`), but the demo path keeps in-code prompts — no new
+  network dependency before submission. Runtime fetching is post-hackathon.
+  (c) Per-call traces (3 well-tagged traces per compile) over one nested request-trace —
+  lower risk with the streaming architecture; revisit later.
+  (d) `packages/core/src/` stays Langfuse-free — the seam did its job; eval-side usage is
+  devDependency-only in `test/evals/`. `stream.ts` split (`sse-response.ts`) keeps OTEL's
+  grpc/tls out of the browser bundle — found by a keyless `next build` breaking, fixed, both
+  builds verified green. Eval suites now push headline numbers as Langfuse scores.
+  ⚠ Prod traces need `LANGFUSE_*` env vars added to the Vercel project (Timothy, dashboard, 2 min).
+
 ## 2026-07-29
 
 - **VIDEO: NO-GO, called Wed 00:45 — 14 hours ahead of the pre-committed 15:00 gate.** Evidence:

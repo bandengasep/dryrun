@@ -1,0 +1,65 @@
+{
+  "startedAt": "2026-07-28T18:14:34.615Z",
+  "gitCommit": "edbf36c3e0f38103976cd4bae545ad70b4e5c2a9",
+  "corpus": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05"
+  ],
+  "config": {
+    "model": "gpt-5-mini",
+    "note": "leniently-parsed free text, no structured-output contract"
+  },
+  "metrics": {
+    "aggregateUncitedRate": 0.010309278350515464
+  },
+  "perPair": [
+    {
+      "n": "01",
+      "itemsParsed": 15,
+      "uncited": {
+        "claims": 15,
+        "uncited": 0,
+        "rate": 0
+      }
+    },
+    {
+      "n": "02",
+      "itemsParsed": 22,
+      "uncited": {
+        "claims": 22,
+        "uncited": 0,
+        "rate": 0
+      }
+    },
+    {
+      "n": "03",
+      "itemsParsed": 24,
+      "uncited": {
+        "claims": 24,
+        "uncited": 1,
+        "rate": 0.041666666666666664
+      }
+    },
+    {
+      "n": "04",
+      "itemsParsed": 18,
+      "uncited": {
+        "claims": 18,
+        "uncited": 0,
+        "rate": 0
+      }
+    },
+    {
+      "n": "05",
+      "itemsParsed": 18,
+      "uncited": {
+        "claims": 18,
+        "uncited": 0,
+        "rate": 0
+      }
+    }
+  ]
+}

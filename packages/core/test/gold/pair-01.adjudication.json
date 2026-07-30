@@ -1,0 +1,237 @@
+{
+  "gaps": [
+    {
+      "id": "gap-1",
+      "jdQuote": "You will turn raw event data into decisions for the growth team.",
+      "resumeQuote": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis",
+      "kind": "weak_evidence",
+      "rationale": "Cleaning and joining clickstream tables for an ad-hoc churn analysis (cv-7) shows working with raw event data but does not explicitly state driving decisions for the growth team.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-2",
+      "jdQuote": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting",
+      "resumeQuote": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team",
+      "kind": "strong_differentiator",
+      "rationale": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team (cv-6) directly demonstrates building SQL models for reporting.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-3",
+      "jdQuote": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting",
+      "resumeQuote": "- Built Excel models for branch performance tracking",
+      "kind": "weak_evidence",
+      "rationale": "Built Excel models for branch performance tracking (cv-10) suggests producing analytic artifacts similar to dashboards but does not explicitly state dashboard creation or maintenance.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-4",
+      "jdQuote": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting",
+      "resumeQuote": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis",
+      "kind": "weak_evidence",
+      "rationale": "Cleaning and joining clickstream tables for churn analysis (cv-7) is related to funnel-like event data work but does not explicitly describe funnel reporting.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-5",
+      "jdQuote": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting",
+      "resumeQuote": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team",
+      "kind": "strong_differentiator",
+      "rationale": "Explicitly wrote SQL queries in BigQuery to build a weekly retention report for the growth team (cv-6), directly evidencing retention reporting.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-6",
+      "jdQuote": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting",
+      "resumeQuote": "- Presented findings to the marketing lead in a monthly review",
+      "kind": "weak_evidence",
+      "rationale": "Presented findings to the marketing lead in a monthly review (cv-8) indicates involvement with marketing stakeholders but does not explicitly state campaign reporting.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-7",
+      "jdQuote": "- Partner with product managers to design and analyze A/B experiments",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line explicitly mentions partnering with product managers.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-8",
+      "jdQuote": "- Partner with product managers to design and analyze A/B experiments",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line explicitly states designing A/B experiments.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-9",
+      "jdQuote": "- Partner with product managers to design and analyze A/B experiments",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line explicitly describes analyzing A/B experiments.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-10",
+      "jdQuote": "- Own the weekly business review metrics pipeline end to end",
+      "resumeQuote": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team",
+      "kind": "weak_evidence",
+      "rationale": "Wrote SQL queries to build a weekly retention report (cv-6) demonstrates owning a weekly report but does not confirm end-to-end ownership of the full metrics pipeline.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-11",
+      "jdQuote": "- Communicate findings to non-technical stakeholders",
+      "resumeQuote": "- Presented findings to the marketing lead in a monthly review",
+      "kind": "strong_differentiator",
+      "rationale": "Presented findings to the marketing lead in a monthly review (cv-8) directly shows communicating results to non-technical stakeholders.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-12",
+      "jdQuote": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)",
+      "resumeQuote": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team",
+      "kind": "weak_evidence",
+      "rationale": "Wrote SQL queries in BigQuery (cv-6) shows hands-on SQL against a data warehouse but does not provide evidence of 3+ years of experience.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-13",
+      "jdQuote": "BigQuery",
+      "resumeQuote": "- Wrote SQL queries in BigQuery to build a weekly retention report for the growth team",
+      "kind": "strong_differentiator",
+      "rationale": "Wrote SQL queries in BigQuery to build a weekly retention report (cv-6), directly evidencing BigQuery experience.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-14",
+      "jdQuote": "Snowflake",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions Snowflake.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-15",
+      "jdQuote": "- Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design",
+      "resumeQuote": "MSc Business Analytics, NUS. Coursework: statistics, machine learning, data management.",
+      "kind": "strong_differentiator",
+      "rationale": "MSc Business Analytics with coursework in statistics (cv-3) demonstrates a formal grounding in statistics.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-16",
+      "jdQuote": "hypothesis testing",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "None of the provided lines explicitly mention hypothesis testing.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-17",
+      "jdQuote": "confidence intervals",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "None of the provided lines explicitly mention confidence intervals.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-18",
+      "jdQuote": "experiment design",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No line explicitly describes experiment design.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-19",
+      "jdQuote": "- Proficiency in Python for analysis (pandas, notebooks)",
+      "resumeQuote": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis",
+      "kind": "strong_differentiator",
+      "rationale": "Cleaned and joined clickstream tables with pandas (cv-7) demonstrates applied proficiency in Python for analysis.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-20",
+      "jdQuote": "pandas",
+      "resumeQuote": "- Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis",
+      "kind": "strong_differentiator",
+      "rationale": "Explicit use of pandas to clean and join clickstream tables for analysis (cv-7) directly evidences pandas experience.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-21",
+      "jdQuote": "notebooks",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line explicitly mentions using notebooks.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-22",
+      "jdQuote": "- Experience with a BI tool such as Tableau or Looker",
+      "resumeQuote": "Tableau (coursework only)",
+      "kind": "weak_evidence",
+      "rationale": "Tableau coursework (cv-15) indicates exposure to a BI tool but is qualified as coursework only, not professional experience.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-23",
+      "jdQuote": "Tableau",
+      "resumeQuote": "Tableau (coursework only)",
+      "kind": "weak_evidence",
+      "rationale": "Tableau is listed as coursework only (cv-15), showing familiarity but not professional Tableau experience.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-24",
+      "jdQuote": "Looker",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line mentions Looker.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-25",
+      "jdQuote": "- Familiarity with dbt and version-controlled analytics workflows is a plus",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "None of the provided lines mention dbt or version-controlled analytics workflows.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-26",
+      "jdQuote": "dbt",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line explicitly mentions dbt.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-27",
+      "jdQuote": "version-controlled analytics workflows",
+      "resumeQuote": null,
+      "kind": "missing_skill",
+      "rationale": "No resume line explicitly references version-controlled analytics workflows or tools like git.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-28",
+      "jdQuote": "- Excellent written and verbal communication in English",
+      "resumeQuote": "- Presented findings to the marketing lead in a monthly review",
+      "kind": "weak_evidence",
+      "rationale": "Presented findings to the marketing lead in a monthly review (cv-8) demonstrates verbal communication to stakeholders but does not explicitly evidence strong written communication.",
+      "verdict": ""
+    },
+    {
+      "id": "gap-29",
+      "jdQuote": "- Excellent written and verbal communication in English",
+      "resumeQuote": "- Presented findings to the marketing lead in a monthly review",
+      "kind": "strong_differentiator",
+      "rationale": "Presenting findings to the marketing lead in a monthly review (cv-8) directly shows verbal communication with non-technical stakeholders.",
+      "verdict": ""
+    }
+  ],
+  "missedRequirements": []
+}
