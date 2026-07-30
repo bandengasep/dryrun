@@ -5,6 +5,7 @@
 // barrel (src/index.ts) — same precedent as src/harness: evals are consumed by
 // the test suite via a relative import, never by the web app.
 import type { DebriefReport, Gap } from "../schemas";
+import { GapKind } from "../schemas";
 import { locateSpan } from "../parsers/spans";
 
 // ---------------------------------------------------------------------------
@@ -238,6 +239,46 @@ export interface GoldAdjudication {
  * precision = agree / total; recall = agree / (agree + missed). Both are null
  * when their denominator is 0 — nothing to score yet, not a score of zero.
  */
+/**
+ * Strict taxonomy check for a hand-filled adjudication file. Returns
+ * human-readable problems (empty array = valid). scoreGold counts any
+ * non-"agree" verdict as a disagreement, so a typo ("agre", "Agree") would
+ * silently deflate precision — the gold-score suite runs this first to make
+ * malformed sheets a loud failure naming the entry instead. "" (not yet
+ * reviewed) is legal: sheets are committed pre-filled and adjudicated
+ * incrementally.
+ */
+export function validateGoldAdjudication(adjudication: GoldAdjudication): string[] {
+  const problems: string[] = [];
+  const seen = new Set<string>();
+  for (const g of adjudication.gaps) {
+    if (seen.has(g.id)) problems.push(`duplicate gap id "${g.id}"`);
+    seen.add(g.id);
+    const v = g.verdict.trim();
+    if (v === "" || v === "agree" || v === "not_a_requirement") continue;
+    if (v.startsWith("wrong_kind:")) {
+      const kind = v.slice("wrong_kind:".length);
+      if (!GapKind.options.includes(kind as GapKind)) {
+        problems.push(
+          `${g.id}: wrong_kind suffix "${kind}" is not a GapKind (legal: ${GapKind.options.join(" | ")})`,
+        );
+      } else if (kind === g.kind) {
+        problems.push(`${g.id}: wrong_kind:${kind} names the model's own kind — contradictory verdict`);
+      }
+      continue;
+    }
+    problems.push(
+      `${g.id}: unknown verdict "${g.verdict}" (legal: "", "agree", "wrong_kind:<kind>", "not_a_requirement")`,
+    );
+  }
+  adjudication.missedRequirements.forEach((m, i) => {
+    if (typeof m !== "string" || m.trim().length === 0) {
+      problems.push(`missedRequirements[${i}] is empty — each entry must be a verbatim JD quote`);
+    }
+  });
+  return problems;
+}
+
 export function scoreGold(
   modelGaps: Gap[],
   adjudication: GoldAdjudication,

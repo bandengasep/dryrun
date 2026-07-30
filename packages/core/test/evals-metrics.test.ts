@@ -12,6 +12,7 @@ import {
   scoreGold,
   starComplianceRate,
   uncitedRate,
+  validateGoldAdjudication,
   type GoldAdjudication,
 } from "../src/evals";
 import type { DebriefReport, Gap } from "../src/schemas";
@@ -390,5 +391,67 @@ describe("scoreGold", () => {
     const adjudication: GoldAdjudication = { gaps: [], missedRequirements: ["Airflow", "dbt"] };
     const result = scoreGold(modelGaps, adjudication);
     expect(result).toEqual({ precision: null, recall: 0, agree: 0, total: 0, missed: 2 });
+  });
+});
+
+describe("validateGoldAdjudication", () => {
+  const entry = (id: string, verdict: string, kind = "missing_skill") => ({
+    id,
+    jdQuote: "a",
+    resumeQuote: null,
+    kind,
+    rationale: "r",
+    verdict,
+  });
+
+  it("accepts every legal verdict, including empty (not yet reviewed)", () => {
+    const adjudication: GoldAdjudication = {
+      gaps: [
+        entry("gap-1", ""),
+        entry("gap-2", "agree"),
+        entry("gap-3", "not_a_requirement"),
+        entry("gap-4", "wrong_kind:weak_evidence"),
+      ],
+      missedRequirements: ["Terraform"],
+    };
+    expect(validateGoldAdjudication(adjudication)).toEqual([]);
+  });
+
+  it("names the entry for a typo'd verdict instead of letting scoreGold count it as disagreement", () => {
+    const problems = validateGoldAdjudication({
+      gaps: [entry("gap-1", "agre"), entry("gap-2", "Agree")],
+      missedRequirements: [],
+    });
+    expect(problems).toHaveLength(2);
+    expect(problems[0]).toContain("gap-1");
+    expect(problems[1]).toContain("gap-2");
+  });
+
+  it("rejects a wrong_kind suffix that is not a GapKind", () => {
+    const problems = validateGoldAdjudication({
+      gaps: [entry("gap-1", "wrong_kind:weak")],
+      missedRequirements: [],
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain('"weak"');
+  });
+
+  it("rejects wrong_kind naming the model's own kind (contradictory verdict)", () => {
+    const problems = validateGoldAdjudication({
+      gaps: [entry("gap-1", "wrong_kind:missing_skill", "missing_skill")],
+      missedRequirements: [],
+    });
+    expect(problems).toHaveLength(1);
+    expect(problems[0]).toContain("contradictory");
+  });
+
+  it("rejects duplicate gap ids and empty missedRequirements entries", () => {
+    const problems = validateGoldAdjudication({
+      gaps: [entry("gap-1", "agree"), entry("gap-1", "agree")],
+      missedRequirements: ["  "],
+    });
+    expect(problems).toHaveLength(2);
+    expect(problems[0]).toContain("duplicate");
+    expect(problems[1]).toContain("missedRequirements[0]");
   });
 });
