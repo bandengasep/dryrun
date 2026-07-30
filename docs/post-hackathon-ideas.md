@@ -24,6 +24,13 @@ Parking lot for ideas that are **out of scope until 31 Jul 2026** (see the cut l
   extension reading the page in the user's own session. Dev-side MCP scraping for fixtures is fine today.
 - **Whole-session recording + highlight reel** (VideoDB) — record the full mock, auto-cut a
   "moments to rework" reel from debrief quotes' timestamps.
+- **Gold adjudication via Langfuse Annotation Queues** (raised 30 Jul, deferred) — score configs
+  for the verdict taxonomy, keyboard-driven queue UI, scores exported via API back into the
+  committed `GoldAdjudication` JSON. Right shape once gold has multiple annotators or grows past
+  ~10 pairs; wrong week pre-deadline (2–4h plumbing on the gated path, and item-by-item queues
+  structurally bias against the `missedRequirements[]` recall sweep — the half Codex skipped).
+  NEVER via Datasets+Experiments LLM evaluators: that recreates the reverted circularity. Gold
+  stays human.
 - **Voice/video answers, done right** — the VideoDB timed-transcript rung (substrate already
   in-repo and dormant: TimedWord, joinTimedWords, timeForSpan, debrief videoTime — 14 passing
   timeline tests) remains the proper design: exact quote→timestamp arithmetic, no STT-drift in the
