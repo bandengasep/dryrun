@@ -393,6 +393,22 @@ and two of these miss targets that were locked on 26 Jul.
   JD + resume spans, 100% grounding), verifiability (locateSpan-validated quotes + visible
   `dropped[]`).
 
+- **Gold adjudication DESCOPED — reported as not-measured, never faked.** Timothy's call (30 Jul
+  eve): ill (sore throat ruled out even the dictation workflow), and the extension hours are
+  consumed by the remaining evidence/freeze lanes. AI adjudication was declined twice this week
+  (Codex reverted 30 Jul; Claude declined same day when asked directly) — the standing rule is
+  gold stays HUMAN or UNMEASURED, never synthetic. Consequences, all pre-committed branches:
+  (a) README criterion row becomes "gold precision/recall: not measured — descoped; adjudication
+  protocol, grouped review sheets, and strict taxonomy validation are committed and CI-green"
+  (the infrastructure is the Trajectory exhibit; first post-deadline task).
+  (b) Latency levers are NOT adopted — the lever policy's no-gold branch applies: targets
+  restated with measurements (compile ~100–146s vs ≤60s, first-token ~6.2s vs ≤3s).
+  (c) Micro-adjudication stays open, not owed: pair-01 alone (22 requirements, typed not spoken,
+  ~15 min) would revive the row as "n=1 pair, disclosed" if energy appears Fri/Sat.
+  (d) The engine-verbosity finding stands on mechanical evidence alone: 168 gaps collapse to 89
+  distinct JD requirements; pair-05 is 53 gaps over 18 requirements with one kitchen-sink skills
+  line accounting for 16 — the dedupe lever's motivating exhibit, no gold needed.
+
 ## 2026-07-29
 
 - **VIDEO: NO-GO, called Wed 00:45 — 14 hours ahead of the pre-committed 15:00 gate.** Evidence:
