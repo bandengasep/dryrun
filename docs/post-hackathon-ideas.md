@@ -24,5 +24,12 @@ Parking lot for ideas that are **out of scope until 31 Jul 2026** (see the cut l
   extension reading the page in the user's own session. Dev-side MCP scraping for fixtures is fine today.
 - **Whole-session recording + highlight reel** (VideoDB) — record the full mock, auto-cut a
   "moments to rework" reel from debrief quotes' timestamps.
-- **Voice-only answer rung** — STT for spoken answers without camera; superseded this week by the
-  video rung, cheaper to add later once transcripts are the debrief substrate.
+- **Voice/video answers, done right** — the VideoDB timed-transcript rung (substrate already
+  in-repo and dormant: TimedWord, joinTimedWords, timeForSpan, debrief videoTime — 14 passing
+  timeline tests) remains the proper design: exact quote→timestamp arithmetic, no STT-drift in the
+  receipts chain. The interim rung — browser `webkitSpeechRecognition` mic dictation into the
+  session composer as an editable draft (review-before-send preserves receipts; flagged
+  `NEXT_PUBLIC_ENABLE_MIC`) — was designed 30 Jul as a gated stretch and ships pre-deadline only
+  if its evidence gate opens (decision-log 2026-07-30). Realtime speech-to-speech stays banned
+  (credit trap). Context: LinkedIn Learning's AI Role Play (found 30 Jul) made voice the visible
+  modality gap; parity pressure is real but post-hackathon.
