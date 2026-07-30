@@ -68,35 +68,54 @@ for (const n of pairNs) {
   const jdText = readFileSync(resolve(FIXTURES_DIR, `jd-${n}.txt`), "utf8");
   const resumeText = readFileSync(resolve(FIXTURES_DIR, `resume-${n}.txt`), "utf8");
 
+  // Gaps grouped by their (verbatim) JD quote, first-appearance order: the
+  // engine often explodes one multi-skill JD line into many gaps (pair-05:
+  // 53 gaps but only 18 distinct requirements), and reading the requirement
+  // once then judging its evidence claims as a list is far faster than
+  // re-reading the same JD context per gap. Grouping is mechanical (exact
+  // jdQuote equality) — order within and across groups is untouched.
+  const groups = new Map<string, typeof adjudication.gaps>();
+  for (const g of adjudication.gaps) {
+    const list = groups.get(g.jdQuote) ?? [];
+    list.push(g);
+    groups.set(g.jdQuote, list);
+  }
+
   const filled = adjudication.gaps.filter((g) => g.verdict.trim().length > 0).length;
   const parts: string[] = [
-    `# Pair ${n} — adjudication review sheet (${adjudication.gaps.length} gaps, ${filled} adjudicated)`,
+    `# Pair ${n} — adjudication review sheet (${adjudication.gaps.length} gaps across ${groups.size} JD requirements, ${filled} adjudicated)`,
     "",
     `> **Sources:** JD = \`test/fixtures/jd-${n}.txt\` · Resume = \`test/fixtures/resume-${n}.txt\``,
     `> Verdicts go in \`test/gold/pair-${n}.adjudication.json\``,
     ">",
     "> GENERATED READING AID — mechanical re-presentation of pair-" + n + ".adjudication.json",
-    "> plus fixture context. No judgments live here; verdicts go in the JSON.",
+    "> plus fixture context, grouped by shared JD requirement. No judgments live here.",
     ">",
-    "> Verdicts: `agree` · `wrong_kind:<missing_skill|weak_evidence|strong_differentiator>` · `not_a_requirement`",
+    "> Per gap: `agree` · `wrong_kind:<missing_skill|weak_evidence|strong_differentiator>` · `not_a_requirement`",
     "> Then sweep the `·` lines of the coverage map at the bottom: any requirement the",
     "> engine never surfaced goes into `missedRequirements[]` as a verbatim JD quote.",
     "",
   ];
 
-  for (const g of adjudication.gaps) {
+  let req = 0;
+  for (const [jdQuote, gaps] of groups) {
+    req++;
     parts.push(
       `---`,
       ``,
-      `### ${g.id} · \`${g.kind}\` · verdict so far: ${g.verdict.trim() ? `\`${g.verdict}\`` : "_(none)_"}`,
+      `## Requirement ${req}/${groups.size} (${gaps.length} ${gaps.length === 1 ? "claim" : "claims"})`,
       ``,
-      `**JD:** ${inContext(jdText, g.jdQuote)}`,
-      ``,
-      `**Resume:** ${inContext(resumeText, g.resumeQuote)}`,
-      ``,
-      `**Engine's rationale:** ${g.rationale}`,
+      `**JD:** ${inContext(jdText, jdQuote)}`,
       ``,
     );
+    for (const g of gaps) {
+      parts.push(
+        `- **${g.id}** · \`${g.kind}\` · verdict so far: ${g.verdict.trim() ? `\`${g.verdict}\`` : "_(none)_"}`,
+        `  - Resume: ${inContext(resumeText, g.resumeQuote)}`,
+        `  - Rationale: ${g.rationale}`,
+      );
+    }
+    parts.push("");
   }
 
   parts.push(
