@@ -26,10 +26,13 @@ export interface ParserOptions {
   /** Override the runtime model (stack lock: gpt-5-mini, fallback gpt-4.1-mini). */
   model?: string;
   /**
-   * Spread LAST into the responses.parse request params (e.g.
-   * `{ reasoning: { effort: "low" } }`). Eval-only lever for the
-   * latency-vs-quality tradeoff on the receipts-critical parse stage — never
-   * set by product code.
+   * Spread LAST into the responses.parse request params. Quality-affecting
+   * levers (e.g. `{ reasoning: { effort: "low" } }`) stay eval-only — never
+   * set by product code, because they can change what the model returns on
+   * the receipts-critical parse stage. Quality-neutral transport params
+   * (e.g. `{ service_tier: "priority" }` — same model, same outputs, only
+   * serving speed) may be set by product code behind an env flag; see
+   * `structuredRequestOverrides` in web/app/lib/providers.ts.
    */
   requestOverrides?: Record<string, unknown>;
 }

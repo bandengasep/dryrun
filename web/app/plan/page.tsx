@@ -29,6 +29,11 @@ type PlanStatus =
   // so it gets its own copy rather than a generic failure.
   | { phase: "error"; message: string; kind: "grounding" | "generic" };
 
+// Readability cap, not a pipeline cap — every gap still compiles, ships in the
+// payload, and stays reachable. Fixtures run up to 168 gaps (mostly
+// strong_differentiator strengths); nobody reads that many cards in a row.
+const GAP_DISPLAY_CAP = 10;
+
 export default function PlanScreen() {
   const router = useRouter();
   const { compile, plan } = useSession();
@@ -37,6 +42,7 @@ export default function PlanScreen() {
   const [status, setStatus] = useState<PlanStatus>({ phase: "idle" });
   const [openGapId, setOpenGapId] = useState<string | null>(null);
   const [drawer, setDrawer] = useState<{ gap: Gap; question: InterviewQuestion } | null>(null);
+  const [gapsExpanded, setGapsExpanded] = useState(false);
 
   // React 19 Strict Mode mounts effects twice in dev; without this the plan
   // compiles twice and we pay for it twice.
@@ -142,6 +148,20 @@ export default function PlanScreen() {
   const counts = countByKind(compile.gaps);
   const questions = plan?.questions ?? [];
 
+  // Sort a copy by display priority (missing_skill, then weak_evidence, then
+  // strong_differentiator), stable within kind so JD order survives. The
+  // stored session state (`compile.gaps`) is never touched — this is a
+  // render-only view, and the count strip above still counts the full set.
+  const sortedGaps = compile.gaps
+    .map((gap, index) => ({ gap, index }))
+    .sort((a, b) => {
+      const kindDelta = KIND_ORDER.indexOf(a.gap.kind) - KIND_ORDER.indexOf(b.gap.kind);
+      return kindDelta !== 0 ? kindDelta : a.index - b.index;
+    })
+    .map(({ gap }) => gap);
+  const isCapped = sortedGaps.length > GAP_DISPLAY_CAP;
+  const visibleGaps = gapsExpanded || !isCapped ? sortedGaps : sortedGaps.slice(0, GAP_DISPLAY_CAP);
+
   return (
     <main className="app-main">
       <div className={styles.content}>
@@ -149,8 +169,10 @@ export default function PlanScreen() {
 
         <header className={styles.header}>
           <p className="kicker">
-            Session plan · compiled from {compile.gaps.length}{" "}
-            {compile.gaps.length === 1 ? "gap" : "gaps"}
+            Session plan ·{" "}
+            {isCapped && !gapsExpanded
+              ? `showing the top ${GAP_DISPLAY_CAP} of ${compile.gaps.length} gaps`
+              : `compiled from ${compile.gaps.length} ${compile.gaps.length === 1 ? "gap" : "gaps"}`}
           </p>
           <h1 className={styles.title}>Your interview, compiled</h1>
           <p className={styles.subtitle}>
@@ -195,7 +217,7 @@ export default function PlanScreen() {
                 <span className={styles.sectionNote}>every row cites both documents</span>
               </div>
               <div className={styles.list}>
-                {compile.gaps.map((gap) => (
+                {visibleGaps.map((gap) => (
                   <GapCard
                     key={gap.id}
                     gap={gap}
@@ -205,6 +227,14 @@ export default function PlanScreen() {
                   />
                 ))}
               </div>
+              {isCapped && (
+                <button
+                  onClick={() => setGapsExpanded((v) => !v)}
+                  className={`btn btn-outline btn-sm ${styles.gapsExpander}`}
+                >
+                  {gapsExpanded ? "Show fewer" : `Show all ${sortedGaps.length} gaps`}
+                </button>
+              )}
             </section>
 
             <section className={styles.section}>

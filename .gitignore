@@ -1,6 +1,7 @@
 # ---- Secrets / env (NEVER commit real secrets) ----
 .env
 .env.*
+.envrc
 !.env.example
 
 # ---- Node / pnpm ----
@@ -17,6 +18,7 @@ dist/
 .next/
 out/
 next-env.d.ts
+.vercel/
 
 # ---- Test / coverage ----
 coverage/

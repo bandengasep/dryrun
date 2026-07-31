@@ -27,13 +27,19 @@ describe.skipIf(!evalsEnabled)("consistency — run-to-run Jaccard stability of 
       }
 
       const perPair: unknown[] = [];
+      // EVAL_MODEL swaps the whole structured lane's model for this run (the
+      // 31 Jul model-probe candidates); unset = the shipped default. Rides the
+      // spread-last requestOverrides seam, same as the reasoning levers.
+      const modelOverrides = process.env.EVAL_MODEL
+        ? { model: process.env.EVAL_MODEL }
+        : undefined;
 
       for (const pair of targets) {
         console.log(`[consistency] pair-${pair.n}: starting ${RUNS_PER_PAIR} runs`);
         const client = new OpenAI();
         const [jd, resume] = await Promise.all([
-          parseJD(pair.jdText, { client }),
-          parseResume(pair.resumeText, { client }),
+          parseJD(pair.jdText, { client, requestOverrides: modelOverrides }),
+          parseResume(pair.resumeText, { client, requestOverrides: modelOverrides }),
         ]);
 
         // A run where the citation guard rejects the adjudication (DiffError)
@@ -44,7 +50,7 @@ describe.skipIf(!evalsEnabled)("consistency — run-to-run Jaccard stability of 
         let completed = 0;
         const outcomes = await runPool(RUNS_PER_PAIR, CONCURRENCY, async () => {
           try {
-            const gaps = await diffGaps(jd, resume, { client });
+            const gaps = await diffGaps(jd, resume, { client, requestOverrides: modelOverrides });
             completed++;
             console.log(`[consistency] pair-${pair.n}: run ${completed}/${RUNS_PER_PAIR} done (${gaps.length} gaps)`);
             return { ok: true as const, gaps };
@@ -88,10 +94,14 @@ describe.skipIf(!evalsEnabled)("consistency — run-to-run Jaccard stability of 
       const meanJaccard = jaccards.length === 0 ? null : jaccards.reduce((a, b) => a + b, 0) / jaccards.length;
 
       await writeResult(
-        "consistency",
+        process.env.EVAL_MODEL ? `consistency-${process.env.EVAL_MODEL}` : "consistency",
         {
           corpus: targets.map((p) => p.n),
-          config: { runsPerPair: RUNS_PER_PAIR, concurrency: CONCURRENCY, model: "gpt-5-mini (default)" },
+          config: {
+            runsPerPair: RUNS_PER_PAIR,
+            concurrency: CONCURRENCY,
+            model: process.env.EVAL_MODEL ?? "gpt-5-mini (default)",
+          },
           metrics: {},
           perPair,
         },

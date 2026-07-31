@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { propagateAttributes } from "@langfuse/tracing";
 import { DebriefError, DebriefRequest, compileDebrief } from "@dryrun/core";
-import { makeStructuredClient } from "../../lib/providers";
+import { makeStructuredClient, structuredModel } from "../../lib/providers";
 import { flushLangfuse } from "../../lib/langfuse";
 
 // One batched strict-SO call over the answered questions.
@@ -42,6 +42,8 @@ export async function POST(req: Request) {
           route: "debrief",
           metadata: { questionCount: plan.questions.length, transcriptTurns: transcript.length },
         }),
+        // Adopted structured-lane model (31 Jul gates); undefined = core default.
+        model: structuredModel(),
       }),
     );
     return NextResponse.json({ debrief });

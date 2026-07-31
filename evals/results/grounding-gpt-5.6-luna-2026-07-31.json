@@ -1,0 +1,107 @@
+{
+  "startedAt": "2026-07-31T09:20:36.817Z",
+  "gitCommit": "d4aeb7df9feaa33da5d564cc01e0f3d2b59877f6",
+  "corpus": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05"
+  ],
+  "config": {
+    "model": "gpt-5.6-luna"
+  },
+  "metrics": {},
+  "perPair": [
+    {
+      "n": "01",
+      "gapCount": 26,
+      "grounding": {
+        "grounded": 6,
+        "total": 6,
+        "rate": 1
+      },
+      "star": 1,
+      "mix": {
+        "behavioral": 3,
+        "conceptual": 3
+      },
+      "duplicateGroups": [
+        [
+          "q-1",
+          "q-2"
+        ],
+        [
+          "q-3",
+          "q-4",
+          "q-5"
+        ]
+      ]
+    },
+    {
+      "n": "02",
+      "gapCount": 31,
+      "grounding": {
+        "grounded": 6,
+        "total": 6,
+        "rate": 1
+      },
+      "star": 1,
+      "mix": {
+        "conceptual": 5,
+        "behavioral": 1
+      },
+      "duplicateGroups": []
+    },
+    {
+      "n": "03",
+      "gapCount": 23,
+      "grounding": {
+        "grounded": 6,
+        "total": 6,
+        "rate": 1
+      },
+      "star": 1,
+      "mix": {
+        "behavioral": 5,
+        "conceptual": 1
+      },
+      "duplicateGroups": []
+    },
+    {
+      "n": "04",
+      "gapCount": 55,
+      "grounding": {
+        "grounded": 6,
+        "total": 6,
+        "rate": 1
+      },
+      "star": 1,
+      "mix": {
+        "behavioral": 4,
+        "conceptual": 2
+      },
+      "duplicateGroups": []
+    },
+    {
+      "n": "05",
+      "gapCount": 58,
+      "grounding": {
+        "grounded": 6,
+        "total": 6,
+        "rate": 1
+      },
+      "star": 1,
+      "mix": {
+        "behavioral": 3,
+        "conceptual": 3
+      },
+      "duplicateGroups": [
+        [
+          "q-1",
+          "q-2"
+        ]
+      ]
+    }
+  ]
+}

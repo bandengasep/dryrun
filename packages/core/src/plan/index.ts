@@ -12,63 +12,31 @@
 //     scaffold is safe; keeping one implies a story the gap never evidenced)
 // Displayed-question grounding is therefore 100% by construction; the model's
 // pre-guard rate is what the eval measures.
+//
+// The prompt, the payload and those guards live in ./shared, because the Agnes
+// transport (./chat-adapter) must run the identical ones — see that file.
 import { zodTextFormat } from "openai/helpers/zod";
-import type OpenAI from "openai";
-import type { Gap, InterviewQuestion, SessionPlan } from "../schemas";
+import type { Gap, SessionPlan } from "../schemas";
 import { PlanWire } from "./wire";
+import { buildPlanRequest, finalizePlan, PLAN_SYSTEM_PROMPT, type PlanOptions } from "./shared";
 import { DEFAULT_MODEL } from "../parsers";
 
 export { PlanWire } from "./wire";
-
-export const DEFAULT_MAX_QUESTIONS = 6;
-
-export interface PlanOptions {
-  client: OpenAI;
-  /** Compile model (stack lock: gpt-5-mini). */
-  model?: string;
-  /** Hard cap on questions in the compiled plan. */
-  maxQuestions?: number;
-  /**
-   * Called with the parsed wire object BEFORE the grounding/STAR guards run.
-   * Eval-only hook for measuring the model's pre-guard rates (the displayed
-   * rate is 100% by construction, so it isn't the interesting number) —
-   * never set by product code.
-   */
-  onWire?: (wire: unknown) => void;
-  /**
-   * Spread LAST into the responses.parse request params (e.g.
-   * `{ reasoning: { effort: "low" } }`). Eval-only lever for the
-   * latency-vs-quality tradeoff on the receipts-critical plan-compile stage —
-   * never set by product code.
-   */
-  requestOverrides?: Record<string, unknown>;
-}
-
-/** Raised on refusals, empty plans, or ungrounded questions. */
-export class PlanError extends Error {}
-
-/**
- * Exported for Langfuse prompt registration (scripts/langfuse-push-prompts.ts
- * in web/) only — a copy for reference/diffing in the Langfuse UI. Nothing in
- * the runtime path fetches a prompt back from Langfuse; this constant remains
- * the single source of truth actually sent to the model below.
- */
-export const PLAN_SYSTEM_PROMPT = [
-  "You compile a mock-interview question set from measured gaps between a job description and a candidate's resume.",
-  "Each gap is already evidenced: it cites the JD line that demands something and the resume line (if any) that speaks to it.",
-  "Emit one question per gap you choose to cover, in the order the gaps are given. Echo that gap's id in `gapId` — never invent an id.",
-  "Question policy, by gap kind:",
-  '- "missing_skill": the resume shows no evidence, so there is no story to tell. Emit kind "conceptual" — probe understanding and approach. starHints MUST be null.',
-  '- "weak_evidence": the resume touches the requirement but shallowly. Emit kind "behavioral" — ask for the lived specifics. starHints MUST be filled in.',
-  '- "strong_differentiator": usually skip; cover at most ONE, as a behavioral question that lets the candidate show depth.',
-  "starHints are one-line prompts telling the candidate what each STAR beat should contain — never a scripted answer, never invented facts about them.",
-  "Ask what a real interviewer would ask: one question, plainly worded, no preamble and no multi-part compound questions.",
-  "rationale: one sentence naming what this gap makes worth probing.",
-].join("\n");
+export {
+  DEFAULT_MAX_QUESTIONS,
+  PlanError,
+  PLAN_SYSTEM_PROMPT,
+  type PlanOptions,
+} from "./shared";
+export { compileSessionPlanViaChat } from "./chat-adapter";
 
 /**
  * Compile the interview a candidate is likely to face from their measured gaps.
  * `gaps` must come from diffGaps — they carry the receipts the plan inherits.
+ *
+ * This is the OpenAI path: strict structured outputs via `responses.parse`.
+ * Agnes cannot serve it (its /responses endpoint ignores json_schema) — use
+ * `compileSessionPlanViaChat` for that provider.
  */
 export async function compileSessionPlan(
   gaps: Gap[],
@@ -76,77 +44,23 @@ export async function compileSessionPlan(
   resumeText: string,
   opts: PlanOptions,
 ): Promise<SessionPlan> {
-  if (gaps.length === 0) {
-    throw new PlanError(
-      "Cannot compile a session plan from zero gaps — there is nothing to ground questions in",
-    );
-  }
-  const maxQuestions = opts.maxQuestions ?? DEFAULT_MAX_QUESTIONS;
+  const { maxQuestions, userContent } = buildPlanRequest(gaps, opts);
 
-  const payload = {
-    maxQuestions,
-    gaps: gaps.map((g) => ({
-      id: g.id,
-      kind: g.kind,
-      jdQuote: g.jdSpan.text,
-      resumeQuote: g.resumeSpan?.text ?? null,
-      rationale: g.rationale,
-    })),
-  };
   const response = await opts.client.responses.parse({
     model: opts.model ?? DEFAULT_MODEL,
     input: [
       { role: "system", content: PLAN_SYSTEM_PROMPT },
-      { role: "user", content: JSON.stringify(payload) },
+      { role: "user", content: userContent },
     ],
     text: { format: zodTextFormat(PlanWire, "session_plan") },
     ...opts.requestOverrides,
   });
-  const wire = response.output_parsed;
-  if (!wire) {
-    throw new PlanError(
-      "Plan compile returned no structured output (refusal or empty response)",
-    );
-  }
-  opts.onWire?.(wire);
-  if (wire.questions.length === 0) {
-    throw new PlanError("Plan compile returned zero questions");
-  }
 
-  // Cap first, then guard: questions beyond the cap are never displayed, so
-  // holding them to the grounding bar would fail a compile over output we
-  // already discarded. Everything that ships is guarded.
-  const gapIds = new Set(gaps.map((g) => g.id));
-  const questions: InterviewQuestion[] = [];
-  for (const q of wire.questions.slice(0, maxQuestions)) {
-    if (!gapIds.has(q.gapId)) {
-      throw new PlanError(
-        `Question cites ${q.gapId}, which is not a compiled gap — a question without a receipt is not shippable`,
-      );
-    }
-    if (q.kind === "behavioral" && q.starHints === null) {
-      throw new PlanError(
-        `Behavioral question for ${q.gapId} arrived without STAR hints`,
-      );
-    }
-    questions.push({
-      id: `q-${questions.length + 1}`,
-      kind: q.kind,
-      gapId: q.gapId,
-      question: q.question,
-      // Conceptual questions scaffold nothing — drop any hints rather than
-      // implying a story the gap never evidenced.
-      starHints: q.kind === "behavioral" ? q.starHints : null,
-      rationale: q.rationale,
-    });
-  }
-
-  return {
-    id: `plan-${Date.now()}`,
-    createdAt: new Date().toISOString(),
+  return finalizePlan(response.output_parsed, {
+    gaps,
     jdText,
     resumeText,
-    gaps,
-    questions,
-  };
+    maxQuestions,
+    onWire: opts.onWire,
+  });
 }
