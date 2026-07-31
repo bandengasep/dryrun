@@ -1,5 +1,5 @@
-<!-- Body word count: 950 (headings + prose below these comments; excludes the comments). Limit ≤1,000. -->
-<!-- DRAFT — Vedika polishes. Two ⟦LATENCY-OUTCOME⟧ markers get filled Sat AM from evals/results/latency-program. -->
+<!-- Body word count: 999 (headings + prose below these comments; excludes the comments). Limit ≤1,000. -->
+<!-- DRAFT — Vedika polishes. Latency numbers final as of 31 Jul prod probes (decision-log 2026-07-31). -->
 
 # DryRun — rehearse the interview you're about to have
 
@@ -17,13 +17,13 @@ Alternatives we named and rejected: the assess-and-advise coach pattern — AI-a
 
 Every locked criterion is reported — met, missed, or restated; none silently dropped. Full table in the README; raw runs in `evals/results/`.
 
-Grounding: 29/29 questions (100%) cited a real gap before the guard, across five JD-resume pairs; the guard makes the displayed rate 100% by construction. Consistency: mean pairwise Jaccard 0.794 (pair-01, 20 runs) and 0.900 (pair-04) against ≥0.6. Debrief latency: 22.7s against ≤45s. The remaining latency rows: ⟦LATENCY-OUTCOME — filled Sat AM from evals/results/latency-program⟧. If the Saturday program moves nothing, those rows stand as restated misses with measurements — compile 99.65s fixture / 146.3s real JD vs ≤60s, plan 33.4s vs ≤20s, first token ~6.2s vs ≤3s — each with a named, untried lever.
+Grounding: 29/29 questions (100%) cited a real gap before the guard, across five JD-resume pairs — re-verified 30/30 on the adopted engine; the guard makes the displayed rate 100% by construction. Consistency: mean pairwise Jaccard 0.794/0.900 against ≥0.6, and 0.881/0.770 on the adopted engine. Latency, after a gated 31-Jul program: compile 16.6–19.1s fixture and 40–45s on the real Venture JD in production (was 99.65s / 146.3s), plan 9.4–11.0s (was 33.4s), debrief 6.9s vs ≤45s — met by adopting a newer model only after it passed those same gates. The faster path we refused that night: lowering reasoning effort cut latency 4× but collapsed requirement extraction — speed bought by reading less of the JD. First-turn token stays missed at 6.9–9.2s, gateway-bound on the partner lane, restated.
 
 The zero-shot baseline did not show what we expected, and we say so: asked politely to cite, gpt-5-mini was 1.03% uncited (28 Jul) and 0.0% on the audited re-run — 100/100 quotes verbatim. Our claim was never that models can't quote. It is that the baseline's citedness is a habit with no enforcement — its one 28-Jul fabrication would have shipped undetected — and its quotes are unanchored strings a reader cannot check; verifying its 0% required exactly the locator machinery DryRun ships. The claim is enforcement plus verifiability, not model incapacity. Provider exhibit: on plan compile, Agnes ran 2.40× faster than OpenAI at receipts parity — 13.2s vs 31.6s mean, grounding 12/12 and STAR compliance 100% on both.
 
 ## Constraints
 
-Cost: not fully captured, and we report that rather than invent a number — cost threading in the eval suites nulls out, and Agnes publishes no per-token price, so we report token counts. Latency: ⟦LATENCY-OUTCOME⟧ — misses restated with measurements above. Reliability: per-request provider failover on the interviewer lane, labeled in the UI; guards that throw rather than display an ungrounded receipt; SSE streaming with 10-second heartbeats on stateless serverless routes. Safety and privacy: production Langfuse traces mask document bodies — JD, resume, and answers are PII, and observability must not quietly violate "nothing stored unless you save"; nothing persists server-side except the explicit write-once "Save & share" row; screenshot ingestion lands as an editable draft the user confirms — vision is never the source of record.
+Cost: not fully captured, and we report that rather than invent a number — cost threading in the eval suites nulls out, and Agnes publishes no per-token price, so we report token counts (≈$0.035/compile derivable at posted rates, labeled derived). Latency: three of four targets met through the gated model swap; the fourth restated with its measurement. Reliability: per-request provider failover on the interviewer lane, labeled in the UI; guards that throw rather than display an ungrounded receipt; SSE streaming with 10-second heartbeats on stateless serverless routes. Safety and privacy: production Langfuse traces mask document bodies — JD, resume, and answers are PII, and observability must not quietly violate "nothing stored unless you save"; nothing persists server-side except the explicit write-once "Save & share" row; screenshot ingestion lands as an editable draft the user confirms — vision is never the source of record.
 
 ## Honesty & Trajectory
 

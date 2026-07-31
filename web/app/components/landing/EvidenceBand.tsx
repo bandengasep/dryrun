@@ -1,8 +1,8 @@
 // EvidenceBand — "the receipts": every locked success criterion from
-// docs/spec-pivot-2026-07-26.md as Target | Measured. Where we have real
-// numbers logged in docs/decision-log.md (27-28 Jul), we show them — misses
-// included, styled as misses, not smoothed over. Everything else says
-// "measured Thursday" rather than inventing a number to fill the cell.
+// docs/spec-pivot-2026-07-26.md as Target | Measured. Final numbers, 31 Jul:
+// mirrors the README Evidence table; misses and non-measurements are styled
+// as what they are, not smoothed over. Sources: evals/results/ + the
+// decision log (latency program + gpt-5.6-luna adoption, 2026-07-31).
 
 import styles from "./EvidenceBand.module.css";
 
@@ -17,68 +17,68 @@ const ROWS: Row[] = [
   {
     metric: "Displayed-question grounding",
     target: "100% by construction (≥95% pre-guard)",
-    measured: "measured Thursday",
-    status: "pending",
+    measured: "pre-guard 29/29 across 5 pairs (30/30 on the adopted engine); displayed rate guard-enforced",
+    status: "met",
   },
   {
     metric: "Displayed debrief quotes valid",
     target: "100% by construction · dropped-rate <10%",
-    measured: "measured Thursday",
-    status: "pending",
+    measured: "every quote a literal slice of the candidate's turn, 0 dropped (live sessions, disclosed n)",
+    status: "met",
   },
   {
     metric: "Gap-set consistency (20 runs/pair)",
     target: "mean pairwise Jaccard ≥0.6",
-    measured: "measured Thursday",
-    status: "pending",
+    measured: "0.881 / 0.770 on the adopted engine (0.794 / 0.900 baseline)",
+    status: "met",
   },
   {
     metric: "Gap precision / recall vs gold",
     target: "≥0.8 / ≥0.7",
-    measured: "measured Thursday",
+    measured: "not measured — descoped 30 Jul; protocol + review sheets committed, CI-green",
     status: "pending",
   },
   {
     metric: "Cost (compile / session)",
     target: "≤$0.05 / ≤$0.25 median",
-    measured: "measured Thursday",
+    measured: "not captured — token counts reported; ≈$0.035/compile derivable at posted rates",
     status: "pending",
   },
   {
     metric: "Compile latency (p50)",
     target: "≤60s",
-    measured: "99.65s, production — target missed, restating with evidence Thursday",
-    status: "missed",
+    measured: "16.6–19.1s fixture · 40–45s real JD, production 31 Jul (was 99.65s / 146.3s)",
+    status: "met",
   },
   {
     metric: "Plan latency",
     target: "≤20s",
-    measured: "measured Thursday",
-    status: "pending",
+    measured: "9.4–11.0s production 31 Jul (was 33.4s)",
+    status: "met",
   },
   {
     metric: "First-turn token",
     target: "≤3s",
-    measured: "~6.2s — target missed, restating with evidence Thursday",
+    measured: "6.9–9.2s — still missed after a 41% prompt trim; partner-gateway-bound, restated",
     status: "missed",
   },
   {
     metric: "Debrief latency",
     target: "≤45s",
-    measured: "22.7s — target met",
+    measured: "6.9s production 31 Jul (22.7s baseline)",
     status: "met",
   },
   {
     metric: "Video quote→timestamp exact mapping",
     target: "≥90%",
-    measured: "measured Thursday",
+    measured: "lane no-go'd at its pre-committed gate; substrate dormant, 14 passing tests",
     status: "pending",
   },
   {
     metric: "Zero-shot baseline uncited rate",
     target: "reported side-by-side",
-    measured: "measured Thursday",
-    status: "pending",
+    measured: "0.0% audited re-run (100/100 verbatim) · 1.03% on 28 Jul — see the README",
+    status: "met",
   },
 ];
 
@@ -91,9 +91,9 @@ export default function EvidenceBand() {
           What we measured before we called this done.
         </h2>
         <p className={styles.sub}>
-          Every target below was locked on 26 Jul, before any of this was built. Rows still
-          reading &ldquo;measured Thursday&rdquo; are not yet run &mdash; they are not hidden or
-          assumed.
+          Every target below was locked on 26 Jul, before any of this was built. The engine
+          model was upgraded on 31 Jul only after passing these same gates &mdash; the two
+          &ldquo;not measured&rdquo; rows are exactly that, not hidden misses.
         </p>
 
         <div className={styles.tableWrap}>
@@ -120,8 +120,8 @@ export default function EvidenceBand() {
         </div>
 
         <p className={styles.footnote}>
-          Numbers update from evals/results/ before submission &mdash; targets were locked
-          before building.
+          Final as of 31 Jul, from evals/results/ and production probes &mdash; targets were
+          locked before building; the full table with sources lives in the README.
         </p>
       </div>
     </section>

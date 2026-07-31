@@ -381,6 +381,17 @@ and two of these miss targets that were locked on 26 Jul.
 - **gitleaks over full history: CLEAN** (76 commits, no findings; tool installed tonight, no
   repo config — default ruleset). `.envrc` and `.vercel/` added to .gitignore — the `.env.*`
   pattern matches neither, so a direnv file or CLI link could have been committed by accident.
+- **Prod probes (post-merge deploy of PR #18, `OPENAI_STRUCTURED_MODEL` live) — three latency
+  targets flip to Met; PRODUCT RE-FROZEN.** Compile 16.6 / 19.1 / 40.5s (fixture; the 40.5s run
+  was guard-rejected, retried, and the retry rejected too — correlated within one marginal
+  parse, failed loud) · **40.4 / 44.5s real Venture JD** (was 146.3s) · plan **11.0 / 9.4s** ·
+  first-turn 9.2 / 6.9s (missed, restated — gateway-bound) · debrief **6.9s** with 4/4 quotes
+  mechanically slice-valid, 0 dropped. Disclosed incidence: ~1-in-5 whole-chain runs on the
+  rejection-prone fixture fail loud at the citation guard (~1-in-10 overall observed);
+  a rejected compile re-runs in ~20s. EvidenceBand, README table, and the write-up carry these
+  numbers as of this entry. **Re-freeze declared: Vedika records Saturday against this build;
+  remaining work is submission materials only** (write-up polish, video, README links, final
+  smoke, and Timothy's direct BoardingPass URL check).
 - **Final-week rescan executed: no new interview-rehearsal entrants found for July 2026**
   (Product Hunt, launch aggregators, incumbents — a real zero-hits signal; Google Interview
   Warmup was discontinued in April 2026). **BoardingPass itself is UNRESOLVED, not negative:**
