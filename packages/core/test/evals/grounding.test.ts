@@ -25,16 +25,21 @@ describe.skipIf(!evalsEnabled)("grounding — plan-compile pre-guard rates", () 
       const pairs = loadPairs();
       expect(pairs.length).toBeGreaterThan(0);
       const perPair: unknown[] = [];
+      // EVAL_MODEL swaps the whole structured lane's model for this run —
+      // see consistency.test.ts for the rationale.
+      const modelOverrides = process.env.EVAL_MODEL
+        ? { model: process.env.EVAL_MODEL }
+        : undefined;
 
       for (const pair of pairs) {
         const client = new OpenAI();
         const metered = makeMeteredClient(client, { suite: "grounding", pair: pair.n });
 
         const [jd, resume] = await Promise.all([
-          parseJD(pair.jdText, { client: metered.client }),
-          parseResume(pair.resumeText, { client: metered.client }),
+          parseJD(pair.jdText, { client: metered.client, requestOverrides: modelOverrides }),
+          parseResume(pair.resumeText, { client: metered.client, requestOverrides: modelOverrides }),
         ]);
-        const gaps = await diffGaps(jd, resume, { client: metered.client });
+        const gaps = await diffGaps(jd, resume, { client: metered.client, requestOverrides: modelOverrides });
         if (gaps.length === 0) {
           console.log(`[grounding] pair-${pair.n}: 0 gaps, skipping plan compile`);
           perPair.push({ n: pair.n, skipped: "no gaps" });
@@ -44,6 +49,7 @@ describe.skipIf(!evalsEnabled)("grounding — plan-compile pre-guard rates", () 
         let wire: PlanWire | undefined;
         const plan = await compileSessionPlan(gaps, pair.jdText, pair.resumeText, {
           client: metered.client,
+          requestOverrides: modelOverrides,
           onWire: (w) => {
             wire = w as PlanWire;
           },
@@ -79,10 +85,10 @@ describe.skipIf(!evalsEnabled)("grounding — plan-compile pre-guard rates", () 
       const mean = (xs: number[]) => (xs.length === 0 ? null : xs.reduce((a, b) => a + b, 0) / xs.length);
 
       await writeResult(
-        "grounding",
+        process.env.EVAL_MODEL ? `grounding-${process.env.EVAL_MODEL}` : "grounding",
         {
           corpus: pairs.map((p) => p.n),
-          config: { model: "gpt-5-mini (default)" },
+          config: { model: process.env.EVAL_MODEL ?? "gpt-5-mini (default)" },
           metrics: {},
           perPair,
         },

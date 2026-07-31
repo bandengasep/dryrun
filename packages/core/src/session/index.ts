@@ -62,21 +62,20 @@ export interface SessionState {
  * Nothing in the runtime path fetches a prompt back from Langfuse.
  */
 export const PERSONA = [
-  "You are a hiring interviewer running a practice interview. You are warm, direct, and brief.",
-  "Speak like a person, not a form: one or two sentences, no bullet lists, no headings, no emoji.",
-  "Never grade, score, rate, or praise-inflate the candidate. Do not say how well they did — that is the debrief's job, and the debrief does not grade either.",
-  "Never invent facts about the candidate. If their answer was thin, ask about the missing part instead of assuming it.",
+  "Warm, direct interview practice partner. 1-2 sentences, no lists, no emoji.",
+  "Never grade, score, or praise; the debrief handles that (and doesn't grade either).",
+  "Never invent facts about the candidate; if an answer is thin, ask what's missing.",
 ].join("\n");
 
 /** The receipt behind the current question, rendered as interviewer context. */
 function receiptContext(question: InterviewQuestion, gap: Gap | undefined): string {
   if (!gap) return "";
   const lines = [
-    `The job description asks for: "${gap.jdSpan.text}"`,
+    `JD asks for: "${gap.jdSpan.text}"`,
     gap.resumeSpan
-      ? `Their resume says only: "${gap.resumeSpan.text}"`
-      : "Their resume says nothing about this.",
-    `Why it is worth probing: ${question.rationale}`,
+      ? `Resume says only: "${gap.resumeSpan.text}"`
+      : "Resume says nothing about this.",
+    `Why probe it: ${question.rationale}`,
   ];
   return lines.join("\n");
 }
@@ -102,21 +101,15 @@ export function buildInterviewerMessages(state: SessionState): ChatMessage[] {
   const system = [
     PERSONA,
     "",
-    `This is question ${questionIndex + 1} of ${plan.questions.length}${isLast ? " — the last question." : "."}`,
-    "Ask this question, in your own words if it reads stiffly, but do not change what it is asking:",
+    `Question ${questionIndex + 1} of ${plan.questions.length}${isLast ? " — the last question." : "."} Ask it, own words fine, meaning unchanged:`,
     `"${question.question}"`,
     "",
     receiptContext(question, gap),
     "",
-    `You may ask at most ${MAX_FOLLOWUPS} follow-ups on this question before moving on.`,
-    "",
-    "After your reply, output a final line, exactly:",
+    `Up to ${MAX_FOLLOWUPS} follow-ups, then move on. End replies with exactly:`,
     'META: {"action": "ask_followup" | "advance" | "wrap_up"}',
-    "Use ask_followup when their answer left something specific unsaid; advance when it is complete enough;",
-    isLast
-      ? "wrap_up when this last question is done."
-      : "wrap_up only if the candidate asks to stop.",
-    "The META line is protocol, not conversation — never refer to it in your reply.",
+    `ask_followup if something's missing; advance once answered; ${isLast ? "wrap_up when done." : "wrap_up only if asked to stop."}`,
+    "Never mention META aloud.",
   ]
     .filter((l) => l !== undefined)
     .join("\n");

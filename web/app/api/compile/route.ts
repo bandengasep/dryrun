@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import { propagateAttributes } from "@langfuse/tracing";
-import { parseJD, parseResume, diffGaps } from "@dryrun/core";
+import { DiffError, parseJD, parseResume, diffGaps } from "@dryrun/core";
 import { sseResponse } from "../../lib/sse-response";
-import { makeStructuredClient } from "../../lib/providers";
+import { makeStructuredClient, structuredRequestOverrides } from "../../lib/providers";
 
 // Two parse calls (in parallel) + one embeddings call + one diff call.
 export const maxDuration = 300;
@@ -45,9 +45,10 @@ export async function POST(req: Request) {
       });
 
       emit("stage", { stage: "parsing" });
+      const requestOverrides = structuredRequestOverrides();
       const [jd, resume] = await Promise.all([
-        parseJD(jdText, { client }),
-        parseResume(resumeText, { client }),
+        parseJD(jdText, { client, requestOverrides }),
+        parseResume(resumeText, { client, requestOverrides }),
       ]);
       emit("stage", {
         stage: "parsing",
@@ -60,7 +61,20 @@ export async function POST(req: Request) {
       });
 
       emit("stage", { stage: "diffing" });
-      const gaps = await diffGaps(jd, resume, { client });
+      let gaps;
+      try {
+        gaps = await diffGaps(jd, resume, { client, requestOverrides });
+      } catch (e) {
+        if (!(e instanceof DiffError)) throw e;
+        // A citation-guard rejection is the guard refusing to ship an invalid
+        // adjudication — the parses are fine, so buy ONE fresh sample before
+        // failing loud. Announced in the trace (receipts protecting the user
+        // is demo material, not something to hide); a second rejection still
+        // surfaces as the error it is. Measured incidence: ~1 in 10 whole-chain
+        // runs across models (evals/results/, 31 Jul).
+        emit("stage", { stage: "diffing", retry: true, reason: e.message });
+        gaps = await diffGaps(jd, resume, { client, requestOverrides });
+      }
       emit("stage", { stage: "diffing", done: true, gaps: gaps.length });
 
       // Full parser output, not just gaps: the client holds session state, and the

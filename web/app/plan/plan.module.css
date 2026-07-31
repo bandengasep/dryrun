@@ -129,6 +129,13 @@
   gap: var(--spacing-3);
 }
 
+/* ---------- Gap display cap expander ---------- */
+
+.gapsExpander {
+  align-self: flex-start;
+  margin-top: var(--spacing-1);
+}
+
 /* ---------- Question skeleton ---------- */
 
 .skeleton {

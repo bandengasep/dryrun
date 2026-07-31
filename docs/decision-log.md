@@ -320,6 +320,74 @@ and two of these miss targets that were locked on 26 Jul.
   link can view" is therefore a property of our route's behaviour, not of a public table policy
   that could later be widened by accident. Write-once: no update or delete path exists, so a
   shared link cannot be altered after it is handed out.
+## 2026-07-31
+
+- **Freeze exception opened (Timothy's call) — a latency program plus the gap display cap;
+  everything below shipped the same night behind flags and the product re-freezes for Saturday's
+  recording once prod probes land.** Driver: dissatisfaction with compile 99.65s / first-turn
+  ~6.2s ahead of the Sunday-23:59 extension.
+- **Lever policy REVISED (Timothy's call, supersedes the 30-Jul no-gold branch):**
+  quality-neutral levers adopt on latency measurement alone; behavior-changing levers adopt only
+  if the mechanical suites hold on re-run (consistency Jaccard ≥0.6, pre-guard grounding ≥95%,
+  guard-rejection rate comparable to baseline). Gold stays not-measured and disclosed — the gate
+  changed from "gold or nothing" to "mechanical evidence, disclosed limits."
+- **Framework migration for latency REJECTED, doc-verified same day** (context7: AI SDK =
+  unified provider API; LangGraph = stateful orchestration; Mastra = workflows/agents/RAG).
+  They are wiring layers around the same API calls; ~96% of compile wall time is model
+  inference. Zero seconds available from a rewrite that would re-validate five wire schemas at
+  T-2 days. Reaffirms rule 4 and the 27-Jul AI SDK adjudication.
+- **reasoning_effort levers REJECTED on mechanical evidence alone** (`latency-program-2026-07-31.json`):
+  full `low` hit ~57s but tripped the diff citation guard 1/3 + 2/4; `minimal` hit 31–35s **by
+  collapsing requirement extraction** (pair-01: 13–16 JD lines vs baseline's ~22–29) — speed
+  bought by reading less of the JD. The physics: parse latency is output-token-bound
+  (verbatim-quote receipts × requirement count), so effort knobs can only accelerate extraction
+  by extracting less. The suite was hardened mid-program to record guard rejections as data
+  (rejection rate is now a first-class metric) instead of crashing — round 1 died mid-flight and
+  lost its usage data by throwing.
+- **MODEL ADOPTED: `gpt-5.6-luna` for the entire structured lane, debrief included (Timothy's
+  call), env-flagged `OPENAI_STRUCTURED_MODEL`; kill switch = unset + redeploy (mic-rung
+  pattern).** Probes: 24–41s full-chain vs baseline 117–151s same-machine; local route probes
+  compile **17s** / plan **8s**. Gates: consistency Jaccard **0.881** (pair-01, 20/20 runs, gap
+  count perfectly stable at 26×20) / **0.770** (pair-04, 17/20) vs ≥0.6; pre-guard grounding
+  **30/30**; STAR 100%. Disclosed, not smoothed: pair-04 guard rejections 3/20 vs baseline's
+  2/20 (small-n); pair-01 duplicate-question groups larger (the known jdSpan-dedupe issue,
+  likely amplified by luna's more granular parse); debrief rides its built-in locateSpan
+  validator + visible `dropped[]` rather than a dedicated re-gate; cost ≈$0.026→≈$0.035/compile
+  at the posted $1/$6 rate — still under the ≤$0.05 target, invoice sanity-check pending.
+  `gpt-5.4-mini` probed faster still (16–27s) but showed a lighter resume parse (cv 11 vs ~15)
+  and 1/4 rejections — banked as the fallback candidate, not adopted.
+- **Compile route gains ONE announced diff retry on `DiffError`.** A live probe hit a
+  fresh-parse citation-guard rejection (~1 in 10 whole-chain incidence across models). The
+  retry is emitted in the SSE trace (`retry: true` + the guard's reason) — the guard catching an
+  invalid citation is demo material, not something to hide — and a second rejection still fails
+  loud.
+- **Two more levers shipped DARK:** `OPENAI_SERVICE_TIER` (priority/flex serving speed,
+  quality-neutral, the echoed tier in the response body is the receipt) — unneeded post-luna but
+  available; and the **Agnes plan lane** (`PLAN_PROVIDER`, default openai): the eval adapter
+  promoted into core as `compileSessionPlanViaChat` with prompt/guards extracted to
+  `plan/shared.ts` so both transports run identical guards, route failover labeled in the
+  response envelope. Not flipped — luna meets the plan target on the receipts lane; the Agnes
+  path remains the measured provider exhibit.
+- **Interviewer prompt trimmed ~41%** (through-route prompt 562→~470 tokens), META protocol
+  byte-identical, all 20 session tests unmodified. **First-turn ≤3s STILL MISSED**: through-route
+  Agnes first-data 39.2/10.1/6.1s tonight — gateway-bound, not prompt-bound. The Agnes
+  interviewer lane stays (prize lane, honest label, failover pins `reasoning_effort: minimal`);
+  the target is restated with tonight's numbers.
+- **Gap display cap shipped: top 10 by kind priority (missing_skill → weak_evidence →
+  strong_differentiator), "Show all N gaps" expander, count strip keeps the full census.**
+  Render-only — pipeline, payloads, and banked evals untouched (Timothy asked for 7–10; on
+  fixtures, 51% of rows were strong_differentiator strengths). The landing EvidenceBand's stale
+  "measured Thursday" rows update from `evals/results/` after prod probes.
+- **gitleaks over full history: CLEAN** (76 commits, no findings; tool installed tonight, no
+  repo config — default ruleset). `.envrc` and `.vercel/` added to .gitignore — the `.env.*`
+  pattern matches neither, so a direnv file or CLI link could have been committed by accident.
+- **Final-week rescan executed: no new interview-rehearsal entrants found for July 2026**
+  (Product Hunt, launch aggregators, incumbents — a real zero-hits signal; Google Interview
+  Warmup was discontinued in April 2026). **BoardingPass itself is UNRESOLVED, not negative:**
+  its product site could not be located by search this session; flagged for a direct check via
+  the original 12-Jul URL rather than treating "not found by search" as "not shipped." Pitch
+  unchanged per the pre-committed branch.
+
 ## 2026-07-30
 
 - **LLM adjudication of the gold sets REJECTED; Codex verdicts reverted and the derived score

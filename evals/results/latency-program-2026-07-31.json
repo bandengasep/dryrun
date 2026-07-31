@@ -1,0 +1,41 @@
+{
+  "program": "latency-program",
+  "date": "2026-07-31",
+  "context": "Freeze exception (decision-log 2026-07-31). Lever policy revised: quality-neutral levers adopt on measurement; behavior-changing levers only through the mechanical gates (Jaccard >=0.6, pre-guard grounding >=95%, guard-rejection comparable to baseline); gold remains not-measured, disclosed.",
+  "machine": "dev laptop (same machine across all rounds; prod probes recorded separately below)",
+  "rounds": {
+    "round1_baseline_and_low": {
+      "note": "Suite crashed on a low-config guard rejection before writeResult; wall times preserved from stdout (scratchpad log). Usage data lost — motivated the failure-resilient harness.",
+      "baseline_wallMs": { "pair-01_incl_plan": [132297, 150754, 117443], "pair-04_parse_diff_only": [140218, 150241, 131035] },
+      "low_wallMs_pair-01": [58612, 56368],
+      "low_guard_rejections": "1 of 3 runs (pair-01, diff candidate-set guard)"
+    },
+    "round2_effort_levers": {
+      "file": "latency-levers-2026-07-31.json (overwritten by round 3; summary here is authoritative)",
+      "minimal": { "wall_s": [31.1, 32.4, 31.7, 34.6], "verdict": "REJECTED — requirement extraction collapsed (pair-01 jd 13-16 vs baseline ~22-29; pair-04 jd 27 vs ~40-56) and unstable run-to-run. Speed bought by reading less of the JD." },
+      "low-parse-only": { "wall_s": [64.4, 99.9, 76.7, 79.6], "guard_rejections": "2 of 4", "verdict": "REJECTED — healthy counts (jd 28/31) but rejection-prone and barely faster." },
+      "minimal-parse-only": { "wall_s": [53.4, 53.4, 48.2, 47.5], "verdict": "REJECTED — same extraction collapse (jd 13-18 / 22-27)." },
+      "finding": "Parse latency is output-token-bound (verbatim-quote receipts x requirement count), not reasoning-bound: effort knobs only buy speed by extracting less — the one thing the product must not do."
+    },
+    "round3_model_probe": {
+      "file": "latency-levers-2026-07-31-round3-models.json",
+      "gpt-5.4-mini": { "wall_s": [18.3, 16.0, 23.0, 26.8], "jd_counts": [25, 23, null, 54], "cv_pair01": 11, "guard_rejections": "1 of 4", "verdict": "NOT ADOPTED — fastest, but lighter resume parse (cv 11 vs ~15) + a rejection; banked as fallback candidate." },
+      "gpt-5.6-luna": { "wall_s": [24.4, 30.7, 41.4, 38.9], "jd_counts": [24, 26, 61, 59], "guard_rejections": "0 of 4", "verdict": "GATED, then ADOPTED (below)." }
+    }
+  },
+  "gates_gpt-5.6-luna": {
+    "consistency": { "file": "consistency-gpt-5.6-luna-2026-07-31.json", "pair-01": { "jaccard": 0.8807956898174282, "runs": "20/20", "gapCounts": "26 x20 (perfectly stable)" }, "pair-04": { "jaccard": 0.7697298024610377, "runs": "17/20", "guardRejected": 3 }, "target": ">=0.6 — MET both pairs", "disclosure": "pair-04 rejections 3/20 vs baseline 2/20 — one worse, within small-n noise; disclosed rather than smoothed" },
+    "grounding": { "file": "grounding-gpt-5.6-luna-2026-07-31.json", "pre_guard": "30/30 (100%) across 5 pairs", "star": "100%", "target": ">=95% — MET", "disclosure": "pair-01 duplicate-question groups larger than baseline (known jdSpan-dedup issue, likely amplified by the more granular parse)" }
+  },
+  "adoption": {
+    "decision": "gpt-5.6-luna for the ENTIRE structured lane incl. debrief (Timothy, 31 Jul eve), via OPENAI_STRUCTURED_MODEL env flag; unset+redeploy = kill switch. Debrief ships on its built-in locateSpan validator + visible dropped[], disclosed as not separately re-gated.",
+    "cost": "posted rate $1/$6 per MTok (models docs 31 Jul; invoice sanity-check pending) => est ~$0.035/compile vs ~$0.026 baseline — under the <=$0.05 target",
+    "rejected_alternatives": "reasoning-effort levers (extraction collapse / rejections), framework migration (doc-verified wiring-only), gpt-5.4-mini (lighter resume parse, fallback candidate)"
+  },
+  "local_route_probes_gpt-5.6-luna": {
+    "compile_pair-01": { "wall_s": [20, 17], "note": "first run hit a fresh-parse diff guard rejection -> motivated the ONE announced retry in /api/compile (emitted in the SSE trace, never hidden); second run clean: jd 24, cv 17, gaps 24, 0 dropped" },
+    "plan_pair-01": { "wall_s": 8, "questions": 6, "provider": "openai", "failover": false },
+    "first_turn_token_agnes": { "s": [39.22, 10.13, 6.14], "prompt_tokens": "467-485 (post-trim, was 562)", "verdict": "<=3s target STILL MISSED — Agnes gateway-bound, not prompt-bound; lane kept for the provider exhibit; restated" }
+  },
+  "prod_probes": "recorded after deploy — see decision-log 2026-07-31 and the README Evidence table"
+}

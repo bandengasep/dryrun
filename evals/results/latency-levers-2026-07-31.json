@@ -1,0 +1,5022 @@
+{
+  "startedAt": "2026-07-31T09:10:24.721Z",
+  "gitCommit": "d4aeb7df9feaa33da5d564cc01e0f3d2b59877f6",
+  "corpus": [
+    "01",
+    "04"
+  ],
+  "config": {
+    "configs": [
+      "gpt-5.4-mini",
+      "gpt-5.6-luna"
+    ],
+    "runsPerConfig": 2,
+    "planPair": "01"
+  },
+  "metrics": {
+    "failedByConfig": {
+      "gpt-5.4-mini": 1,
+      "gpt-5.6-luna": 0
+    }
+  },
+  "perPair": [
+    {
+      "config": "gpt-5.4-mini",
+      "pair": "01",
+      "run": 0,
+      "wallMs": 18267.645542000002,
+      "jdLines": 25,
+      "cvLines": 11,
+      "droppedLines": 0,
+      "gapCount": 25,
+      "planQuestions": 6,
+      "gaps": [
+        {
+          "id": "gap-1",
+          "kind": "weak_evidence",
+          "requirementId": "jd-1",
+          "jdSpan": {
+            "start": 161,
+            "end": 250,
+            "text": "Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "cv-5 shows SQL use to build a retention report, but not ongoing SQL model maintenance."
+        },
+        {
+          "id": "gap-2",
+          "kind": "missing_skill",
+          "requirementId": "jd-2",
+          "jdSpan": {
+            "start": 161,
+            "end": 250,
+            "text": "Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions building or maintaining dashboards."
+        },
+        {
+          "id": "gap-3",
+          "kind": "missing_skill",
+          "requirementId": "jd-3",
+          "jdSpan": {
+            "start": 161,
+            "end": 250,
+            "text": "Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions funnel reporting or funnel analysis."
+        },
+        {
+          "id": "gap-4",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-4",
+          "jdSpan": {
+            "start": 161,
+            "end": 250,
+            "text": "Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "cv-5 directly states building a weekly retention report in BigQuery, matching retention reporting."
+        },
+        {
+          "id": "gap-5",
+          "kind": "missing_skill",
+          "requirementId": "jd-5",
+          "jdSpan": {
+            "start": 161,
+            "end": 250,
+            "text": "Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions campaign reporting."
+        },
+        {
+          "id": "gap-6",
+          "kind": "missing_skill",
+          "requirementId": "jd-6",
+          "jdSpan": {
+            "start": 253,
+            "end": 320,
+            "text": "Partner with product managers to design and analyze A/B experiments"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions A/B experiments, hypothesis tests, or experiment analysis."
+        },
+        {
+          "id": "gap-7",
+          "kind": "weak_evidence",
+          "requirementId": "jd-7",
+          "jdSpan": {
+            "start": 323,
+            "end": 381,
+            "text": "Own the weekly business review metrics pipeline end to end"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "cv-5 shows ownership of a weekly retention report, but not an end-to-end business review metrics pipeline."
+        },
+        {
+          "id": "gap-8",
+          "kind": "weak_evidence",
+          "requirementId": "jd-8",
+          "jdSpan": {
+            "start": 384,
+            "end": 434,
+            "text": "Communicate findings to non-technical stakeholders"
+          },
+          "resumeLineId": "cv-7",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "cv-7 indicates presenting findings to a marketing lead, which suggests stakeholder communication but not explicitly non-technical audiences."
+        },
+        {
+          "id": "gap-9",
+          "kind": "missing_skill",
+          "requirementId": "jd-9",
+          "jdSpan": {
+            "start": 462,
+            "end": 556,
+            "text": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line provides 3+ years of SQL experience or clear production data-warehouse tenure."
+        },
+        {
+          "id": "gap-10",
+          "kind": "weak_evidence",
+          "requirementId": "jd-10",
+          "jdSpan": {
+            "start": 462,
+            "end": 556,
+            "text": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "cv-5 explicitly mentions BigQuery, but the evidence does not show the preferred depth or duration."
+        },
+        {
+          "id": "gap-11",
+          "kind": "missing_skill",
+          "requirementId": "jd-11",
+          "jdSpan": {
+            "start": 462,
+            "end": 556,
+            "text": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions Snowflake."
+        },
+        {
+          "id": "gap-12",
+          "kind": "weak_evidence",
+          "requirementId": "jd-12",
+          "jdSpan": {
+            "start": 559,
+            "end": 650,
+            "text": "Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": "cv-2",
+          "resumeSpan": {
+            "start": 94,
+            "end": 181,
+            "text": "MSc Business Analytics, NUS. Coursework: statistics, machine learning, data management."
+          },
+          "rationale": "cv-2 lists statistics coursework, but not applied grounding in hypothesis testing, confidence intervals, or experiment design."
+        },
+        {
+          "id": "gap-13",
+          "kind": "missing_skill",
+          "requirementId": "jd-13",
+          "jdSpan": {
+            "start": 559,
+            "end": 650,
+            "text": "Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions hypothesis testing."
+        },
+        {
+          "id": "gap-14",
+          "kind": "missing_skill",
+          "requirementId": "jd-14",
+          "jdSpan": {
+            "start": 559,
+            "end": 650,
+            "text": "Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions confidence intervals."
+        },
+        {
+          "id": "gap-15",
+          "kind": "missing_skill",
+          "requirementId": "jd-15",
+          "jdSpan": {
+            "start": 559,
+            "end": 650,
+            "text": "Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions experiment design."
+        },
+        {
+          "id": "gap-16",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-16",
+          "jdSpan": {
+            "start": 653,
+            "end": 707,
+            "text": "Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 660,
+            "end": 737,
+            "text": "SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)"
+          },
+          "rationale": "cv-11 explicitly lists Python with pandas, indicating Python used for analysis."
+        },
+        {
+          "id": "gap-17",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-17",
+          "jdSpan": {
+            "start": 653,
+            "end": 707,
+            "text": "Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 366,
+            "end": 444,
+            "text": "Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+          },
+          "rationale": "cv-6 explicitly mentions cleaning and joining clickstream tables with pandas."
+        },
+        {
+          "id": "gap-18",
+          "kind": "missing_skill",
+          "requirementId": "jd-18",
+          "jdSpan": {
+            "start": 653,
+            "end": 707,
+            "text": "Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions notebooks."
+        },
+        {
+          "id": "gap-19",
+          "kind": "weak_evidence",
+          "requirementId": "jd-19",
+          "jdSpan": {
+            "start": 710,
+            "end": 761,
+            "text": "Experience with a BI tool such as Tableau or Looker"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 660,
+            "end": 737,
+            "text": "SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)"
+          },
+          "rationale": "cv-11 lists Tableau, which is a BI tool, but only as coursework."
+        },
+        {
+          "id": "gap-20",
+          "kind": "weak_evidence",
+          "requirementId": "jd-20",
+          "jdSpan": {
+            "start": 710,
+            "end": 761,
+            "text": "Experience with a BI tool such as Tableau or Looker"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 660,
+            "end": 737,
+            "text": "SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)"
+          },
+          "rationale": "cv-11 names Tableau, but the evidence is limited to coursework rather than hands-on experience."
+        },
+        {
+          "id": "gap-21",
+          "kind": "missing_skill",
+          "requirementId": "jd-21",
+          "jdSpan": {
+            "start": 710,
+            "end": 761,
+            "text": "Experience with a BI tool such as Tableau or Looker"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions Looker."
+        },
+        {
+          "id": "gap-22",
+          "kind": "missing_skill",
+          "requirementId": "jd-22",
+          "jdSpan": {
+            "start": 764,
+            "end": 837,
+            "text": "Familiarity with dbt and version-controlled analytics workflows is a plus"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions dbt or version-controlled analytics workflows."
+        },
+        {
+          "id": "gap-23",
+          "kind": "missing_skill",
+          "requirementId": "jd-23",
+          "jdSpan": {
+            "start": 764,
+            "end": 837,
+            "text": "Familiarity with dbt and version-controlled analytics workflows is a plus"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions version-controlled analytics workflows."
+        },
+        {
+          "id": "gap-24",
+          "kind": "weak_evidence",
+          "requirementId": "jd-24",
+          "jdSpan": {
+            "start": 840,
+            "end": 893,
+            "text": "Excellent written and verbal communication in English"
+          },
+          "resumeLineId": "cv-7",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "cv-7 shows written communication through presenting findings, but does not explicitly evidence excellent written English."
+        },
+        {
+          "id": "gap-25",
+          "kind": "weak_evidence",
+          "requirementId": "jd-25",
+          "jdSpan": {
+            "start": 840,
+            "end": 893,
+            "text": "Excellent written and verbal communication in English"
+          },
+          "resumeLineId": "cv-7",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "cv-7 shows verbal presentation of findings, but not explicit evidence of excellent verbal English."
+        }
+      ],
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 2618.378583,
+          "usage": {
+            "input_tokens": 284,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 190,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 474
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 4402.192416999999,
+          "usage": {
+            "input_tokens": 343,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 615,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 958
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 5609.975207999999,
+          "usage": {
+            "input_tokens": 2844,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 982,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 3826
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 7033.605459000002,
+          "usage": {
+            "input_tokens": 1857,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1046,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 2903
+          }
+        }
+      ]
+    },
+    {
+      "config": "gpt-5.4-mini",
+      "pair": "01",
+      "run": 1,
+      "wallMs": 15999.547583,
+      "jdLines": 23,
+      "cvLines": 11,
+      "droppedLines": 0,
+      "gapCount": 23,
+      "planQuestions": 6,
+      "gaps": [
+        {
+          "id": "gap-1",
+          "kind": "weak_evidence",
+          "requirementId": "jd-1",
+          "jdSpan": {
+            "start": 76,
+            "end": 140,
+            "text": "You will turn raw event data into decisions for the growth team."
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 366,
+            "end": 444,
+            "text": "Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+          },
+          "rationale": "Cleaning and joining clickstream tables suggests data preparation for analysis, but it does not explicitly show turning event data into decisions."
+        },
+        {
+          "id": "gap-2",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-2",
+          "jdSpan": {
+            "start": 159,
+            "end": 250,
+            "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "Wrote SQL queries in BigQuery to build a weekly retention report, which directly evidences building SQL models for reporting."
+        },
+        {
+          "id": "gap-3",
+          "kind": "weak_evidence",
+          "requirementId": "jd-3",
+          "jdSpan": {
+            "start": 159,
+            "end": 250,
+            "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": "cv-9",
+          "resumeSpan": {
+            "start": 556,
+            "end": 606,
+            "text": "Built Excel models for branch performance tracking"
+          },
+          "rationale": "Built Excel models shows modeling experience, but it does not specifically show maintaining dashboards."
+        },
+        {
+          "id": "gap-4",
+          "kind": "missing_skill",
+          "requirementId": "jd-4",
+          "jdSpan": {
+            "start": 159,
+            "end": 250,
+            "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines mention funnel reporting or analogous funnel analysis."
+        },
+        {
+          "id": "gap-5",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-5",
+          "jdSpan": {
+            "start": 159,
+            "end": 250,
+            "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The weekly retention report in BigQuery directly matches retention reporting."
+        },
+        {
+          "id": "gap-6",
+          "kind": "missing_skill",
+          "requirementId": "jd-6",
+          "jdSpan": {
+            "start": 159,
+            "end": 250,
+            "text": "- Build and maintain SQL models and dashboards for funnel, retention and campaign reporting"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions campaign reporting or campaign metrics."
+        },
+        {
+          "id": "gap-7",
+          "kind": "missing_skill",
+          "requirementId": "jd-7",
+          "jdSpan": {
+            "start": 251,
+            "end": 320,
+            "text": "- Partner with product managers to design and analyze A/B experiments"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions partnering with product managers or designing/analyzing A/B experiments."
+        },
+        {
+          "id": "gap-8",
+          "kind": "weak_evidence",
+          "requirementId": "jd-8",
+          "jdSpan": {
+            "start": 321,
+            "end": 381,
+            "text": "- Own the weekly business review metrics pipeline end to end"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "Building a weekly retention report shows pipeline-related reporting work, but it does not establish end-to-end ownership of the weekly business review metrics pipeline."
+        },
+        {
+          "id": "gap-9",
+          "kind": "weak_evidence",
+          "requirementId": "jd-9",
+          "jdSpan": {
+            "start": 382,
+            "end": 434,
+            "text": "- Communicate findings to non-technical stakeholders"
+          },
+          "resumeLineId": "cv-7",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "Presented findings to the marketing lead shows stakeholder communication, but only indirectly and without specifying non-technical audiences."
+        },
+        {
+          "id": "gap-10",
+          "kind": "missing_skill",
+          "requirementId": "jd-10",
+          "jdSpan": {
+            "start": 460,
+            "end": 556,
+            "text": "- 3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "The resume lines mention SQL and BigQuery, but none evidence 3+ years of hands-on SQL against a production warehouse."
+        },
+        {
+          "id": "gap-11",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-11",
+          "jdSpan": {
+            "start": 460,
+            "end": 556,
+            "text": "- 3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "Writing SQL queries in BigQuery directly evidences BigQuery experience."
+        },
+        {
+          "id": "gap-12",
+          "kind": "missing_skill",
+          "requirementId": "jd-12",
+          "jdSpan": {
+            "start": 557,
+            "end": 650,
+            "text": "- Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions hypothesis testing or comparable statistical testing work."
+        },
+        {
+          "id": "gap-13",
+          "kind": "missing_skill",
+          "requirementId": "jd-13",
+          "jdSpan": {
+            "start": 557,
+            "end": 650,
+            "text": "- Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions confidence intervals or related statistical analysis."
+        },
+        {
+          "id": "gap-14",
+          "kind": "missing_skill",
+          "requirementId": "jd-14",
+          "jdSpan": {
+            "start": 557,
+            "end": 650,
+            "text": "- Strong grounding in statistics: hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions experiment design."
+        },
+        {
+          "id": "gap-15",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-15",
+          "jdSpan": {
+            "start": 651,
+            "end": 707,
+            "text": "- Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 660,
+            "end": 737,
+            "text": "SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)"
+          },
+          "rationale": "Python for analysis is directly evidenced by the listed Python tools including pandas."
+        },
+        {
+          "id": "gap-16",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-16",
+          "jdSpan": {
+            "start": 651,
+            "end": 707,
+            "text": "- Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 660,
+            "end": 737,
+            "text": "SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)"
+          },
+          "rationale": "Pandas is explicitly listed in the candidate's Python tool stack."
+        },
+        {
+          "id": "gap-17",
+          "kind": "missing_skill",
+          "requirementId": "jd-17",
+          "jdSpan": {
+            "start": 651,
+            "end": 707,
+            "text": "- Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions notebooks."
+        },
+        {
+          "id": "gap-18",
+          "kind": "weak_evidence",
+          "requirementId": "jd-18",
+          "jdSpan": {
+            "start": 708,
+            "end": 761,
+            "text": "- Experience with a BI tool such as Tableau or Looker"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 660,
+            "end": 737,
+            "text": "SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)"
+          },
+          "rationale": "Tableau is listed, but only as coursework, so BI tool experience is not demonstrated strongly."
+        },
+        {
+          "id": "gap-19",
+          "kind": "weak_evidence",
+          "requirementId": "jd-19",
+          "jdSpan": {
+            "start": 708,
+            "end": 761,
+            "text": "- Experience with a BI tool such as Tableau or Looker"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 660,
+            "end": 737,
+            "text": "SQL (BigQuery), Python (pandas, matplotlib), Excel, Tableau (coursework only)"
+          },
+          "rationale": "Tableau is explicitly mentioned, but only in a coursework context rather than hands-on experience."
+        },
+        {
+          "id": "gap-20",
+          "kind": "missing_skill",
+          "requirementId": "jd-20",
+          "jdSpan": {
+            "start": 762,
+            "end": 837,
+            "text": "- Familiarity with dbt and version-controlled analytics workflows is a plus"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions dbt or related workflow tooling."
+        },
+        {
+          "id": "gap-21",
+          "kind": "missing_skill",
+          "requirementId": "jd-21",
+          "jdSpan": {
+            "start": 762,
+            "end": 837,
+            "text": "- Familiarity with dbt and version-controlled analytics workflows is a plus"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions version-controlled analytics workflows."
+        },
+        {
+          "id": "gap-22",
+          "kind": "weak_evidence",
+          "requirementId": "jd-22",
+          "jdSpan": {
+            "start": 838,
+            "end": 893,
+            "text": "- Excellent written and verbal communication in English"
+          },
+          "resumeLineId": "cv-7",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "Presenting findings to a marketing lead indicates English communication, but written communication is not directly shown."
+        },
+        {
+          "id": "gap-23",
+          "kind": "weak_evidence",
+          "requirementId": "jd-23",
+          "jdSpan": {
+            "start": 838,
+            "end": 893,
+            "text": "- Excellent written and verbal communication in English"
+          },
+          "resumeLineId": "cv-7",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "Presenting findings to a marketing lead indicates verbal communication, but the evidence is indirect rather than explicit English fluency."
+        }
+      ],
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 1825.547416999998,
+          "usage": {
+            "input_tokens": 284,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 190,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 474
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 3500.798082999998,
+          "usage": {
+            "input_tokens": 343,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 597,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 940
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 6021.054958999997,
+          "usage": {
+            "input_tokens": 2659,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 960,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 3619
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 5600.982582999997,
+          "usage": {
+            "input_tokens": 1830,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 610,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 2440
+          }
+        }
+      ]
+    },
+    {
+      "config": "gpt-5.4-mini",
+      "pair": "04",
+      "run": 0,
+      "wallMs": 23030.304333,
+      "failed": true,
+      "error": "Error: Verdict for jd-44 is \"strong_differentiator\" but cites cv-13, which is not among its candidates — a receipt is required",
+      "gapCount": null,
+      "planQuestions": null,
+      "gaps": [],
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 4464.151375000001,
+          "usage": {
+            "input_tokens": 828,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 760,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 1588
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 8161.900750000001,
+          "usage": {
+            "input_tokens": 640,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1857,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 2497
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 13644.049958999996,
+          "usage": {
+            "input_tokens": 8478,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 2479,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 10957
+          }
+        }
+      ]
+    },
+    {
+      "config": "gpt-5.4-mini",
+      "pair": "04",
+      "run": 1,
+      "wallMs": 26783.361709000004,
+      "jdLines": 54,
+      "cvLines": 27,
+      "droppedLines": 0,
+      "gapCount": 54,
+      "planQuestions": null,
+      "gaps": [
+        {
+          "id": "gap-1",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-1",
+          "jdSpan": {
+            "start": 716,
+            "end": 853,
+            "text": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions."
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 shows an enterprise Power BI rollout across 100+ business units, which is direct evidence of supporting dashboard rollout across multiple sites."
+        },
+        {
+          "id": "gap-2",
+          "kind": "weak_evidence",
+          "requirementId": "jd-2",
+          "jdSpan": {
+            "start": 716,
+            "end": 853,
+            "text": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions."
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 indicates deployment of a Power BI dashboard, but it does not explicitly show replicating a proven reporting solution."
+        },
+        {
+          "id": "gap-3",
+          "kind": "weak_evidence",
+          "requirementId": "jd-3",
+          "jdSpan": {
+            "start": 716,
+            "end": 853,
+            "text": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions."
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 suggests adaptation across 100+ business units, but it does not clearly state that a proven reporting solution was adapted."
+        },
+        {
+          "id": "gap-4",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-4",
+          "jdSpan": {
+            "start": 716,
+            "end": 853,
+            "text": "Support the rollout of enterprise BI dashboards across multiple sites by replicating, adapting, and deploying proven reporting solutions."
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 explicitly says the dashboard was deployed, matching the deployment requirement directly."
+        },
+        {
+          "id": "gap-5",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-5",
+          "jdSpan": {
+            "start": 856,
+            "end": 974,
+            "text": "Assist in building and enhancing Power BI dashboards to support business operations, planning and management reporting"
+          },
+          "resumeLineId": "cv-19",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2443,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+          },
+          "rationale": "cv-19 directly states it built a Power BI dashboard with enterprise scope across 12 APAC markets."
+        },
+        {
+          "id": "gap-6",
+          "kind": "weak_evidence",
+          "requirementId": "jd-6",
+          "jdSpan": {
+            "start": 856,
+            "end": 974,
+            "text": "Assist in building and enhancing Power BI dashboards to support business operations, planning and management reporting"
+          },
+          "resumeLineId": "cv-19",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2443,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+          },
+          "rationale": "cv-19 shows a built Power BI dashboard, but it does not explicitly evidence enhancement of an existing dashboard."
+        },
+        {
+          "id": "gap-7",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-7",
+          "jdSpan": {
+            "start": 977,
+            "end": 1074,
+            "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+          },
+          "resumeLineId": "cv-19",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2443,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+          },
+          "rationale": "cv-19 shows dashboard tracking initiatives across multiple markets, which is strong evidence of analyzing trends in real data."
+        },
+        {
+          "id": "gap-8",
+          "kind": "weak_evidence",
+          "requirementId": "jd-8",
+          "jdSpan": {
+            "start": 977,
+            "end": 1074,
+            "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 2047,
+            "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+          },
+          "rationale": "cv-16 shows auditing many databases and governance work, but it does not explicitly say the candidate identified gaps in data."
+        },
+        {
+          "id": "gap-9",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-9",
+          "jdSpan": {
+            "start": 977,
+            "end": 1074,
+            "text": "Work with real datasets to analyse trends, identify gaps, and support data-driven decision-making"
+          },
+          "resumeLineId": "cv-19",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2443,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+          },
+          "rationale": "cv-19 ties dashboard work to daily C-suite briefings, clearly supporting data-driven decision-making."
+        },
+        {
+          "id": "gap-10",
+          "kind": "weak_evidence",
+          "requirementId": "jd-10",
+          "jdSpan": {
+            "start": 1077,
+            "end": 1197,
+            "text": "Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites"
+          },
+          "resumeLineId": "cv-17",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2182,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+          },
+          "rationale": "cv-17 shows warehouse migration and stored procedure refactoring, which implies data preparation work but does not explicitly mention ETL or validation."
+        },
+        {
+          "id": "gap-11",
+          "kind": "weak_evidence",
+          "requirementId": "jd-11",
+          "jdSpan": {
+            "start": 1077,
+            "end": 1197,
+            "text": "Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites"
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 2047,
+            "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+          },
+          "rationale": "cv-16 shows governance and auditing across many databases, but not explicit data validation."
+        },
+        {
+          "id": "gap-12",
+          "kind": "weak_evidence",
+          "requirementId": "jd-12",
+          "jdSpan": {
+            "start": 1077,
+            "end": 1197,
+            "text": "Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 suggests work across 100+ business units, but it does not explicitly state accuracy across different data sources and sites."
+        },
+        {
+          "id": "gap-13",
+          "kind": "weak_evidence",
+          "requirementId": "jd-13",
+          "jdSpan": {
+            "start": 1077,
+            "end": 1197,
+            "text": "Perform data preparation (ETL) and validation to ensure accuracy and consistency across different data sources and sites"
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 2047,
+            "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+          },
+          "rationale": "cv-16 shows auditing many siloed databases, but it does not explicitly confirm consistency across sources and sites."
+        },
+        {
+          "id": "gap-14",
+          "kind": "weak_evidence",
+          "requirementId": "jd-14",
+          "jdSpan": {
+            "start": 1200,
+            "end": 1336,
+            "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 references consolidating many business units, but it does not explicitly mention collaboration with business users or UAT."
+        },
+        {
+          "id": "gap-15",
+          "kind": "missing_skill",
+          "requirementId": "jd-15",
+          "jdSpan": {
+            "start": 1200,
+            "end": 1336,
+            "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines explicitly show gathering requirements from business users."
+        },
+        {
+          "id": "gap-16",
+          "kind": "missing_skill",
+          "requirementId": "jd-16",
+          "jdSpan": {
+            "start": 1200,
+            "end": 1336,
+            "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line explicitly mentions supporting UAT."
+        },
+        {
+          "id": "gap-17",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-17",
+          "jdSpan": {
+            "start": 1200,
+            "end": 1336,
+            "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers) to gather requirements and support UAT and deployment"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 explicitly says the dashboard was deployed, which directly evidences support for deployment."
+        },
+        {
+          "id": "gap-18",
+          "kind": "weak_evidence",
+          "requirementId": "jd-18",
+          "jdSpan": {
+            "start": 1339,
+            "end": 1443,
+            "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+          },
+          "resumeLineId": "cv-19",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2443,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+          },
+          "rationale": "cv-19 shows analytics work on Generative AI initiatives, but it does not clearly state contribution to new analytics use cases."
+        },
+        {
+          "id": "gap-19",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-19",
+          "jdSpan": {
+            "start": 1339,
+            "end": 1443,
+            "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+          },
+          "resumeLineId": "cv-4",
+          "resumeSpan": {
+            "start": 539,
+            "end": 601,
+            "text": "AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram)"
+          },
+          "rationale": "cv-4 directly states AI/LLM engineering work, which is clear evidence of contributing to AI use cases."
+        },
+        {
+          "id": "gap-20",
+          "kind": "weak_evidence",
+          "requirementId": "jd-20",
+          "jdSpan": {
+            "start": 1339,
+            "end": 1443,
+            "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+          },
+          "resumeLineId": "cv-20",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2565,
+            "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+          },
+          "rationale": "cv-20 shows process assessment and automation opportunities, but it does not explicitly say the candidate contributed to process improvements as an ongoing initiative."
+        },
+        {
+          "id": "gap-21",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-21",
+          "jdSpan": {
+            "start": 1339,
+            "end": 1443,
+            "text": "Contribute to new analytics and AI use cases, including process improvements and automation initiatives."
+          },
+          "resumeLineId": "cv-20",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2565,
+            "text": "Assessed business processes and identified automation opportunities for an Indonesian telco, reducing manual work by 60%."
+          },
+          "rationale": "cv-20 explicitly mentions identifying automation opportunities and reducing manual work by 60%, which strongly supports automation initiatives."
+        },
+        {
+          "id": "gap-22",
+          "kind": "weak_evidence",
+          "requirementId": "jd-22",
+          "jdSpan": {
+            "start": 1446,
+            "end": 1532,
+            "text": "Troubleshoot data/reporting issues and support continuous improvements post-deployment"
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 2047,
+            "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+          },
+          "rationale": "cv-16 shows governance and auditing, but it does not explicitly mention troubleshooting data issues."
+        },
+        {
+          "id": "gap-23",
+          "kind": "weak_evidence",
+          "requirementId": "jd-23",
+          "jdSpan": {
+            "start": 1446,
+            "end": 1532,
+            "text": "Troubleshoot data/reporting issues and support continuous improvements post-deployment"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 demonstrates reporting/dashboard deployment, but it does not explicitly show troubleshooting reporting issues."
+        },
+        {
+          "id": "gap-24",
+          "kind": "weak_evidence",
+          "requirementId": "jd-24",
+          "jdSpan": {
+            "start": 1446,
+            "end": 1532,
+            "text": "Troubleshoot data/reporting issues and support continuous improvements post-deployment"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 869,
+            "end": 1110,
+            "text": "Migrated CoachBetter's core AI evaluation engine from a third-party black-box (Dify) to Gemini + Langfuse, building multi-stage scoring pipelines with structured-JSON output and bringing prompt versioning and full LLM observability in-house."
+          },
+          "rationale": "cv-11 suggests ongoing improvements through observability and pipeline refactoring, but it does not explicitly state post-deployment support."
+        },
+        {
+          "id": "gap-25",
+          "kind": "missing_skill",
+          "requirementId": "jd-25",
+          "jdSpan": {
+            "start": 1535,
+            "end": 1650,
+            "text": "Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines explicitly mention documenting data logic."
+        },
+        {
+          "id": "gap-26",
+          "kind": "missing_skill",
+          "requirementId": "jd-26",
+          "jdSpan": {
+            "start": 1535,
+            "end": 1650,
+            "text": "Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines explicitly mention documenting report structures."
+        },
+        {
+          "id": "gap-27",
+          "kind": "missing_skill",
+          "requirementId": "jd-27",
+          "jdSpan": {
+            "start": 1535,
+            "end": 1650,
+            "text": "Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines explicitly mention documenting a rollout approach."
+        },
+        {
+          "id": "gap-28",
+          "kind": "weak_evidence",
+          "requirementId": "jd-28",
+          "jdSpan": {
+            "start": 1535,
+            "end": 1650,
+            "text": "Document data logic, report structures, and rollout approach to enable scalable deployment across Venture Groupwide"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 shows a dashboard deployed across many business units, but it does not explicitly mention scalable deployment across the groupwide organization."
+        },
+        {
+          "id": "gap-29",
+          "kind": "weak_evidence",
+          "requirementId": "jd-29",
+          "jdSpan": {
+            "start": 1653,
+            "end": 1774,
+            "text": "Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions."
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 shows experience with enterprise-scale dashboards, but it does not explicitly state exposure to enterprise data platforms."
+        },
+        {
+          "id": "gap-30",
+          "kind": "weak_evidence",
+          "requirementId": "jd-30",
+          "jdSpan": {
+            "start": 1653,
+            "end": 1774,
+            "text": "Gain exposure to enterprise data platforms and understand how standardized analytics solutions are scaled across regions."
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 suggests scaled analytics across many business units, but it does not explicitly explain how standardized solutions are scaled across regions."
+        },
+        {
+          "id": "gap-31",
+          "kind": "missing_skill",
+          "requirementId": "jd-31",
+          "jdSpan": {
+            "start": 1804,
+            "end": 1954,
+            "text": "Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "The only degree evidence shows completed degrees or an expected master's, not a currently pursuing bachelor's program."
+        },
+        {
+          "id": "gap-32",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-32",
+          "jdSpan": {
+            "start": 1804,
+            "end": 1954,
+            "text": "Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline"
+          },
+          "resumeLineId": "cv-24",
+          "resumeSpan": {
+            "start": 2755,
+            "end": 2882,
+            "text": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)"
+          },
+          "rationale": "cv-24 explicitly states an expected M.Sc. program, directly evidencing a currently pursued master's degree."
+        },
+        {
+          "id": "gap-33",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-33",
+          "jdSpan": {
+            "start": 1804,
+            "end": 1954,
+            "text": "Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline"
+          },
+          "resumeLineId": "cv-24",
+          "resumeSpan": {
+            "start": 2755,
+            "end": 2882,
+            "text": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)"
+          },
+          "rationale": "cv-24 is an M.Sc. in Business Analytics, directly matching the requested discipline."
+        },
+        {
+          "id": "gap-34",
+          "kind": "weak_evidence",
+          "requirementId": "jd-34",
+          "jdSpan": {
+            "start": 1957,
+            "end": 2041,
+            "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 212,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+          },
+          "rationale": "cv-1 shows prior data analytics experience and production LLM work, but it is evidence of experience rather than stated interest."
+        },
+        {
+          "id": "gap-35",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-35",
+          "jdSpan": {
+            "start": 1957,
+            "end": 2041,
+            "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 directly shows Power BI dashboard work, which is strong evidence of interest in business intelligence."
+        },
+        {
+          "id": "gap-36",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-36",
+          "jdSpan": {
+            "start": 1957,
+            "end": 2041,
+            "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+          },
+          "resumeLineId": "cv-4",
+          "resumeSpan": {
+            "start": 539,
+            "end": 601,
+            "text": "AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram)"
+          },
+          "rationale": "cv-4 directly states AI/LLM engineering, which strongly evidences interest in AI-driven applications."
+        },
+        {
+          "id": "gap-37",
+          "kind": "weak_evidence",
+          "requirementId": "jd-37",
+          "jdSpan": {
+            "start": 2044,
+            "end": 2142,
+            "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 212,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+          },
+          "rationale": "cv-1 mentions prior data analytics experience, but it does not explicitly show basic understanding of data analysis concepts."
+        },
+        {
+          "id": "gap-38",
+          "kind": "weak_evidence",
+          "requirementId": "jd-38",
+          "jdSpan": {
+            "start": 2044,
+            "end": 2142,
+            "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 2047,
+            "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+          },
+          "rationale": "cv-16 shows database auditing and governance, but not explicit data modelling knowledge."
+        },
+        {
+          "id": "gap-39",
+          "kind": "weak_evidence",
+          "requirementId": "jd-39",
+          "jdSpan": {
+            "start": 2044,
+            "end": 2142,
+            "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+          },
+          "resumeLineId": "cv-17",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2182,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+          },
+          "rationale": "cv-17 shows warehouse migration and stored procedure refactoring, which implies transformation work but does not explicitly mention data transformation concepts."
+        },
+        {
+          "id": "gap-40",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-40",
+          "jdSpan": {
+            "start": 2044,
+            "end": 2142,
+            "text": "Basic understanding of data analysis concepts (eg. Data modelling, data transformation, reporting)"
+          },
+          "resumeLineId": "cv-19",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2443,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+          },
+          "rationale": "cv-19 directly references building a Power BI dashboard, which is clear evidence of reporting experience."
+        },
+        {
+          "id": "gap-41",
+          "kind": "weak_evidence",
+          "requirementId": "jd-41",
+          "jdSpan": {
+            "start": 2145,
+            "end": 2244,
+            "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 shows Power BI experience, but Excel exposure is not explicitly stated."
+        },
+        {
+          "id": "gap-42",
+          "kind": "weak_evidence",
+          "requirementId": "jd-42",
+          "jdSpan": {
+            "start": 2145,
+            "end": 2244,
+            "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": "cv-17",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2182,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+          },
+          "rationale": "cv-17 shows warehouse migration and stored procedures, which suggests SQL exposure but does not say SQL explicitly."
+        },
+        {
+          "id": "gap-43",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-43",
+          "jdSpan": {
+            "start": 2145,
+            "end": 2244,
+            "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 explicitly names Power BI dashboard work, directly evidencing exposure to PowerBI."
+        },
+        {
+          "id": "gap-44",
+          "kind": "weak_evidence",
+          "requirementId": "jd-44",
+          "jdSpan": {
+            "start": 2145,
+            "end": 2244,
+            "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 212,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+          },
+          "rationale": "cv-1 references pipeline architecture and deployment, but it does not explicitly mention data engineering concepts."
+        },
+        {
+          "id": "gap-45",
+          "kind": "weak_evidence",
+          "requirementId": "jd-45",
+          "jdSpan": {
+            "start": 2247,
+            "end": 2338,
+            "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+          },
+          "resumeLineId": "cv-17",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2182,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake and led refactoring of 500+ stored procedures for a multinational FMCG company."
+          },
+          "rationale": "cv-17 explicitly mentions a data warehouse migration and stored procedures, which is solid but still partial evidence of ETL familiarity."
+        },
+        {
+          "id": "gap-46",
+          "kind": "weak_evidence",
+          "requirementId": "jd-46",
+          "jdSpan": {
+            "start": 2247,
+            "end": 2338,
+            "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 2047,
+            "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+          },
+          "rationale": "cv-16 implies database and governance familiarity, but it does not explicitly show data modelling."
+        },
+        {
+          "id": "gap-47",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-47",
+          "jdSpan": {
+            "start": 2247,
+            "end": 2338,
+            "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 635,
+            "end": 680,
+            "text": "Cloud Architecture & Automation (AWS, Vercel)"
+          },
+          "rationale": "cv-6 explicitly names AWS in cloud architecture and automation, directly supporting familiarity with cloud data platforms."
+        },
+        {
+          "id": "gap-48",
+          "kind": "weak_evidence",
+          "requirementId": "jd-48",
+          "jdSpan": {
+            "start": 2379,
+            "end": 2429,
+            "text": "Strong analytical mindset with attention to detail"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 212,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience, now designing and shipping production LLM-powered products end-to-end — from pipeline architecture to deployment."
+          },
+          "rationale": "cv-1 shows prior Big-4 data analytics experience, but the analytical mindset is inferred rather than explicitly evidenced."
+        },
+        {
+          "id": "gap-49",
+          "kind": "weak_evidence",
+          "requirementId": "jd-49",
+          "jdSpan": {
+            "start": 2379,
+            "end": 2429,
+            "text": "Strong analytical mindset with attention to detail"
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 2047,
+            "text": "Drove enterprise data governance for a state-owned bank, auditing 100+ siloed databases and reducing compliance risks by 70%"
+          },
+          "rationale": "cv-16 shows careful auditing of 100+ databases, but attention to detail is only implied."
+        },
+        {
+          "id": "gap-50",
+          "kind": "missing_skill",
+          "requirementId": "jd-50",
+          "jdSpan": {
+            "start": 2432,
+            "end": 2512,
+            "text": "Willingness to learn and work with real business data and cross-functional teams"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines explicitly express willingness to learn."
+        },
+        {
+          "id": "gap-51",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-51",
+          "jdSpan": {
+            "start": 2432,
+            "end": 2512,
+            "text": "Willingness to learn and work with real business data and cross-functional teams"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 shows work on a dashboard consolidating 100+ business units, which clearly involves real business data."
+        },
+        {
+          "id": "gap-52",
+          "kind": "weak_evidence",
+          "requirementId": "jd-52",
+          "jdSpan": {
+            "start": 2432,
+            "end": 2512,
+            "text": "Willingness to learn and work with real business data and cross-functional teams"
+          },
+          "resumeLineId": "cv-18",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2324,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units to streamline subsidiary integration for a regional water utility."
+          },
+          "rationale": "cv-18 implies multiple business units were involved, but it does not explicitly mention cross-functional teams."
+        },
+        {
+          "id": "gap-53",
+          "kind": "weak_evidence",
+          "requirementId": "jd-53",
+          "jdSpan": {
+            "start": 2515,
+            "end": 2584,
+            "text": "Good communication skills to translate data into meaningful insights."
+          },
+          "resumeLineId": "cv-9",
+          "resumeSpan": {
+            "start": 747,
+            "end": 786,
+            "text": "Stakeholder Management & Communication."
+          },
+          "rationale": "cv-9 states stakeholder management and communication, but it does not explicitly show strong communication in a data context."
+        },
+        {
+          "id": "gap-54",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-54",
+          "jdSpan": {
+            "start": 2515,
+            "end": 2584,
+            "text": "Good communication skills to translate data into meaningful insights."
+          },
+          "resumeLineId": "cv-19",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2443,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets for daily C-suite briefings."
+          },
+          "rationale": "cv-19 directly shows a dashboard used for daily C-suite briefings, which is strong evidence of translating data into meaningful insights."
+        }
+      ],
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 3857.3362500000003,
+          "usage": {
+            "input_tokens": 828,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 764,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 1592
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 7549.687916999996,
+          "usage": {
+            "input_tokens": 640,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1663,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 2303
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.4-mini",
+          "ms": 18047.553083000006,
+          "usage": {
+            "input_tokens": 7156,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 2546,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 9702
+          }
+        }
+      ]
+    },
+    {
+      "config": "gpt-5.6-luna",
+      "pair": "01",
+      "run": 0,
+      "wallMs": 24357.607875,
+      "jdLines": 24,
+      "cvLines": 15,
+      "droppedLines": 0,
+      "gapCount": 24,
+      "planQuestions": 6,
+      "gaps": [
+        {
+          "id": "gap-1",
+          "kind": "weak_evidence",
+          "requirementId": "jd-1",
+          "jdSpan": {
+            "start": 161,
+            "end": 190,
+            "text": "Build and maintain SQL models"
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate built a weekly report with BigQuery SQL, but the line does not explicitly establish building or maintaining SQL models."
+        },
+        {
+          "id": "gap-2",
+          "kind": "weak_evidence",
+          "requirementId": "jd-2",
+          "jdSpan": {
+            "start": 161,
+            "end": 205,
+            "text": "Build and maintain SQL models and dashboards"
+          },
+          "resumeLineId": "cv-15",
+          "resumeSpan": {
+            "start": 712,
+            "end": 737,
+            "text": "Tableau (coursework only)"
+          },
+          "rationale": "Tableau coursework touches dashboard-related tooling, but there is no evidence of building or maintaining dashboards."
+        },
+        {
+          "id": "gap-3",
+          "kind": "missing_skill",
+          "requirementId": "jd-3",
+          "jdSpan": {
+            "start": 210,
+            "end": 250,
+            "text": "funnel, retention and campaign reporting"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines mention funnel reporting or funnel analysis."
+        },
+        {
+          "id": "gap-4",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-4",
+          "jdSpan": {
+            "start": 210,
+            "end": 250,
+            "text": "funnel, retention and campaign reporting"
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate explicitly built a weekly retention report for the growth team using BigQuery SQL."
+        },
+        {
+          "id": "gap-5",
+          "kind": "missing_skill",
+          "requirementId": "jd-5",
+          "jdSpan": {
+            "start": 210,
+            "end": 250,
+            "text": "funnel, retention and campaign reporting"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines explicitly describe campaign reporting."
+        },
+        {
+          "id": "gap-6",
+          "kind": "missing_skill",
+          "requirementId": "jd-6",
+          "jdSpan": {
+            "start": 286,
+            "end": 320,
+            "text": "design and analyze A/B experiments"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines provide evidence of designing A/B experiments."
+        },
+        {
+          "id": "gap-7",
+          "kind": "missing_skill",
+          "requirementId": "jd-7",
+          "jdSpan": {
+            "start": 286,
+            "end": 320,
+            "text": "design and analyze A/B experiments"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "The churn analysis line does not establish analysis of an A/B experiment."
+        },
+        {
+          "id": "gap-8",
+          "kind": "weak_evidence",
+          "requirementId": "jd-8",
+          "jdSpan": {
+            "start": 323,
+            "end": 381,
+            "text": "Own the weekly business review metrics pipeline end to end"
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate built a weekly retention report, but the line does not show ownership of the full business review metrics pipeline end to end."
+        },
+        {
+          "id": "gap-9",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-9",
+          "jdSpan": {
+            "start": 384,
+            "end": 434,
+            "text": "Communicate findings to non-technical stakeholders"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "The candidate explicitly presented findings to a marketing lead in a monthly review, demonstrating stakeholder communication."
+        },
+        {
+          "id": "gap-10",
+          "kind": "weak_evidence",
+          "requirementId": "jd-10",
+          "jdSpan": {
+            "start": 462,
+            "end": 556,
+            "text": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate reports writing SQL in BigQuery, but the line provides no evidence of three or more years of experience."
+        },
+        {
+          "id": "gap-11",
+          "kind": "weak_evidence",
+          "requirementId": "jd-11",
+          "jdSpan": {
+            "start": 474,
+            "end": 522,
+            "text": "hands-on SQL against a production data warehouse"
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "Writing BigQuery queries for a team report suggests warehouse use, but production usage is not explicitly stated."
+        },
+        {
+          "id": "gap-12",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-12",
+          "jdSpan": {
+            "start": 523,
+            "end": 556,
+            "text": "(BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": "cv-6",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate explicitly used BigQuery to write SQL queries for a weekly retention report."
+        },
+        {
+          "id": "gap-13",
+          "kind": "weak_evidence",
+          "requirementId": "jd-13",
+          "jdSpan": {
+            "start": 591,
+            "end": 650,
+            "text": "hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": "cv-3",
+          "resumeSpan": {
+            "start": 123,
+            "end": 181,
+            "text": "Coursework: statistics, machine learning, data management."
+          },
+          "rationale": "Statistics coursework provides general exposure relevant to hypothesis testing, but the line does not explicitly mention hypothesis testing."
+        },
+        {
+          "id": "gap-14",
+          "kind": "missing_skill",
+          "requirementId": "jd-14",
+          "jdSpan": {
+            "start": 591,
+            "end": 650,
+            "text": "hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines mention confidence intervals."
+        },
+        {
+          "id": "gap-15",
+          "kind": "weak_evidence",
+          "requirementId": "jd-15",
+          "jdSpan": {
+            "start": 591,
+            "end": 650,
+            "text": "hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": "cv-3",
+          "resumeSpan": {
+            "start": 123,
+            "end": 181,
+            "text": "Coursework: statistics, machine learning, data management."
+          },
+          "rationale": "Statistics and machine learning coursework may provide foundational exposure to experiment design, but no direct experiment-design experience is stated."
+        },
+        {
+          "id": "gap-16",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-16",
+          "jdSpan": {
+            "start": 653,
+            "end": 707,
+            "text": "Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": "cv-7",
+          "resumeSpan": {
+            "start": 366,
+            "end": 444,
+            "text": "Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+          },
+          "rationale": "The candidate explicitly used pandas to clean and join clickstream tables for churn analysis."
+        },
+        {
+          "id": "gap-17",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-17",
+          "jdSpan": {
+            "start": 688,
+            "end": 707,
+            "text": "(pandas, notebooks)"
+          },
+          "resumeLineId": "cv-7",
+          "resumeSpan": {
+            "start": 366,
+            "end": 444,
+            "text": "Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+          },
+          "rationale": "The candidate explicitly cleaned and joined tables with pandas for an analysis."
+        },
+        {
+          "id": "gap-18",
+          "kind": "missing_skill",
+          "requirementId": "jd-18",
+          "jdSpan": {
+            "start": 688,
+            "end": 707,
+            "text": "(pandas, notebooks)"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines mention Jupyter notebooks."
+        },
+        {
+          "id": "gap-19",
+          "kind": "weak_evidence",
+          "requirementId": "jd-19",
+          "jdSpan": {
+            "start": 710,
+            "end": 761,
+            "text": "Experience with a BI tool such as Tableau or Looker"
+          },
+          "resumeLineId": "cv-15",
+          "resumeSpan": {
+            "start": 712,
+            "end": 737,
+            "text": "Tableau (coursework only)"
+          },
+          "rationale": "Tableau coursework indicates exposure to a BI tool, but it is explicitly coursework only and does not demonstrate applied experience."
+        },
+        {
+          "id": "gap-20",
+          "kind": "weak_evidence",
+          "requirementId": "jd-20",
+          "jdSpan": {
+            "start": 736,
+            "end": 761,
+            "text": "such as Tableau or Looker"
+          },
+          "resumeLineId": "cv-15",
+          "resumeSpan": {
+            "start": 712,
+            "end": 737,
+            "text": "Tableau (coursework only)"
+          },
+          "rationale": "The candidate lists Tableau, but the line explicitly limits the experience to coursework."
+        },
+        {
+          "id": "gap-21",
+          "kind": "missing_skill",
+          "requirementId": "jd-21",
+          "jdSpan": {
+            "start": 764,
+            "end": 837,
+            "text": "Familiarity with dbt and version-controlled analytics workflows is a plus"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines mention dbt."
+        },
+        {
+          "id": "gap-22",
+          "kind": "missing_skill",
+          "requirementId": "jd-22",
+          "jdSpan": {
+            "start": 789,
+            "end": 827,
+            "text": "version-controlled analytics workflows"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the candidate lines mention version control or version-controlled analytics workflows."
+        },
+        {
+          "id": "gap-23",
+          "kind": "missing_skill",
+          "requirementId": "jd-23",
+          "jdSpan": {
+            "start": 840,
+            "end": 893,
+            "text": "Excellent written and verbal communication in English"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "The lines do not establish excellent written communication in English."
+        },
+        {
+          "id": "gap-24",
+          "kind": "weak_evidence",
+          "requirementId": "jd-24",
+          "jdSpan": {
+            "start": 840,
+            "end": 893,
+            "text": "Excellent written and verbal communication in English"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "Presenting findings to a marketing lead demonstrates verbal communication, but the line does not establish excellence or communication specifically in English."
+        }
+      ],
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 3796.2990410000057,
+          "usage": {
+            "input_tokens": 343,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 487,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 830
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 4182.007874999996,
+          "usage": {
+            "input_tokens": 284,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 373,
+            "output_tokens_details": {
+              "reasoning_tokens": 168
+            },
+            "total_tokens": 657
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 10506.711958,
+          "usage": {
+            "input_tokens": 2342,
+            "input_tokens_details": {
+              "cache_write_tokens": 2339,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1420,
+            "output_tokens_details": {
+              "reasoning_tokens": 396
+            },
+            "total_tokens": 3762
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 8355.959917,
+          "usage": {
+            "input_tokens": 1768,
+            "input_tokens_details": {
+              "cache_write_tokens": 1765,
+              "cached_tokens": 0
+            },
+            "output_tokens": 844,
+            "output_tokens_details": {
+              "reasoning_tokens": 318
+            },
+            "total_tokens": 2612
+          }
+        }
+      ]
+    },
+    {
+      "config": "gpt-5.6-luna",
+      "pair": "01",
+      "run": 1,
+      "wallMs": 30703.225084000005,
+      "jdLines": 26,
+      "cvLines": 17,
+      "droppedLines": 0,
+      "gapCount": 26,
+      "planQuestions": 6,
+      "gaps": [
+        {
+          "id": "gap-1",
+          "kind": "weak_evidence",
+          "requirementId": "jd-1",
+          "jdSpan": {
+            "start": 161,
+            "end": 190,
+            "text": "Build and maintain SQL models"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate wrote SQL queries in BigQuery, but the line does not demonstrate building or maintaining SQL models."
+        },
+        {
+          "id": "gap-2",
+          "kind": "weak_evidence",
+          "requirementId": "jd-2",
+          "jdSpan": {
+            "start": 161,
+            "end": 205,
+            "text": "Build and maintain SQL models and dashboards"
+          },
+          "resumeLineId": "cv-17",
+          "resumeSpan": {
+            "start": 712,
+            "end": 737,
+            "text": "Tableau (coursework only)"
+          },
+          "rationale": "Tableau coursework indicates limited dashboard exposure but does not show building or maintaining dashboards."
+        },
+        {
+          "id": "gap-3",
+          "kind": "missing_skill",
+          "requirementId": "jd-3",
+          "jdSpan": {
+            "start": 210,
+            "end": 250,
+            "text": "funnel, retention and campaign reporting"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line explicitly describes funnel reporting."
+        },
+        {
+          "id": "gap-4",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-4",
+          "jdSpan": {
+            "start": 210,
+            "end": 250,
+            "text": "funnel, retention and campaign reporting"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate explicitly built a weekly retention report using SQL in BigQuery."
+        },
+        {
+          "id": "gap-5",
+          "kind": "weak_evidence",
+          "requirementId": "jd-5",
+          "jdSpan": {
+            "start": 210,
+            "end": 250,
+            "text": "funnel, retention and campaign reporting"
+          },
+          "resumeLineId": "cv-13",
+          "resumeSpan": {
+            "start": 609,
+            "end": 651,
+            "text": "Automated a monthly report with VBA macros"
+          },
+          "rationale": "Automating a monthly report suggests reporting experience, but the line does not identify campaign reporting."
+        },
+        {
+          "id": "gap-6",
+          "kind": "missing_skill",
+          "requirementId": "jd-6",
+          "jdSpan": {
+            "start": 286,
+            "end": 320,
+            "text": "design and analyze A/B experiments"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line describes designing A/B experiments."
+        },
+        {
+          "id": "gap-7",
+          "kind": "missing_skill",
+          "requirementId": "jd-7",
+          "jdSpan": {
+            "start": 286,
+            "end": 320,
+            "text": "design and analyze A/B experiments"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line describes analyzing A/B experiments."
+        },
+        {
+          "id": "gap-8",
+          "kind": "weak_evidence",
+          "requirementId": "jd-8",
+          "jdSpan": {
+            "start": 323,
+            "end": 381,
+            "text": "Own the weekly business review metrics pipeline end to end"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The weekly retention report shows part of a metrics pipeline, but not ownership or end-to-end responsibility."
+        },
+        {
+          "id": "gap-9",
+          "kind": "weak_evidence",
+          "requirementId": "jd-9",
+          "jdSpan": {
+            "start": 384,
+            "end": 434,
+            "text": "Communicate findings to non-technical stakeholders"
+          },
+          "resumeLineId": "cv-10",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "Presenting findings to a marketing lead demonstrates stakeholder communication, but the line does not establish that the stakeholder was non-technical."
+        },
+        {
+          "id": "gap-10",
+          "kind": "weak_evidence",
+          "requirementId": "jd-10",
+          "jdSpan": {
+            "start": 462,
+            "end": 556,
+            "text": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate reports using SQL in BigQuery, but no duration is provided to support 3+ years of hands-on experience."
+        },
+        {
+          "id": "gap-11",
+          "kind": "weak_evidence",
+          "requirementId": "jd-11",
+          "jdSpan": {
+            "start": 462,
+            "end": 556,
+            "text": "3+ years of hands-on SQL against a production data warehouse (BigQuery or Snowflake preferred)"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "Writing SQL queries in BigQuery suggests warehouse use, but the line does not explicitly establish a production data warehouse."
+        },
+        {
+          "id": "gap-12",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-12",
+          "jdSpan": {
+            "start": 524,
+            "end": 555,
+            "text": "BigQuery or Snowflake preferred"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 279,
+            "end": 363,
+            "text": "Wrote SQL queries in BigQuery to build a weekly retention report for the growth team"
+          },
+          "rationale": "The candidate explicitly wrote SQL queries in BigQuery to produce a report."
+        },
+        {
+          "id": "gap-13",
+          "kind": "missing_skill",
+          "requirementId": "jd-13",
+          "jdSpan": {
+            "start": 524,
+            "end": 555,
+            "text": "BigQuery or Snowflake preferred"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions Snowflake."
+        },
+        {
+          "id": "gap-14",
+          "kind": "weak_evidence",
+          "requirementId": "jd-14",
+          "jdSpan": {
+            "start": 591,
+            "end": 650,
+            "text": "hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": "cv-3",
+          "resumeSpan": {
+            "start": 135,
+            "end": 145,
+            "text": "statistics"
+          },
+          "rationale": "Listing statistics provides general related knowledge but does not specifically demonstrate hypothesis testing."
+        },
+        {
+          "id": "gap-15",
+          "kind": "weak_evidence",
+          "requirementId": "jd-15",
+          "jdSpan": {
+            "start": 591,
+            "end": 650,
+            "text": "hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": "cv-3",
+          "resumeSpan": {
+            "start": 135,
+            "end": 145,
+            "text": "statistics"
+          },
+          "rationale": "Listing statistics is broadly related but does not specifically demonstrate confidence intervals."
+        },
+        {
+          "id": "gap-16",
+          "kind": "missing_skill",
+          "requirementId": "jd-16",
+          "jdSpan": {
+            "start": 591,
+            "end": 650,
+            "text": "hypothesis testing, confidence intervals, experiment design"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line specifically describes experiment design."
+        },
+        {
+          "id": "gap-17",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-17",
+          "jdSpan": {
+            "start": 653,
+            "end": 707,
+            "text": "Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": "cv-9",
+          "resumeSpan": {
+            "start": 366,
+            "end": 444,
+            "text": "Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+          },
+          "rationale": "The candidate used pandas to clean and join clickstream data for a churn analysis, demonstrating Python-based analysis."
+        },
+        {
+          "id": "gap-18",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-18",
+          "jdSpan": {
+            "start": 653,
+            "end": 707,
+            "text": "Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": "cv-9",
+          "resumeSpan": {
+            "start": 366,
+            "end": 444,
+            "text": "Cleaned and joined clickstream tables with pandas for an ad-hoc churn analysis"
+          },
+          "rationale": "The candidate explicitly used pandas to clean and join clickstream tables for analysis."
+        },
+        {
+          "id": "gap-19",
+          "kind": "missing_skill",
+          "requirementId": "jd-19",
+          "jdSpan": {
+            "start": 653,
+            "end": 707,
+            "text": "Proficiency in Python for analysis (pandas, notebooks)"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions notebooks."
+        },
+        {
+          "id": "gap-20",
+          "kind": "weak_evidence",
+          "requirementId": "jd-20",
+          "jdSpan": {
+            "start": 710,
+            "end": 761,
+            "text": "Experience with a BI tool such as Tableau or Looker"
+          },
+          "resumeLineId": "cv-17",
+          "resumeSpan": {
+            "start": 712,
+            "end": 737,
+            "text": "Tableau (coursework only)"
+          },
+          "rationale": "Tableau coursework indicates exposure to a BI tool but does not demonstrate practical experience using one."
+        },
+        {
+          "id": "gap-21",
+          "kind": "weak_evidence",
+          "requirementId": "jd-21",
+          "jdSpan": {
+            "start": 744,
+            "end": 761,
+            "text": "Tableau or Looker"
+          },
+          "resumeLineId": "cv-17",
+          "resumeSpan": {
+            "start": 712,
+            "end": 737,
+            "text": "Tableau (coursework only)"
+          },
+          "rationale": "The candidate lists Tableau, but qualifies it as coursework only."
+        },
+        {
+          "id": "gap-22",
+          "kind": "missing_skill",
+          "requirementId": "jd-22",
+          "jdSpan": {
+            "start": 744,
+            "end": 761,
+            "text": "Tableau or Looker"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions Looker."
+        },
+        {
+          "id": "gap-23",
+          "kind": "missing_skill",
+          "requirementId": "jd-23",
+          "jdSpan": {
+            "start": 764,
+            "end": 837,
+            "text": "Familiarity with dbt and version-controlled analytics workflows is a plus"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions dbt."
+        },
+        {
+          "id": "gap-24",
+          "kind": "missing_skill",
+          "requirementId": "jd-24",
+          "jdSpan": {
+            "start": 764,
+            "end": 837,
+            "text": "Familiarity with dbt and version-controlled analytics workflows is a plus"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "No candidate line mentions version control or version-controlled analytics workflows."
+        },
+        {
+          "id": "gap-25",
+          "kind": "missing_skill",
+          "requirementId": "jd-25",
+          "jdSpan": {
+            "start": 840,
+            "end": 893,
+            "text": "Excellent written and verbal communication in English"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "The candidate shows presenting experience, but no line evidences excellent written communication in English."
+        },
+        {
+          "id": "gap-26",
+          "kind": "weak_evidence",
+          "requirementId": "jd-26",
+          "jdSpan": {
+            "start": 840,
+            "end": 893,
+            "text": "Excellent written and verbal communication in English"
+          },
+          "resumeLineId": "cv-10",
+          "resumeSpan": {
+            "start": 447,
+            "end": 507,
+            "text": "Presented findings to the marketing lead in a monthly review"
+          },
+          "rationale": "Presenting findings to a marketing lead demonstrates verbal communication, but does not establish excellent communication in English."
+        }
+      ],
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 3482.521166999999,
+          "usage": {
+            "input_tokens": 343,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 539,
+            "output_tokens_details": {
+              "reasoning_tokens": 0
+            },
+            "total_tokens": 882
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 8244.253375,
+          "usage": {
+            "input_tokens": 284,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 364,
+            "output_tokens_details": {
+              "reasoning_tokens": 159
+            },
+            "total_tokens": 648
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 12848.238417,
+          "usage": {
+            "input_tokens": 2446,
+            "input_tokens_details": {
+              "cache_write_tokens": 2443,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1567,
+            "output_tokens_details": {
+              "reasoning_tokens": 516
+            },
+            "total_tokens": 4013
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 8135.079625000013,
+          "usage": {
+            "input_tokens": 1826,
+            "input_tokens_details": {
+              "cache_write_tokens": 1823,
+              "cached_tokens": 0
+            },
+            "output_tokens": 854,
+            "output_tokens_details": {
+              "reasoning_tokens": 273
+            },
+            "total_tokens": 2680
+          }
+        }
+      ]
+    },
+    {
+      "config": "gpt-5.6-luna",
+      "pair": "04",
+      "run": 0,
+      "wallMs": 41353.56058399999,
+      "jdLines": 61,
+      "cvLines": 64,
+      "droppedLines": 0,
+      "gapCount": 61,
+      "planQuestions": null,
+      "gaps": [
+        {
+          "id": "gap-1",
+          "kind": "weak_evidence",
+          "requirementId": "jd-1",
+          "jdSpan": {
+            "start": 126,
+            "end": 195,
+            "text": "get hands-on experience working with real business data and use cases"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 97,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience"
+          },
+          "rationale": "The candidate cites three-plus years of Big-4 data analytics experience, but does not explicitly describe hands-on work with real business data or use cases."
+        },
+        {
+          "id": "gap-2",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-2",
+          "jdSpan": {
+            "start": 206,
+            "end": 227,
+            "text": "help build dashboards"
+          },
+          "resumeLineId": "cv-44",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2391,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives"
+          },
+          "rationale": "The candidate explicitly built a Power BI dashboard tracking more than $100M in initiatives."
+        },
+        {
+          "id": "gap-3",
+          "kind": "weak_evidence",
+          "requirementId": "jd-3",
+          "jdSpan": {
+            "start": 229,
+            "end": 243,
+            "text": "analyse trends"
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization suggests analytical work but does not explicitly demonstrate trend analysis."
+        },
+        {
+          "id": "gap-4",
+          "kind": "weak_evidence",
+          "requirementId": "jd-4",
+          "jdSpan": {
+            "start": 249,
+            "end": 328,
+            "text": "support AI-driven initiatives that improve daily operations and decision-making"
+          },
+          "resumeLineId": "cv-44",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2391,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives"
+          },
+          "rationale": "A dashboard tracking Generative AI initiatives relates to AI-driven work but does not show support for operational or decision-making improvements."
+        },
+        {
+          "id": "gap-5",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-5",
+          "jdSpan": {
+            "start": 354,
+            "end": 392,
+            "text": "work with tools such as data platforms"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "Migrating a data warehouse from AWS Redshift to Snowflake is concrete experience with data platforms."
+        },
+        {
+          "id": "gap-6",
+          "kind": "weak_evidence",
+          "requirementId": "jd-6",
+          "jdSpan": {
+            "start": 354,
+            "end": 455,
+            "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "The data warehouse migration is ETL-adjacent but does not explicitly describe working with ETL processes."
+        },
+        {
+          "id": "gap-7",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-7",
+          "jdSpan": {
+            "start": 354,
+            "end": 455,
+            "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions"
+          },
+          "resumeLineId": "cv-41",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2223,
+            "text": "Deployed Power BI risk profile dashboard"
+          },
+          "rationale": "The candidate explicitly deployed a Power BI reporting dashboard."
+        },
+        {
+          "id": "gap-8",
+          "kind": "weak_evidence",
+          "requirementId": "jd-8",
+          "jdSpan": {
+            "start": 354,
+            "end": 455,
+            "text": "work with tools such as data platforms, ETL processes, reporting dashboards, and automation solutions"
+          },
+          "resumeLineId": "cv-13",
+          "resumeSpan": {
+            "start": 635,
+            "end": 680,
+            "text": "Cloud Architecture & Automation (AWS, Vercel)"
+          },
+          "rationale": "Cloud Architecture & Automation indicates relevant exposure but provides limited evidence of working with automation solutions."
+        },
+        {
+          "id": "gap-9",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-9",
+          "jdSpan": {
+            "start": 457,
+            "end": 508,
+            "text": "while collaborating with both IT and business teams"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 380,
+            "end": 412,
+            "text": "Bridges business and engineering"
+          },
+          "rationale": "The statement that the candidate bridges business and engineering directly supports collaboration between business and IT."
+        },
+        {
+          "id": "gap-10",
+          "kind": "weak_evidence",
+          "requirementId": "jd-10",
+          "jdSpan": {
+            "start": 716,
+            "end": 785,
+            "text": "Support the rollout of enterprise BI dashboards across multiple sites"
+          },
+          "resumeLineId": "cv-41",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2223,
+            "text": "Deployed Power BI risk profile dashboard"
+          },
+          "rationale": "Deploying a Power BI dashboard supports dashboard rollout, but the line does not establish enterprise scope or deployment across multiple sites."
+        },
+        {
+          "id": "gap-11",
+          "kind": "weak_evidence",
+          "requirementId": "jd-11",
+          "jdSpan": {
+            "start": 786,
+            "end": 852,
+            "text": "by replicating, adapting, and deploying proven reporting solutions"
+          },
+          "resumeLineId": "cv-41",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2223,
+            "text": "Deployed Power BI risk profile dashboard"
+          },
+          "rationale": "Deploying a Power BI dashboard touches reporting solution deployment but does not demonstrate replicating proven solutions."
+        },
+        {
+          "id": "gap-12",
+          "kind": "weak_evidence",
+          "requirementId": "jd-12",
+          "jdSpan": {
+            "start": 786,
+            "end": 852,
+            "text": "by replicating, adapting, and deploying proven reporting solutions"
+          },
+          "resumeLineId": "cv-41",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2223,
+            "text": "Deployed Power BI risk profile dashboard"
+          },
+          "rationale": "The deployed dashboard suggests a reporting solution that may have been adapted, but adaptation is not stated."
+        },
+        {
+          "id": "gap-13",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-13",
+          "jdSpan": {
+            "start": 786,
+            "end": 852,
+            "text": "by replicating, adapting, and deploying proven reporting solutions"
+          },
+          "resumeLineId": "cv-41",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2223,
+            "text": "Deployed Power BI risk profile dashboard"
+          },
+          "rationale": "The candidate explicitly deployed a Power BI reporting dashboard."
+        },
+        {
+          "id": "gap-14",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-14",
+          "jdSpan": {
+            "start": 856,
+            "end": 908,
+            "text": "Assist in building and enhancing Power BI dashboards"
+          },
+          "resumeLineId": "cv-44",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2391,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives"
+          },
+          "rationale": "The candidate explicitly built a Power BI dashboard, directly evidencing dashboard development."
+        },
+        {
+          "id": "gap-15",
+          "kind": "weak_evidence",
+          "requirementId": "jd-15",
+          "jdSpan": {
+            "start": 909,
+            "end": 974,
+            "text": "to support business operations, planning and management reporting"
+          },
+          "resumeLineId": "cv-47",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2471,
+            "text": "Assessed business processes"
+          },
+          "rationale": "Assessing business processes relates to business operations but does not explicitly cover planning or management reporting."
+        },
+        {
+          "id": "gap-16",
+          "kind": "weak_evidence",
+          "requirementId": "jd-16",
+          "jdSpan": {
+            "start": 977,
+            "end": 1018,
+            "text": "Work with real datasets to analyse trends"
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization suggests relevant analysis but does not explicitly mention real datasets or trend analysis."
+        },
+        {
+          "id": "gap-17",
+          "kind": "weak_evidence",
+          "requirementId": "jd-17",
+          "jdSpan": {
+            "start": 1020,
+            "end": 1033,
+            "text": "identify gaps"
+          },
+          "resumeLineId": "cv-36",
+          "resumeSpan": {
+            "start": 1980,
+            "end": 2010,
+            "text": "auditing 100+ siloed databases"
+          },
+          "rationale": "Auditing more than 100 siloed databases may reveal data gaps, but identifying gaps is not explicitly stated."
+        },
+        {
+          "id": "gap-18",
+          "kind": "weak_evidence",
+          "requirementId": "jd-18",
+          "jdSpan": {
+            "start": 1039,
+            "end": 1074,
+            "text": "support data-driven decision-making"
+          },
+          "resumeLineId": "cv-44",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2391,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives"
+          },
+          "rationale": "The Generative AI initiative dashboard may support decision-making, but the line does not explicitly state that outcome."
+        },
+        {
+          "id": "gap-19",
+          "kind": "weak_evidence",
+          "requirementId": "jd-19",
+          "jdSpan": {
+            "start": 1077,
+            "end": 1107,
+            "text": "Perform data preparation (ETL)"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "Migrating a data warehouse implies data movement and transformation but does not explicitly demonstrate data preparation or ETL."
+        },
+        {
+          "id": "gap-20",
+          "kind": "weak_evidence",
+          "requirementId": "jd-20",
+          "jdSpan": {
+            "start": 1108,
+            "end": 1197,
+            "text": "and validation to ensure accuracy and consistency across different data sources and sites"
+          },
+          "resumeLineId": "cv-28",
+          "resumeSpan": {
+            "start": 1531,
+            "end": 1606,
+            "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output"
+          },
+          "rationale": "Schema-validated JSON output demonstrates validation in a reporting workflow but not validation of data across sources."
+        },
+        {
+          "id": "gap-21",
+          "kind": "weak_evidence",
+          "requirementId": "jd-21",
+          "jdSpan": {
+            "start": 1112,
+            "end": 1197,
+            "text": "validation to ensure accuracy and consistency across different data sources and sites"
+          },
+          "resumeLineId": "cv-36",
+          "resumeSpan": {
+            "start": 1980,
+            "end": 2010,
+            "text": "auditing 100+ siloed databases"
+          },
+          "rationale": "Auditing more than 100 siloed databases relates to cross-source consistency checks but does not explicitly confirm accuracy or consistency outcomes."
+        },
+        {
+          "id": "gap-22",
+          "kind": "weak_evidence",
+          "requirementId": "jd-22",
+          "jdSpan": {
+            "start": 1200,
+            "end": 1282,
+            "text": "Collaborate with business users (eg. Finance, Operations, Planning, and Engineers)"
+          },
+          "resumeLineId": "cv-47",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2471,
+            "text": "Assessed business processes"
+          },
+          "rationale": "Assessing business processes indicates some business-user interaction but does not specify collaboration with the listed user groups."
+        },
+        {
+          "id": "gap-23",
+          "kind": "weak_evidence",
+          "requirementId": "jd-23",
+          "jdSpan": {
+            "start": 1283,
+            "end": 1305,
+            "text": "to gather requirements"
+          },
+          "resumeLineId": "cv-47",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2471,
+            "text": "Assessed business processes"
+          },
+          "rationale": "Assessing business processes is related to requirements gathering but does not explicitly state that requirements were gathered."
+        },
+        {
+          "id": "gap-24",
+          "kind": "weak_evidence",
+          "requirementId": "jd-24",
+          "jdSpan": {
+            "start": 1310,
+            "end": 1336,
+            "text": "support UAT and deployment"
+          },
+          "resumeLineId": "cv-21",
+          "resumeSpan": {
+            "start": 1111,
+            "end": 1153,
+            "text": "Shipped a Pro-tier Client Insights feature"
+          },
+          "rationale": "Shipping a client-insights feature suggests delivery experience but does not explicitly demonstrate UAT support."
+        },
+        {
+          "id": "gap-25",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-25",
+          "jdSpan": {
+            "start": 1310,
+            "end": 1336,
+            "text": "support UAT and deployment"
+          },
+          "resumeLineId": "cv-3",
+          "resumeSpan": {
+            "start": 171,
+            "end": 211,
+            "text": "from pipeline architecture to deployment"
+          },
+          "rationale": "The candidate explicitly worked from pipeline architecture through deployment."
+        },
+        {
+          "id": "gap-26",
+          "kind": "weak_evidence",
+          "requirementId": "jd-26",
+          "jdSpan": {
+            "start": 1339,
+            "end": 1383,
+            "text": "Contribute to new analytics and AI use cases"
+          },
+          "resumeLineId": "cv-44",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2391,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives"
+          },
+          "rationale": "Building a dashboard for Generative AI initiatives suggests contribution to an analytics or AI use case but does not explicitly describe the contribution scope."
+        },
+        {
+          "id": "gap-27",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-27",
+          "jdSpan": {
+            "start": 1339,
+            "end": 1383,
+            "text": "Contribute to new analytics and AI use cases"
+          },
+          "resumeLineId": "cv-9",
+          "resumeSpan": {
+            "start": 415,
+            "end": 477,
+            "text": "translating product goals into reliable, observable AI systems"
+          },
+          "rationale": "Translating product goals into reliable, observable AI systems is concrete evidence of contributing to AI use cases."
+        },
+        {
+          "id": "gap-28",
+          "kind": "weak_evidence",
+          "requirementId": "jd-28",
+          "jdSpan": {
+            "start": 1385,
+            "end": 1442,
+            "text": "including process improvements and automation initiatives"
+          },
+          "resumeLineId": "cv-49",
+          "resumeSpan": {
+            "start": 2537,
+            "end": 2564,
+            "text": "reducing manual work by 60%"
+          },
+          "rationale": "Reducing manual work by 60% suggests process improvement but does not explicitly describe the improvement initiative."
+        },
+        {
+          "id": "gap-29",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-29",
+          "jdSpan": {
+            "start": 1385,
+            "end": 1442,
+            "text": "including process improvements and automation initiatives"
+          },
+          "resumeLineId": "cv-48",
+          "resumeSpan": {
+            "start": 2476,
+            "end": 2535,
+            "text": "identified automation opportunities for an Indonesian telco"
+          },
+          "rationale": "The candidate explicitly identified automation opportunities for an Indonesian telecommunications company."
+        },
+        {
+          "id": "gap-30",
+          "kind": "weak_evidence",
+          "requirementId": "jd-30",
+          "jdSpan": {
+            "start": 1446,
+            "end": 1480,
+            "text": "Troubleshoot data/reporting issues"
+          },
+          "resumeLineId": "cv-28",
+          "resumeSpan": {
+            "start": 1531,
+            "end": 1606,
+            "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output"
+          },
+          "rationale": "Schema-validated report output relates to reporting reliability but does not demonstrate troubleshooting data or reporting issues."
+        },
+        {
+          "id": "gap-31",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-31",
+          "jdSpan": {
+            "start": 1485,
+            "end": 1532,
+            "text": "support continuous improvements post-deployment"
+          },
+          "resumeLineId": "cv-29",
+          "resumeSpan": {
+            "start": 1608,
+            "end": 1662,
+            "text": "Hardened production LLM pipelines across both products"
+          },
+          "rationale": "Hardening production LLM pipelines across both products is concrete evidence of post-deployment improvement work."
+        },
+        {
+          "id": "gap-32",
+          "kind": "missing_skill",
+          "requirementId": "jd-32",
+          "jdSpan": {
+            "start": 1535,
+            "end": 1595,
+            "text": "Document data logic, report structures, and rollout approach"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the provided lines explicitly documents data logic."
+        },
+        {
+          "id": "gap-33",
+          "kind": "weak_evidence",
+          "requirementId": "jd-33",
+          "jdSpan": {
+            "start": 1535,
+            "end": 1595,
+            "text": "Document data logic, report structures, and rollout approach"
+          },
+          "resumeLineId": "cv-28",
+          "resumeSpan": {
+            "start": 1531,
+            "end": 1606,
+            "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output"
+          },
+          "rationale": "Structured JSON output for reports relates to report structures but does not explicitly state that those structures were documented."
+        },
+        {
+          "id": "gap-34",
+          "kind": "weak_evidence",
+          "requirementId": "jd-34",
+          "jdSpan": {
+            "start": 1535,
+            "end": 1595,
+            "text": "Document data logic, report structures, and rollout approach"
+          },
+          "resumeLineId": "cv-3",
+          "resumeSpan": {
+            "start": 171,
+            "end": 211,
+            "text": "from pipeline architecture to deployment"
+          },
+          "rationale": "Working from pipeline architecture to deployment touches rollout execution but does not explicitly document a rollout approach."
+        },
+        {
+          "id": "gap-35",
+          "kind": "weak_evidence",
+          "requirementId": "jd-35",
+          "jdSpan": {
+            "start": 1596,
+            "end": 1650,
+            "text": "to enable scalable deployment across Venture Groupwide"
+          },
+          "resumeLineId": "cv-42",
+          "resumeSpan": {
+            "start": 2224,
+            "end": 2257,
+            "text": "consolidating 100+ business units"
+          },
+          "rationale": "Consolidating more than 100 business units suggests scale but does not explicitly demonstrate scalable deployment across the Venture Group."
+        },
+        {
+          "id": "gap-36",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-36",
+          "jdSpan": {
+            "start": 1653,
+            "end": 1695,
+            "text": "Gain exposure to enterprise data platforms"
+          },
+          "resumeLineId": "cv-35",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 1978,
+            "text": "Drove enterprise data governance for a state-owned bank"
+          },
+          "rationale": "Enterprise data governance for a state-owned bank provides concrete exposure to enterprise data environments."
+        },
+        {
+          "id": "gap-37",
+          "kind": "weak_evidence",
+          "requirementId": "jd-37",
+          "jdSpan": {
+            "start": 1700,
+            "end": 1773,
+            "text": "understand how standardized analytics solutions are scaled across regions"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "Migrating between Redshift and Snowflake shows platform experience but does not demonstrate scaling standardized analytics across regions."
+        },
+        {
+          "id": "gap-38",
+          "kind": "weak_evidence",
+          "requirementId": "jd-38",
+          "jdSpan": {
+            "start": 1804,
+            "end": 1954,
+            "text": "Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline"
+          },
+          "resumeLineId": "cv-53",
+          "resumeSpan": {
+            "start": 2755,
+            "end": 2782,
+            "text": "M.Sc. in Business Analytics"
+          },
+          "rationale": "An M.Sc. in Business Analytics matches the degree requirement, but the line does not establish that the degree is currently being pursued."
+        },
+        {
+          "id": "gap-39",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-39",
+          "jdSpan": {
+            "start": 1855,
+            "end": 1954,
+            "text": "in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline"
+          },
+          "resumeLineId": "cv-53",
+          "resumeSpan": {
+            "start": 2755,
+            "end": 2782,
+            "text": "M.Sc. in Business Analytics"
+          },
+          "rationale": "An M.Sc. in Business Analytics directly matches one of the specified disciplines."
+        },
+        {
+          "id": "gap-40",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-40",
+          "jdSpan": {
+            "start": 1957,
+            "end": 2041,
+            "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 97,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience"
+          },
+          "rationale": "Three-plus years of prior Big-4 data analytics experience is concrete evidence of strong interest in data analytics."
+        },
+        {
+          "id": "gap-41",
+          "kind": "weak_evidence",
+          "requirementId": "jd-41",
+          "jdSpan": {
+            "start": 1957,
+            "end": 2041,
+            "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization touches business intelligence but does not explicitly demonstrate strong interest in it."
+        },
+        {
+          "id": "gap-42",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-42",
+          "jdSpan": {
+            "start": 1957,
+            "end": 2041,
+            "text": "Strong interest in data analytics, business intelligence, and AI-driven applications"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 539,
+            "end": 601,
+            "text": "AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram)"
+          },
+          "rationale": "AI/LLM engineering experience with multiple AI technologies directly evidences interest in AI-driven applications."
+        },
+        {
+          "id": "gap-43",
+          "kind": "weak_evidence",
+          "requirementId": "jd-43",
+          "jdSpan": {
+            "start": 2044,
+            "end": 2089,
+            "text": "Basic understanding of data analysis concepts"
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization suggests data-analysis knowledge but does not specify the concepts understood."
+        },
+        {
+          "id": "gap-44",
+          "kind": "weak_evidence",
+          "requirementId": "jd-44",
+          "jdSpan": {
+            "start": 2090,
+            "end": 2142,
+            "text": "(eg. Data modelling, data transformation, reporting)"
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization may include data modelling, but the line does not explicitly mention modelling."
+        },
+        {
+          "id": "gap-45",
+          "kind": "weak_evidence",
+          "requirementId": "jd-45",
+          "jdSpan": {
+            "start": 2090,
+            "end": 2142,
+            "text": "(eg. Data modelling, data transformation, reporting)"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "Migrating a data warehouse suggests data transformation experience but does not explicitly describe transformation methods."
+        },
+        {
+          "id": "gap-46",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-46",
+          "jdSpan": {
+            "start": 2090,
+            "end": 2142,
+            "text": "(eg. Data modelling, data transformation, reporting)"
+          },
+          "resumeLineId": "cv-28",
+          "resumeSpan": {
+            "start": 1531,
+            "end": 1606,
+            "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output"
+          },
+          "rationale": "Delivering individual and team reports through schema-validated JSON output is concrete reporting experience."
+        },
+        {
+          "id": "gap-47",
+          "kind": "missing_skill",
+          "requirementId": "jd-47",
+          "jdSpan": {
+            "start": 2145,
+            "end": 2244,
+            "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the provided lines mentions Excel."
+        },
+        {
+          "id": "gap-48",
+          "kind": "weak_evidence",
+          "requirementId": "jd-48",
+          "jdSpan": {
+            "start": 2145,
+            "end": 2244,
+            "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": "cv-39",
+          "resumeSpan": {
+            "start": 2107,
+            "end": 2148,
+            "text": "led refactoring of 500+ stored procedures"
+          },
+          "rationale": "Refactoring more than 500 stored procedures is related to SQL work but SQL exposure is not explicitly stated."
+        },
+        {
+          "id": "gap-49",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-49",
+          "jdSpan": {
+            "start": 2145,
+            "end": 2244,
+            "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": "cv-44",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2391,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives"
+          },
+          "rationale": "The candidate explicitly built a Power BI dashboard."
+        },
+        {
+          "id": "gap-50",
+          "kind": "weak_evidence",
+          "requirementId": "jd-50",
+          "jdSpan": {
+            "start": 2145,
+            "end": 2244,
+            "text": "Exposure to tools eg. Excel, SQL, PowerBI, data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 97,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience"
+          },
+          "rationale": "Prior Big-4 data analytics experience suggests some data engineering exposure but does not identify specific data engineering concepts."
+        },
+        {
+          "id": "gap-51",
+          "kind": "weak_evidence",
+          "requirementId": "jd-51",
+          "jdSpan": {
+            "start": 2247,
+            "end": 2338,
+            "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "The Redshift-to-Snowflake warehouse migration demonstrates related platform work but does not explicitly mention ETL processes."
+        },
+        {
+          "id": "gap-52",
+          "kind": "weak_evidence",
+          "requirementId": "jd-52",
+          "jdSpan": {
+            "start": 2247,
+            "end": 2338,
+            "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization is broadly relevant but does not explicitly demonstrate familiarity with data modelling."
+        },
+        {
+          "id": "gap-53",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-53",
+          "jdSpan": {
+            "start": 2247,
+            "end": 2338,
+            "text": "Familiar with ETL processes, data modelling, or cloud data platforms (AWS/Azure) is a plus."
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "Migrating a warehouse from AWS Redshift to Snowflake directly demonstrates familiarity with cloud data platforms."
+        },
+        {
+          "id": "gap-54",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-54",
+          "jdSpan": {
+            "start": 2295,
+            "end": 2327,
+            "text": "cloud data platforms (AWS/Azure)"
+          },
+          "resumeLineId": "cv-13",
+          "resumeSpan": {
+            "start": 635,
+            "end": 680,
+            "text": "Cloud Architecture & Automation (AWS, Vercel)"
+          },
+          "rationale": "Cloud Architecture & Automation explicitly names AWS experience."
+        },
+        {
+          "id": "gap-55",
+          "kind": "weak_evidence",
+          "requirementId": "jd-55",
+          "jdSpan": {
+            "start": 2379,
+            "end": 2429,
+            "text": "Strong analytical mindset with attention to detail"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 97,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience"
+          },
+          "rationale": "Data analytics experience suggests analytical ability but does not explicitly evidence a strong analytical mindset."
+        },
+        {
+          "id": "gap-56",
+          "kind": "weak_evidence",
+          "requirementId": "jd-56",
+          "jdSpan": {
+            "start": 2379,
+            "end": 2429,
+            "text": "Strong analytical mindset with attention to detail"
+          },
+          "resumeLineId": "cv-47",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2471,
+            "text": "Assessed business processes"
+          },
+          "rationale": "Assessing business processes may require attention to detail, but that quality is not explicitly stated."
+        },
+        {
+          "id": "gap-57",
+          "kind": "weak_evidence",
+          "requirementId": "jd-57",
+          "jdSpan": {
+            "start": 2432,
+            "end": 2512,
+            "text": "Willingness to learn and work with real business data and cross-functional teams"
+          },
+          "resumeLineId": "cv-50",
+          "resumeSpan": {
+            "start": 2589,
+            "end": 2641,
+            "text": "AWS Certified AI Practitioner Early Adopter, 2024/10"
+          },
+          "rationale": "Being an early adopter of an AWS certification suggests learning initiative but does not directly state willingness to learn."
+        },
+        {
+          "id": "gap-58",
+          "kind": "weak_evidence",
+          "requirementId": "jd-58",
+          "jdSpan": {
+            "start": 2432,
+            "end": 2512,
+            "text": "Willingness to learn and work with real business data and cross-functional teams"
+          },
+          "resumeLineId": "cv-47",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2471,
+            "text": "Assessed business processes"
+          },
+          "rationale": "Assessing business processes suggests exposure to business information but does not explicitly confirm work with real business data."
+        },
+        {
+          "id": "gap-59",
+          "kind": "weak_evidence",
+          "requirementId": "jd-59",
+          "jdSpan": {
+            "start": 2432,
+            "end": 2512,
+            "text": "Willingness to learn and work with real business data and cross-functional teams"
+          },
+          "resumeLineId": "cv-42",
+          "resumeSpan": {
+            "start": 2224,
+            "end": 2257,
+            "text": "consolidating 100+ business units"
+          },
+          "rationale": "Consolidating more than 100 business units suggests broad stakeholder coordination but does not explicitly state cross-functional teamwork."
+        },
+        {
+          "id": "gap-60",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-60",
+          "jdSpan": {
+            "start": 2515,
+            "end": 2584,
+            "text": "Good communication skills to translate data into meaningful insights."
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 747,
+            "end": 785,
+            "text": "Stakeholder Management & Communication"
+          },
+          "rationale": "Stakeholder Management & Communication directly supports good communication skills."
+        },
+        {
+          "id": "gap-61",
+          "kind": "weak_evidence",
+          "requirementId": "jd-61",
+          "jdSpan": {
+            "start": 2541,
+            "end": 2584,
+            "text": "to translate data into meaningful insights."
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization is related to deriving insights but does not explicitly state that data was translated into meaningful insights."
+        }
+      ],
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 7637.933208000002,
+          "usage": {
+            "input_tokens": 828,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1033,
+            "output_tokens_details": {
+              "reasoning_tokens": 191
+            },
+            "total_tokens": 1861
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 12642.86845900002,
+          "usage": {
+            "input_tokens": 640,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1794,
+            "output_tokens_details": {
+              "reasoning_tokens": 344
+            },
+            "total_tokens": 2434
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 27025.719416999986,
+          "usage": {
+            "input_tokens": 5573,
+            "input_tokens_details": {
+              "cache_write_tokens": 5570,
+              "cached_tokens": 0
+            },
+            "output_tokens": 3854,
+            "output_tokens_details": {
+              "reasoning_tokens": 1103
+            },
+            "total_tokens": 9427
+          }
+        }
+      ]
+    },
+    {
+      "config": "gpt-5.6-luna",
+      "pair": "04",
+      "run": 1,
+      "wallMs": 38850.13833300001,
+      "jdLines": 59,
+      "cvLines": 49,
+      "droppedLines": 1,
+      "gapCount": 59,
+      "planQuestions": null,
+      "gaps": [
+        {
+          "id": "gap-1",
+          "kind": "weak_evidence",
+          "requirementId": "jd-1",
+          "jdSpan": {
+            "start": 126,
+            "end": 195,
+            "text": "get hands-on experience working with real business data and use cases"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 97,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience"
+          },
+          "rationale": "The line shows prior Big-4 data analytics experience but does not specifically establish hands-on work with real business data and use cases."
+        },
+        {
+          "id": "gap-2",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-2",
+          "jdSpan": {
+            "start": 206,
+            "end": 227,
+            "text": "help build dashboards"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "The candidate built a Power BI dashboard tracking initiatives across 12 APAC markets."
+        },
+        {
+          "id": "gap-3",
+          "kind": "weak_evidence",
+          "requirementId": "jd-3",
+          "jdSpan": {
+            "start": 229,
+            "end": 243,
+            "text": "analyse trends"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "Tracking initiatives across multiple markets may involve trend analysis, but the line does not explicitly state that trends were analyzed."
+        },
+        {
+          "id": "gap-4",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-4",
+          "jdSpan": {
+            "start": 249,
+            "end": 278,
+            "text": "support AI-driven initiatives"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "The candidate built a dashboard tracking $100M+ Generative AI initiatives, directly supporting an AI-driven initiative."
+        },
+        {
+          "id": "gap-5",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-5",
+          "jdSpan": {
+            "start": 354,
+            "end": 392,
+            "text": "work with tools such as data platforms"
+          },
+          "resumeLineId": "cv-34",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "Migrating a data warehouse between Redshift and Snowflake demonstrates hands-on work with data platforms."
+        },
+        {
+          "id": "gap-6",
+          "kind": "weak_evidence",
+          "requirementId": "jd-6",
+          "jdSpan": {
+            "start": 394,
+            "end": 407,
+            "text": "ETL processes"
+          },
+          "resumeLineId": "cv-34",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "The warehouse migration is related to data pipelines but does not explicitly describe ETL processes."
+        },
+        {
+          "id": "gap-7",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-7",
+          "jdSpan": {
+            "start": 409,
+            "end": 429,
+            "text": "reporting dashboards"
+          },
+          "resumeLineId": "cv-36",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2257,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units"
+          },
+          "rationale": "The candidate deployed a Power BI reporting dashboard consolidating data from over 100 business units."
+        },
+        {
+          "id": "gap-8",
+          "kind": "weak_evidence",
+          "requirementId": "jd-8",
+          "jdSpan": {
+            "start": 435,
+            "end": 455,
+            "text": "automation solutions"
+          },
+          "resumeLineId": "cv-41",
+          "resumeSpan": {
+            "start": 2476,
+            "end": 2535,
+            "text": "identified automation opportunities for an Indonesian telco"
+          },
+          "rationale": "Identifying automation opportunities touches automation solutions but does not show implementation."
+        },
+        {
+          "id": "gap-9",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-9",
+          "jdSpan": {
+            "start": 463,
+            "end": 508,
+            "text": "collaborating with both IT and business teams"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 380,
+            "end": 412,
+            "text": "Bridges business and engineering"
+          },
+          "rationale": "Bridging business and engineering directly indicates collaboration between business and technical teams."
+        },
+        {
+          "id": "gap-10",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-10",
+          "jdSpan": {
+            "start": 716,
+            "end": 785,
+            "text": "Support the rollout of enterprise BI dashboards across multiple sites"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "The dashboard was built across 12 APAC markets, providing concrete evidence of a multi-site enterprise rollout."
+        },
+        {
+          "id": "gap-11",
+          "kind": "weak_evidence",
+          "requirementId": "jd-11",
+          "jdSpan": {
+            "start": 802,
+            "end": 852,
+            "text": "adapting, and deploying proven reporting solutions"
+          },
+          "resumeLineId": "cv-36",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2257,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units"
+          },
+          "rationale": "Deploying a Power BI dashboard demonstrates reporting-solution delivery but not specifically adapting a proven solution."
+        },
+        {
+          "id": "gap-12",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-12",
+          "jdSpan": {
+            "start": 816,
+            "end": 852,
+            "text": "deploying proven reporting solutions"
+          },
+          "resumeLineId": "cv-36",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2257,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units"
+          },
+          "rationale": "The candidate explicitly deployed a Power BI risk profile dashboard."
+        },
+        {
+          "id": "gap-13",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-13",
+          "jdSpan": {
+            "start": 856,
+            "end": 908,
+            "text": "Assist in building and enhancing Power BI dashboards"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "The candidate explicitly built a Power BI dashboard and quantified its scope across 12 APAC markets."
+        },
+        {
+          "id": "gap-14",
+          "kind": "weak_evidence",
+          "requirementId": "jd-14",
+          "jdSpan": {
+            "start": 909,
+            "end": 974,
+            "text": "to support business operations, planning and management reporting"
+          },
+          "resumeLineId": "cv-15",
+          "resumeSpan": {
+            "start": 714,
+            "end": 745,
+            "text": "Business Development & Strategy"
+          },
+          "rationale": "Business Development & Strategy suggests business support but does not specifically evidence planning or management reporting."
+        },
+        {
+          "id": "gap-15",
+          "kind": "weak_evidence",
+          "requirementId": "jd-15",
+          "jdSpan": {
+            "start": 977,
+            "end": 1000,
+            "text": "Work with real datasets"
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization indicates data-related work but does not explicitly establish experience with real datasets."
+        },
+        {
+          "id": "gap-16",
+          "kind": "weak_evidence",
+          "requirementId": "jd-16",
+          "jdSpan": {
+            "start": 1020,
+            "end": 1033,
+            "text": "identify gaps"
+          },
+          "resumeLineId": "cv-32",
+          "resumeSpan": {
+            "start": 1980,
+            "end": 2010,
+            "text": "auditing 100+ siloed databases"
+          },
+          "rationale": "Auditing over 100 siloed databases may reveal data gaps, but the line does not explicitly say gaps were identified."
+        },
+        {
+          "id": "gap-17",
+          "kind": "weak_evidence",
+          "requirementId": "jd-17",
+          "jdSpan": {
+            "start": 1039,
+            "end": 1074,
+            "text": "support data-driven decision-making"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "A dashboard tracking major initiatives could support decisions, but decision-making is not explicitly stated."
+        },
+        {
+          "id": "gap-18",
+          "kind": "weak_evidence",
+          "requirementId": "jd-18",
+          "jdSpan": {
+            "start": 1077,
+            "end": 1107,
+            "text": "Perform data preparation (ETL)"
+          },
+          "resumeLineId": "cv-34",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "The data warehouse migration is relevant to data preparation but does not explicitly describe ETL execution."
+        },
+        {
+          "id": "gap-19",
+          "kind": "weak_evidence",
+          "requirementId": "jd-19",
+          "jdSpan": {
+            "start": 1108,
+            "end": 1122,
+            "text": "and validation"
+          },
+          "resumeLineId": "cv-31",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 1978,
+            "text": "Drove enterprise data governance for a state-owned bank"
+          },
+          "rationale": "Enterprise data governance is related to validation and controls but does not explicitly state that the candidate validated data."
+        },
+        {
+          "id": "gap-20",
+          "kind": "weak_evidence",
+          "requirementId": "jd-20",
+          "jdSpan": {
+            "start": 1123,
+            "end": 1197,
+            "text": "to ensure accuracy and consistency across different data sources and sites"
+          },
+          "resumeLineId": "cv-32",
+          "resumeSpan": {
+            "start": 1980,
+            "end": 2010,
+            "text": "auditing 100+ siloed databases"
+          },
+          "rationale": "Auditing over 100 siloed databases relates to cross-source consistency but does not explicitly confirm accuracy checks."
+        },
+        {
+          "id": "gap-21",
+          "kind": "weak_evidence",
+          "requirementId": "jd-21",
+          "jdSpan": {
+            "start": 1200,
+            "end": 1231,
+            "text": "Collaborate with business users"
+          },
+          "resumeLineId": "cv-40",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2471,
+            "text": "Assessed business processes"
+          },
+          "rationale": "Assessing business processes touches interaction with business users but does not explicitly describe collaboration."
+        },
+        {
+          "id": "gap-22",
+          "kind": "weak_evidence",
+          "requirementId": "jd-22",
+          "jdSpan": {
+            "start": 1283,
+            "end": 1305,
+            "text": "to gather requirements"
+          },
+          "resumeLineId": "cv-40",
+          "resumeSpan": {
+            "start": 2444,
+            "end": 2471,
+            "text": "Assessed business processes"
+          },
+          "rationale": "Assessing business processes may support requirements gathering, but requirements gathering is not explicitly stated."
+        },
+        {
+          "id": "gap-23",
+          "kind": "missing_skill",
+          "requirementId": "jd-23",
+          "jdSpan": {
+            "start": 1310,
+            "end": 1321,
+            "text": "support UAT"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the provided lines explicitly mentions user acceptance testing or UAT."
+        },
+        {
+          "id": "gap-24",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-24",
+          "jdSpan": {
+            "start": 1322,
+            "end": 1336,
+            "text": "and deployment"
+          },
+          "resumeLineId": "cv-3",
+          "resumeSpan": {
+            "start": 171,
+            "end": 212,
+            "text": "from pipeline architecture to deployment."
+          },
+          "rationale": "The line explicitly covers work from pipeline architecture through deployment."
+        },
+        {
+          "id": "gap-25",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-25",
+          "jdSpan": {
+            "start": 1339,
+            "end": 1383,
+            "text": "Contribute to new analytics and AI use cases"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "Building a dashboard for Generative AI initiatives is concrete evidence of contributing to an analytics use case."
+        },
+        {
+          "id": "gap-26",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-26",
+          "jdSpan": {
+            "start": 1339,
+            "end": 1383,
+            "text": "Contribute to new analytics and AI use cases"
+          },
+          "resumeLineId": "cv-9",
+          "resumeSpan": {
+            "start": 415,
+            "end": 477,
+            "text": "translating product goals into reliable, observable AI systems"
+          },
+          "rationale": "Translating product goals into reliable AI systems directly demonstrates contribution to AI use cases."
+        },
+        {
+          "id": "gap-27",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-27",
+          "jdSpan": {
+            "start": 1385,
+            "end": 1415,
+            "text": "including process improvements"
+          },
+          "resumeLineId": "cv-35",
+          "resumeSpan": {
+            "start": 2107,
+            "end": 2182,
+            "text": "led refactoring of 500+ stored procedures for a multinational FMCG company."
+          },
+          "rationale": "Refactoring over 500 stored procedures is a concrete process-improvement contribution."
+        },
+        {
+          "id": "gap-28",
+          "kind": "weak_evidence",
+          "requirementId": "jd-28",
+          "jdSpan": {
+            "start": 1416,
+            "end": 1442,
+            "text": "and automation initiatives"
+          },
+          "resumeLineId": "cv-41",
+          "resumeSpan": {
+            "start": 2476,
+            "end": 2535,
+            "text": "identified automation opportunities for an Indonesian telco"
+          },
+          "rationale": "Identifying automation opportunities indicates involvement with automation initiatives but not delivery of them."
+        },
+        {
+          "id": "gap-29",
+          "kind": "missing_skill",
+          "requirementId": "jd-29",
+          "jdSpan": {
+            "start": 1446,
+            "end": 1480,
+            "text": "Troubleshoot data/reporting issues"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the provided lines explicitly describes troubleshooting data or reporting issues."
+        },
+        {
+          "id": "gap-30",
+          "kind": "weak_evidence",
+          "requirementId": "jd-30",
+          "jdSpan": {
+            "start": 1485,
+            "end": 1532,
+            "text": "support continuous improvements post-deployment"
+          },
+          "resumeLineId": "cv-26",
+          "resumeSpan": {
+            "start": 1608,
+            "end": 1662,
+            "text": "Hardened production LLM pipelines across both products"
+          },
+          "rationale": "Hardening production LLM pipelines suggests post-deployment improvement but does not explicitly state continuous improvement after deployment."
+        },
+        {
+          "id": "gap-31",
+          "kind": "weak_evidence",
+          "requirementId": "jd-31",
+          "jdSpan": {
+            "start": 1535,
+            "end": 1554,
+            "text": "Document data logic"
+          },
+          "resumeLineId": "cv-31",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 1978,
+            "text": "Drove enterprise data governance for a state-owned bank"
+          },
+          "rationale": "Data governance suggests work with data logic and controls but does not explicitly mention documenting data logic."
+        },
+        {
+          "id": "gap-32",
+          "kind": "weak_evidence",
+          "requirementId": "jd-32",
+          "jdSpan": {
+            "start": 1556,
+            "end": 1573,
+            "text": "report structures"
+          },
+          "resumeLineId": "cv-25",
+          "resumeSpan": {
+            "start": 1531,
+            "end": 1607,
+            "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+          },
+          "rationale": "Schema-validated structured report output relates to report structure but does not explicitly document report structures."
+        },
+        {
+          "id": "gap-33",
+          "kind": "missing_skill",
+          "requirementId": "jd-33",
+          "jdSpan": {
+            "start": 1579,
+            "end": 1595,
+            "text": "rollout approach"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the provided lines explicitly mentions documenting a rollout approach."
+        },
+        {
+          "id": "gap-34",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-34",
+          "jdSpan": {
+            "start": 1596,
+            "end": 1650,
+            "text": "to enable scalable deployment across Venture Groupwide"
+          },
+          "resumeLineId": "cv-36",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2257,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units"
+          },
+          "rationale": "Deploying a dashboard across over 100 business units provides concrete evidence of deployment at scale."
+        },
+        {
+          "id": "gap-35",
+          "kind": "weak_evidence",
+          "requirementId": "jd-35",
+          "jdSpan": {
+            "start": 1653,
+            "end": 1695,
+            "text": "Gain exposure to enterprise data platforms"
+          },
+          "resumeLineId": "cv-31",
+          "resumeSpan": {
+            "start": 1923,
+            "end": 1978,
+            "text": "Drove enterprise data governance for a state-owned bank"
+          },
+          "rationale": "Enterprise data governance at a state-owned bank indicates exposure to enterprise data environments but not specifically data platforms."
+        },
+        {
+          "id": "gap-36",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-36",
+          "jdSpan": {
+            "start": 1700,
+            "end": 1773,
+            "text": "understand how standardized analytics solutions are scaled across regions"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "Building one Power BI dashboard across 12 APAC markets demonstrates scaling an analytics solution across regions."
+        },
+        {
+          "id": "gap-37",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-37",
+          "jdSpan": {
+            "start": 1804,
+            "end": 1954,
+            "text": "Currently pursuing a Bachelor’s or Master’s degree in Business Analytics, Data Science, Computer Science, Information Systems, or a related discipline"
+          },
+          "resumeLineId": "cv-46",
+          "resumeSpan": {
+            "start": 2755,
+            "end": 2882,
+            "text": "M.Sc. in Business Analytics, Nanyang Business School, Nanyang Technological University, Singapore, 2025/07 – 2026/06 (expected)"
+          },
+          "rationale": "The candidate is currently pursuing an M.Sc. in Business Analytics with an expected completion date."
+        },
+        {
+          "id": "gap-38",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-38",
+          "jdSpan": {
+            "start": 1957,
+            "end": 1990,
+            "text": "Strong interest in data analytics"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 97,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience"
+          },
+          "rationale": "More than three years of prior Big-4 data analytics experience is concrete evidence of strong engagement with data analytics."
+        },
+        {
+          "id": "gap-39",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-39",
+          "jdSpan": {
+            "start": 1992,
+            "end": 2013,
+            "text": "business intelligence"
+          },
+          "resumeLineId": "cv-36",
+          "resumeSpan": {
+            "start": 2183,
+            "end": 2257,
+            "text": "Deployed Power BI risk profile dashboard consolidating 100+ business units"
+          },
+          "rationale": "Deploying an enterprise Power BI dashboard is concrete evidence of business intelligence work."
+        },
+        {
+          "id": "gap-40",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-40",
+          "jdSpan": {
+            "start": 2019,
+            "end": 2041,
+            "text": "AI-driven applications"
+          },
+          "resumeLineId": "cv-11",
+          "resumeSpan": {
+            "start": 539,
+            "end": 601,
+            "text": "AI/LLM Engineering (Gemini, Vercel AI SDK, Langfuse, Deepgram)"
+          },
+          "rationale": "The AI/LLM Engineering experience directly demonstrates engagement with AI-driven applications."
+        },
+        {
+          "id": "gap-41",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-41",
+          "jdSpan": {
+            "start": 2044,
+            "end": 2089,
+            "text": "Basic understanding of data analysis concepts"
+          },
+          "resumeLineId": "cv-45",
+          "resumeSpan": {
+            "start": 2694,
+            "end": 2743,
+            "text": "AWS Certified Data Analytics – Specialty, 2023/10"
+          },
+          "rationale": "An AWS Certified Data Analytics Specialty credential provides concrete evidence exceeding a basic understanding of data analysis."
+        },
+        {
+          "id": "gap-42",
+          "kind": "weak_evidence",
+          "requirementId": "jd-42",
+          "jdSpan": {
+            "start": 2095,
+            "end": 2109,
+            "text": "Data modelling"
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization is broadly relevant but does not explicitly demonstrate data modelling knowledge."
+        },
+        {
+          "id": "gap-43",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-43",
+          "jdSpan": {
+            "start": 2111,
+            "end": 2130,
+            "text": "data transformation"
+          },
+          "resumeLineId": "cv-34",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "Migrating a warehouse from Redshift to Snowflake is concrete evidence of data transformation work."
+        },
+        {
+          "id": "gap-44",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-44",
+          "jdSpan": {
+            "start": 409,
+            "end": 418,
+            "text": "reporting"
+          },
+          "resumeLineId": "cv-25",
+          "resumeSpan": {
+            "start": 1531,
+            "end": 1607,
+            "text": "delivering 1:1 and team reports via schema-validated direct-JSON LLM output."
+          },
+          "rationale": "The candidate explicitly delivered individual and team reports using structured JSON output."
+        },
+        {
+          "id": "gap-45",
+          "kind": "missing_skill",
+          "requirementId": "jd-45",
+          "jdSpan": {
+            "start": 2167,
+            "end": 2172,
+            "text": "Excel"
+          },
+          "resumeLineId": null,
+          "resumeSpan": null,
+          "rationale": "None of the provided lines explicitly mentions Excel."
+        },
+        {
+          "id": "gap-46",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-46",
+          "jdSpan": {
+            "start": 2174,
+            "end": 2177,
+            "text": "SQL"
+          },
+          "resumeLineId": "cv-35",
+          "resumeSpan": {
+            "start": 2107,
+            "end": 2182,
+            "text": "led refactoring of 500+ stored procedures for a multinational FMCG company."
+          },
+          "rationale": "Refactoring over 500 stored procedures provides concrete evidence of SQL exposure."
+        },
+        {
+          "id": "gap-47",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-47",
+          "jdSpan": {
+            "start": 2179,
+            "end": 2186,
+            "text": "PowerBI"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "The candidate explicitly built a Power BI dashboard across 12 APAC markets."
+        },
+        {
+          "id": "gap-48",
+          "kind": "weak_evidence",
+          "requirementId": "jd-48",
+          "jdSpan": {
+            "start": 2188,
+            "end": 2244,
+            "text": "data engineering concepts through coursework or projects"
+          },
+          "resumeLineId": "cv-48",
+          "resumeSpan": {
+            "start": 2970,
+            "end": 3070,
+            "text": "Graduate Diploma in Data Science (Applied), The University of Adelaide, Australia, 2020/05 – 2021/08"
+          },
+          "rationale": "A Graduate Diploma in Applied Data Science suggests related coursework but does not explicitly identify data engineering concepts or projects."
+        },
+        {
+          "id": "gap-49",
+          "kind": "weak_evidence",
+          "requirementId": "jd-49",
+          "jdSpan": {
+            "start": 2247,
+            "end": 2274,
+            "text": "Familiar with ETL processes"
+          },
+          "resumeLineId": "cv-34",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "The warehouse migration is related to ETL but does not explicitly state familiarity with ETL processes."
+        },
+        {
+          "id": "gap-50",
+          "kind": "weak_evidence",
+          "requirementId": "jd-50",
+          "jdSpan": {
+            "start": 2276,
+            "end": 2290,
+            "text": "data modelling"
+          },
+          "resumeLineId": "cv-12",
+          "resumeSpan": {
+            "start": 603,
+            "end": 633,
+            "text": "Data Analytics & Visualization"
+          },
+          "rationale": "Data Analytics & Visualization is broadly relevant but does not explicitly demonstrate familiarity with data modelling."
+        },
+        {
+          "id": "gap-51",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-51",
+          "jdSpan": {
+            "start": 2295,
+            "end": 2327,
+            "text": "cloud data platforms (AWS/Azure)"
+          },
+          "resumeLineId": "cv-34",
+          "resumeSpan": {
+            "start": 2048,
+            "end": 2102,
+            "text": "Migrated data warehouse from AWS Redshift to Snowflake"
+          },
+          "rationale": "Migrating a warehouse between AWS Redshift and Snowflake demonstrates familiarity with cloud data platforms."
+        },
+        {
+          "id": "gap-52",
+          "kind": "strong_differentiator",
+          "requirementId": "jd-52",
+          "jdSpan": {
+            "start": 2317,
+            "end": 2326,
+            "text": "AWS/Azure"
+          },
+          "resumeLineId": "cv-13",
+          "resumeSpan": {
+            "start": 635,
+            "end": 680,
+            "text": "Cloud Architecture & Automation (AWS, Vercel)"
+          },
+          "rationale": "The line explicitly names AWS within cloud architecture and automation experience."
+        },
+        {
+          "id": "gap-53",
+          "kind": "weak_evidence",
+          "requirementId": "jd-53",
+          "jdSpan": {
+            "start": 2379,
+            "end": 2404,
+            "text": "Strong analytical mindset"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 97,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience"
+          },
+          "rationale": "Several years of data analytics experience suggest analytical capability but do not directly demonstrate an analytical mindset."
+        },
+        {
+          "id": "gap-54",
+          "kind": "weak_evidence",
+          "requirementId": "jd-54",
+          "jdSpan": {
+            "start": 2410,
+            "end": 2429,
+            "text": "attention to detail"
+          },
+          "resumeLineId": "cv-5",
+          "resumeSpan": {
+            "start": 256,
+            "end": 274,
+            "text": "prompt engineering"
+          },
+          "rationale": "Prompt engineering may require precision, but the line does not explicitly evidence attention to detail."
+        },
+        {
+          "id": "gap-55",
+          "kind": "weak_evidence",
+          "requirementId": "jd-55",
+          "jdSpan": {
+            "start": 2432,
+            "end": 2452,
+            "text": "Willingness to learn"
+          },
+          "resumeLineId": "cv-43",
+          "resumeSpan": {
+            "start": 2589,
+            "end": 2641,
+            "text": "AWS Certified AI Practitioner Early Adopter, 2024/10"
+          },
+          "rationale": "Being an early adopter of an AWS AI certification suggests learning initiative but does not explicitly state willingness to learn."
+        },
+        {
+          "id": "gap-56",
+          "kind": "weak_evidence",
+          "requirementId": "jd-56",
+          "jdSpan": {
+            "start": 2457,
+            "end": 2485,
+            "text": "work with real business data"
+          },
+          "resumeLineId": "cv-1",
+          "resumeSpan": {
+            "start": 27,
+            "end": 97,
+            "text": "AI/LLM engineer with 3+ years of prior Big-4 data analytics experience"
+          },
+          "rationale": "Prior Big-4 data analytics experience suggests exposure to business data but does not explicitly demonstrate willingness to work with it."
+        },
+        {
+          "id": "gap-57",
+          "kind": "weak_evidence",
+          "requirementId": "jd-57",
+          "jdSpan": {
+            "start": 2490,
+            "end": 2512,
+            "text": "cross-functional teams"
+          },
+          "resumeLineId": "cv-8",
+          "resumeSpan": {
+            "start": 380,
+            "end": 412,
+            "text": "Bridges business and engineering"
+          },
+          "rationale": "Bridging business and engineering suggests cross-functional interaction but does not explicitly state willingness to work in cross-functional teams."
+        },
+        {
+          "id": "gap-58",
+          "kind": "weak_evidence",
+          "requirementId": "jd-58",
+          "jdSpan": {
+            "start": 2515,
+            "end": 2540,
+            "text": "Good communication skills"
+          },
+          "resumeLineId": "cv-16",
+          "resumeSpan": {
+            "start": 747,
+            "end": 786,
+            "text": "Stakeholder Management & Communication."
+          },
+          "rationale": "Stakeholder Management & Communication names relevant skills but provides no concrete communication outcome."
+        },
+        {
+          "id": "gap-59",
+          "kind": "weak_evidence",
+          "requirementId": "jd-59",
+          "jdSpan": {
+            "start": 2541,
+            "end": 2583,
+            "text": "to translate data into meaningful insights"
+          },
+          "resumeLineId": "cv-38",
+          "resumeSpan": {
+            "start": 2325,
+            "end": 2414,
+            "text": "Built Power BI dashboard tracking $100M+ Generative AI initiatives across 12 APAC markets"
+          },
+          "rationale": "The dashboard provides analytics for major initiatives but does not explicitly show translating data into meaningful insights."
+        }
+      ],
+      "calls": [
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 6674.560874999996,
+          "usage": {
+            "input_tokens": 828,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 923,
+            "output_tokens_details": {
+              "reasoning_tokens": 102
+            },
+            "total_tokens": 1751
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 10697.371374999988,
+          "usage": {
+            "input_tokens": 640,
+            "input_tokens_details": {
+              "cache_write_tokens": 0,
+              "cached_tokens": 0
+            },
+            "output_tokens": 1585,
+            "output_tokens_details": {
+              "reasoning_tokens": 505
+            },
+            "total_tokens": 2225
+          }
+        },
+        {
+          "method": "responses.parse",
+          "model": "gpt-5.6-luna",
+          "ms": 26927.324209000013,
+          "usage": {
+            "input_tokens": 5456,
+            "input_tokens_details": {
+              "cache_write_tokens": 5453,
+              "cached_tokens": 0
+            },
+            "output_tokens": 3798,
+            "output_tokens_details": {
+              "reasoning_tokens": 1176
+            },
+            "total_tokens": 9254
+          }
+        }
+      ]
+    }
+  ]
+}
