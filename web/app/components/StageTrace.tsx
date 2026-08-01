@@ -47,6 +47,16 @@ function Elapsed({ startedAt, running }: { startedAt: number; running: boolean }
   );
 }
 
+function LoaderDots() {
+  return (
+    <span className={styles.loader} aria-hidden="true">
+      <span />
+      <span />
+      <span />
+    </span>
+  );
+}
+
 export default function StageTrace({
   stages,
   startedAt,
@@ -75,7 +85,7 @@ export default function StageTrace({
             className={`${styles.label} ${stage.status === "pending" ? styles.labelPending : ""}`}
           >
             {stage.label}
-            {stage.status === "running" && <span className={styles.cursor}>▍</span>}
+            {stage.status === "running" && <LoaderDots />}
           </span>
           {stage.detail && <span className={styles.detail}>{stage.detail}</span>}
         </div>

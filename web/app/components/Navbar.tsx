@@ -11,6 +11,7 @@ import { ROUTE_READY } from "../lib/routes";
 // and a debrief come after the compile is most of the explanation of what this
 // is, and hiding them would cost that for no benefit.
 const TABS = [
+  { label: "Home", path: "/", stage: null },
   { label: "Compile", path: "/compile", stage: null },
   { label: "Plan", path: "/plan", stage: "plan" },
   { label: "Session", path: "/session", stage: "session" },
@@ -25,6 +26,7 @@ export default function Navbar() {
   const [showAuthModal, setShowAuthModal] = useState<"login" | "signup" | null>(null);
   const [authEmail, setAuthEmail] = useState("");
   const [authPassword, setAuthPassword] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const handleAuthSubmit = () => {
     // Cosmetic only — there is no account system, and nothing about a rehearsal
@@ -50,12 +52,11 @@ export default function Navbar() {
           <span className="logo-text">dryrun</span>
         </button>
 
+        {/* Desktop Navigation */}
         <nav className="nav-tabs" aria-label="Stages">
           {TABS.map((tab) => {
             const reachable = tab.stage === null || availability[tab.stage];
-            const active = pathname.startsWith(tab.path);
-            // Say which of the two reasons it is — "finish the previous stage"
-            // is misleading advice when the route simply isn't built yet.
+            const active = tab.path === "/" ? pathname === "/" : pathname.startsWith(tab.path);
             const why =
               tab.stage !== null && tab.stage !== "plan" && !ROUTE_READY[tab.stage]
                 ? `${tab.label} isn't in this build yet`
@@ -74,6 +75,16 @@ export default function Navbar() {
             );
           })}
         </nav>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="hamburger"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle navigation menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          <span className={`hamburger-icon ${mobileMenuOpen ? "open" : ""}`} />
+        </button>
 
         {isLoggedIn ? (
           <div className="profile-menu">
@@ -100,6 +111,30 @@ export default function Navbar() {
           </div>
         )}
       </header>
+
+      {/* Mobile Menu Dropdown */}
+      {mobileMenuOpen && (
+        <nav className="mobile-menu">
+          {TABS.map((tab) => {
+            const reachable = tab.stage === null || availability[tab.stage];
+            const active = tab.path === "/" ? pathname === "/" : pathname.startsWith(tab.path);
+            return (
+              <button
+                key={tab.label}
+                onClick={() => {
+                  router.push(tab.path);
+                  setMobileMenuOpen(false);
+                }}
+                disabled={!reachable}
+                aria-current={active ? "page" : undefined}
+                className={`mobile-menu-item ${active ? "mobile-menu-item-active" : ""}`}
+              >
+                {tab.label}
+              </button>
+            );
+          })}
+        </nav>
+      )}
 
       {showAuthModal && (
         <div className="modal-overlay" onClick={() => setShowAuthModal(null)}>

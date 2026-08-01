@@ -11,10 +11,11 @@
   justify-content: center;
 }
 
-/* Heavily-dimmed drifting trace lines — decoration only, so it is aria-hidden
-   and never the thing carrying information (the real trace card below is). */
+/* Vanta paints its own #212959 ground and owns z-index 0; the CSS gradient
+   on .hero is still the fallback while the WebGL canvas mounts. */
 .traceTexture {
   position: absolute;
+  z-index: 1;
   inset: -10% -5%;
   margin: 0;
   color: var(--color-text);
@@ -54,9 +55,28 @@
   pointer-events: none;
 }
 
+/* Darkest under the text column (content maxes out at 640px for the title,
+   580px for the lead — 720px covers both with room), fading to fully
+   transparent well before the hero's right edge so the mesh stays visible
+   there. Pointer-events stay off so Vanta's mouseControls still see the
+   cursor through it. */
+.scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(23, 29, 69, 0.82) 0%,
+    rgba(23, 29, 69, 0.82) 45%,
+    rgba(23, 29, 69, 0.3) 72%,
+    rgba(23, 29, 69, 0) 100%
+  );
+  pointer-events: none;
+}
+
 .content {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   max-width: 1128px;
   width: 100%;
 }
