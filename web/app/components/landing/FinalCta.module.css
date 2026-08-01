@@ -40,7 +40,7 @@
   font-size: var(--text-base);
 }
 .cta:hover {
-  background-color: #ffffff;
+  background-color: var(--color-on-primary-hover);
 }
 
 .footerRow {

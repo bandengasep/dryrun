@@ -2,6 +2,8 @@
 
 Source: remixed free template "Message" (Arthur Duchesne), serialized node-by-node from Timothy's Framer workspace (project "Message-AI-copy"). Framer is **reference only** — this page is built in `web/` and deployed on Vercel like everything else. Theme values come from the locked Reading Room daylight palette (see AGENTS.md Stack); this doc contributes the *measured layout system* and section blueprint.
 
+> **Amendment, 2 Aug 2026.** The hero gained an optional dark treatment ("Reading Room, after hours" + a Vanta mesh that renders in dark only) behind the navbar theme toggle. Every number in this doc — the spacing scale, section blueprint, radii, type roles — is unaffected: the dark theme swaps colour-bearing tokens and nothing else. Daylight remains the default this spec describes. See decision-log 2026-08-02.
+
 ## Measured layout system (use these numbers, don't eyeball)
 
 - **Container:** content max-width **1128px**, sections carry their own `24px` horizontal padding (hero: 16px). Page width basis 1200.

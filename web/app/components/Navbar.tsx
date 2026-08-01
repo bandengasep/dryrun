@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import { useAuth } from "./AuthContext";
+import ThemeToggle from "./ThemeToggle";
 import { useStageAvailability } from "../lib/session-state";
 import { ROUTE_READY } from "../lib/routes";
 
@@ -86,6 +87,8 @@ export default function Navbar() {
           <span className={`hamburger-icon ${mobileMenuOpen ? "open" : ""}`} />
         </button>
 
+        <ThemeToggle className="theme-toggle-desktop" />
+
         {isLoggedIn ? (
           <div className="profile-menu">
             <button className="profile-trigger" aria-label="Account menu">
@@ -133,6 +136,12 @@ export default function Navbar() {
               </button>
             );
           })}
+
+          {/* The header's toggle is hidden at this width, so it repeats here. */}
+          <div className="mobile-menu-footer">
+            <span className="mobile-menu-footer-label">Theme</span>
+            <ThemeToggle />
+          </div>
         </nav>
       )}
 

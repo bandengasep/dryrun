@@ -2,6 +2,8 @@ import type { ReactNode } from "react";
 import { Fraunces, Instrument_Sans, Google_Sans_Code } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "./components/AuthContext";
+import { ThemeProvider } from "./components/ThemeContext";
+import { THEME_INIT_SCRIPT } from "./lib/theme";
 import Navbar from "./components/Navbar";
 import { SessionStateProvider } from "./lib/session-state";
 
@@ -42,19 +44,27 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
+    // suppressHydrationWarning: the script above mutates <html> before React
+    // hydrates, so the server and client attribute sets legitimately differ.
     <html
       lang="en"
       className={`${fraunces.variable} ${instrumentSans.variable} ${googleSansCode.variable}`}
+      suppressHydrationWarning
     >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body>
         {/* The session bridge wraps the Navbar too — the stage tabs read the
             same client-held state the pages do, so a tab can't offer a stage
             that has nothing behind it. */}
         <SessionStateProvider>
-          <AuthProvider>
-            <Navbar />
-            {children}
-          </AuthProvider>
+          <ThemeProvider>
+            <AuthProvider>
+              <Navbar />
+              {children}
+            </AuthProvider>
+          </ThemeProvider>
         </SessionStateProvider>
       </body>
     </html>

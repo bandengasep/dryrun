@@ -11,8 +11,10 @@
   justify-content: center;
 }
 
-/* Vanta paints its own #212959 ground and owns z-index 0; the CSS gradient
-   on .hero is still the fallback while the WebGL canvas mounts. */
+/* Heavily-dimmed drifting trace lines — decoration only, so it is aria-hidden
+   and never the thing carrying information (the real trace card below is).
+   Present in both themes. It sits at z-index 1 rather than the natural 0
+   because in dark the Vanta canvas takes 0; .content stays above both at 2. */
 .traceTexture {
   position: absolute;
   z-index: 1;
@@ -64,14 +66,19 @@
   position: absolute;
   inset: 0;
   z-index: 1;
-  background: linear-gradient(
-    90deg,
-    rgba(23, 29, 69, 0.82) 0%,
-    rgba(23, 29, 69, 0.82) 45%,
-    rgba(23, 29, 69, 0.3) 72%,
-    rgba(23, 29, 69, 0) 100%
-  );
+  /* Themed: transparent in light (nothing behind the copy but the 5% trace
+     texture), a left-heavy navy wash in dark where the mesh lives. */
+  background: var(--scrim-hero);
   pointer-events: none;
+}
+
+/* Below this width the copy runs the full column, so a scrim that clears by 72%
+   leaves the last third of every line sitting on bare mesh. The mobile variant
+   stays near-solid all the way across. */
+@media (max-width: 640px) {
+  .scrim {
+    background: var(--scrim-hero-mobile);
+  }
 }
 
 .content {
