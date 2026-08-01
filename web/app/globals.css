@@ -125,12 +125,23 @@
   --gradient-ground: linear-gradient(180deg, #edf1f7 0%, #ffffff 100%);
   --gradient-fade: linear-gradient(180deg, rgba(237, 241, 247, 0) 0%, #edf1f7 100%);
 
-  /* Hero scrim. Light needs none: the only thing behind the copy is the trace
-     texture at 5% opacity, which the locked design already reads cleanly over.
-     Dark carries the Vanta mesh, which does need holding back — see the dark
-     block below. */
-  --scrim-hero: transparent;
-  --scrim-hero-mobile: transparent;
+  /* Hero scrim. Both themes now carry the Vanta mesh, so both need it held back
+     off the text column: left-heavy on desktop so the animation still shows
+     through on the right, near-solid on mobile where the copy runs full-bleed.
+     Light's wash is the paper ground; dark's is the navy (see the dark block). */
+  --scrim-hero: linear-gradient(
+    90deg,
+    rgba(237, 241, 247, 0.88) 0%,
+    rgba(237, 241, 247, 0.88) 45%,
+    rgba(237, 241, 247, 0.35) 72%,
+    rgba(237, 241, 247, 0) 100%
+  );
+  --scrim-hero-mobile: linear-gradient(
+    90deg,
+    rgba(237, 241, 247, 0.93) 0%,
+    rgba(237, 241, 247, 0.91) 70%,
+    rgba(237, 241, 247, 0.82) 100%
+  );
 
   /* Translucent chrome: the sticky header (sits over scrolling content) and the
      veil behind a blocking loader. Both need the ground colour at alpha, which
@@ -388,6 +399,9 @@ body {
 
 /* ---------- Header ---------- */
 
+/* space-between decides where the four groups land, but it guarantees no
+   minimum: at wide viewports the theme toggle and the account control ended up
+   almost touching. The gap is that floor. */
 .site-header {
   background-color: var(--header-bg);
   backdrop-filter: blur(10px);
@@ -396,6 +410,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-5);
   position: relative;
   z-index: 10;
 }

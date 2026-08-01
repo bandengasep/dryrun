@@ -596,3 +596,28 @@ and two of these miss targets that were locked on 26 Jul.
   (hash `32bb9d6f`) were never changed by the 1-Aug branch and are not changed now. The dark set
   is documented on a new page, "Page 2 — theme modes": the toggle in its four states, plus
   daylight and after-hours tiles built to the same structure so the palettes compare one to one.
+
+### 2026-08-02, later — two amendments from Timothy's review of the merged build
+
+- **The dark-only Vanta gate is REVERSED; the mesh now renders in both themes.** Timothy's call on
+  seeing the two grounds side by side: light and dark read as two different sites rather than one
+  product. The gate earlier the same day was a cost argument, and the cost is real — three.js is
+  now on the default path, so **every** landing visitor pays the 712 KB rather than only those who
+  opt into dark. Accepted deliberately, and `AGENTS.md` rule 9 rewritten to say so rather than
+  leaving a condition in the docs that the code no longer honours. What survives from the gate is
+  the part that mattered for first paint: the import stays dynamic, so the hero renders from CSS
+  and the canvas arrives after. The video-compression worry is *lower* in light than it was in
+  dark — soft near-white lines on pale paper carry far less edge energy than white on navy.
+- **VANTA.NET cannot draw dark lines on a light ground — verified, not assumed.** It blends
+  additively, so the line colour can only ever lighten what is behind it. Tested directly by
+  setting `color: 0x000000` against the `#EDF1F7` hero: the lines still rendered *lighter* than the
+  ground. No colour choice fixes this. The consequence is a real design concession: the light
+  hero's Vanta ground is `#D2DCEE`, a deeper cool paper than the locked `#EDF1F7`, because the
+  additive lines need something to register against. That deviation is confined to the landing
+  hero canvas — `--color-bg` and every app surface keep the locked daylight values, and the hero's
+  fade still melts into `#EDF1F7` at the section boundary. Line colour `#F7FAFF`.
+- **Both themes now carry a hero scrim.** Light's was `transparent` while the mesh was dark-only;
+  it is now the paper ground at 88% across the text column, matching dark's navy wash, with the
+  same near-solid `≤640px` variant.
+- **Header gained a `--spacing-5` gap.** `justify-content: space-between` sets no minimum, and at
+  wide viewports the theme toggle and the account control were nearly touching.
