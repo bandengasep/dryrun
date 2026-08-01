@@ -1,4 +1,10 @@
-/* Paper: the tint is the kind colour at 10% (#C053531A / #A87E2F1A / #3E7D631A). */
+/* Paper: the tint is the kind colour at 10%.
+   Derived from currentColor rather than written out, so it follows the themed
+   --color-missing / --color-weak / --color-strong automatically. The literals
+   this replaced had drifted apart across the 1-Aug theme flip: missing carried
+   the dark palette's coral while weak and strong still carried the light
+   palette's ochre and moss, so two of the three tints were wrong in both
+   themes at once. */
 
 .chip {
   display: inline-flex;
@@ -24,15 +30,15 @@
 
 .missing_skill {
   color: var(--color-missing);
-  background-color: rgba(192, 83, 83, 0.1);
+  background-color: color-mix(in srgb, currentColor 10%, transparent);
 }
 
 .weak_evidence {
   color: var(--color-weak);
-  background-color: rgba(168, 126, 47, 0.1);
+  background-color: color-mix(in srgb, currentColor 10%, transparent);
 }
 
 .strong_differentiator {
   color: var(--color-strong);
-  background-color: rgba(62, 125, 99, 0.1);
+  background-color: color-mix(in srgb, currentColor 10%, transparent);
 }

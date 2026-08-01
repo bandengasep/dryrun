@@ -57,6 +57,16 @@ export default function ChatStream({
   );
 }
 
+function LoaderDots() {
+  return (
+    <span className={styles.loader} aria-hidden="true">
+      <span />
+      <span />
+      <span />
+    </span>
+  );
+}
+
 function Row({
   role,
   text,
@@ -69,10 +79,17 @@ function Row({
   const isCandidate = role === "candidate";
   return (
     <div className={`${styles.row} ${isCandidate ? styles.rowCandidate : styles.rowInterviewer}`}>
-      {!isCandidate && <span className={styles.avatarDot} aria-hidden="true" />}
+      {!isCandidate && (
+        <span className={styles.avatarIcon} aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" width="20" height="20">
+            <path d="M12 11.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+            <path d="M5.5 20.5a6.5 6.5 0 0 1 13 0" />
+          </svg>
+        </span>
+      )}
       <div className={`${styles.bubble} ${isCandidate ? styles.bubbleCandidate : styles.bubbleInterviewer}`}>
         {text || (streaming ? <span className={styles.thinking}>thinking</span> : null)}
-        {streaming && <span className={styles.caret} aria-hidden="true">▍</span>}
+        {streaming && <LoaderDots />}
       </div>
     </div>
   );

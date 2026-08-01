@@ -2,11 +2,13 @@
 // proof block (NOT the real StageTrace component: this is a static mock that
 // never has to be true, so it never risks lying about a run in progress).
 //
-// No hooks here on purpose — the whole page stays server-renderable, and the
-// dimmed trace texture drifting behind the copy is pure CSS (one keyframe,
-// no animation library, respects prefers-reduced-motion via globals.css).
+// No hooks in this file itself — Hero stays server-renderable; the Vanta
+// canvas is its own "use client" leaf (VantaBackground) so only that node
+// hydrates. The dimmed trace texture drifting behind the copy is still pure
+// CSS (one keyframe, no animation library, respects prefers-reduced-motion).
 
 import Link from "next/link";
+import VantaBackground from "./VantaBackground";
 import styles from "./Hero.module.css";
 
 const TRACE_LINE = [
@@ -26,10 +28,15 @@ const TRACE_TEXT = Array.from({ length: 6 }, () => TRACE_LINE).join("\n");
 export default function Hero() {
   return (
     <section className={styles.hero}>
+      <VantaBackground />
       <pre className={styles.traceTexture} aria-hidden="true">
         {TRACE_TEXT}
       </pre>
       <div className={styles.fade} aria-hidden="true" />
+      {/* Scrim: the Vanta mesh + trace texture read as clutter directly behind
+          the headline without it — darkest under the copy, sheer enough at the
+          right edge that the animation still shows through. */}
+      <div className={styles.scrim} aria-hidden="true" />
 
       <div className={styles.content}>
         <p className={`kicker ${styles.kicker}`}>Rehearsal compiler · every claim carries a receipt</p>

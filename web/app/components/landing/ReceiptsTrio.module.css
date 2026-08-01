@@ -74,7 +74,7 @@
 
 .chipMissing {
   color: var(--color-missing);
-  background-color: rgba(192, 83, 83, 0.1);
+  background-color: rgba(224, 131, 127, 0.1);
 }
 
 .chipDot {

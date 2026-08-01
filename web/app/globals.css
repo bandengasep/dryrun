@@ -1,16 +1,27 @@
 /* =============================================================================
-   DryRun — "Reading Room daylight"
+   DryRun — two themes, one token contract
    -----------------------------------------------------------------------------
-   Tokens are transcribed from the Paper file "Dryrun-WebApp" (tokens hash
-   32bb9d6f), read via get_tokens / get_computed_styles — never from screenshots.
-   The old dark-navy/cyan theme is gone; there is no dark mode this week.
+   :root                    "Reading Room daylight" — locked 27 Jul, the default.
+                            Transcribed from the Paper file "Dryrun-WebApp"
+                            (tokens hash 32bb9d6f) via get_tokens /
+                            get_computed_styles — never from screenshots.
+   :root[data-theme=dark]   "Reading Room, after hours" — opt-in, added 2 Aug.
+                            See docs/decision-log.md 2026-08-02.
+
+   Light stays the default deliberately: prefers-color-scheme is NOT consulted,
+   so a first-time visitor always gets the locked daylight theme. Dark applies
+   only when someone asks for it and we stored that (localStorage
+   'dryrun-theme-v1', replayed onto <html> by a blocking script in layout.tsx).
+
+   Only colour-bearing tokens are themed. Type, spacing, radii and the type
+   scale are theme-independent and live once, in :root.
 
    Two border systems live here on purpose:
      · --color-border / --color-border-strong  — the Paper solid hairlines, used
-       by every app surface (all of which sit on white or #F2F5FA).
-     · --hairline / --hairline-strong          — ink alpha (12% / 20%), the
-       landing spec's "border = alpha of the foreground" formula. Alpha holds its
-       relationship on the hero gradient where a solid hairline would drift.
+       by every app surface.
+     · --hairline / --hairline-strong          — alpha of the foreground, the
+       landing spec's "border = alpha of the foreground" formula. Alpha holds
+       its relationship on the hero gradient where a solid hairline would drift.
    ============================================================================ */
 
 :root {
@@ -29,7 +40,11 @@
 
   /* ---- Accent ---- */
   --color-primary: #2e4c8f;
+  --color-primary-hover: #26407b;
   --color-on-primary: #f7f9fc;
+  /* For inverted buttons (--color-on-primary fill, primary text), whose hover
+     has to move away from the ground rather than toward a hardcoded white. */
+  --color-on-primary-hover: #ffffff;
 
   /* ---- Gap-kind status (missing / weak evidence / strong differentiator) ---- */
   --color-missing: #c05353;
@@ -110,10 +125,101 @@
   --gradient-ground: linear-gradient(180deg, #edf1f7 0%, #ffffff 100%);
   --gradient-fade: linear-gradient(180deg, rgba(237, 241, 247, 0) 0%, #edf1f7 100%);
 
+  /* Hero scrim. Light needs none: the only thing behind the copy is the trace
+     texture at 5% opacity, which the locked design already reads cleanly over.
+     Dark carries the Vanta mesh, which does need holding back — see the dark
+     block below. */
+  --scrim-hero: transparent;
+  --scrim-hero-mobile: transparent;
+
+  /* Translucent chrome: the sticky header (sits over scrolling content) and the
+     veil behind a blocking loader. Both need the ground colour at alpha, which
+     is why they can't just be --color-surface. */
+  --header-bg: rgba(255, 255, 255, 0.82);
+  --overlay-veil: rgba(245, 247, 251, 0.8);
+
   /* Light theme earns its depth from hairlines, not shadow. These two exist for
      the only genuinely floating things: the primary CTA and overlays. */
   --shadow-cta: 0 1px 2px rgba(29, 33, 39, 0.08), 0 6px 16px rgba(46, 76, 143, 0.18);
   --shadow-overlay: 0 12px 40px rgba(29, 33, 39, 0.16);
+}
+
+/* =============================================================================
+   "Reading Room, after hours" — the opt-in dark theme (decision-log 2026-08-02).
+   Ground #212959 and its tints; ink and status re-derived for contrast against
+   it. Only colour-bearing tokens appear here — everything else inherits from
+   :root above, which is the whole point of overriding at the token layer.
+   ============================================================================ */
+
+:root[data-theme="dark"] {
+  /* ---- Ground & surfaces ---- */
+  --color-bg: #212959;
+  --color-surface: #262f66;
+  --color-surface-2: #2b3570;
+  --color-elevated: #333d7d;
+  --color-border: #3d4788;
+  --color-border-strong: #4d5798;
+
+  /* ---- Ink ----
+     --color-muted is #a8b1d8, not the #8890b8 it shipped as on 1 Aug: that
+     value measured 3.64:1 on --color-surface-2 and 3.20:1 on --color-elevated,
+     under the 4.5:1 floor. #a8b1d8 clears it on every ground (6.52 / 5.92 /
+     5.39 / 4.73). */
+  --color-text: #eef1f8;
+  --color-text-2: #b7bede;
+  --color-muted: #a8b1d8;
+
+  /* ---- Accent ---- */
+  --color-primary: #6d8ce8;
+  --color-primary-hover: #88a2ee;
+  --color-on-primary: #101534;
+  --color-on-primary-hover: #1a2145;
+
+  /* ---- Gap-kind status ----
+     --color-missing is #e99995, not the #e0837f it shipped as: these three are
+     set as small uppercase code-face text, and #e0837f measured 4.18:1 on
+     --color-surface-2 — the ground the gap cards actually use. #e99995 clears
+     4.5:1 there (5.12) and on --color-surface (5.63). Weak and strong already
+     did (5.00 / 5.07). */
+  --color-missing: #e99995;
+  --color-weak: #d9a24f;
+  --color-strong: #5fbf94;
+
+  /* Same alpha formula as light — the foreground flipped, so the alpha does. */
+  --hairline: rgba(238, 241, 248, 0.12);
+  --hairline-strong: rgba(238, 241, 248, 0.2);
+
+  --primary-20: rgba(109, 140, 232, 0.2);
+  --primary-10: rgba(109, 140, 232, 0.1);
+  --primary-06: rgba(109, 140, 232, 0.06);
+
+  /* After-hours ground: darker at the top, settling into --color-bg. */
+  --gradient-ground: linear-gradient(180deg, #171d45 0%, #212959 100%);
+  --gradient-fade: linear-gradient(180deg, rgba(23, 29, 69, 0) 0%, #171d45 100%);
+
+  /* Holds the Vanta mesh back from the headline. Left-heavy on desktop so the
+     animation still shows through on the right; near-solid on mobile, where the
+     copy runs full-bleed and the mesh would otherwise cross every line. */
+  --scrim-hero: linear-gradient(
+    90deg,
+    rgba(23, 29, 69, 0.82) 0%,
+    rgba(23, 29, 69, 0.82) 45%,
+    rgba(23, 29, 69, 0.3) 72%,
+    rgba(23, 29, 69, 0) 100%
+  );
+  --scrim-hero-mobile: linear-gradient(
+    90deg,
+    rgba(23, 29, 69, 0.9) 0%,
+    rgba(23, 29, 69, 0.88) 70%,
+    rgba(23, 29, 69, 0.78) 100%
+  );
+
+  --header-bg: rgba(26, 33, 66, 0.85);
+  --overlay-veil: rgba(33, 41, 89, 0.8);
+
+  /* Shadows read as depth against a dark ground, not as the paper hairline. */
+  --shadow-cta: 0 1px 2px rgba(0, 0, 0, 0.3), 0 6px 16px rgba(109, 140, 232, 0.28);
+  --shadow-overlay: 0 12px 40px rgba(0, 0, 0, 0.45);
 }
 
 * {
@@ -220,7 +326,7 @@ body {
   color: var(--color-on-primary);
 }
 .btn-primary:hover:not(:disabled) {
-  background-color: #26407b;
+  background-color: var(--color-primary-hover);
 }
 .btn-primary:disabled {
   background-color: var(--color-elevated);
@@ -283,7 +389,7 @@ body {
 /* ---------- Header ---------- */
 
 .site-header {
-  background-color: rgba(255, 255, 255, 0.82);
+  background-color: var(--header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hairline);
   padding: var(--spacing-4) var(--spacing-6);
@@ -317,7 +423,7 @@ body {
 
 .logo-text {
   color: var(--color-text);
-  font-size: 14px;
+  font-size: 18px;
   font-weight: var(--font-weight-semibold);
   line-height: var(--leading-snug);
   font-family: var(--font-code);
@@ -336,7 +442,7 @@ body {
   background: none;
   border: none;
   color: var(--color-text-2);
-  font-size: var(--text-sm);
+  font-size: 16px;
   font-weight: var(--font-weight-medium);
   cursor: pointer;
   padding: 0 0 2px;
@@ -361,6 +467,48 @@ body {
 .auth-buttons {
   display: flex;
   gap: var(--spacing-3);
+}
+
+/* ---------- Theme toggle ----------
+   A two-segment control rather than a single icon that swaps: both options stay
+   visible, so which theme is active is readable without knowing what the icon
+   would have meant. Paper "Dryrun-WebApp" → Page 2, "theme toggle — states". */
+
+.theme-toggle {
+  display: flex;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  flex-shrink: 0;
+}
+
+.theme-toggle-option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  color: var(--color-muted);
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.theme-toggle-option:hover:not(.theme-toggle-option-active) {
+  background-color: var(--color-elevated);
+  color: var(--color-primary);
+}
+
+.theme-toggle-option-active {
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
 }
 
 /* ---------- Profile menu ---------- */
@@ -414,6 +562,7 @@ body {
 
 .profile-dropdown-item {
   width: 100%;
+  font-size: 16px;
   text-align: left;
   background: none;
   border: none;
@@ -428,6 +577,166 @@ body {
 .profile-dropdown-item:hover {
   background-color: var(--color-surface-2);
   color: var(--color-missing);
+}
+
+/* ---------- Mobile Hamburger Menu ---------- */
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  background: none;
+  border: none;
+  cursor: pointer;
+  gap: 4px;
+  padding: var(--spacing-2);
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.hamburger-icon {
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text-2);
+  border-radius: 1px;
+  transition: all 0.3s ease;
+  display: block;
+  position: relative;
+}
+
+.hamburger-icon::before,
+.hamburger-icon::after {
+  content: '';
+  position: absolute;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text-2);
+  border-radius: 1px;
+  left: 0;
+  transition: all 0.3s ease;
+}
+
+.hamburger-icon::before {
+  top: -8px;
+}
+
+.hamburger-icon::after {
+  top: 8px;
+}
+
+.hamburger-icon.open {
+  background-color: transparent;
+}
+
+.hamburger-icon.open::before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-icon.open::after {
+  transform: rotate(-45deg) translate(7px, -7px);
+}
+
+.mobile-menu {
+  display: none;
+  flex-direction: column;
+  background-color: var(--color-surface);
+  border-top: 1px solid var(--color-border);
+  padding: var(--spacing-3);
+  gap: var(--spacing-1);
+  position: fixed;
+  top: 60px;
+  left: 0;
+  right: 0;
+  z-index: 9;
+  box-shadow: var(--shadow-overlay);
+}
+
+.mobile-menu-item {
+  width: 100%;
+  text-align: left;
+  background-color: var(--color-surface-2);
+  border: none;
+  color: var(--color-text-2);
+  font-size: var(--text-sm);
+  font-weight: var(--font-weight-medium);
+  padding: var(--spacing-2) var(--spacing-3);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+
+.mobile-menu-item:hover:not(:disabled) {
+  background-color: var(--color-elevated);
+  color: var(--color-primary);
+}
+
+/* The active row has to out-weigh the inactive ones, which carry a
+   --color-surface-2 fill: --primary-10 reads as a tint in both themes, where
+   the 8%-alpha literal this replaced was invisible on the dark ground. */
+.mobile-menu-item-active {
+  color: var(--color-primary);
+  background-color: var(--primary-10);
+  font-weight: var(--font-weight-semibold);
+}
+
+.mobile-menu-item:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* The auth row is hidden below 640px, so the toggle has to live here too or it
+   becomes unreachable on a phone. */
+.mobile-menu-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  padding: var(--spacing-2) var(--spacing-3) 0;
+  margin-top: var(--spacing-1);
+  border-top: 1px solid var(--color-border);
+}
+
+.mobile-menu-footer-label {
+  font-family: var(--font-code);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-muted);
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+
+@media (max-width: 640px) {
+  .site-header {
+    gap: var(--spacing-2);
+  }
+
+  .hamburger {
+    display: flex;
+    order: 2;
+  }
+
+  .nav-tabs {
+    display: none;
+  }
+
+  .auth-buttons {
+    display: none;
+  }
+
+  /* Header instance hides; the copy inside .mobile-menu-footer takes over. */
+  .theme-toggle-desktop {
+    display: none;
+  }
+
+  .profile-menu {
+    order: 3;
+  }
+
+  .mobile-menu {
+    display: flex;
+  }
 }
 
 /* ---------- Modal ---------- */
@@ -550,7 +859,7 @@ body {
 .loader-overlay {
   position: fixed;
   inset: 0;
-  background-color: rgba(245, 247, 251, 0.8);
+  background-color: var(--overlay-veil);
   backdrop-filter: blur(4px);
   display: flex;
   align-items: center;

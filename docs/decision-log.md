@@ -525,3 +525,74 @@ and two of these miss targets that were locked on 26 Jul.
   question marked not-attempted without a model call; 0 dropped. Quality note for Thursday: 9
   missed points for one answer is verbose and should probably be capped — not a correctness
   issue, so logged rather than patched mid-build.
+
+## 2026-08-02
+
+- **Light/dark toggle adopted; the 27-Jul theme lock HOLDS and is not superseded.** Vedika's
+  `FE-changes` branch (commit `ffd7326`, "FE-Polish") replaced the locked "Reading Room daylight"
+  palette outright with a dark navy one. Rather than choose between her work and the lock, both
+  ship: `:root` carries the locked daylight tokens unchanged and is what every first-time visitor
+  sees; `:root[data-theme="dark"]` carries the navy as **"Reading Room, after hours"**, opt-in via
+  a navbar toggle and remembered per browser. Ground `#212959`, surfaces `#262F66`/`#2B3570`,
+  hairline `#3D4788`, ink `#EEF1F8`/`#B7BEDE`, primary `#6D8CE8`, status `#E0837F`/`#D9A24F`/`#5FBF94`.
+  The two reasons the 27-Jul entry gave for light — differentiation from the uniformly dark AI-tool
+  field, and light surviving compressed demo video better — apply to *the default*, which is the
+  only thing a judge or a first-time visitor sees. They were never arguments against dark existing.
+- **`prefers-color-scheme` deliberately NOT consulted.** Reading the OS would hand the default to
+  whatever a visitor's machine happens to be set to, which is precisely the decision the 27-Jul
+  entry made on purpose. Light until asked otherwise; the choice then persists.
+- **CORRECTION — the 1-Aug `globals.css` header cited a decision-log entry that did not exist.**
+  It read "Dark override adopted 1 Aug 2026 (Vedika's call…) — see docs/decision-log.md"; no such
+  entry was ever written, and the log's 27-Jul entry recorded the opposite call. On a project whose
+  first ground rule is that nothing is displayed without a receipt, a fabricated citation in source
+  is the most expensive kind of drift. The comment has been rewritten to describe the two-theme
+  contract and to point here. Flagged during review rather than discovered later; recorded so the
+  correction itself carries a receipt.
+- **`three` + `vanta` accepted CONDITIONALLY, as a dark-only cost** (rule 9 previously sanctioned
+  only `videodb` and `@supabase/supabase-js`). Measured: three.js is a **712 KB** client chunk plus
+  ~24 KB of Vanta, and the transitive set pulls `@dimforge/rapier3d-compat` (WASM physics),
+  `@tweenjs/tween.js` and `fflate`. The condition is that `VantaBackground` renders only when dark
+  is active, so the dynamic `import()` never fires on the default path — verified in the browser:
+  a light-mode load requests **zero** three/vanta resources, and six chunks appear only after
+  switching. A second reason it stays off the default: thin high-contrast moving lines on a flat
+  dark field are the worst case for video compression, and Saturday's recording is the deliverable.
+- **`localStorage` for the theme preference — a deliberate carve-out from rule 3, not drift.**
+  Rule 3 confines in-flight state to `sessionStorage` because a resume must not linger on a shared
+  machine (`lib/session-state.tsx` says so in as many words). A theme preference is not document
+  content, and a preference that forgets itself when the tab closes is not a preference. Key
+  `dryrun-theme-v1`, replayed onto `<html>` by a blocking script before first paint.
+- **Anti-flash script verified, and one real bug found doing it.** The key was first imported into
+  `layout.tsx` from a `"use client"` module; Next turns client-module exports into client
+  references on the server, and the script vanished from the SSR output entirely — the theme was
+  silently being applied late by an effect, i.e. the exact flash the script exists to prevent. Key
+  and script moved to a plain `app/lib/theme.ts` that both sides can import for real. Evidence
+  after the fix: on a dark-stored reload, `data-theme` is already `dark` and the body already
+  `rgb(33, 41, 89)` at the **first animation frame**. Pattern confirmed against current Next.js
+  docs ("preventing flash before hydration"), not from memory.
+- **Six FE defects from the same branch fixed.** `--color-surface-3` was referenced but never
+  defined (mobile-menu hover silently did nothing); the active mobile-menu row used a hardcoded
+  *light*-theme primary at 8% alpha and was invisible on the dark ground — it now reads as the most
+  prominent row; the mobile-menu shadow and `.btn-primary:hover` (which flipped the primary CTA to
+  pure white) were hardcoded and are now themed tokens; the hero scrim is tokenised as
+  `--scrim-hero` with a near-solid `≤640px` variant, because the desktop gradient cleared by 72%
+  and left mobile body copy sitting on bare mesh. A stray root `package-lock.json` — an npm
+  artifact in a pnpm workspace — was deleted.
+- **Two dark tokens raised on measurement.** `--color-muted` `#8890B8` → `#A8B1D8`: the shipped
+  value failed WCAG AA for body text on three of four grounds (4.41 / 4.00 / 3.64 / 3.20 on bg /
+  surface / surface-2 / elevated); the replacement clears 4.5:1 on all four (6.52 / 5.92 / 5.39 /
+  4.73). `--color-missing` `#E0837F` → `#E99995`: the status trio is set as small uppercase
+  code-face text, and missing measured 4.18:1 on `--color-surface-2` — the ground the gap cards
+  actually use; it now clears 5.12 there and 5.63 on `--color-surface`. Weak (`#D9A24F`) and
+  strong (`#5FBF94`) already passed on both (5.00 / 5.07 and 5.49 / 5.57) and are unchanged.
+  `--color-primary` stays `#6D8CE8` at 4.30:1 on the ground — it is a UI/link accent, above the
+  3:1 non-text floor, and is not used for body copy.
+- **Gap-kind chip tints re-derived from `currentColor`.** The three tint fills were written as
+  literals and had drifted apart across the 1-Aug flip: `missing` carried the *dark* palette's
+  coral at 10% while `weak` and `strong` still carried the *light* palette's ochre and moss — two
+  of three tints wrong in both themes simultaneously. Now
+  `color-mix(in srgb, currentColor 10%, transparent)`, so the fill tracks whichever themed token
+  the chip's `color` resolves to and cannot drift again.
+- **Paper stays the source of truth and keeps the light tokens.** The file's `--color-*` tokens
+  (hash `32bb9d6f`) were never changed by the 1-Aug branch and are not changed now. The dark set
+  is documented on a new page, "Page 2 — theme modes": the toggle in its four states, plus
+  daylight and after-hours tiles built to the same structure so the palettes compare one to one.
