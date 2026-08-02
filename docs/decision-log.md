@@ -746,5 +746,8 @@ and two of these miss targets that were locked on 26 Jul.
   2 Aug review (no rate limiting, unauthenticated save) are now documented in the README's
   "Mocked, incomplete, or external" section, per that entry's "document rather than fix".
 - **Write-up updated in place:** "Where to look in the repo" section added; body re-trimmed to
-  999 words (verify: `tail -n +3 write-up.md | wc -w`). Summary-field draft added at
-  `docs/submission/summary.md`.
+  999 words. Summary-field draft added at `docs/submission/summary.md`.
+- **Write-up converted to pure plain text** (later the same night): the form's Q4 field is a bare
+  textarea, so markdown would paste as literal syntax. Headings became uppercase lines (the five
+  pillars survive as section headings), backticks and comment lines stripped — the whole file is
+  now the paste content, verbatim. 992 words (verify: `wc -w write-up.md`).
