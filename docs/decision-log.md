@@ -653,3 +653,38 @@ and two of these miss targets that were locked on 26 Jul.
   display in those old sessions' transcript UIs and can be quoted by their debriefs. Replay is
   sanitized; stored history is not rewritten — a `sessionStorage` migration is out of hotfix
   scope, and re-recording starts a fresh session anyway.
+
+### 2026-08-02, night — the review that caught the hotfix half-done
+
+- **CORRECTION — PR #22 fixed the leak we SAW, not the leak we HAD.** A four-lane inline review
+  plus a workflow review of the merged diff found nine further shapes where the same wire
+  protocol still reached the candidate, each verified by executing the committed code. The worst
+  were mundane: a **sentence-final period** after the sentinel (`META: {"action":"advance"}.`)
+  reclassified it as prose and leaked the whole thing; a **backticked payload** did the same and
+  streamed raw JSON live with no withholding; a **truncated payload** (`finish_reason=length`)
+  leaked at stream end *after* the live bubble had correctly hidden it. Two were regressions PR
+  #22 introduced: broadening the line rule to bolded tokens **deleted legitimate prose lines**
+  opening with `**META:**`, and a sentinel emitted *before* the prose made that rule **eat the
+  interviewer's question**, committing an empty bubble while the composer waited for an answer to
+  something never shown. The lesson generalises past this bug: the first fix encoded the one
+  example in the screenshot as if it were the rule.
+- **Root cause of the root cause: the parser had no stated principle, only a pattern.** The
+  rewrite adopts one — **the sentinel is TERMINAL**; once its payload closes, anything left is
+  wrapper noise, and only letters or digits after the close mean the model was talking *about*
+  META. That single idea subsumes the period, the backticks, the fences, the bolding, and the
+  emoji nobody has sent yet. Three subordinate rules follow: a payload fragment carrying a quote
+  is truncated JSON (cut it), an anchored token with **no** payload is prose (keep it), and an
+  anchored sentinel with prose after it is misplaced rather than quoted (excise the sentinel,
+  keep the words). 58 session tests, every shape above pinned.
+- **A denial-of-service the leak-hunt turned up on the way.** `parseJsonAt`'s shortest-prefix
+  scan was unbounded, and `buildInterviewerMessages` replays **client-supplied** transcript text
+  through it — so an unauthenticated POST carrying `META: {"a":"` plus a megabyte of `}` pinned
+  the function until `maxDuration`. Measured 2.2ms → 12.3ms → 107ms at 1k/4k/16k braces (clean
+  quadratic), 12.7s at 200k. Payload scanning is now capped at 512 chars, which is ~20× any real
+  sentinel. The in-code comment excusing the quadratic ("payloads are a dozen tokens") was
+  written for model output and never revisited when the same function started parsing user input.
+- **Known and NOT fixed (logged, not hidden):** a line-anchored token still freezes the streaming
+  bubble until the turn ends, so an interviewer who explains the protocol mid-reply reads as
+  stalled and the text arrives in one late block. No protocol leaks and the final text is
+  correct; the docstring now says so plainly instead of claiming withholding is always transient.
+  Deferred deliberately with the submission hours away — the safe direction is a late reveal.

@@ -445,4 +445,121 @@ describe("streamingReply — what the candidate may see of a growing buffer", ()
   it("keeps an empty buffer empty", () => {
     expect(streamingReply("")).toBe("");
   });
+
+  it("withholds a bolded token prefix whose asterisks arrive before the colon", () => {
+    // **META** streams fully before its ":" delta lands; without trailing-
+    // asterisk tolerance the wire protocol flashes for a frame.
+    expect(streamingReply("Anything else? **META**")).toBe("Anything else?");
+    expect(streamingReply("Anything else? **META")).toBe("Anything else?");
+  });
+});
+
+describe("splitReplyAndMeta — sentinel shapes the first hotfix missed (review, 2 Aug)", () => {
+  // The sentinel is TERMINAL: once its JSON closes, anything left is wrapper
+  // noise, not conversation. Only letters/digits after the close mean the
+  // model was talking ABOUT META rather than emitting it.
+  it("strips a sentinel followed by sentence punctuation", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Ok, moving on. META: {"action":"advance"}.',
+    );
+    expect(reply).toBe("Ok, moving on.");
+    expect(action).toBe("advance");
+  });
+
+  it("strips a backtick-wrapped inline payload", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Ok, moving on. META: `{"action":"advance"}`',
+    );
+    expect(reply).toBe("Ok, moving on.");
+    expect(action).toBe("advance");
+  });
+
+  it("strips a truncated pretty-printed sentinel — broken protocol is still protocol", () => {
+    const { reply, action } = splitReplyAndMeta('Thanks.\nMETA: {\n  "action": "adva');
+    expect(reply).toBe("Thanks.");
+    expect(action).toBe("ask_followup");
+  });
+
+  it("is not fooled by the token appearing inside its own payload", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Done. META: {"action": "advance", "note": "META: x"}',
+    );
+    expect(reply).toBe("Done.");
+    expect(action).toBe("advance");
+  });
+
+  it("keeps the question when the model puts the sentinel FIRST and talks after", () => {
+    // Mirror of the 2 Aug leak. Deleting the line would erase the only thing
+    // the candidate was asked — an empty bubble with the composer waiting.
+    const { reply, action } = splitReplyAndMeta(
+      'META: {"action":"advance"} Great — walk me through your last project.',
+    );
+    expect(reply).toBe("Great — walk me through your last project.");
+    expect(action).toBe("advance");
+  });
+
+  it("keeps a trailing question that follows a sentinel on the same line", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Thanks.\nMETA: {"action":"advance"} Now, walk me through the rollback.',
+    );
+    expect(reply).toBe("Thanks.\nNow, walk me through the rollback.");
+    expect(action).toBe("advance");
+  });
+
+  it("does not delete a prose line that merely opens with the token", () => {
+    // The line rule may only fire on something shaped like a sentinel; an
+    // explanation of the protocol carries no payload and must survive.
+    const full = "Sure.\n**META:** is the marker you saw earlier, nothing to worry about.";
+    expect(splitReplyAndMeta(full).reply).toBe(full);
+  });
+
+  it("strips an inline sentinel truncated mid-payload", () => {
+    // finish_reason=length mid-JSON. streamingReply already withholds this;
+    // without the same rule here the raw fragment pops in at stream end.
+    const { reply, action } = splitReplyAndMeta('Anything else? META: {"ac');
+    expect(reply).toBe("Anything else?");
+    expect(action).toBe("ask_followup");
+  });
+
+  it("leaves no dangling fence when a fenced sentinel is truncated", () => {
+    const { reply } = splitReplyAndMeta('Thanks.\n```\nMETA: {"action": "adva');
+    expect(reply).toBe("Thanks.");
+  });
+
+  it("removes a dangling fence whose language tag carries digits", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Thanks.\n```json5\nMETA: {"action":"advance"}\n```',
+    );
+    expect(reply).toBe("Thanks.");
+    expect(action).toBe("advance");
+  });
+});
+
+describe("splitReplyAndMeta — bounded work on adversarial input", () => {
+  // The route replays CLIENT-SUPPLIED transcript turns through this parser
+  // (buildInterviewerMessages sanitizes interviewer turns), so the payload
+  // scan cannot be allowed to grow with attacker-controlled text.
+  it("strips a giant unclosed payload as truncated protocol, not prose", () => {
+    // A quoted payload that never closes is broken wire protocol whatever its
+    // length, so it is cut rather than shown — the scan just has to stay cheap.
+    const full = `Tell me more. META: {"a":"${"}".repeat(200_000)}`;
+    expect(splitReplyAndMeta(full).reply).toBe("Tell me more.");
+  });
+
+  it("scans a huge unclosed payload in bounded time", () => {
+    const full = `Tell me more. META: {"a":"${"}".repeat(200_000)}`;
+    const started = Date.now();
+    splitReplyAndMeta(full);
+    // Unbounded scanning is quadratic in the number of closing braces; this
+    // input takes minutes without a window cap and ~0ms with one.
+    expect(Date.now() - started).toBeLessThan(250);
+  });
+
+  it("still strips a legitimate sentinel carrying extra keys", () => {
+    const { reply, action } = splitReplyAndMeta(
+      `Done. META: {"action": "advance", "note": "${"x".repeat(200)}"}`,
+    );
+    expect(reply).toBe("Done.");
+    expect(action).toBe("advance");
+  });
 });
