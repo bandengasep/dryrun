@@ -30,8 +30,9 @@ export const maxDuration = 120;
  * split is disclosed, never silently swapped.
  *
  * `delta` carries RAW model output, including the trailing `META:` sentinel if
- * the model emits it mid-flight. The client must render
- * `splitReplyAndMeta(accumulated).reply` rather than naively appending — and
+ * the model emits it mid-flight — own line or inline after the prose. The
+ * client must render `streamingReply(accumulated)` rather than naively
+ * appending (it strips completed sentinels AND withholds partial ones) — and
  * `meta.reply` carries the final cleaned text so the client can reconcile at the
  * end regardless. Deltas are not filtered server-side because an interviewer
  * reply is often a single line: withholding the last line until the stream ends

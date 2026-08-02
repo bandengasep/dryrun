@@ -5,8 +5,9 @@
 // surface — the same "who said this" grammar a real call would use. The
 // currently-streaming reply gets its own bubble with a trailing caret; its
 // text is already sentinel-stripped by the caller (useInterviewSession passes
-// `splitReplyAndMeta(buffer).reply`, never the raw buffer), so a `META:` line
-// can never flash on screen mid-stream.
+// `streamingReply(buffer)`, never the raw buffer — it also withholds partial
+// sentinels still mid-delta), so META wire protocol can never flash on screen,
+// whether the model emits it as its own line or inline after the prose.
 
 import { useEffect, useRef } from "react";
 import type { TranscriptTurn } from "@dryrun/core";

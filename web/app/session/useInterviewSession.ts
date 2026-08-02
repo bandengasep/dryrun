@@ -22,7 +22,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   MAX_FOLLOWUPS,
-  splitReplyAndMeta,
+  streamingReply,
   type InterviewQuestion,
   type SessionPlan,
   type TranscriptTurn,
@@ -301,7 +301,10 @@ export function useInterviewSession(): InterviewSession {
     return Math.max(0, countInterviewerTurns(transcript, currentQuestion.id) - 1);
   }, [transcript, currentQuestion]);
 
-  const streamingText = useMemo(() => splitReplyAndMeta(streamBuffer).reply, [streamBuffer]);
+  // streamingReply withholds any tail that could still resolve into the META
+  // sentinel — including a partial one mid-delta — so wire protocol never
+  // flashes. The meta frame's cleaned reply reconciles the turn at stream end.
+  const streamingText = useMemo(() => streamingReply(streamBuffer), [streamBuffer]);
 
   const sendAnswer = useCallback(() => {
     if (!plan) return;

@@ -106,7 +106,7 @@ export function buildInterviewerMessages(state: SessionState): ChatMessage[] {
     "",
     receiptContext(question, gap),
     "",
-    `Up to ${MAX_FOLLOWUPS} follow-ups, then move on. End replies with exactly:`,
+    `Up to ${MAX_FOLLOWUPS} follow-ups, then move on. End replies with a final line of exactly:`,
     'META: {"action": "ask_followup" | "advance" | "wrap_up"}',
     `ask_followup if something's missing; advance once answered; ${isLast ? "wrap_up when done." : "wrap_up only if asked to stop."}`,
     "Never mention META aloud.",
@@ -116,12 +116,18 @@ export function buildInterviewerMessages(state: SessionState): ChatMessage[] {
 
   const messages: ChatMessage[] = [{ role: "system", content: system }];
   for (const t of transcript) {
+    // Interviewer turns are sanitized on replay: a turn that leaked its META
+    // sentinel (pre-hotfix sessions persist in sessionStorage) must not teach
+    // the model, by example, to leak again. Candidate turns are never
+    // rewritten — the debrief quotes them verbatim, and replay must match.
+    const content =
+      t.role === "interviewer" ? splitReplyAndMeta(t.text).reply : t.text;
     // Providers reject empty-content messages; a blank turn is dropped rather
     // than failing the whole turn.
-    if (t.text.trim().length === 0) continue;
+    if (content.trim().length === 0) continue;
     messages.push({
       role: t.role === "interviewer" ? "assistant" : "user",
-      content: t.text,
+      content,
     });
   }
   // Guarantee a user message exists — see KICKOFF_USER_MESSAGE. This is a
@@ -132,7 +138,66 @@ export function buildInterviewerMessages(state: SessionState): ChatMessage[] {
   return messages;
 }
 
-const META_LINE = /^META:\s*(\{.*\})\s*$/;
+// --- sentinel grammar --------------------------------------------------------
+// The token as models actually emit it: bare `META:`, or the bolded
+// `**META:**` / `**META**:` forms. Case-sensitive on purpose — lowercase
+// "meta" is ordinary prose, and requiring the colon keeps "METAMORPHOSIS" out.
+const META_TOKEN = /(?:\*\*\s*)?META\s*(?::\s*\*\*|\*\*\s*:|:)/g;
+// What may trail a terminal sentinel's JSON: whitespace, closing bold, closing
+// fence. Anything else is prose, and prose after the close means the META was
+// mentioned, not emitted — it stays visible where it belongs.
+const JUNK_TAIL = /^(?:\s|\*\*|```)*$/;
+// An opening fence left dangling at the reply's tail once its sentinel is cut.
+const OPEN_FENCE_TAIL = /(?:\r?\n|^)[ \t]*```[a-z]*$/i;
+// The token anchored at the start of a (trimmed) line — the original contract.
+const ANCHORED_TOKEN = /^(?:\*\*\s*)?META\s*(?::\s*\*\*|\*\*\s*:|:)/;
+
+function lastToken(text: string): { start: number; end: number } | null {
+  META_TOKEN.lastIndex = 0;
+  let hit: RegExpExecArray | null = null;
+  for (let m = META_TOKEN.exec(text); m !== null; m = META_TOKEN.exec(text)) {
+    hit = m;
+  }
+  return hit && { start: hit.index, end: hit.index + hit[0].length };
+}
+
+/**
+ * Shortest JSON.parse-able object starting at `start` (which must point at a
+ * `{`): candidate slices grow through successive `}` until one parses. String-
+ * safe without a hand-rolled brace scanner — a `}` inside a quoted value just
+ * fails the parse and the scan extends. Payloads are a dozen tokens, so the
+ * quadratic worst case never matters.
+ */
+function parseJsonAt(
+  text: string,
+  start: number,
+): { value: unknown; end: number } | null {
+  for (
+    let close = text.indexOf("}", start);
+    close !== -1;
+    close = text.indexOf("}", close + 1)
+  ) {
+    try {
+      return { value: JSON.parse(text.slice(start, close + 1)), end: close + 1 };
+    } catch {
+      // Not closed yet — extend to the next brace.
+    }
+  }
+  return null;
+}
+
+function actionOf(value: unknown): TurnAction {
+  const action = (value as { action?: unknown } | null)?.action;
+  return typeof action === "string" &&
+    (TURN_ACTIONS as readonly string[]).includes(action)
+    ? (action as TurnAction)
+    : "ask_followup";
+}
+
+/** The reply left of a sentinel cut, with any dangling opening fence removed. */
+function replyBefore(text: string, cutStart: number): string {
+  return text.slice(0, cutStart).trimEnd().replace(OPEN_FENCE_TAIL, "").trimEnd();
+}
 
 export interface TurnReply {
   /** What the candidate sees — the sentinel is always stripped. */
@@ -143,35 +208,82 @@ export interface TurnReply {
 /**
  * Split a completed interviewer turn into its reply and its suggested action.
  *
- * Only the LAST non-empty line is considered, so a `META:` that appears inside
- * the prose — because the candidate is discussing this very protocol, or the
- * model quoted itself — is inert and stays in the reply where it belongs.
- * Anything unparseable degrades to ask_followup with the sentinel stripped:
- * the candidate must never see wire protocol, even when it is malformed.
+ * Two rules, tried in order:
+ *
+ * 1. A VERIFIED terminal sentinel strips wherever it sits — same line as the
+ *    prose (the 2 Aug prod leak), own line, pretty-printed across lines,
+ *    fenced, or bolded. Verified means: the last `META:` token, then one
+ *    balanced JSON object, then nothing but wrapper junk to end-of-string.
+ *    A META the model merely QUOTES — prose continues after the close — is
+ *    untouched, which is what keeps mid-text mentions inert.
+ * 2. Failing that, the original line rule: a last non-empty line that STARTS
+ *    with the token is an attempted sentinel and is stripped even when its
+ *    JSON is malformed or truncated. The candidate must never see wire
+ *    protocol, even when it is broken wire protocol.
+ *
+ * Anything unparseable degrades to ask_followup — fail-soft, never thrown.
  */
 export function splitReplyAndMeta(full: string): TurnReply {
+  const token = lastToken(full);
+  if (token) {
+    const braceStart = full.indexOf("{", token.end);
+    if (braceStart !== -1 && full.slice(token.end, braceStart).trim() === "") {
+      const parsed = parseJsonAt(full, braceStart);
+      if (parsed && JUNK_TAIL.test(full.slice(parsed.end))) {
+        return {
+          reply: replyBefore(full, token.start),
+          action: actionOf(parsed.value),
+        };
+      }
+    }
+  }
+
   const lines = full.split("\n");
   let lastIdx = lines.length - 1;
   while (lastIdx >= 0 && lines[lastIdx].trim() === "") lastIdx--;
   if (lastIdx < 0) return { reply: "", action: "ask_followup" };
-
-  const lastLine = lines[lastIdx].trim();
-  if (!lastLine.startsWith("META:")) {
+  if (!ANCHORED_TOKEN.test(lines[lastIdx].trim())) {
     return { reply: full.trimEnd(), action: "ask_followup" };
   }
+  // An anchored token rule 1 could not verify: malformed or truncated JSON.
+  return { reply: lines.slice(0, lastIdx).join("\n").trimEnd(), action: "ask_followup" };
+}
 
-  const reply = lines.slice(0, lastIdx).join("\n").trimEnd();
-  const match = META_LINE.exec(lastLine);
-  if (!match) return { reply, action: "ask_followup" };
-
-  try {
-    const parsed: unknown = JSON.parse(match[1]);
-    const action = (parsed as { action?: unknown }).action;
-    if (typeof action === "string" && (TURN_ACTIONS as readonly string[]).includes(action)) {
-      return { reply, action: action as TurnAction };
-    }
-  } catch {
-    // Malformed JSON — fall through to the safe default.
+/**
+ * What the candidate may see of a still-growing stream buffer.
+ *
+ * The client derives the visible bubble from the raw buffer on every delta,
+ * so this withholds any tail that could still resolve into the sentinel: an
+ * anchored token, a token followed only by whitespace or a still-unbalanced
+ * payload, or a bare boundary-anchored prefix of the token itself ("M", "ME",
+ * "**MET"…). A META already followed by prose can never be stripped by the
+ * final parse, so it shows live. Over-withholding is transient by
+ * construction: the next delta either completes the sentinel (stripped) or
+ * reveals prose (restored), and the trailing meta frame reconciles the turn
+ * at stream end.
+ */
+export function streamingReply(buffer: string): string {
+  const token = lastToken(buffer);
+  if (!token) {
+    return buffer.replace(/(?:^|(?<=[\s*]))\*{0,2}M(?:E(?:TA?)?)?$/, "").trimEnd();
   }
-  return { reply, action: "ask_followup" };
+
+  const lineStart = buffer.lastIndexOf("\n", token.start) + 1;
+  const anchored = buffer.slice(lineStart, token.start).trim() === "";
+
+  const tail = buffer.slice(token.end);
+  const braceRel = tail.indexOf("{");
+  const cleanToBrace = braceRel !== -1 && tail.slice(0, braceRel).trim() === "";
+  let closedThenProse = false;
+  if (cleanToBrace) {
+    const parsed = parseJsonAt(tail, braceRel);
+    closedThenProse = parsed !== null && !JUNK_TAIL.test(tail.slice(parsed.end));
+  }
+  const couldBecomeTerminal =
+    tail.trim() === "" || (cleanToBrace && !closedThenProse);
+
+  if (anchored || couldBecomeTerminal) {
+    return replyBefore(buffer, token.start);
+  }
+  return splitReplyAndMeta(buffer).reply;
 }
