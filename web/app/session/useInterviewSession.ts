@@ -130,6 +130,27 @@ export function useInterviewSession(): InterviewSession {
   const genRef = useRef(0);
   const pendingRef = useRef<{ index: number; transcript: TranscriptTurn[] } | null>(null);
   const mountedKickoff = useRef(false);
+  const abortRef = useRef<AbortController | null>(null);
+
+  // Leaving the rehearsal retires every turn still in flight. Without this a
+  // stalled stream — the very case someone walks away from — lands its `meta`
+  // after they have gone and appends an interviewer turn nobody ever saw; and
+  // because `transcript/append` nulls the debrief, a turn arriving after the
+  // debrief compiled leaves that page permanently blank (its compile effect
+  // latches once and will not re-run). Bumping the generation makes every
+  // in-flight handler stale; the abort stops the work as well as its effects.
+  //
+  // The kickoff latch is released here too, and it has to be: StrictMode's
+  // dev remount runs this cleanup between the two effect passes, and the latch
+  // is a ref that survives it. Retiring the request without releasing the
+  // latch would abort the opening question and never ask another one.
+  useEffect(() => {
+    return () => {
+      genRef.current++;
+      abortRef.current?.abort();
+      mountedKickoff.current = false;
+    };
+  }, []);
 
   // ?mock=1 sticks for the rest of the tab session — set the flag before
   // anything else runs so the very first turn request already sees it.
@@ -200,11 +221,15 @@ export function useInterviewSession(): InterviewSession {
         return;
       }
 
+      const controller = new AbortController();
+      abortRef.current = controller;
+
       try {
         const res = await fetch("/api/session/turn", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ plan, transcript: baseTranscript, questionIndex: index }),
+          signal: controller.signal,
         });
         if (stale()) return;
 
@@ -256,7 +281,8 @@ export function useInterviewSession(): InterviewSession {
           setPhase("error");
         }
       } catch (e) {
-        if (stale()) return;
+        // An abort is this screen going away, not a turn that failed.
+        if (stale() || (e instanceof DOMException && e.name === "AbortError")) return;
         setError(e instanceof Error ? e.message : String(e));
         setPhase("error");
       }

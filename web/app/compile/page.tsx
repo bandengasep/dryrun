@@ -299,17 +299,38 @@ export default function CompileScreen() {
     setMock(mockEnabled());
   }, []);
 
+  // A compile the user walked away from must not come back to life. Its
+  // `compile/set` is deliberately destructive (it clears plan + transcript +
+  // debrief, so no receipt can outlive the documents it cites), and its
+  // router.push would yank someone out of whatever they moved on to — a
+  // rehearsal they are mid-answer in, restored from sessionStorage. Both
+  // survive unmount on their own, so the request is aborted and the result is
+  // discarded unless this screen is still the one on the page.
+  const liveRef = useRef(true);
+  const abortRef = useRef<AbortController | null>(null);
+  useEffect(() => {
+    liveRef.current = true;
+    return () => {
+      liveRef.current = false;
+      abortRef.current?.abort();
+    };
+  }, []);
+
   async function compile() {
     setError(null);
     setTrace(EMPTY_TRACE);
     setStartedAt(Date.now());
     setRunning(true);
 
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     try {
       const res = await fetch("/api/compile", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "text/event-stream" },
         body: JSON.stringify({ jd, resume }),
+        signal: controller.signal,
       });
 
       // Validation failures come back as plain JSON before the stream opens.
@@ -361,9 +382,12 @@ export default function CompileScreen() {
       // see the contract note in lib/stream.ts.
       if (!result) throw new Error("The compile stream ended before it produced any gaps.");
 
+      if (!liveRef.current) return;
       dispatch({ type: "compile/set", compile: result });
       router.push("/plan");
     } catch (e) {
+      // An abort is this screen unmounting, not a failure to report.
+      if (!liveRef.current || (e instanceof DOMException && e.name === "AbortError")) return;
       setError(e instanceof Error ? e.message : String(e));
       setRunning(false);
     }
@@ -399,9 +423,11 @@ export default function CompileScreen() {
       await sleep(300);
       setTrace((prev) => ({ ...prev, gaps: result.gaps.length }));
 
+      if (!liveRef.current) return;
       dispatch({ type: "compile/set", compile: result });
       router.push("/plan");
     } catch (e) {
+      if (!liveRef.current) return;
       setError(e instanceof Error ? e.message : String(e));
       setRunning(false);
     }
