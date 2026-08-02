@@ -401,8 +401,15 @@ body {
 
 /* space-between decides where the four groups land, but it guarantees no
    minimum: at wide viewports the theme toggle and the account control ended up
-   almost touching. The gap is that floor. */
+   almost touching. The gap is that floor.
+
+   Sticky, not fixed: the header stays in flow, so the session shell's
+   `calc(100vh - 65px)` height math still holds; the pin only shows on pages
+   that actually scroll (landing, plan). The blur backdrop earns its keep the
+   moment content slides beneath. */
 .site-header {
+  position: sticky;
+  top: 0;
   background-color: var(--header-bg);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hairline);
@@ -411,7 +418,6 @@ body {
   justify-content: space-between;
   align-items: center;
   gap: var(--spacing-5);
-  position: relative;
   z-index: 10;
 }
 
