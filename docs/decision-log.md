@@ -728,3 +728,23 @@ and two of these miss targets that were locked on 26 Jul.
   stalled and the text arrives in one late block. No protocol leaks and the final text is
   correct; the docstring now says so plainly instead of claiming withholding is always transient.
   Deferred deliberately with the submission hours away — the safe direction is a late reveal.
+
+### 2026-08-02, submission packaging — repo guide over per-folder docs
+
+- **Organizers clarified the submission form** (blast + updated form, 2 Aug): the write-up must
+  itself point judges at the most important files (exact path, what it contains, what it
+  demonstrates), state how to run, and identify anything mocked, incomplete, or dependent on
+  external services. Timothy floated a README.md per folder; decided against — the guide lives
+  in the write-up because that is where the form asks for it, and a **Repository guide** table
+  in the root README carries the long-form version (path · contents · what it proves).
+  Per-folder files would duplicate both and drift. One exception: `web/README.md` was refreshed
+  because it still described the pre-pivot SQL sandbox.
+- **README de-hedged, no facts changed** on Timothy's call ("too mealy-mouthed"): claims now
+  lead with the measured number, process narrative (deadline history, teammate-branch
+  troubleshooting) cut, every Met/Missed/Restated verdict and every measurement kept verbatim —
+  honesty is a rubric pillar; hedged prose isn't. The accepted keyless-demo constraints from the
+  2 Aug review (no rate limiting, unauthenticated save) are now documented in the README's
+  "Mocked, incomplete, or external" section, per that entry's "document rather than fix".
+- **Write-up updated in place:** "Where to look in the repo" section added; body re-trimmed to
+  999 words (verify: `tail -n +3 write-up.md | wc -w`). Summary-field draft added at
+  `docs/submission/summary.md`.
