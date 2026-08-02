@@ -713,6 +713,16 @@ and two of these miss targets that were locked on 26 Jul.
   order, so out-of-order-but-valid quotes are falsely demoted to `dropped[]`. Gold scoring keys
   on positional `gap-N` ids, so a re-run of the prep flow can score old verdicts against new gaps
   — latent only, since the README reports gold precision/recall as *descoped, not measured*.
+- **gitleaks re-run at `6aca33d`: CLEAN** — 86 content-bearing commits, 2.2 MB, no leaks
+  (gitleaks 8.30.1, default ruleset). The 31 Jul sweep covered 76 commits; 36 have landed since,
+  none touching env- or secret-shaped paths. Also re-verified directly: the only tracked env file
+  is `.env.example` and it holds zero real-looking values, while `.env` and `web/.env.local`
+  exist locally and are both matched by `.gitignore`. Recorded because tonight this entry's
+  31 Jul predecessor was *missed* — the AGENTS.md checklist line was unticked and got read as
+  "never ran", when the log had said CLEAN all along. A checklist records intent; this log
+  records what happened. Trust the log.
+- **Submission video linked in the README:** <https://www.youtube.com/watch?v=1hBnwopwlEo> —
+  verified public (not private, not unlisted), HTTP 200, **163s (2:43)** against the ≤3-min cap.
 - **Known and NOT fixed (logged, not hidden):** a line-anchored token still freezes the streaming
   bubble until the turn ends, so an interviewer who explains the protocol mid-reply reads as
   stalled and the text arrives in one late block. No protocol leaks and the final text is
