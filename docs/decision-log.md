@@ -683,6 +683,36 @@ and two of these miss targets that were locked on 26 Jul.
   quadratic), 12.7s at 200k. Payload scanning is now capped at 512 chars, which is ~20× any real
   sentinel. The in-code comment excusing the quadratic ("payloads are a dozen tokens") was
   written for model output and never revisited when the same function started parsing user input.
+- **Two abandoned-request bugs fixed the same night, one root cause** (PR #25): a fetch started on
+  a screen kept running after the user left, and its handler still mutated app-level state. An
+  abandoned **compile** would fire `compile/set` (which deliberately clears plan + transcript +
+  debrief) and `router.push("/plan")` minutes later — wiping a rehearsal the user had moved on to
+  and yanking them away mid-answer. A stalled **interviewer turn** would append after the user
+  left `/session`, and since `transcript/append` nulls the debrief, a turn landing after the
+  debrief compiled left that page permanently blank (its compile effect latches once). Both now
+  abort on unmount behind a liveness/generation guard. Subtlety worth remembering: the kickoff
+  latch must be released in the same cleanup, because StrictMode's dev remount runs cleanup
+  between the two effect passes and the latch is a ref that survives it — retiring the request
+  without releasing the latch aborts the opening question and never asks another.
+- **These two shipped WITHOUT tests, deliberately and disclosed.** `web/` has no test harness at
+  all; adding one means new dependencies, which rule 9 says needs Timothy's sign-off, and 10pm
+  the night before submission is the wrong time to take that. Verified instead by typecheck,
+  `next build`, and a scripted browser run in dev (StrictMode on, `?mock=1`, no model spend):
+  full compile → plan → session flow, opening question arrives, and an answer sent immediately
+  before leaving mid-turn produced **no** interviewer turn appended after unmount, zero console
+  errors. Standing up a web test harness is the first post-deadline task.
+- **Open findings from the same review, NOT fixed and not hidden** (recorded so the next session
+  inherits them rather than rediscovering them): no size caps or rate limiting on the
+  model-invoking routes, and `/api/session/save` is an unauthenticated public write — real, but
+  arguably an accepted constraint of a keyless hackathon demo, to be *documented* rather than
+  fixed. `SourceSpan`/`Gap`/`InterviewQuestion` encode their receipt invariants only at
+  construction, so a tampered client could mint a shareable debrief whose spans never satisfied
+  them. `finalizePlan`'s `slice(0, maxQuestions)` lacks the negative clamp the very same repo
+  documents in `diff/index.ts`. `locateSpan`'s word-boundary logic is ASCII-only (mis-anchors on
+  accented text). The debrief's per-turn cursor assumes the model emits quotes in transcript
+  order, so out-of-order-but-valid quotes are falsely demoted to `dropped[]`. Gold scoring keys
+  on positional `gap-N` ids, so a re-run of the prep flow can score old verdicts against new gaps
+  — latent only, since the README reports gold precision/recall as *descoped, not measured*.
 - **Known and NOT fixed (logged, not hidden):** a line-anchored token still freezes the streaming
   bubble until the turn ends, so an interviewer who explains the protocol mid-reply reads as
   stalled and the text arrives in one late block. No protocol leaks and the final text is

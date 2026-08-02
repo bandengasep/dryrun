@@ -4,7 +4,7 @@
 
 > Paste a job description and a resume; DryRun diffs them into evidenced gaps — every gap citing the JD line that demands it and the resume line that's silent — then compiles **your interview**: the questions those gaps predict, rehearsed live against an AI interviewer, debriefed with feedback that quotes your own answers back to you. Nothing displayed without a receipt; nothing graded, everything cited. *(Pivoted 26 Jul from the executable-SQL-challenge surface — decision log has the reasoning; the SQL harness stays in-repo, dormant and CI-green.)*
 
-**Hackathon submission — deadline extended to Sun 2 Aug 2026 (announced 30 Jul); submitting Sat 1 Aug evening.** Public repo + ≤3-min video + ≤1,000-word write-up with the five pillars as section headings: Problem · Approach · Evidence · Constraints · Honesty & Trajectory. Guiding rule: *a modest claim, proven, beats a grand claim, asserted.* Video + write-up links land here before submission.
+**Hackathon submission — deadline extended again to Mon 3 Aug 2026, 12:00 SGT (announced 2 Aug); submitting Sun 2 Aug evening for buffer.** Public repo + ≤3-min video + ≤1,000-word write-up with the five pillars as section headings: Problem · Approach · Evidence · Constraints · Honesty & Trajectory. Guiding rule: *a modest claim, proven, beats a grand claim, asserted.* Video + write-up links land here before submission.
 
 **Team:** Timothy (backend / agents / evals) · Vedika (UI/UX / video).
 
