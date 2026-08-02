@@ -2,6 +2,7 @@ import { describe, it, expect } from "vitest";
 import {
   buildInterviewerMessages,
   splitReplyAndMeta,
+  streamingReply,
   SessionError,
   MAX_FOLLOWUPS,
   KICKOFF_USER_MESSAGE,
@@ -253,5 +254,195 @@ describe("buildInterviewerMessages — provider compatibility floor", () => {
     // unmistakable even though it never enters the transcript.
     expect(KICKOFF_USER_MESSAGE.startsWith("(")).toBe(true);
     expect(KICKOFF_USER_MESSAGE.endsWith(")")).toBe(true);
+  });
+});
+
+describe("splitReplyAndMeta — terminal sentinels the 2 Aug prod leak taught us", () => {
+  // The 31 Jul prompt trim dropped "output a final line", the model began
+  // appending META inline after the prose, and last-line-prefix parsing showed
+  // raw wire protocol to the candidate. A verified terminal sentinel must strip
+  // wherever it sits; a META the prose merely mentions must stay inert.
+  it("strips an inline trailing META on the prose line — the leaked prod shape", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Anything else about your experience so far? META: {"action": "ask_followup"}',
+    );
+    expect(reply).toBe("Anything else about your experience so far?");
+    expect(action).toBe("ask_followup");
+  });
+
+  it("strips a compact inline sentinel and honors its action", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Understood, moving on. META:{"action":"advance"}',
+    );
+    expect(reply).toBe("Understood, moving on.");
+    expect(action).toBe("advance");
+  });
+
+  it("strips a pretty-printed sentinel spanning multiple lines", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Thanks.\nMETA: {\n  "action": "advance"\n}',
+    );
+    expect(reply).toBe("Thanks.");
+    expect(action).toBe("advance");
+  });
+
+  it("strips a fenced sentinel, fence and all", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Thanks.\n```\nMETA: {"action": "advance"}\n```',
+    );
+    expect(reply).toBe("Thanks.");
+    expect(action).toBe("advance");
+  });
+
+  it("strips a language-tagged fenced sentinel", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Thanks.\n```json\nMETA: {"action": "advance"}\n```',
+    );
+    expect(reply).toBe("Thanks.");
+    expect(action).toBe("advance");
+  });
+
+  it("strips a bold **META:** sentinel", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Thanks.\n**META:** {"action": "advance"}',
+    );
+    expect(reply).toBe("Thanks.");
+    expect(action).toBe("advance");
+  });
+
+  it("strips the **META**: bolding variant too", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Thanks.\n**META**: {"action": "advance"}',
+    );
+    expect(reply).toBe("Thanks.");
+    expect(action).toBe("advance");
+  });
+
+  it("tolerates extra keys in the sentinel payload", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Done. META: {"action": "advance", "confidence": 0.9}',
+    );
+    expect(reply).toBe("Done.");
+    expect(action).toBe("advance");
+  });
+
+  it("strips an inline out-of-protocol action and degrades soft", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Go on. META: {"action": "hire_them"}',
+    );
+    expect(reply).toBe("Go on.");
+    expect(action).toBe("ask_followup");
+  });
+
+  it("leaves a completed META followed by more prose inert — no over-strip", () => {
+    const full = 'I mentioned META: {"action": "advance"} earlier in the call.';
+    const { reply, action } = splitReplyAndMeta(full);
+    expect(reply).toBe(full);
+    expect(action).toBe("ask_followup");
+  });
+
+  it("leaves an unclosed META quoted mid-prose inert", () => {
+    const full = "We can discuss META: {curly brace configs another time";
+    const { reply, action } = splitReplyAndMeta(full);
+    expect(reply).toBe(full);
+    expect(action).toBe("ask_followup");
+  });
+
+  it("tolerates trailing whitespace after an inline sentinel", () => {
+    const { reply, action } = splitReplyAndMeta(
+      'Ok? META: {"action":"advance"}  \n\n',
+    );
+    expect(reply).toBe("Ok?");
+    expect(action).toBe("advance");
+  });
+});
+
+describe("buildInterviewerMessages — sentinel hygiene (2 Aug hotfix)", () => {
+  it("instructs the model to emit META as a final line — the contract the parser anchors on", () => {
+    // The 31 Jul trim silently dropped this wording and the leak followed;
+    // this pin makes the next trim fail a test instead of prod.
+    const messages = buildInterviewerMessages({
+      plan: PLAN,
+      transcript: [],
+      questionIndex: 0,
+    });
+    expect(messages[0].content).toMatch(/final line/);
+  });
+
+  it("sanitizes a leaked trailing sentinel out of replayed interviewer turns", () => {
+    // Contaminated transcripts replay leaked META as assistant few-shot
+    // examples, reinforcing the leak. Replay must strip, storage untouched.
+    const messages = buildInterviewerMessages({
+      plan: PLAN,
+      transcript: [
+        turn("interviewer", 'Ok. META: {"action":"advance"}'),
+        turn("candidate", "My answer."),
+      ],
+      questionIndex: 0,
+    });
+    expect(messages[1]).toEqual({ role: "assistant", content: "Ok." });
+  });
+
+  it("drops a replayed interviewer turn that was pure sentinel", () => {
+    const messages = buildInterviewerMessages({
+      plan: PLAN,
+      transcript: [turn("interviewer", 'META: {"action":"advance"}')],
+      questionIndex: 0,
+    });
+    expect(messages.filter((m) => m.role === "assistant")).toHaveLength(0);
+    // Providers reject empty content; the drop must not leave a husk behind.
+    expect(messages.every((m) => m.content.trim().length > 0)).toBe(true);
+  });
+
+  it("never rewrites candidate turns, even when they quote the protocol", () => {
+    // The debrief quotes candidates verbatim; replay must too.
+    const text = 'My config ended with META: {"action": "advance"}';
+    const messages = buildInterviewerMessages({
+      plan: PLAN,
+      transcript: [turn("candidate", text)],
+      questionIndex: 0,
+    });
+    expect(messages[1]).toEqual({ role: "user", content: text });
+  });
+});
+
+describe("streamingReply — what the candidate may see of a growing buffer", () => {
+  // The client re-derives the visible bubble from the raw stream buffer every
+  // render. Anything that could still resolve into the sentinel is withheld,
+  // so wire protocol never flashes — not even for the one delta before the
+  // closing brace arrives. The trailing META frame reconciles at stream end.
+  it("withholds an in-flight partial sentinel", () => {
+    expect(streamingReply('Anything else? META: {"ac')).toBe("Anything else?");
+  });
+
+  it("withholds a bare trailing token", () => {
+    expect(streamingReply("Anything else? META:")).toBe("Anything else?");
+  });
+
+  it("withholds a boundary-anchored token prefix", () => {
+    expect(streamingReply("Anything else? ME")).toBe("Anything else?");
+    expect(streamingReply("Anything else? M")).toBe("Anything else?");
+  });
+
+  it("strips a completed sentinel exactly like the final parse", () => {
+    expect(streamingReply('Thanks.\nMETA: {"action":"advance"}')).toBe("Thanks.");
+  });
+
+  it("shows a mid-text META once prose follows its close", () => {
+    const full = 'I once wrote META: {"action":"wrap_up"} into a config';
+    expect(streamingReply(full)).toBe(full);
+  });
+
+  it("leaves plain prose untouched, including non-boundary M-words", () => {
+    expect(streamingReply("We shipped the READ.ME")).toBe("We shipped the READ.ME");
+  });
+
+  it("trims a boundary M-word that could be the token starting", () => {
+    // Over-withholding is transient: the next delta restores it if it was prose.
+    expect(streamingReply("And then M")).toBe("And then");
+  });
+
+  it("keeps an empty buffer empty", () => {
+    expect(streamingReply("")).toBe("");
   });
 });

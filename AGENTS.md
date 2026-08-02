@@ -4,7 +4,7 @@
 
 **Pivoted 26 Jul** (was: executable-SQL-challenge compiler — see `docs/decision-log.md` 2026-07-26 and the full plan in `docs/superpowers/plans/2026-07-26-pivot-interview-rehearsal.md`; product spec: `docs/spec-pivot-2026-07-26.md`; the old `docs/spec.md` is historical).
 
-**Deadline: EXTENDED to Sun 2 Aug 2026** (announced 30 Jul; submit Sat evening for buffer). Submission = public repo + ≤3-min video + ≤1,000-word write-up **using the five pillars as section headings**.
+**Deadline: EXTENDED AGAIN to Mon 3 Aug 2026, 12:00 SGT** (announced 2 Aug alongside a submission-form clarification; submit Sunday evening for buffer — was Sun 2 Aug, before that Fri 31 Jul). Submission = public repo + ≤3-min video + ≤1,000-word write-up **using the five pillars as section headings**.
 **Rubric** (1–5 each): Problem (success criteria defined *before* building) · Approach (every decision reasoned, alternatives named) · Evidence (every claim backed by measurement/comparison/demonstration) · Constraints (cost, latency, reliability, safety) · Honesty & Trajectory (failure modes, limitations, next steps). Master rule: *a modest claim, proven, beats a grand claim, asserted.* Judges finally answer: would they interview the applicant. Prizes incl. **"Best Use of Agnes AI" ($500)**.
 
 **Ownership (from 26 Jul):** Claude sessions — Paper design + ALL code (core + web). Timothy — keys/redemptions, eval-corpus export + gold adjudication, go/no-go calls, submission. Vedika — landing/about copy, storyboard, 3-min video, write-up polish.

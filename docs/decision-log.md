@@ -621,3 +621,35 @@ and two of these miss targets that were locked on 26 Jul.
   same near-solid `≤640px` variant.
 - **Header gained a `--spacing-5` gap.** `justify-content: space-between` sets no minimum, and at
   wide viewports the theme toggle and the account control were nearly touching.
+
+### 2026-08-02, evening — the META sentinel leak (hotfix), and a correction to 31 Jul
+
+- **CORRECTION — the 31 Jul "META protocol byte-identical" claim is falsified.** The sentinel
+  *template string* was indeed unchanged, but the same trim (`7e8ec18`) deleted the instruction
+  wording that told the model to emit META as **a final line** ("After your reply, output a final
+  line, exactly:" became "End replies with exactly:"). The parser's contract was exactly that
+  line: `splitReplyAndMeta` stripped META only when it was the last non-empty line. Freed of the
+  wording, the model began appending META inline after the prose — and the raw trailer leaked
+  into the visible bubble, the committed transcript, `sessionStorage`, the next-turn assistant
+  replay (self-reinforcing: the model saw its own leaked turns as precedent), and the debrief's
+  quotable text. Vedika hit it repeatedly while recording. "All 20 session tests unmodified" was
+  true and is the tell: no test pinned the instruction wording to the parser's expectations, so
+  the contract broke without a failure. The 31 Jul entry stays as written; this entry is the
+  receipt for what it missed.
+- **Fix is four parts, all one root cause** (branch `hotfix/meta-sentinel-leak`): (1)
+  `splitReplyAndMeta` hardened — a *verified terminal sentinel* (last `META:` token, incl.
+  `**META:**` forms, then one balanced JSON object, then nothing but whitespace/bold/fence to
+  end-of-string) strips wherever it sits: inline after prose, own line, pretty-printed, fenced;
+  the original line-anchored rule stays as the fail-soft fallback for malformed JSON. Mid-text
+  META with prose after its close stays inert — the pinned test holds. (2) The prompt says
+  "End replies with a final line of exactly:" again (+4 tokens against the 41% trim), now pinned
+  by a `/final line/` test so the next trim fails CI instead of prod. (3) New core
+  `streamingReply(buffer)` drives the live bubble: it also *withholds partial sentinels*
+  (`META: {"ac`) mid-delta, so wire protocol never flashes; the trailing `meta` frame reconciles
+  at stream end. (4) `buildInterviewerMessages` sanitizes replayed *interviewer* turns through
+  the parser, so contaminated stored sessions stop teaching the model to leak; candidate turns
+  are never rewritten — the debrief quotes them verbatim and replay must match.
+- **Accepted residual:** turns already committed with a leaked trailer before the fix still
+  display in those old sessions' transcript UIs and can be quoted by their debriefs. Replay is
+  sanitized; stored history is not rewritten — a `sessionStorage` migration is out of hotfix
+  scope, and re-recording starts a fresh session anyway.
